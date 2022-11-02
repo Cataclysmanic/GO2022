@@ -1,14 +1,12 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Test Assets/TestPlane.glb" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Detective3d.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player/Detective3d.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Test Assets/TestCube.glb" type="PackedScene" id=3]
 
 [sub_resource type="BoxShape" id=1]
 
 [node name="TestField" type="Spatial"]
-
-[node name="Detective3d" parent="." instance=ExtResource( 2 )]
 
 [node name="TestPlane" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
@@ -26,3 +24,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.61142, 2.79951, -7.19647 )
 shadow_enabled = true
 shadow_bias = 0.1
 omni_range = 10.4567
+
+[node name="Detective3d" parent="." instance=ExtResource( 2 )]

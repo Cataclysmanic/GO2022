@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Code/Detective3d.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Test Assets/_side idle.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Test Assets/_up idle.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Test Assets/_down walk.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Test Assets/instructions.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Items/Gun.tscn" type="PackedScene" id=10]
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 8 )
@@ -209,3 +210,7 @@ shape = SubResource( 35 )
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 1.15885, -0.603622, 0.387647 )
 texture = ExtResource( 9 )
+
+[node name="Items" type="Spatial" parent="."]
+
+[node name="Gun" parent="Items" instance=ExtResource( 10 )]

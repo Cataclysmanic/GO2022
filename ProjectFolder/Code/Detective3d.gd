@@ -47,6 +47,11 @@ func _process(delta):
 	#if the 'select' button is pressed, change between mouse use and controller use.
 	if Input.is_action_just_pressed("ui_select"):
 		mouse = !mouse
+	if Input.is_action_just_pressed("shoot"):
+		for item in $Items.get_children():
+			if item.has_method("shoot"):
+				item.shoot()
+		
 	#if mouse is controlling the direction, get and point towards the current mouse position on screen
 	if mouse:
 		point = -$Camera.unproject_position(self.transform.origin).angle_to_point(get_viewport().get_mouse_position())
@@ -102,3 +107,6 @@ func _process(delta):
 	
 	var vel = dir.normalized() * speed
 	move_and_collide(vel)
+
+
+		
