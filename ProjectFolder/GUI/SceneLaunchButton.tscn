@@ -12,3 +12,4 @@ script = ExtResource( 1 )
 stream = ExtResource( 2 )
 
 [connection signal="pressed" from="." to="." method="_on_SceneLaunchButton_pressed"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

@@ -17,13 +17,20 @@ func play_click_noise():
 	audioPlayer.set_pitch_scale(randPitch) 
 	audioPlayer.play()
 	
-	
 
-func _on_SceneLaunchButton_pressed():
-
-	play_click_noise()
+func switch_scene():
 	if SceneToLaunch != null:
 		get_tree().change_scene_to(SceneToLaunch)
 	else:
 		printerr("configuration error: SceneLaunchButton requires a SceneToLaunch (in the inspector)")
 
+
+func _on_SceneLaunchButton_pressed():
+
+	play_click_noise()
+
+
+
+func _on_AudioStreamPlayer_finished():
+	switch_scene()
+	
