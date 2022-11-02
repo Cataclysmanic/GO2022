@@ -22,9 +22,12 @@ func switch_scene():
 	if SceneToLaunch != null:
 		var _status = get_tree().change_scene_to(SceneToLaunch)
 	elif return_to_main == true:
-		get_tree().change_scene("res://GUI/MainMenu.tscn")
+		switch_to_main_scene()
 	else:
 		printerr("configuration error: SceneLaunchButton requires a SceneToLaunch (in the inspector)")
+
+func switch_to_main_scene():
+	var _status = get_tree().change_scene("res://GUI/MainMenu.tscn")
 
 
 func _on_SceneLaunchButton_pressed():

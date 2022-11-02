@@ -89,12 +89,12 @@ func end_scene():
 	if scene_type == scene_types.cutscene:
 		 
 		if callback_scene == null or is_instance_valid(callback_scene) == false:
-			get_tree().change_scene(fallback_scene_if_no_callback)
+			switch_to_fallback_scene()
 		elif callback_scene.has_method("cutscene_finished"): # Ask it to free this scene
 			var _err = connect("cutscene_finished", callback_scene, "_on_cutscene_finished")
 			emit_signal("cutscene_finished")
 	elif scene_type == scene_types.final:
-		get_tree().change_scene(fallback_scene_if_no_callback)
+		switch_to_fallback_scene()
 	elif scene_type == scene_types.level:
 		printerr("Incomplete code in AlternatingDialog. end_level requested, but we don't know what to do yet.")
 
@@ -118,6 +118,10 @@ func advance_story():
 		else:
 			next_tab()
 		play_click_noise()
+
+
+func switch_to_fallback_scene():
+	var _status = get_tree().change_scene(fallback_scene_if_no_callback)
 
 
 func play_click_noise():
