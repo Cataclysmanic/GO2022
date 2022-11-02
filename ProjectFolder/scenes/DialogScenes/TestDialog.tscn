@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://GUI/AlternatingDialog.tscn" type="PackedScene" id=1]
+
+[node name="TestDialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AlternatingDialog" parent="." instance=ExtResource( 1 )]
+dialog = [ "Hey, what's up?", "Not much. You?", "Er.. nuthin.", "So, anyways... bye." ]

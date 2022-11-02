@@ -3,11 +3,14 @@ extends CanvasLayer
 enum scene_types { cutscene, level, final }
 export (scene_types) var scene_type = scene_types.cutscene
 
+var callback_scene
+export var fallback_scene_if_no_callback : String = "res://GUI/MainMenu.tscn"
 
-onready var dialog_container = $MarginContainer/VBoxContainer/MarginContainer/DialogContainer
+
+onready var dialog_container = find_node("DialogContainer")
 export var dialog : Array = []
 
-onready var next_button = $MarginContainer/VBoxContainer/NextPageButton
+onready var next_button = find_node("NextPageButton")
 #export var exit_scene_name : String
 #cutscenes always go back to the scene they were loaded from
 
@@ -22,6 +25,11 @@ func _ready():
 	next_button.hide()
 
 	$MusicLeadTimer.start()
+
+func init(callbackScene):
+	if callbackScene != null and is_instance_valid(callbackScene):
+		callback_scene = callbackScene
+	
 
 func instantiate_tabs():
 	for i in range(dialog.size()):
@@ -76,13 +84,19 @@ func next_tab():
 			$TextRevealNoiseLeft.play()
 
 func end_scene():
-	if scene_type == scene_types.cutscene:
-		Game.main.end_cutscene(self)
-	elif scene_type == scene_types.final:
-		Game.main.end_final_scene()
+	$TextRevealTimer.stop()
 
-	else:
-		Game.main.next_level()
+	if scene_type == scene_types.cutscene:
+		 
+		if callback_scene == null or is_instance_valid(callback_scene) == false:
+			get_tree().change_scene(fallback_scene_if_no_callback)
+		elif callback_scene.has_method("cutscene_finished"): # Ask it to free this scene
+			var _err = connect("cutscene_finished", callback_scene, "_on_cutscene_finished")
+			emit_signal("cutscene_finished")
+	elif scene_type == scene_types.final:
+		get_tree().change_scene(fallback_scene_if_no_callback)
+	elif scene_type == scene_types.level:
+		printerr("Incomplete code in AlternatingDialog. end_level requested, but we don't know what to do yet.")
 
 
 #warning-ignore:unused_argument
@@ -96,17 +110,26 @@ func _on_NextPageButton_pressed():
 	advance_story()
 
 func advance_story():
-	var showing = dialog_container.get_child(current_tab_num).get_visible_characters()
-	var length = dialog_container.get_child(current_tab_num).get_text().length()
-	if showing < length:
-		reveal_all_letters()
-	else:
-		next_tab()
-	Game.main.click()
+	if is_instance_valid(dialog_container):
+		var showing = dialog_container.get_child(current_tab_num).get_visible_characters()
+		var length = dialog_container.get_child(current_tab_num).get_text().length()
+		if showing < length:
+			reveal_all_letters()
+		else:
+			next_tab()
+		play_click_noise()
+
+
+func play_click_noise():
+	pass
+	
+func play_hover_noise():
+	pass
 
 func reveal_all_letters():
-	text_revealed = dialog_container.get_child(current_tab_num).get_text().length()
-	stop_mumbling()
+	if is_instance_valid(dialog_container):
+		text_revealed = dialog_container.get_child(current_tab_num).get_text().length()
+		stop_mumbling()
 
 func stop_mumbling():
 	$TextRevealNoiseLeft.stop()
@@ -114,19 +137,20 @@ func stop_mumbling():
 
 
 func reveal_letter():
-
-	text_revealed += 1
-	dialog_container.get_child(current_tab_num).set_visible_characters(text_revealed)
-	if text_revealed >= dialog_container.get_child(current_tab_num).get_text().length():
-		$TextRevealNoiseLeft.stop()
-		$TextRevealNoiseRight.stop()
+	if is_instance_valid(dialog_container):
+		text_revealed += 1
+		dialog_container.get_child(current_tab_num).set_visible_characters(text_revealed)
+		if text_revealed >= dialog_container.get_child(current_tab_num).get_text().length():
+			$TextRevealNoiseLeft.stop()
+			$TextRevealNoiseRight.stop()
 
 func _on_TextRevealTimer_timeout():
-	reveal_letter()
-	$TextRevealTimer.start()
+	if is_instance_valid(dialog_container):
+		reveal_letter()
+		$TextRevealTimer.start()
 
 func _on_AnyButton_hover():
-	Game.main.hover()
+	play_hover_noise()
 
 
 
