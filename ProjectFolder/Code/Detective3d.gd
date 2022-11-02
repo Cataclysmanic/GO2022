@@ -28,6 +28,13 @@ func get_hud():
 	return find_node("HUD")
 
 
+func _unhandled_input(event):
+	if event.is_action("shoot") and event.is_action_pressed("shoot"):
+	#if Input.is_action_just_pressed("shoot"):
+		for item in $AnimatedSprite/Items.get_children():
+			if item.has_method("shoot"):
+				item.shoot()
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if !topDown:
@@ -55,10 +62,7 @@ func _process(_delta):
 	#if the 'select' button is pressed, change between mouse use and controller use.
 	if Input.is_action_just_pressed("ui_select"):
 		mouse = !mouse
-	if Input.is_action_just_pressed("shoot"):
-		for item in $AnimatedSprite/Items.get_children():
-			if item.has_method("shoot"):
-				item.shoot()
+
 	if Input.is_action_just_pressed("flashlight"):
 		flashlight = !flashlight
 	

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/CharacterPortrait_02.png-831b239b1916ea668cebe98baedce070.stex"
+path="res://.import/CharacterPortrait_02.png-6e9344b031c96df3b98b22e162f3dd07.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogScenes/CharacterPortrait_02.png"
-dest_files=[ "res://.import/CharacterPortrait_02.png-831b239b1916ea668cebe98baedce070.stex" ]
+source_file="res://scenes/DialogScenes/CharacterPortrait_02.png"
+dest_files=[ "res://.import/CharacterPortrait_02.png-6e9344b031c96df3b98b22e162f3dd07.stex" ]
 
 [params]
 

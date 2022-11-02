@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUDCity.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/_common/GUI/icons/book.svg" type="Texture" id=4]
-[ext_resource path="res://scenes/_common/GUI/icons/animated_cutscene.svg" type="Texture" id=5]
+[ext_resource path="res://scenes/_common/GUI/HUD/PickupItemHUD.tscn" type="PackedScene" id=4]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -90,29 +89,8 @@ columns = 3
 
 [node name="InventoryItems" type="GridContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer"]
 margin_left = 4.0
-margin_right = 72.0
+margin_right = 36.0
 margin_bottom = 64.0
 columns = 6
 
-[node name="ClueBook" type="TextureButton" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer/InventoryItems"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-texture_normal = ExtResource( 4 )
-texture_pressed = ExtResource( 4 )
-texture_hover = ExtResource( 4 )
-texture_disabled = ExtResource( 4 )
-texture_focused = ExtResource( 4 )
-expand = true
-
-[node name="ClueFilm" type="TextureButton" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer/InventoryItems"]
-margin_left = 36.0
-margin_right = 68.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 5 )
-texture_hover = ExtResource( 5 )
-texture_disabled = ExtResource( 5 )
-texture_focused = ExtResource( 5 )
-expand = true
+[node name="PickupItem" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer/InventoryItems" instance=ExtResource( 4 )]
