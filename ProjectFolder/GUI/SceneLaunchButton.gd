@@ -4,7 +4,7 @@ extends Button
 
 
 export var SceneToLaunch : PackedScene
-
+export var return_to_main : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +21,8 @@ func play_click_noise():
 func switch_scene():
 	if SceneToLaunch != null:
 		var _status = get_tree().change_scene_to(SceneToLaunch)
+	elif return_to_main == true:
+		get_tree().change_scene("res://GUI/MainMenu.tscn")
 	else:
 		printerr("configuration error: SceneLaunchButton requires a SceneToLaunch (in the inspector)")
 
