@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Player/Detective3d.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Test Assets/photos_2015_09_18_fst_696d0otztq5.jpg" type="Texture" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[node name="IndoorTestRoom" type="Spatial" groups=["Indoor"]]
+
+[node name="Detective3d" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.319365, 0 )
+
+[node name="Room" type="StaticBody" parent="."]
+transform = Transform( 0.377269, 0, 0, 0, 1, 0, 0, 0, 0.366585, 0, 0, 0 )
+
+[node name="floor5" type="StaticBody" parent="Room"]
+transform = Transform( -2.05882e-07, -0.180796, 0, -2.05882e-07, 3.45444e-16, -1.58225, 4.71003, -7.90283e-09, -6.91621e-08, 4.51209, 0, 0.219107 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor5"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor5"]
+mesh = SubResource( 3 )
+
+[node name="floor4" type="StaticBody" parent="Room"]
+transform = Transform( -2.05882e-07, -0.180796, 0, -2.05882e-07, 3.45444e-16, -1.58225, 4.71003, -7.90283e-09, -6.91621e-08, -4.55644, 0, 0.219107 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor4"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor4"]
+mesh = SubResource( 3 )
+
+[node name="floor3" type="StaticBody" parent="Room"]
+transform = Transform( 4.71003, 0, 0, 0, -2.57862e-09, -1.58225, 0, 0.180796, -2.11965e-07, 0, 0, 5.02516 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor3"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor3"]
+mesh = SubResource( 3 )
+
+[node name="floor2" type="StaticBody" parent="Room"]
+transform = Transform( 4.71003, 0, 0, 0, -2.57862e-09, -1.58225, 0, 0.180796, -2.11965e-07, 0, 0, -4.68368 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor2"]
+mesh = SubResource( 3 )
+
+[node name="floor" type="StaticBody" parent="Room"]
+transform = Transform( 4.71003, 0, 0, 0, 0.180796, 0, 0, 0, 4.84919, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor"]
+mesh = SubResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 27.5444, 0, 0, 0, -0.110312, 0, 0, 0, 29.2544, 0, 0, 0 )
+material = SubResource( 4 )

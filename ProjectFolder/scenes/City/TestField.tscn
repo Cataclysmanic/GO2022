@@ -9,7 +9,7 @@
 [sub_resource type="Environment" id=2]
 background_energy = 0.05
 
-[node name="TestField" type="Spatial"]
+[node name="TestField" type="Spatial" groups=["Outdoor"]]
 
 [node name="TestPlane" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
