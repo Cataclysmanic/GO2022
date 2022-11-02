@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tempTypingNoise-WIP.ogg-99cd2496fb0100108eeda2c932fe45a5.oggstr"
+
+[deps]
+
+source_file="res://GUI/sfx/tempTypingNoise-WIP.ogg"
+dest_files=[ "res://.import/tempTypingNoise-WIP.ogg-99cd2496fb0100108eeda2c932fe45a5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

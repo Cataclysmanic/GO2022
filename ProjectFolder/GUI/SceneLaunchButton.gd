@@ -20,7 +20,7 @@ func play_click_noise():
 
 func switch_scene():
 	if SceneToLaunch != null:
-		get_tree().change_scene_to(SceneToLaunch)
+		var _status = get_tree().change_scene_to(SceneToLaunch)
 	else:
 		printerr("configuration error: SceneLaunchButton requires a SceneToLaunch (in the inspector)")
 
