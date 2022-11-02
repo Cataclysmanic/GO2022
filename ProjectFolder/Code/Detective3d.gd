@@ -57,12 +57,12 @@ func _process(delta):
 		point = -$Camera.unproject_position(self.transform.origin).angle_to_point(get_viewport().get_mouse_position())
 	else: #otherwise, get the input vector on the controller for looking.
 		point = -Input.get_vector("lookLeft", "lookRight", "lookUp", "lookDown").angle()
-	
+		point = point - PI
 	if topDown:
 		$AnimatedSprite.scale.x = .5
 		$AnimatedSprite.scale.y = .5
 		self.rotation_degrees.x = -90
-		if point:
+		if point != -PI:
 			$AnimatedSprite.rotation.z = point
 			lastPoint = point
 		else:

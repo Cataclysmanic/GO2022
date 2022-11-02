@@ -199,6 +199,21 @@ frames = SubResource( 34 )
 animation = "tIdle"
 playing = true
 
+[node name="Items" type="Spatial" parent="AnimatedSprite"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Gun" parent="AnimatedSprite/Items" instance=ExtResource( 10 )]
+
+[node name="Flashlight" type="Spatial" parent="AnimatedSprite/Items"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.25297e-09, 0.0744193 )
+
+[node name="SpotLight" type="SpotLight" parent="AnimatedSprite/Items/Flashlight"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.131965, 0, 0 )
+light_energy = 2.0
+shadow_enabled = true
+spot_range = 10.4443
+spot_angle = 32.8943
+
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.35624 )
 current = true
@@ -210,7 +225,3 @@ shape = SubResource( 35 )
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 1.15885, -0.603622, 0.387647 )
 texture = ExtResource( 9 )
-
-[node name="Items" type="Spatial" parent="."]
-
-[node name="Gun" parent="Items" instance=ExtResource( 10 )]

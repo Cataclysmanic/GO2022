@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/theatre_curtains.svg-55dfaf2c3bd30f73d31a8f00a76948f7.stex"
+path="res://.import/theatre_curtains.svg-d75ea32eb1fe0bdf9c320c2daf8c6a05.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/_common/GUI/icons/theatre_curtains.svg"
-dest_files=[ "res://.import/theatre_curtains.svg-55dfaf2c3bd30f73d31a8f00a76948f7.stex" ]
+source_file="res://Scenes/_common/GUI/icons/theatre_curtains.svg"
+dest_files=[ "res://.import/theatre_curtains.svg-d75ea32eb1fe0bdf9c320c2daf8c6a05.stex" ]
 
 [params]
 

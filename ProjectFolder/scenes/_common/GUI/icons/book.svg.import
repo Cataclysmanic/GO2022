@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/book.svg-af3a716798ced1de085cf9238c89ca16.stex"
+path="res://.import/book.svg-9036c40eb5d55c8f2fee0c5ee8f02912.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/_common/GUI/icons/book.svg"
-dest_files=[ "res://.import/book.svg-af3a716798ced1de085cf9238c89ca16.stex" ]
+source_file="res://Scenes/_common/GUI/icons/book.svg"
+dest_files=[ "res://.import/book.svg-9036c40eb5d55c8f2fee0c5ee8f02912.stex" ]
 
 [params]
 
