@@ -56,6 +56,7 @@ func _process(delta):
 	if topDown:
 		$AnimatedSprite.scale.x = .5
 		$AnimatedSprite.scale.y = .5
+		self.rotation_degrees.x = -90
 		if point:
 			$AnimatedSprite.rotation.z = point
 			lastPoint = point
@@ -67,6 +68,7 @@ func _process(delta):
 			$AnimatedSprite.animation = "tWalk"
 		dir = dir * tDpwnMul
 	else:
+		self.rotation_degrees.x = -70
 		$AnimatedSprite.scale.x = 1
 		$AnimatedSprite.scale.y = 1
 		$AnimatedSprite.rotation.z = 0
