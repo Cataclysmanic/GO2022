@@ -1,12 +1,20 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+#The speed multiplier for all movement
 var speed = 2
+#The last direction moved, used for animation (Can be used for accelleration as well)
 var lastDir = 0
-var topDown = "w"
+#Determines which view mode we are in. Currently tied to input.
+var topDown = true
+#While in full topdown mode, this is where the viewpoint is
+var point = 0
+#Determines whether during full topdown mode, if we follow the mouse or controller input 
+#for direction info
+var mouse = true
+#during topdown mode, multiply the speed by this number
+var tDpwnMul = 1.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,40 +33,55 @@ func _process(delta):
 	if Input.is_action_pressed("ui_left"):
 		dir.x -= 1
 	if Input.is_action_just_pressed("ui_accept"):
-		if topDown == "w":
-			topDown = "t"
-		elif topDown == "t":
-			topDown = "w"
+		topDown = !topDown
+		$AnimatedSprite.animation = "wiSide"
+	if Input.is_action_just_pressed("ui_select"):
+		mouse = !mouse
+		print(mouse)
 	
-	if dir.x != 0:
-		if dir.x == 1:
-			$AnimatedSprite.animation = topDown + "Side"
-			$AnimatedSprite.flip_h = true
-			lastDir = 1
-		if dir.x == -1:
-			$AnimatedSprite.animation = topDown + "Side"
-			$AnimatedSprite.flip_h = false
-			lastDir = 2
-	elif dir.y == 1:
-		$AnimatedSprite.animation = topDown + "Down"
-		lastDir = 3
-	elif dir.y == -1:
-		$AnimatedSprite.animation = topDown + "Up"
-		lastDir = 4
+	if mouse:
+		point = get_viewport().get_mouse_position()
 	else:
-		match lastDir:
-			1:
-				$AnimatedSprite.animation = topDown + "iSide"
+		point = $AnimatedSprite.global_position + Input.get_vector("lookLeft", "lookRight", "lookUp", "lookDown")
+	
+	if topDown:
+		$AnimatedSprite.look_at(point)
+		if dir.x == 0 and dir.y == 0:
+			$AnimatedSprite.animation = "tIdle"
+		else:
+			$AnimatedSprite.animation = "tWalk"
+		dir = dir * tDpwnMul
+	else:
+		$AnimatedSprite.rotation = 0
+		if dir.x != 0:
+			if dir.x == 1:
+				$AnimatedSprite.animation = "wSide"
 				$AnimatedSprite.flip_h = true
-			2:
-				$AnimatedSprite.animation = topDown + "iSide"
+				lastDir = 1
+			if dir.x == -1:
+				$AnimatedSprite.animation = "wSide"
 				$AnimatedSprite.flip_h = false
-			3:
-				$AnimatedSprite.animation = topDown + "iDown"
-			4:
-				$AnimatedSprite.animation = topDown + "iUp"
-			_:
-				print('Something went wrong with animation')
+				lastDir = 2
+		elif dir.y == 1:
+			$AnimatedSprite.animation = "wDown"
+			lastDir = 3
+		elif dir.y == -1:
+			$AnimatedSprite.animation = "wUp"
+			lastDir = 4
+		else:
+			match lastDir:
+				1:
+					$AnimatedSprite.animation = "wiSide"
+					$AnimatedSprite.flip_h = true
+				2:
+					$AnimatedSprite.animation = "wiSide"
+					$AnimatedSprite.flip_h = false
+				3:
+					$AnimatedSprite.animation = "wiDown"
+				4:
+					$AnimatedSprite.animation = "wiUp"
+				_:
+					print('Something went wrong with animation')
 	
 	var vel = dir * speed
 	move_and_collide(vel)

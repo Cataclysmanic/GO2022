@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/QuitSplashScreen.png-da0e32f486b8e1dfa22908ea9c73a9ce.stex"
+path="res://.import/QuitSplashScreen.png-907ec50a448fb166c8d5401a2c59c196.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CutScenes/QuitSplashScreen.png"
-dest_files=[ "res://.import/QuitSplashScreen.png-da0e32f486b8e1dfa22908ea9c73a9ce.stex" ]
+source_file="res://Scenes/CutScenes/QuitSplashScreen.png"
+dest_files=[ "res://.import/QuitSplashScreen.png-907ec50a448fb166c8d5401a2c59c196.stex" ]
 
 [params]
 
