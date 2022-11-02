@@ -1,63 +1,118 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUDCity.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/_common/GUI/icons/book.svg" type="Texture" id=4]
+[ext_resource path="res://scenes/_common/GUI/icons/animated_cutscene.svg" type="Texture" id=5]
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 2 )
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 20
+[node name="Top" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
 custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_left = 20.0
+[node name="Header" type="HBoxContainer" parent="Top"]
 margin_top = 20.0
-margin_right = 1004.0
-margin_bottom = 580.0
+margin_right = 119.0
+margin_bottom = 40.0
+mouse_filter = 2
+custom_constants/separation = 20
 
-[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 984.0
-margin_bottom = 20.0
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+[node name="Label" type="Label" parent="Top/Header"]
 margin_top = 3.0
 margin_right = 55.0
 margin_bottom = 17.0
 text = "Wake up"
 
-[node name="SceneLaunchButton" parent="MarginContainer/VBoxContainer/Header" instance=ExtResource( 3 )]
+[node name="SceneLaunchButton" parent="Top/Header" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 59.0
-margin_right = 103.0
+margin_left = 75.0
+margin_right = 119.0
 margin_bottom = 20.0
 text = "Huh?"
 return_to_main = true
 
-[node name="Body" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 984.0
-margin_bottom = 556.0
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Bullet" ), [ ExtResource( 1 ) ] ]
+
+[node name="Bottom" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.0
+margin_top = -116.0
+margin_right = 43.0
+custom_constants/margin_bottom = 20
+
+[node name="Footer" type="HBoxContainer" parent="Bottom"]
+margin_right = 86.0
+margin_bottom = 96.0
+mouse_filter = 2
+
+[node name="InventoryDisplay" type="PanelContainer" parent="Bottom/Footer"]
+margin_right = 86.0
+margin_bottom = 96.0
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
-[node name="Footer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 560.0
-margin_right = 984.0
-margin_bottom = 560.0
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom/Footer/InventoryDisplay"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 79.0
+margin_bottom = 89.0
 
-[node name="Ammo" type="GridContainer" parent="MarginContainer/VBoxContainer/Footer"]
+[node name="InventoryTitle" type="Label" parent="Bottom/Footer/InventoryDisplay/VBoxContainer"]
+margin_right = 72.0
+margin_bottom = 14.0
+text = "Inventory"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer"]
+margin_top = 18.0
+margin_right = 72.0
+margin_bottom = 82.0
+
+[node name="Ammo" type="GridContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer"]
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 64 )
 custom_constants/vseparation = 20
 custom_constants/hseparation = 30
 columns = 3
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Bullet" ), [ ExtResource( 1 ) ] ]
+[node name="InventoryItems" type="GridContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer"]
+margin_left = 4.0
+margin_right = 72.0
+margin_bottom = 64.0
+columns = 6
+
+[node name="ClueBook" type="TextureButton" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer/InventoryItems"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+expand = true
+
+[node name="ClueFilm" type="TextureButton" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer/InventoryItems"]
+margin_left = 36.0
+margin_right = 68.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+expand = true
