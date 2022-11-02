@@ -43,10 +43,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		mouse = !mouse
 		print(mouse)
-	
 	#if mouse is controlling the direction, get and point towards the current mouse position on screen
 	if mouse:
-		point = get_viewport().get_mouse_position()
+		point = get_global_mouse_position()
 	else: #otherwise, get the input vector on the controller for looking.
 		point = $AnimatedSprite.global_position + Input.get_vector("lookLeft", "lookRight", "lookUp", "lookDown")
 	

@@ -185,7 +185,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=35]
-radius = 7.0
+radius = 12.0
 
 [node name="Detective" type="KinematicBody2D"]
 script = ExtResource( 8 )
@@ -198,3 +198,17 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 14 )
 shape = SubResource( 35 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Controls" type="Label" parent="Camera2D"]
+margin_left = 278.0
+margin_top = 179.0
+margin_right = 515.0
+margin_bottom = 345.0
+text = "Controls:
+Arrows/LeftJoy: Move
+Mouse/RightJoy: Look Around
+Spacebar: Control mode toggle
+Enter: Toggle 2d, 2.5d"
