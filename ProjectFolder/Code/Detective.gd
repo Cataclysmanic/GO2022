@@ -23,7 +23,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#Zero out the vector for controlling direction.
 	var dir = Vector2.ZERO
+	#Get inputs here. dir, being a vector, has an x and y axis. 
+	#This maps inputs for movement onto those axis'
 	if Input.is_action_pressed("ui_down"):
 		dir.y += 1
 	if Input.is_action_pressed("ui_up"):
@@ -32,16 +35,19 @@ func _process(delta):
 		dir.x += 1
 	if Input.is_action_pressed("ui_left"):
 		dir.x -= 1
+	#If the 'accept' button is pressed, this changes the view mode to topdown
 	if Input.is_action_just_pressed("ui_accept"):
 		topDown = !topDown
 		$AnimatedSprite.animation = "wiSide"
+	#if the 'select' button is pressed, change between mouse use and controller use.
 	if Input.is_action_just_pressed("ui_select"):
 		mouse = !mouse
 		print(mouse)
 	
+	#if mouse is controlling the direction, get and point towards the current mouse position on screen
 	if mouse:
 		point = get_viewport().get_mouse_position()
-	else:
+	else: #otherwise, get the input vector on the controller for looking.
 		point = $AnimatedSprite.global_position + Input.get_vector("lookLeft", "lookRight", "lookUp", "lookDown")
 	
 	if topDown:
