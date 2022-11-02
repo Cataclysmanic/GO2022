@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GUI/fonts/Vollkorn-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://GUI/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://GUI/SceneLaunchButton.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 1 )
+
+[node name="MainMenu" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+script = ExtResource( 2 )
+
+[node name="MainMenuVBox" type="VBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 580.0
+
+[node name="Header" type="MarginContainer" parent="MainMenuVBox"]
+margin_right = 984.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainMenuVBox/Header"]
+margin_right = 984.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Working Team Title presents: Working Noir Game Title!"
+align = 1
+
+[node name="Body" type="CenterContainer" parent="MainMenuVBox"]
+margin_top = 50.0
+margin_right = 984.0
+margin_bottom = 556.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MainMenuButtonContainer" type="VBoxContainer" parent="MainMenuVBox/Body"]
+margin_left = 417.0
+margin_top = 103.0
+margin_right = 567.0
+margin_bottom = 403.0
+rect_min_size = Vector2( 150, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 25
+
+[node name="NewGameButton" parent="MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 150.0
+margin_bottom = 20.0
+text = "New Game"
+
+[node name="LoadGameButton" parent="MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 45.0
+margin_right = 150.0
+margin_bottom = 65.0
+text = "Load Game"
+
+[node name="CreditsButton" parent="MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 90.0
+margin_right = 150.0
+margin_bottom = 110.0
+text = "Credits"
+
+[node name="DebugButton" parent="MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 135.0
+margin_right = 150.0
+margin_bottom = 155.0
+text = "Debug / Cheat"
+
+[node name="QuitButton" parent="MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 180.0
+margin_right = 150.0
+margin_bottom = 200.0
+text = "Quit"
+
+[node name="Footer" type="MarginContainer" parent="MainMenuVBox"]
+margin_top = 560.0
+margin_right = 984.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
