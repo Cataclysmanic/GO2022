@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/MenuScenes/MainMenu.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/CutScenes/QuitSplashScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/MenuScenes/DebugMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/RainShaderOverlay.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/_common/GUI/HeavyFogOverlay.tscn" type="PackedScene" id=8]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -14,6 +15,8 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 2 )
+
+[node name="HeavyFogOverlay" parent="." instance=ExtResource( 8 )]
 
 [node name="RainShaderOverlay" parent="." instance=ExtResource( 7 )]
 self_modulate = Color( 1, 1, 1, 0.219608 )
