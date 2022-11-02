@@ -15,6 +15,8 @@ var mouse = true
 #during topdown mode, multiply the speed by this number
 var tDpwnMul = 1.5
 
+var flashlight = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -48,10 +50,14 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		mouse = !mouse
 	if Input.is_action_just_pressed("shoot"):
-		for item in $Items.get_children():
+		for item in $AnimatedSprite/Items.get_children():
 			if item.has_method("shoot"):
 				item.shoot()
-		
+	if Input.is_action_just_pressed("flashlight"):
+		flashlight = !flashlight
+	
+	
+	$AnimatedSprite/Items/Flashlight.visible = flashlight	
 	#if mouse is controlling the direction, get and point towards the current mouse position on screen
 	if mouse:
 		point = -$Camera.unproject_position(self.transform.origin).angle_to_point(get_viewport().get_mouse_position())
