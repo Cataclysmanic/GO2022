@@ -4,7 +4,7 @@ enum scene_types { cutscene, level, final }
 export (scene_types) var scene_type = scene_types.cutscene
 
 var callback_scene
-export var fallback_scene_if_no_callback : String = "res://GUI/MainMenu.tscn"
+export var fallback_scene_if_no_callback : String = "res://scenes/MenuScenes/MainMenu.tscn"
 
 
 onready var dialog_container = find_node("DialogContainer")
@@ -110,7 +110,7 @@ func _on_NextPageButton_pressed():
 	advance_story()
 
 func advance_story():
-	if is_instance_valid(dialog_container):
+	if dialog_container != null and is_instance_valid(dialog_container):
 		var showing = dialog_container.get_child(current_tab_num).get_visible_characters()
 		var length = dialog_container.get_child(current_tab_num).get_text().length()
 		if showing < length:
@@ -121,7 +121,7 @@ func advance_story():
 
 
 func switch_to_fallback_scene():
-	var _status = get_tree().change_scene(fallback_scene_if_no_callback)
+	var _status = Global.world_controller.change_scene(fallback_scene_if_no_callback)
 
 
 func play_click_noise():
@@ -131,7 +131,7 @@ func play_hover_noise():
 	pass
 
 func reveal_all_letters():
-	if is_instance_valid(dialog_container):
+	if dialog_container != null and is_instance_valid(dialog_container):
 		text_revealed = dialog_container.get_child(current_tab_num).get_text().length()
 		stop_mumbling()
 
@@ -141,7 +141,7 @@ func stop_mumbling():
 
 
 func reveal_letter():
-	if is_instance_valid(dialog_container):
+	if dialog_container != null and is_instance_valid(dialog_container):
 		text_revealed += 1
 		dialog_container.get_child(current_tab_num).set_visible_characters(text_revealed)
 		if text_revealed >= dialog_container.get_child(current_tab_num).get_text().length():
@@ -149,7 +149,7 @@ func reveal_letter():
 			$TextRevealNoiseRight.stop()
 
 func _on_TextRevealTimer_timeout():
-	if is_instance_valid(dialog_container):
+	if dialog_container != null and is_instance_valid(dialog_container):
 		reveal_letter()
 		$TextRevealTimer.start()
 

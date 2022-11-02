@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://GUI/SceneLaunchButton.gd" type="Script" id=1]
-[ext_resource path="res://GUI/sfx/click.ogg" type="AudioStream" id=2]
+[ext_resource path="res://scenes/_common/GUI/sfx/click.ogg" type="AudioStream" id=1]
+[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.gd" type="Script" id=2]
 
 [node name="SceneLaunchButton" type="Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+stream = ExtResource( 1 )
 
 [connection signal="pressed" from="." to="." method="_on_SceneLaunchButton_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

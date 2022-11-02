@@ -76,6 +76,8 @@ tracks/3/keys = {
 [node name="Intro" type="PanelContainer"]
 margin_right = 14.0
 margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 2 )
 
 [node name="SplashScreenTexture" type="TextureRect" parent="."]

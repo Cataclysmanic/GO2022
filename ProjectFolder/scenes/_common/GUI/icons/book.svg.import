@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/animated_cutscene.svg-b16f4f30a47ae418360a7bad61e6660b.stex"
+path="res://.import/book.svg-af3a716798ced1de085cf9238c89ca16.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://GUI/icons/animated_cutscene.svg"
-dest_files=[ "res://.import/animated_cutscene.svg-b16f4f30a47ae418360a7bad61e6660b.stex" ]
+source_file="res://scenes/_common/GUI/icons/book.svg"
+dest_files=[ "res://.import/book.svg-af3a716798ced1de085cf9238c89ca16.stex" ]
 
 [params]
 
