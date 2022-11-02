@@ -7,11 +7,13 @@ extends Control
 onready var scene_container = find_node("SceneContainer")
 var current_scene
 
-
+enum STATES { INITIALIZING, ACTIVE, PAUSED }
+var State = STATES.INITIALIZING
 
 func _ready():
 	Global.world_controller = self
 	start_intro()
+	State = STATES.ACTIVE
 
 
 func start_intro():
@@ -44,6 +46,11 @@ func remove_old_scenes():
 
 
 func spawn_new_scene(packedScene : PackedScene):
+	var fade = $ResourcePreloader.get_resource("Fade").instance()
+
+	scene_container.add_child(fade)
+	yield(get_tree().create_timer(0.25), "timeout")
+
 	var sceneObj = packedScene.instance()
 	scene_container.add_child(sceneObj)
 	
