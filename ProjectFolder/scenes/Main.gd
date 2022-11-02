@@ -53,7 +53,7 @@ func spawn_new_scene(packedScene : PackedScene):
 
 	var sceneObj = packedScene.instance()
 	scene_container.add_child(sceneObj)
-	
+	current_scene = sceneObj
 
 	
 	
