@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Code/Detective3d.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Test Assets/_side idle.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Test Assets/_down walk.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Test Assets/instructions.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Items/Gun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/_common/GUI/HUD/InGameHUDCity.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 8 )
@@ -217,6 +218,8 @@ spot_angle = 32.8943
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.35624 )
 current = true
+
+[node name="HUD" parent="Camera" instance=ExtResource( 11 )]
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0697891 )

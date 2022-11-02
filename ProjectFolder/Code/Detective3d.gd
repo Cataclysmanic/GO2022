@@ -19,11 +19,17 @@ var flashlight = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var gun = find_node("Gun")
+	if is_instance_valid(gun):
+		gun.init(self, 6)
+
+
+func get_hud():
+	return find_node("HUD")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if !topDown:
 		mouse = true
 	#Zero out the vector for controlling direction.
@@ -114,7 +120,7 @@ func _process(delta):
 					print('Something went wrong with animation')
 	
 	var vel = dir.normalized() * speed
-	move_and_collide(vel)
+	var _collision = move_and_collide(vel)
 
 
 		
