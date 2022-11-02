@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 Direction = vec2(1, 0);
+uniform float Speed = .05;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV+(Direction*TIME*Speed));
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/Direction = Vector2( 1, 0 )
+shader_param/Speed = 0.05
+
+[sub_resource type="OpenSimplexNoise" id=3]
+octaves = 2
+period = 107.9
+persistence = 0.182
+lacunarity = 3.6
+
+[sub_resource type="NoiseTexture" id=4]
+width = 1024
+height = 600
+seamless = true
+as_normalmap = true
+bump_strength = 12.4
+noise = SubResource( 3 )
+
+[node name="HeavyFogOverlay" type="TextureRect"]
+modulate = Color( 0.298039, 0.298039, 0.298039, 0.541176 )
+material = SubResource( 2 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource( 4 )
