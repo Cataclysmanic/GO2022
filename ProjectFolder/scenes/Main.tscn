@@ -13,9 +13,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 3 )
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Fade", "Intro", "MainMenu" ), [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ] ]
-
 [node name="SceneContainer" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,3 +20,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="IO" parent="." instance=ExtResource( 4 )]
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Fade", "Intro", "MainMenu" ), [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ] ]

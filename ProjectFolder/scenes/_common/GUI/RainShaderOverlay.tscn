@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/_common/GUI/RainTest.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec2 Direction = vec2(0.25, -1.0);
+uniform float Speed = 2.5;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV+(Direction*TIME*Speed));
+}
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+render_priority = 1
+shader = SubResource( 1 )
+shader_param/Direction = Vector2( 0.3, -1 )
+shader_param/Speed = 1.75
+
+[node name="RainShaderOverlay" type="TextureRect"]
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7

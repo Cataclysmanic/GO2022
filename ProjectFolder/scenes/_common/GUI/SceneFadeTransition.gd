@@ -7,4 +7,5 @@ func _ready():
 	$AnimationPlayer.play("Fade")
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	queue_free()
+	if anim_name == "Fade":
+		queue_free()

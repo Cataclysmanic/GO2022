@@ -1,4 +1,4 @@
-extends MarginContainer
+extends Control
 
 
 # Declare member variables here. Examples:
