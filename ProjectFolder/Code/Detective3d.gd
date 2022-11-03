@@ -15,6 +15,12 @@ var tDpwnMul = 1.5
 
 var flashlight = false
 
+var HUD : Control
+
+signal gun_missing()
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var gun = find_node("Gun")
@@ -27,6 +33,10 @@ func _ready():
 	if get_parent().is_in_group("Outdoor"):
 		$Camera.set_projection(Camera.PROJECTION_PERSPECTIVE)
 		$Camera.fov = 50
+
+	HUD = get_hud()
+
+
 func get_hud():
 	return find_node("HUD")
 
@@ -37,12 +47,16 @@ func _unhandled_input(event):
 	
 	if event.is_action("shoot") and event.is_action_pressed("shoot"):
 		if carrying_item_already("Gun"):
-			var gun = locate_gun()
+			var gun = locate_item("gun")
 			if gun != null and gun.has_method("shoot"):
 				gun.shoot()
 			else:
 				printerr("something's wrong in Detective3d, related to shooting the gun in _unhandled_input()")
-				
+		else:
+			if not is_connected("gun_missing", HUD, "_on_player_gun_missing"):
+				var _err = connect("gun_missing", HUD, "_on_player_gun_missing")
+			emit_signal("gun_missing")
+
 	if event.is_action_pressed("ui_disguise"):
 		if self.is_in_group("goodPeople"):
 			self.remove_from_group("goodPeople")
@@ -52,10 +66,10 @@ func _unhandled_input(event):
 			self.add_to_group("goodPeople")
 
 
-func locate_gun():
+func locate_item(itemName):
 	var gun = null
 	for item in $AnimatedSprite/Items.get_children():
-		if "gun" in item.name.to_lower():
+		if itemName.to_lower() in item.name.to_lower():
 			gun = item
 	return gun
 
