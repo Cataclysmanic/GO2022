@@ -20,7 +20,7 @@ item_details = {
 [node name="Area" type="Area" parent="."]
 
 [node name="Sprite" type="Sprite3D" parent="Area"]
-transform = Transform( 0.312025, 0, 0, 0, -4.37114e-08, 1, 0, -0.312025, -1.36391e-08, 0, 0, 0 )
+transform = Transform( 0.922235, 0, 0, 0, -4.37114e-08, 1, 0, -0.922235, -4.03123e-08, 0, 0, 0 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
