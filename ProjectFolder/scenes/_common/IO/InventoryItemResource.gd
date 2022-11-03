@@ -8,3 +8,5 @@ export var item_name : String
 export var notes_for_journal : String
 export var is_unique: bool = true # if not unique, inventory can hold more than one
 
+
+	

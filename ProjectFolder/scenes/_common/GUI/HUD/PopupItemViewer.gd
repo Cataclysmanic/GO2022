@@ -10,9 +10,10 @@ extends PopupPanel
 func _ready():
 	pass # Replace with function body.
 
-func init(itemName : String, pathToImage : String):
-	find_node("ItemName").text = itemName
-	var imageTex = load(pathToImage)
+func init(itemResource : InventoryItemResource):
+	find_node("ItemName").text = itemResource.item_name
+	find_node("ItemDescription").text = itemResource.notes_for_journal
+	var imageTex = load(itemResource.path_to_popup_display_image)
 	if imageTex:
 		find_node("ItemImage").texture = imageTex
 	popup_centered_ratio(0.667)
