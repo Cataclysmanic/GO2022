@@ -9,6 +9,7 @@ export var item_details : Dictionary = {
 	"item_name":"",
 	"notes_for_journal":"",
 	"is_unique":false,
+	"path_to_scene_for_PlayerController_Items":"",
 }
 
 var item_info : InventoryItemResource
@@ -28,9 +29,18 @@ signal picked_up(me)
 func _ready():
 	item_info = InventoryItemResource.new()
 	
-	for propertyName in item_details.keys():
-		item_info.set(propertyName, item_details[propertyName])
+	var spritePath = find_node("Sprite").get_texture().get_path()
 
+	for propertyName in item_details.keys():
+		if item_details[propertyName]:
+			item_info.set(propertyName, item_details[propertyName])
+
+	if not item_details["path_to_icon"]:
+		item_info.set("path_to_icon", spritePath)
+	
+	if not item_details["path_to_popup_display_image"]:
+		item_info.set("path_to_popup_display_image", spritePath)
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -54,6 +64,7 @@ func _on_Area_body_entered(body):
 			
 		emit_signal("picked_up", self)
 		disappear()
+		$PickupNoise.pitch_scale *= rand_range(0.9, 1.5)
 		$PickupNoise.play()
 
 

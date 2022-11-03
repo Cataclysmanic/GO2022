@@ -3,7 +3,7 @@ extends KinematicBody2D
 
 
 #The speed multiplier for all movement
-var speed = 2
+var speed = 1.0
 #The last direction moved, used for animation (Can be used for accelleration as well)
 var lastDir = 0
 #Determines which view mode we are in. Currently tied to input.
@@ -88,5 +88,5 @@ func _process(delta):
 				_:
 					print('Something went wrong with animation')
 	
-	var vel = dir * speed
+	var vel = dir * speed * delta # need delta for consistent speed across PCs with diverse framerates
 	move_and_collide(vel)

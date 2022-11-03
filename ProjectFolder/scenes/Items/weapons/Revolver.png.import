@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Revolver.png-41a558c98f6c28dfa86f715fda286e04.s3tc.stex"
-path.etc2="res://.import/Revolver.png-41a558c98f6c28dfa86f715fda286e04.etc2.stex"
+path.s3tc="res://.import/Revolver.png-16d374eecbf12b4c471659c8fa43c005.s3tc.stex"
+path.etc2="res://.import/Revolver.png-16d374eecbf12b4c471659c8fa43c005.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/Items/collectables/Revolver.png"
-dest_files=[ "res://.import/Revolver.png-41a558c98f6c28dfa86f715fda286e04.s3tc.stex", "res://.import/Revolver.png-41a558c98f6c28dfa86f715fda286e04.etc2.stex" ]
+source_file="res://scenes/Items/weapons/Revolver.png"
+dest_files=[ "res://.import/Revolver.png-16d374eecbf12b4c471659c8fa43c005.s3tc.stex", "res://.import/Revolver.png-16d374eecbf12b4c471659c8fa43c005.etc2.stex" ]
 
 [params]
 

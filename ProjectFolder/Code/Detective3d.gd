@@ -33,15 +33,26 @@ func get_hud():
 	return find_node("HUD")
 
 
-func _unhandled_input(event):
-	if Global.game_state != Global.STATES.READY:
+func _unhandled_input(event):	
+	if Global.is_paused():
 		return
 	
 	if event.is_action("shoot") and event.is_action_pressed("shoot"):
-	#if Input.is_action_just_pressed("shoot"):
-		for item in $AnimatedSprite/Items.get_children():
-			if item.has_method("shoot"):
-				item.shoot()
+		if carrying_item_already("Gun"):
+			var gun = locate_gun()
+			if gun != null and gun.has_method("shoot"):
+				gun.shoot()
+			else:
+				printerr("something's wrong in Detective3d, related to shooting the gun in _unhandled_input()")
+
+
+func locate_gun():
+	var gun = null
+	for item in $AnimatedSprite/Items.get_children():
+		if "gun" in item.name.to_lower():
+			gun = item
+	return gun
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -139,11 +150,28 @@ func _process(delta):
 	var _collision = move_and_collide(vel)
 
 
-func _on_collectible_picked_up(_collectibleObj):
-	# player avatar has little interest in items, 
-		# unless we want to give then a sprite
-		# or put some new functionality inside $Items
-	# otherwise Let Global.world_controller.IO and HUD figure this out
-	pass
+func _on_collectible_picked_up(itemObj):
+	var itemResource = itemObj.item_details
+	var itemsContainer = find_node("Items")
+	var itemName = itemResource.item_name
+	var loader = $ResourcePreloader
+	print(loader.get_resource_list())
 	
-	
+	if loader.get_resource_list().has(itemResource.item_name):
+		if itemResource.is_unique and carrying_item_already(itemResource.item_name):
+			return
+		else:
+			var scene = loader.get_resource(itemResource.item_name).instance()
+			if itemName == "Gun":
+				scene.init(self, 6)
+				scene.name = "Gun"
+			itemsContainer.add_child(scene)
+
+
+func carrying_item_already(itemName):
+	var found = false
+	var itemContainer = find_node("Items")
+	for item in itemContainer.get_children():
+		if itemName.to_lower() in item.name.to_lower():
+			found = true
+	return found
