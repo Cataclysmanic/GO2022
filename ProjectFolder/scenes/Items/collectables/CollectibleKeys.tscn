@@ -14,7 +14,7 @@ item_details = {
 "item_name": "Key",
 "notes_for_journal": "Who knows what it might open. (Is that a cliche?)",
 "path_to_icon": "res://scenes/_common/GUI/icons/key.png",
-"path_to_popup_display_image": "res://scenes/_common/GUI/icons/key.png"
+"path_to_popup_display_image": "res://scenes/Items/collectables/tempKeyImage.png"
 }
 
 [node name="Area" type="Area" parent="."]

@@ -27,6 +27,13 @@ transform = Transform( 0.188634, 0, 0, 0, 1, 0, 0, 0, 0.183292, -1.26433, 0.5002
 
 [node name="CollectableBook" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 1.3056, 0.451021, -1.24976 )
+item_details = {
+"is_unique": false,
+"item_name": "Strange Book",
+"notes_for_journal": "A strenge leatherbound book. The text appears blurred beyond recognition. Perhaps water damage.",
+"path_to_icon": "res://scenes/_common/GUI/icons/book.svg",
+"path_to_popup_display_image": "res://scenes/Items/collectables/tempBookWIP.png"
+}
 
 [node name="Door" parent="." instance=ExtResource( 5 )]
 transform = Transform( -1.5846e-08, 0, -0.709325, 0, 0.700711, 0, 0.362514, 0, -3.10056e-08, -0.195919, 0, -1.6229 )

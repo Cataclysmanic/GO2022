@@ -69,7 +69,7 @@ func inventory_add(itemResource : Resource):
 	textureRect.texture = iconTexture
 	textureRect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	inventory_container.add_child(textureRect)
-	
+	$PopupItemViewer.init(itemResource.item_name, item.path_to_popup_display_image)
 	
 func journal_add(_entryName : String, _entryNotes: String):
 	pass

@@ -35,6 +35,13 @@ transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -2.0186, 0, 0 )
 
 [node name="CollectibleBook" parent="." instance=ExtResource( 6 )]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 1.25588 )
+item_details = {
+"is_unique": false,
+"item_name": "Strange Book",
+"notes_for_journal": "A strenge leatherbound book. The text appears blurred beyond recognition. Perhaps water damage.",
+"path_to_icon": "res://scenes/_common/GUI/icons/book.svg",
+"path_to_popup_display_image": "res://scenes/Items/collectables/tempBookWIP.png"
+}
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
