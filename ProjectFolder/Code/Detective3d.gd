@@ -42,6 +42,14 @@ func _unhandled_input(event):
 				gun.shoot()
 			else:
 				printerr("something's wrong in Detective3d, related to shooting the gun in _unhandled_input()")
+				
+	if event.is_action_pressed("ui_disguise"):
+		if self.is_in_group("goodPeople"):
+			self.remove_from_group("goodPeople")
+			self.add_to_group("badPeople")
+		else:
+			self.remove_from_group("badPeople")
+			self.add_to_group("goodPeople")
 
 
 func locate_gun():
@@ -146,7 +154,6 @@ func _process(delta):
 	
 	var vel = dir.normalized() * speed * delta
 	var _collision = move_and_collide(vel)
-
 
 func _on_collectible_picked_up(itemObj):
 	var itemResource = itemObj.item_details

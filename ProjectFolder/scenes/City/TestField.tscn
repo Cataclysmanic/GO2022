@@ -68,9 +68,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78185, 3.70015, 0 )
 shape = SubResource( 3 )
 
 [node name="GoodNPC" parent="." instance=ExtResource( 9 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.18556 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.21331 )
 
 [node name="BadNPC" parent="." instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86613, 0, -1.17297 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.86613, 0, -2.20072 )
 
 [editable path="Lightpost"]

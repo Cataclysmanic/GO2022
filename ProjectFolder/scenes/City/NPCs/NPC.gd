@@ -20,8 +20,9 @@ func _process(delta):
 
 func _on_NPCArea_body_entered(body):
 	if (body.is_in_group("goodPeople") and type == 1) or (body.is_in_group("badPeople") and type == 0) :
-		pass
+		print("placeholder for dialogue")
 		#innitiate dialogue
 	elif (body.is_in_group("goodPeople") and type == 0) or (body.is_in_group("badPeople") and type == 1) :
-		pass
+		print("placeholder for fightscene")
 		#innitiate fightscene
+		#Note, with groups it is easy to trigger all enemies in an area since you can trigger a script in all obj in the same group at onceg
