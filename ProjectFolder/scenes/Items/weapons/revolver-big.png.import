@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/photos_2015_09_18_fst_696d0otztq5.jpg-83989f020f11e72d7ad74461a61cf0f8.s3tc.stex"
-path.etc2="res://.import/photos_2015_09_18_fst_696d0otztq5.jpg-83989f020f11e72d7ad74461a61cf0f8.etc2.stex"
+path.s3tc="res://.import/revolver-big.png-87c24193b5d61d5f2232cbf69ce3cb37.s3tc.stex"
+path.etc2="res://.import/revolver-big.png-87c24193b5d61d5f2232cbf69ce3cb37.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Test Assets/photos_2015_09_18_fst_696d0otztq5.jpg"
-dest_files=[ "res://.import/photos_2015_09_18_fst_696d0otztq5.jpg-83989f020f11e72d7ad74461a61cf0f8.s3tc.stex", "res://.import/photos_2015_09_18_fst_696d0otztq5.jpg-83989f020f11e72d7ad74461a61cf0f8.etc2.stex" ]
+source_file="res://scenes/Items/weapons/revolver-big.png"
+dest_files=[ "res://.import/revolver-big.png-87c24193b5d61d5f2232cbf69ce3cb37.s3tc.stex", "res://.import/revolver-big.png-87c24193b5d61d5f2232cbf69ce3cb37.etc2.stex" ]
 
 [params]
 

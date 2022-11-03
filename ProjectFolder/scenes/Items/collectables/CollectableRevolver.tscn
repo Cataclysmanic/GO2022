@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Items/collectables/CollectablePickup.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Items/weapons/Revolver.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/weapons/revolver-big.png" type="Texture" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=4]
 
 [sub_resource type="BoxShape" id=1]
@@ -13,8 +13,8 @@ item_details = {
 "is_unique": true,
 "item_name": "Gun",
 "notes_for_journal": "6 shots. Not much, but maybe enough.",
-"path_to_icon": "res://scenes/Items/weapons/Revolver.png",
-"path_to_popup_display_image": "res://scenes/Items/weapons/Revolver.png",
+"path_to_icon": "res://scenes/Items/weapons/revolver-big.png",
+"path_to_popup_display_image": "res://scenes/Items/weapons/revolver-big.png",
 "path_to_scene_for_PlayerController_Items": "res://scenes/Items/weapons/Gun.tscn"
 }
 
