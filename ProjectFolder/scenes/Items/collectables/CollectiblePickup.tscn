@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/Items/collectibles/CollectiblePickup.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Items/collectibles/star.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/collectables/CollectiblePickup.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Items/collectables/star.png" type="Texture" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=4]
 
 [sub_resource type="BoxShape" id=1]

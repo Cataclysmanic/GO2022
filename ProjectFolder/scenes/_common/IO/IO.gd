@@ -37,7 +37,7 @@ func _on_collectible_used(usedItemName):
 func has_item(itemNameQuery : String):
 	var found = false
 	for item in stored_items:
-		if item.item_name == itemNameQuery:
+		if item.item_name.to_lower().strip_edges() == itemNameQuery.to_lower().strip_edges():
 			found = true
 	return found
 
