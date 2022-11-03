@@ -9,13 +9,13 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
+"base": "Reference",
 "class": "InventoryItemResource",
 "language": "GDScript",
-"path": "res://scenes/_common/IO/InventoryItemResource.gd"
+"path": "res://Scenes/_common/IO/InventoryItemResource.gd"
 } ]
 _global_script_class_icons={
-"InventoryItemResource": "res://scenes/_common/GUI/icons/book.svg"
+"InventoryItemResource": ""
 }
 
 [application]

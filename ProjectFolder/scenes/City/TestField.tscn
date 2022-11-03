@@ -53,7 +53,4 @@ path_to_scene = "res://scenes/City/Indoors/IndoorTestRoom.tscn"
 [node name="Lightpost" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.553646, 0.639891, -3.30015 )
 
-[node name="SpotLight" parent="Lightpost" index="2"]
-transform = Transform( 4.75133, 6.80672e-08, -1.5572, 1.5572, -2.07687e-07, 4.75133, 0, -5, -2.18557e-07, 0.712246, 3.10883, -0.0929259 )
-
 [editable path="Lightpost"]

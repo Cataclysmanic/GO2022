@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BookSplashScreen-WIP.png-afe16307ae322387b2226d43c603f3be.stex"
+path="res://.import/BookSplashScreen-WIP.png-01de9ea1ee6baa0dbd3fb158611a4c28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Items/collectables/BookSplashScreen-WIP.png"
-dest_files=[ "res://.import/BookSplashScreen-WIP.png-afe16307ae322387b2226d43c603f3be.stex" ]
+source_file="res://Scenes/Items/collectables/BookSplashScreen-WIP.png"
+dest_files=[ "res://.import/BookSplashScreen-WIP.png-01de9ea1ee6baa0dbd3fb158611a4c28.stex" ]
 
 [params]
 

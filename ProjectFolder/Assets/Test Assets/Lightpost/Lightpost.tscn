@@ -13,9 +13,6 @@ transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0 )
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody" index="0"]
 shape = SubResource( 1 )
 
-[node name="SpotLight" type="SpotLight" parent="." index="2"]
-transform = Transform( 4.75133, 6.80672e-08, -1.5572, 1.5572, -2.07687e-07, 4.75133, 0, -5, -2.18557e-07, 0.875996, 3.78951, 0 )
-light_energy = 2.0
-shadow_enabled = true
-spot_range = 12.473
-spot_angle = 52.7062
+[node name="OmniLight" type="OmniLight" parent="." index="2"]
+transform = Transform( 5, 0, 0, 0, 5, 0, 0, 0, 5, 0.508093, 3.66507, 0 )
+light_color = Color( 1, 0.929412, 0.803922, 1 )

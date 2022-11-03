@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/RainTest.png-dec2f16822b27955f9ef01c80ce28fff.stex"
+path="res://.import/RainTest.png-06939c9c3b99f4a62f8fab26bdcf1bea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/_common/GUI/RainTest.png"
-dest_files=[ "res://.import/RainTest.png-dec2f16822b27955f9ef01c80ce28fff.stex" ]
+source_file="res://Scenes/_common/GUI/RainTest.png"
+dest_files=[ "res://.import/RainTest.png-06939c9c3b99f4a62f8fab26bdcf1bea.stex" ]
 
 [params]
 
