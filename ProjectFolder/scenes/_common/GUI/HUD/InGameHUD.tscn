@@ -139,3 +139,21 @@ stream = ExtResource( 6 )
 
 [node name="FoundGun" type="AudioStreamPlayer" parent="AudioEvents"]
 stream = ExtResource( 5 )
+
+[node name="PanelContainer" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.698039 )
+margin_right = 210.0
+margin_bottom = 115.0
+
+[node name="Label" type="Label" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 154.0
+margin_bottom = 21.0
+text = "Controls:
+Arrows/WASD/LeftJoy: Move
+Mouse/RightJoy: Look Around
+Spacebar: Control mode toggle
+Enter: Toggle 2d/2.5d
+E: Change faction (disguise)
+"

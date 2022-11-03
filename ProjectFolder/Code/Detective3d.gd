@@ -58,12 +58,15 @@ func _unhandled_input(event):
 			emit_signal("gun_missing")
 
 	if event.is_action_pressed("ui_disguise"):
+		#currently just an input in future triggered by an item or doable only in specific locations(?)
 		if self.is_in_group("goodPeople"):
 			self.remove_from_group("goodPeople")
 			self.add_to_group("badPeople")
+			$AnimatedSprite.modulate = Color(1,0,0,1)
 		else:
 			self.remove_from_group("badPeople")
 			self.add_to_group("goodPeople")
+			$AnimatedSprite.modulate = Color(0,1,0,1)
 
 
 func locate_item(itemName):
