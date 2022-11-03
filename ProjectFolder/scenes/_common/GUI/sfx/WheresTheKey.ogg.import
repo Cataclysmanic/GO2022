@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/WheresTheKey.ogg-552dbea2f7a7453e7cc7822865d4438f.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/GUI/sfx/WheresTheKey.ogg"
+dest_files=[ "res://.import/WheresTheKey.ogg-552dbea2f7a7453e7cc7822865d4438f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -10,10 +10,7 @@ var time_elapsed : float
 var last_polling_time : float
 var polling_interval : float = 2.0 # seconds between checking with IO about inventory
 
-var trigger_events = { # a few things we can test for, to see if the user already had the feedback event, so we don't repeat ourselves
-	"missing_gun_reported":false,
-	"found_gun":false,
-}
+
 
 signal reloaded(count)
 
@@ -91,9 +88,9 @@ func rebuild_inventory():
 
 
 func pickup_gun():
-	if trigger_events["missing_gun_reported"] == false:
+	if Global.trigger_events["missing_gun_reported"] == false:
 		$AudioClips/FoundGun.play()
-		trigger_events["missing_gun_reported"] = true
+		Global.trigger_events["missing_gun_reported"] = true
 
 func _on_collectible_picked_up(pickupObj):
 	var itemResource = pickupObj.item_details
@@ -113,9 +110,9 @@ func _on_collectible_picked_up(pickupObj):
 
 
 func play_specific_audio_events(itemName:String):
-	if itemName.to_lower() == "gun" and trigger_events["found_gun"] == false:
+	if itemName.to_lower() == "gun" and Global.trigger_events["found_gun"] == false:
 			$AudioEvents/FoundGun.play()
-			trigger_events["gun_found"] = true
+			Global.trigger_events["gun_found"] = true
 
 
 func _on_player_gun_loaded(ammoRemaining, _ammoType):
@@ -139,9 +136,14 @@ func _on_player_gun_reload_requested(gunObj):
 
 
 func _on_player_gun_missing():
-	if trigger_events["missing_gun_reported"] == false:
+	if Global.trigger_events["missing_gun_reported"] == false:
 		$AudioEvents/MissingGun.play()
-		trigger_events["missing_gun_reported"] = true
+		Global.trigger_events["missing_gun_reported"] = true
 		
-	
+func _on_missing_key():
+	if Global.trigger_events["missing_tutorial_key_reported"] == false:
+		$AudioEvents/MissingKey.play()
+		Global.trigger_events["missing_tutorial_key_reported"] = true
+
+
 	
