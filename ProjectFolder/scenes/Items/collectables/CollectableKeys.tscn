@@ -1,26 +1,26 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/Items/collectables/CollectiblePickup.gd" type="Script" id=1]
-[ext_resource path="res://scenes/_common/GUI/icons/book.svg" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/collectables/CollectablePickup.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_common/GUI/icons/key.png" type="Texture" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=4]
 
 [sub_resource type="BoxShape" id=1]
 
-[node name="CollectibleBook" type="Spatial"]
+[node name="CollectibleKey" type="Spatial"]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
 script = ExtResource( 1 )
 item_details = {
 "is_unique": false,
-"item_name": "Strange Book",
-"notes_for_journal": "A strenge leatherbound book. The text appears blurred beyond recognition. Perhaps water damage.",
-"path_to_icon": "res://scenes/_common/GUI/icons/book.svg",
-"path_to_popup_display_image": "res://scenes/Items/collectibles/BookSplashScreen-WIP.png"
+"item_name": "Key",
+"notes_for_journal": "Who knows what it might open. (Is that a cliche?)",
+"path_to_icon": "res://scenes/_common/GUI/icons/key.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/tempKeyImage.png"
 }
 
 [node name="Area" type="Area" parent="."]
 
 [node name="Sprite" type="Sprite3D" parent="Area"]
-transform = Transform( 0.0525947, 0, 0, 0, -4.37114e-08, 1, 0, -0.0525947, -2.29899e-09, 0, 0, 0 )
+transform = Transform( 0.922235, 0, 0, 0, -4.37114e-08, 1, 0, -0.922235, -4.03123e-08, 0, 0, 0 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
