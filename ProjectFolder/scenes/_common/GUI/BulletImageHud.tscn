@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scenes/Items/bullet.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Items/weapons/bullet.png" type="Texture" id=1]
 
 [node name="BulletImageHud" type="TextureRect"]
 margin_right = 12.0

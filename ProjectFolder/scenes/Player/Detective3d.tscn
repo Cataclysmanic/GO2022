@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/Test Assets/_up idle.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Test Assets/_down walk.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Test Assets/instructions.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Items/Gun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/weapons/Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUDCity.tscn" type="PackedScene" id=11]
 
 [sub_resource type="AtlasTexture" id=16]
