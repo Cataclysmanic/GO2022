@@ -38,4 +38,23 @@ func remove_bullet_icon():
 func add_bullet_icon():
 	var bulletTex = $ResourcePreloader.get_resource("Bullet").instance()
 	ammo_container.add_child(bulletTex)
+
+func display_inventory_item(_image : Texture):
+	pass
+
+func inventory_add(_image: Texture, _name: String):
+	pass
+	
+func journal_add(_entryName : String, _entryNotes: String):
+	pass
+	
+	
+func _on_collectible_picked_up(pickupObj):
+	
+
+	if pickupObj != null and is_instance_valid(pickupObj):
+	
+		display_inventory_item(pickupObj.image_to_display_on_pickup)
+		inventory_add(pickupObj.icon_for_inventory, pickupObj.item_name)
+		journal_add(pickupObj.item_name, pickupObj.notes_for_journal)
 	
