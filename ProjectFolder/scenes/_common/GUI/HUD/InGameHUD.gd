@@ -69,7 +69,9 @@ func inventory_add(itemResource : Resource):
 	textureRect.texture = iconTexture
 	textureRect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	inventory_container.add_child(textureRect)
+	
 	$PopupItemViewer.init(itemResource)
+	
 	
 func journal_add(_entryName : String, _entryNotes: String):
 	pass
@@ -83,6 +85,9 @@ func rebuild_inventory():
 
 
 func _on_collectible_picked_up(pickupObj):
+	
+	#Global.pause() # why isn't this firing the second time we pick something up?
+
 	call_deferred('rebuild_inventory') # give IO a chance to get the item first.
 
 	stored_items.push_back(pickupObj.item_info) # store the resource with just the text strings

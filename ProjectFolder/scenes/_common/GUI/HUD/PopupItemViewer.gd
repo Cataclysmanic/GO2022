@@ -11,6 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 func init(itemResource : InventoryItemResource):
+	Global.pause()
 	find_node("ItemName").text = itemResource.item_name
 	find_node("ItemDescription").text = itemResource.notes_for_journal
 	var imageTex = load(itemResource.path_to_popup_display_image)
@@ -25,4 +26,18 @@ func _on_Timer_timeout():
 
 
 func _on_OKButton_pressed():
+	$Timer.stop()
+	Global.resume()
 	hide()
+	
+
+
+
+
+
+
+
+func _on_PopupItemViewer_popup_hide():
+
+	Global.resume()
+

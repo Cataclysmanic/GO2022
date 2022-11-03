@@ -14,7 +14,8 @@ func _ready():
 	Global.world_controller = self
 	start_intro()
 	State = STATES.ACTIVE
-
+	Global.resume()
+	
 
 func start_intro():
 	var splashScreen = $ResourcePreloader.get_resource("Intro")

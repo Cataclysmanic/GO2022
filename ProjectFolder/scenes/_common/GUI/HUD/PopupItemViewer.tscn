@@ -1,14 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/PopupItemViewer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=2]
-
-[sub_resource type="InputEventAction" id=1]
-action = "ui_select"
-pressed = true
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
 
 [node name="PopupItemViewer" type="PopupPanel"]
 anchor_left = 0.5
@@ -20,6 +13,7 @@ margin_top = -100.0
 margin_right = 150.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 300, 200 )
+popup_exclusive = true
 script = ExtResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -68,11 +62,13 @@ text = "Item Description"
 margin_top = 258.0
 margin_right = 252.0
 margin_bottom = 278.0
-shortcut = SubResource( 2 )
+focus_mode = 0
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
 text = "OK"
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
 one_shot = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/OKButton" to="." method="_on_OKButton_pressed"]

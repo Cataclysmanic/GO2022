@@ -1,9 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/_common/GUI/HUD/PopupItemViewer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "show_game_state.gd"
+script/source = "extends LineEdit
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if Global.is_paused():
+		text = \"Paused\"
+	else:
+		text = \"\"
+"
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -21,15 +44,15 @@ custom_constants/margin_top = 20
 
 [node name="Header" type="HBoxContainer" parent="Top"]
 margin_top = 20.0
-margin_right = 119.0
-margin_bottom = 40.0
+margin_right = 197.0
+margin_bottom = 44.0
 mouse_filter = 2
 custom_constants/separation = 20
 
 [node name="Label" type="Label" parent="Top/Header"]
-margin_top = 3.0
+margin_top = 5.0
 margin_right = 55.0
-margin_bottom = 17.0
+margin_bottom = 19.0
 text = "Wake up"
 
 [node name="SceneLaunchButton" parent="Top/Header" instance=ExtResource( 4 )]
@@ -37,9 +60,15 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 75.0
 margin_right = 119.0
-margin_bottom = 20.0
+margin_bottom = 24.0
 text = "Huh?"
 return_to_main = true
+
+[node name="LineEdit" type="LineEdit" parent="Top/Header"]
+margin_left = 139.0
+margin_right = 197.0
+margin_bottom = 24.0
+script = SubResource( 1 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Bullet" ), [ ExtResource( 2 ) ] ]

@@ -1,7 +1,7 @@
 extends KinematicBody
 
 #The speed multiplier for all movement
-var speed = .05
+var speed = 2.0 # added delta to movement code, for consistent speeds across different framerates
 #The last direction moved, used for animation (Can be used for accelleration as well)
 var lastDir = 1
 #Determines which view mode we are in. Currently tied to input.
@@ -34,6 +34,9 @@ func get_hud():
 
 
 func _unhandled_input(event):
+	if Global.game_state != Global.STATES.READY:
+		return
+	
 	if event.is_action("shoot") and event.is_action_pressed("shoot"):
 	#if Input.is_action_just_pressed("shoot"):
 		for item in $AnimatedSprite/Items.get_children():
@@ -41,7 +44,11 @@ func _unhandled_input(event):
 				item.shoot()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	if Global.is_paused():
+		return
+	
+	
 	if !topDown:
 		mouse = true
 	#Zero out the vector for controlling direction.
@@ -128,7 +135,7 @@ func _process(_delta):
 				_:
 					print('Something went wrong with animation')
 	
-	var vel = dir.normalized() * speed
+	var vel = dir.normalized() * speed * delta
 	var _collision = move_and_collide(vel)
 
 
