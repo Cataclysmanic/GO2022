@@ -27,6 +27,10 @@ func change_scene_to(packedScene : PackedScene):
 	spawn_new_scene(packedScene)
 
 
+func get_io():
+	return find_node("IO")
+
+
 func change_scene(scenePath : String):
 	if ResourceLoader.exists(scenePath):
 		remove_old_scenes()

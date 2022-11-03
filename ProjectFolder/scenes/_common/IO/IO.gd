@@ -4,16 +4,62 @@
 extends Node
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
+var stored_items = [] # list of item names
+var savegame_filepath = "user://save_game.tres"
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Global.IO = self
+	
+	
+func _on_collectible_picked_up(itemObj): # stored in Collectible as item_info. (src = res://scenes/_common/IO/InventoryItemResource.gd)
+	# store it in inventory unless it's unique.
+	var itemResource = itemObj.item_info
+	
+	if itemResource.is_unique == true:
+		if not stored_items.has(itemResource):
+			stored_items.push_back(itemResource) # store the reference to the object for later.. not useful for save/load unless we translate to resources or json
+	else:
+		stored_items.push_back(itemResource)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func get_inventory():
+	return stored_items
+
+func _on_collectible_used(usedItemName):
+	for item in stored_items:
+		if item.item_name == usedItemName:
+			stored_items.erase(item) # removes the first occurrence
+			return
+	
+func has_item(itemNameQuery : String):
+	var found = false
+	for item in stored_items:
+		if item.item_name == itemNameQuery:
+			found = true
+	return found
+
+func get_item(itemName : String):
+	for item in stored_items:
+		if item.item_name == itemName:
+			return item
+
+
+
+func save_inventory():
+
+	var save_game = Resource.new()
+	save_game.set("stored_items", stored_items)
+	var status = ResourceSaver.save(savegame_filepath, save_game, ResourceSaver.FLAG_BUNDLE_RESOURCES)
+	if status != OK:
+		printerr("problem in IO.gd, can't save game. error " + str(status))
+
+func load_inventory():
+	var restored_game : Resource
+	if ResourceLoader.exists(savegame_filepath):
+		restored_game = ResourceLoader.load(savegame_filepath)
+		stored_items = restored_game.stored_items
+		
+

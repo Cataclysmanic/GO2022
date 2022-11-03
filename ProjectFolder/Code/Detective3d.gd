@@ -132,6 +132,11 @@ func _process(_delta):
 	var _collision = move_and_collide(vel)
 
 
-func _on_collectible_picked_up(collectibleObj):
-	print("Congrats, you picked up a " + collectibleObj.item_name)
+func _on_collectible_picked_up(_collectibleObj):
+	# player avatar has little interest in items, 
+		# unless we want to give then a sprite
+		# or put some new functionality inside $Items
+	# otherwise Let Global.world_controller.IO and HUD figure this out
+	pass
+	
 	

@@ -13,3 +13,4 @@ texture_hover = ExtResource( 1 )
 texture_disabled = ExtResource( 1 )
 texture_focused = ExtResource( 1 )
 expand = true
+stretch_mode = 5

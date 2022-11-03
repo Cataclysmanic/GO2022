@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Test Assets/TestPlane.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player/Detective3d.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Test Assets/TestCube.glb" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Test Assets/Lightpost/Lightpost.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Items/collectibles/CluePickup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/_common/GUI/icons/book.svg" type="Texture" id=6]
-[ext_resource path="res://scenes/Items/collectibles/BookSplashScreen-WIP.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Items/collectibles/CollectibleKeys.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Items/collectibles/CollectibleBook.tscn" type="PackedScene" id=6]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -30,14 +29,14 @@ shape = SubResource( 1 )
 
 [node name="Detective3d" parent="." instance=ExtResource( 2 )]
 
+[node name="CollectibleKey" parent="." instance=ExtResource( 5 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -2.0186, 0, 0 )
+
+[node name="CollectibleBook" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 1.25588 )
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
-
-[node name="BookClue" parent="." instance=ExtResource( 5 )]
-transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 1.39788 )
-image_to_display_on_pickup = ExtResource( 7 )
-icon_for_inventory = ExtResource( 6 )
-item_name = "Book"
 
 [node name="Lightpost" parent="." instance=ExtResource( 4 )]
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.553646, 0.639891, -3.30015 )
