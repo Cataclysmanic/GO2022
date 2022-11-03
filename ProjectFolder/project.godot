@@ -24,7 +24,7 @@ config/name="Working Noir Game Title"
 config/description="Brought to you by \"Working Team Title\" for the Github Game Off Game Jam 2022
 "
 run/main_scene="res://scenes/Main.tscn"
-config/icon="res://icon.png"
+config/icon="res://scenes/_common/GUI/icons/detective_icon.png"
 
 [autoload]
 
