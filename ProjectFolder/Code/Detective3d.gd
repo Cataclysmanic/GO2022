@@ -165,8 +165,9 @@ func _on_collectible_picked_up(itemObj):
 			if itemName == "Gun":
 				scene.init(self, 6)
 				scene.name = "Gun"
+			
 			itemsContainer.add_child(scene)
-
+			
 
 func carrying_item_already(itemName):
 	var found = false

@@ -10,6 +10,9 @@ var time_elapsed : float
 var last_polling_time : float
 var polling_interval : float = 2.0 # seconds between checking with IO about inventory
 
+signal reloaded(count)
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	time_elapsed = 0.0
@@ -40,7 +43,14 @@ func _on_player_gun_shot(ammoRemaining):
 		var diff = ammo_container.get_child_count() - ammoRemaining
 		for _i in range(diff):
 			remove_bullet_icon()
+		#if ammo_container.get_child_count() == 0:
+			#reload_if_possible() # let the gun request the reload
 
+func _on_player_gun_reload_requested(gunObj):
+	reload_if_possible()
+	if not is_connected("reloaded", gunObj, "_on_HUD_reloaded"):
+		connect("reloaded", gunObj, "_on_HUD_reloaded")
+	emit_signal("reloaded", ammo_container.get_child_count())
 
 func remove_bullet_icon():
 	var last_bullet_num = ammo_container.get_child_count()-1
@@ -51,6 +61,15 @@ func remove_bullet_icon():
 func add_bullet_icon():
 	var bulletTex = $ResourcePreloader.get_resource("Bullet").instance()
 	ammo_container.add_child(bulletTex)
+
+
+func reload_if_possible():
+	
+	if Global.IO.has_item("magazine"):
+		Global.IO._on_collectible_used("magazine")
+		for i in range(6):
+			add_bullet_icon()
+
 
 func clear_inventory():
 	for item in inventory_container.get_children():
