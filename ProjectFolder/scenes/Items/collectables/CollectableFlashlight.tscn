@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Items/collectables/CollectablePickup.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Items/collectables/Flashlight.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/collectables/flashlightIcon.jpeg" type="Texture" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=4]
 
 [sub_resource type="BoxShape" id=1]
@@ -10,17 +10,18 @@
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 0, 0, 0 )
 script = ExtResource( 1 )
 item_details = {
-"is_unique": false,
+"is_unique": true,
 "item_name": "Flashlight",
-"notes_for_journal": "Might come in handy. Strange how it flickers.. maybe it needs fresh batteries. Why don't I have a flashlight on my phone? Who even uses a flashlight anymore?",
-"path_to_icon": "res://scenes/Items/collectables/Flashlight.png",
-"path_to_popup_display_image": "res://scenes/Items/collectables/Flashlight.png"
+"notes_for_journal": "A cop's flashlight. Perfect for what I'm planning.",
+"path_to_icon": "res://scenes/Items/collectables/flashlightIcon.jpeg",
+"path_to_popup_display_image": "res://scenes/Items/collectables/flashlightZoom.png",
+"path_to_scene_for_PlayerController_Items": ""
 }
 
 [node name="Area" type="Area" parent="."]
 
 [node name="Sprite" type="Sprite3D" parent="Area"]
-transform = Transform( 0.0714679, 0, 0, 0, -4.37114e-08, 1, 0, -0.0714679, -3.12396e-09, 0, 0, 0 )
+transform = Transform( 0.422121, 0, 0, 0, -4.37114e-08, 1, 0, -0.422121, -1.84515e-08, 0, 0, 0 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]

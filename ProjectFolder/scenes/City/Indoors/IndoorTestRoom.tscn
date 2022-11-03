@@ -103,9 +103,6 @@ material = SubResource( 4 )
 [node name="Typewriter" parent="." instance=ExtResource( 7 )]
 transform = Transform( 0.0828402, 0, 0.309164, 0, 1, 0, -0.309164, 0, 0.0828402, -1.40318, 0.656329, 0.107303 )
 
-[node name="Flashlight" parent="." instance=ExtResource( 8 )]
-transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.819226, 0.18525, 1.02102 )
-
 [node name="ScrapOfPaper" parent="." instance=ExtResource( 9 )]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -1.36139, 0.65378, -0.239488 )
 
@@ -114,3 +111,6 @@ transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 1.19363, 0.180797, -0.5577
 
 [node name="Magazine" parent="." instance=ExtResource( 11 )]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -1.01569, 0.180801, -1.31848 )
+
+[node name="Flashlight" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.87004, 0.549226, 1.11851 )
