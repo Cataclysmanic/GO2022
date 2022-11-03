@@ -15,7 +15,7 @@ background_mode = 1
 background_color = Color( 0.576471, 0.576471, 0.576471, 1 )
 background_energy = 0.5
 
-[node name="TestField" type="Spatial"]
+[node name="TestField" type="Spatial" groups=["Outdoor"]]
 
 [node name="TestPlane" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )

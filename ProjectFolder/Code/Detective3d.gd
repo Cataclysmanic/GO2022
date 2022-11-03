@@ -23,7 +23,12 @@ func _ready():
 	if is_instance_valid(gun):
 		gun.init(self, 6)
 
-
+	if get_parent().is_in_group("Indoor"):
+		$Camera.set_projection(Camera.PROJECTION_ORTHOGONAL)
+		$Camera.size = 3
+	if get_parent().is_in_group("Outdoor"):
+		$Camera.set_projection(Camera.PROJECTION_PERSPECTIVE)
+		$Camera.fov = 50
 func get_hud():
 	return find_node("HUD")
 
