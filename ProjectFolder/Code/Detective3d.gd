@@ -5,14 +5,12 @@ var speed = 2.0 # added delta to movement code, for consistent speeds across dif
 #The last direction moved, used for animation (Can be used for accelleration as well)
 var lastDir = 1
 #Determines which view mode we are in. Currently tied to input.
-var topDown = true
-#While in full topdown mode, this is where the viewpoint is
 var point = 0
 var lastPoint = 0
-#Determines whether during full topdown mode, if we follow the mouse or controller input 
+#Determines whether during full Global.topdown mode, if we follow the mouse or controller input 
 #for direction info
 var mouse = true
-#during topdown mode, multiply the speed by this number
+#during Global.topdown mode, multiply the speed by this number
 var tDpwnMul = 1.5
 
 var flashlight = false
@@ -60,7 +58,7 @@ func _process(delta):
 		return
 	
 	
-	if !topDown:
+	if !Global.topdown:
 		mouse = true
 	#Zero out the vector for controlling direction.
 	var dir = Vector3.ZERO
@@ -78,9 +76,9 @@ func _process(delta):
 	else:
 		dir.z = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").y
 		dir.x = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").x
-	#If the 'accept' button is pressed, this changes the view mode to topdown
+	#If the 'accept' button is pressed, this changes the view mode to Global.topdown
 	if Input.is_action_just_pressed("ui_accept"):
-		topDown = !topDown
+		Global.topdown = !Global.topdown
 		$AnimatedSprite.animation = "wiSide"
 	#if the 'select' button is pressed, change between mouse use and controller use.
 	if Input.is_action_just_pressed("ui_select"):
@@ -97,7 +95,7 @@ func _process(delta):
 	else: #otherwise, get the input vector on the controller for looking.
 		point = -Input.get_vector("lookLeft", "lookRight", "lookUp", "lookDown").angle()
 		point = point - PI
-	if topDown:
+	if Global.topdown:
 		$AnimatedSprite.scale.x = .5
 		$AnimatedSprite.scale.y = .5
 		self.rotation_degrees.x = -90

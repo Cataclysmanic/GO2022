@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/star.png-a5543dc0391f724b273cbcc083970356.s3tc.stex"
-path.etc2="res://.import/star.png-a5543dc0391f724b273cbcc083970356.etc2.stex"
+path.s3tc="res://.import/star.png-00f3a5a385334e25a163da7878691fb2.s3tc.stex"
+path.etc2="res://.import/star.png-00f3a5a385334e25a163da7878691fb2.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Items/collectables/star.png"
-dest_files=[ "res://.import/star.png-a5543dc0391f724b273cbcc083970356.s3tc.stex", "res://.import/star.png-a5543dc0391f724b273cbcc083970356.etc2.stex" ]
+source_file="res://scenes/Items/collectables/star.png"
+dest_files=[ "res://.import/star.png-00f3a5a385334e25a163da7878691fb2.s3tc.stex", "res://.import/star.png-00f3a5a385334e25a163da7878691fb2.etc2.stex" ]
 
 [params]
 

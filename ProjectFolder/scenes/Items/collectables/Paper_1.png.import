@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Paper_1.png-15f869f42a35719acd69c666745503ab.s3tc.stex"
-path.etc2="res://.import/Paper_1.png-15f869f42a35719acd69c666745503ab.etc2.stex"
+path.s3tc="res://.import/Paper_1.png-a10a97a4baff954157a2ebdaf0ae9e73.s3tc.stex"
+path.etc2="res://.import/Paper_1.png-a10a97a4baff954157a2ebdaf0ae9e73.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Items/collectables/Paper_1.png"
-dest_files=[ "res://.import/Paper_1.png-15f869f42a35719acd69c666745503ab.s3tc.stex", "res://.import/Paper_1.png-15f869f42a35719acd69c666745503ab.etc2.stex" ]
+source_file="res://scenes/Items/collectables/Paper_1.png"
+dest_files=[ "res://.import/Paper_1.png-a10a97a4baff954157a2ebdaf0ae9e73.s3tc.stex", "res://.import/Paper_1.png-a10a97a4baff954157a2ebdaf0ae9e73.etc2.stex" ]
 
 [params]
 

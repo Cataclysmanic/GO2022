@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tempKeyImage.png-acd44e52fcc76e32c02701334480cc47.stex"
+path="res://.import/tempKeyImage.png-26dbc8c271be7581a46bfcd868d4914b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Items/collectables/tempKeyImage.png"
-dest_files=[ "res://.import/tempKeyImage.png-acd44e52fcc76e32c02701334480cc47.stex" ]
+source_file="res://scenes/Items/collectables/tempKeyImage.png"
+dest_files=[ "res://.import/tempKeyImage.png-26dbc8c271be7581a46bfcd868d4914b.stex" ]
 
 [params]
 

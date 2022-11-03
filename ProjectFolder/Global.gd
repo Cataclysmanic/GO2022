@@ -8,7 +8,8 @@ var IO
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
 var game_state = STATES.INITIALIZING
 
-
+var topdown = true
+#While in full topdown mode, this is where the viewpoint is
 
 func pause():
 	game_state = STATES.PAUSED

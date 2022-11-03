@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "InventoryItemResource",
 "language": "GDScript",
-"path": "res://Scenes/_common/IO/InventoryItemResource.gd"
+"path": "res://scenes/_common/IO/InventoryItemResource.gd"
 } ]
 _global_script_class_icons={
 "InventoryItemResource": ""
