@@ -26,19 +26,34 @@ func toggle_flashlight():
 	
 
 func move(delta):
+	var style = "ortho"
+	
 	var speed = 150.0
 	
 	var move_vector = Vector2.ZERO
-	if Input.is_action_pressed("ui_up"):
-		move_vector += Vector2.RIGHT * speed * delta
-	if Input.is_action_pressed("ui_left"):
-		move_vector += Vector2.UP * speed * delta
-	if Input.is_action_pressed("ui_right"):
-		move_vector += Vector2.DOWN * speed * delta
-	if Input.is_action_pressed("ui_down"):
-		move_vector += Vector2.LEFT * speed * delta
-		
-	var directional_vector = move_vector.rotated(rotation)
+	var directional_vector = Vector2.ZERO
+	
+	if style == "orbit":
+		if Input.is_action_pressed("ui_up"):
+			move_vector += Vector2.RIGHT * speed * delta
+		if Input.is_action_pressed("ui_left"):
+			move_vector += Vector2.UP * speed * delta
+		if Input.is_action_pressed("ui_right"):
+			move_vector += Vector2.DOWN * speed * delta
+		if Input.is_action_pressed("ui_down"):
+			move_vector += Vector2.LEFT * speed * delta
+		directional_vector = move_vector.rotated(rotation)
+	elif style == "ortho":
+		if Input.is_action_pressed("ui_up"):
+			move_vector += Vector2.UP * speed * delta
+		if Input.is_action_pressed("ui_left"):
+			move_vector += Vector2.LEFT * speed * delta
+		if Input.is_action_pressed("ui_right"):
+			move_vector += Vector2.RIGHT * speed * delta
+		if Input.is_action_pressed("ui_down"):
+			move_vector += Vector2.DOWN * speed * delta
+		directional_vector = move_vector
+
 	var _collision = move_and_collide(directional_vector)
 	
 
