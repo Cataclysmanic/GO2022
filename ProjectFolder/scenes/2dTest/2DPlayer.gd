@@ -27,9 +27,6 @@ func toggle_flashlight():
 
 func move(delta):
 	var speed = 150.0
-	var myPos = get_global_position()
-	var mousePos = get_global_mouse_position()
-	#var angle_to_mouse = Vector2.UP.angle_to_point(mousePos-myPos)
 	
 	var move_vector = Vector2.ZERO
 	if Input.is_action_pressed("ui_up"):
@@ -42,8 +39,6 @@ func move(delta):
 		move_vector += Vector2.LEFT * speed * delta
 		
 	var directional_vector = move_vector.rotated(rotation)
-	#var directional_vector = move_vector
-	move_and_collide(directional_vector)
-	#position += directional_vector
+	var _collision = move_and_collide(directional_vector)
 	
 

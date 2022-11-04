@@ -82,7 +82,9 @@ func show_slide():
 	$Timer.start()
 	
 	
-	
+func _unhandled_input(event): # cardinal sin to not allow skipping cutscenes.
+	if event.is_action_pressed(\"ui_cancel\"):
+		Global.world_controller.change_scene(next_scene)
 
 
 func finish():

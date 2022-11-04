@@ -23,9 +23,8 @@ signal gun_missing()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var gun = find_node("Gun")
-	if is_instance_valid(gun):
-		gun.init(self, 6)
+	spawn_gun_if_carried()
+	
 
 	if get_parent().is_in_group("Indoor"):
 		$Camera.set_projection(Camera.PROJECTION_ORTHOGONAL)
@@ -36,6 +35,18 @@ func _ready():
 
 	HUD = get_hud()
 
+
+func spawn_gun_if_carried():
+	if Global.IO == null: # escape in case we're testing detective without the full game
+		return
+	elif Global.IO.has_item("gun"): # gun already in inventory. spawn a gun object on the player avatar
+		spawn_item(Global.IO.get_item("Gun"))
+	
+	var gun = find_node("Gun")
+	if is_instance_valid(gun):
+		gun.init(self, 6)
+
+	
 
 func get_hud():
 	return find_node("HUD")
@@ -199,19 +210,21 @@ func _process(delta):
 
 func _on_collectible_picked_up(itemObj):
 	var itemResource = itemObj.item_details
-	var itemsContainer = find_node("Items")
 	var itemName = itemResource.item_name
-	var loader = $ResourcePreloader
-	print(loader.get_resource_list())
-	
-	if loader.get_resource_list().has(itemResource.item_name):
-		if itemResource.is_unique and carrying_item_already(itemResource.item_name):
-			return
-		else:
-			var scene = loader.get_resource(itemResource.item_name).instance()
-			if itemName == "Gun":
-				scene.init(self, 6)
-				scene.name = "Gun"
-			
-			itemsContainer.add_child(scene)
-			
+	if itemResource.is_unique and carrying_item_already(itemResource.item_name):
+		return
+	else:
+		spawn_item(itemResource)
+
+
+func spawn_item(itemResource): # This method doesn't care if you ought to have the item or not.
+	var itemName = itemResource.item_name
+	var loader = $ResourcePreloader	
+	if loader.get_resource_list().has(itemResource.item_name):			
+		var itemScene = loader.get_resource(itemResource.item_name).instance()
+		if itemName == "Gun":
+			itemScene.init(self, 6)
+			itemScene.name = "Gun"
+		var itemsContainer = find_node("Items")
+		itemsContainer.add_child(itemScene)
+		

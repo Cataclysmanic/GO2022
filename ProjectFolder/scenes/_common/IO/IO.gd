@@ -41,11 +41,12 @@ func has_item(itemNameQuery : String):
 			found = true
 	return found
 
-func get_item(itemName : String):
+func get_item(itemName : String) -> Resource: # Resources are simpler than objects, and are easily serialized to disk with ResourceSaver.save(path, resource)
+	var itemResource = null
 	for item in stored_items:
-		if item.item_name == itemName:
-			return item
-
+		if item.item_name.to_lower() == itemName.to_lower():
+			itemResource = item
+	return itemResource
 
 
 func save_inventory():
