@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/MenuScenes/MainMenu.gd" type="Script" id=2]
@@ -9,12 +9,15 @@
 [ext_resource path="res://scenes/_common/GUI/RainShaderOverlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/_common/GUI/HeavyFogOverlay.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Campaign.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/_common/GUI/Theme/MainGUITheme.tres" type="Theme" id=10]
+[ext_resource path="res://scenes/_common/GUI/fonts/VolkornMediumFont.tres" type="DynamicFont" id=11]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 10 )
 script = ExtResource( 2 )
 
 [node name="HeavyFogOverlay" parent="." instance=ExtResource( 8 )]
@@ -27,91 +30,113 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
-margin_left = 120.0
-margin_top = 123.0
-margin_right = 904.0
-margin_bottom = 477.0
+margin_left = 329.0
+margin_top = 68.0
+margin_right = 695.0
+margin_bottom = 532.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="MainMenuVBox" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
-margin_right = 784.0
-margin_bottom = 354.0
-
-[node name="Header" type="MarginContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
-margin_right = 784.0
-margin_bottom = 46.0
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="CenterContainer/MarginContainer/MainMenuVBox/Header"]
-margin_right = 784.0
-margin_bottom = 46.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = ExtResource( 1 )
-text = "Working Team Title presents: Working Noir Game Title!"
-align = 1
-
-[node name="Body" type="CenterContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
-margin_top = 50.0
-margin_right = 784.0
-margin_bottom = 350.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MainMenuButtonContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/MainMenuVBox/Body"]
-margin_left = 317.0
-margin_right = 467.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 150, 300 )
+margin_right = 366.0
+margin_bottom = 464.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 25
 
+[node name="Masthead" type="VBoxContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
+margin_right = 366.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="Title" type="Label" parent="CenterContainer/MarginContainer/MainMenuVBox/Masthead"]
+margin_right = 366.0
+margin_bottom = 44.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 11 )
+text = "Working Team Title presents:"
+align = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/MarginContainer/MainMenuVBox/Masthead"]
+margin_top = 48.0
+margin_right = 366.0
+margin_bottom = 114.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Working Noir Game Title!"
+align = 1
+
+[node name="Body" type="CenterContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
+margin_top = 139.0
+margin_right = 366.0
+margin_bottom = 439.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MainMenuButtonContainer" type="GridContainer" parent="CenterContainer/MarginContainer/MainMenuVBox/Body"]
+margin_left = 4.0
+margin_right = 361.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 150, 300 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 50
+custom_constants/hseparation = 100
+columns = 2
+
 [node name="NewGameButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 150.0
-margin_bottom = 20.0
+margin_right = 111.0
+margin_bottom = 35.0
 text = "New Game"
 SceneToLaunch = ExtResource( 9 )
 
 [node name="LoadGameButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 45.0
-margin_right = 150.0
-margin_bottom = 65.0
+margin_left = 161.0
+margin_right = 307.0
+margin_bottom = 35.0
 text = "Load Game"
-
-[node name="CreditsButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 90.0
-margin_right = 150.0
-margin_bottom = 110.0
-text = "Credits"
-SceneToLaunch = ExtResource( 4 )
 
 [node name="DebugButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 135.0
-margin_right = 150.0
-margin_bottom = 155.0
+margin_left = 211.0
+margin_right = 357.0
+margin_bottom = 35.0
 text = "Debug / Cheat"
 SceneToLaunch = ExtResource( 6 )
+
+[node name="CreditsButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 85.0
+margin_right = 111.0
+margin_bottom = 120.0
+text = "Credits"
+SceneToLaunch = ExtResource( 4 )
 
 [node name="QuitButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 180.0
-margin_right = 150.0
-margin_bottom = 200.0
+margin_left = 211.0
+margin_top = 85.0
+margin_right = 357.0
+margin_bottom = 120.0
 text = "Quit"
 SceneToLaunch = ExtResource( 5 )
 
 [node name="Footer" type="MarginContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
-margin_top = 354.0
-margin_right = 784.0
-margin_bottom = 354.0
+margin_top = 464.0
+margin_right = 366.0
+margin_bottom = 464.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
