@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/MenuScenes/MainMenu.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/MenuScenes/DebugMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/RainShaderOverlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/_common/GUI/HeavyFogOverlay.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Campaign.tscn" type="PackedScene" id=9]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -71,6 +72,7 @@ anchor_bottom = 0.0
 margin_right = 150.0
 margin_bottom = 20.0
 text = "New Game"
+SceneToLaunch = ExtResource( 9 )
 
 [node name="LoadGameButton" parent="CenterContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
