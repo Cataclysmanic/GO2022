@@ -60,11 +60,43 @@ path_to_scene = "res://scenes/City/Indoors/IndoorTestRoom.tscn"
 transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.553646, 0.639891, -3.30015 )
 
 [node name="StaticBody2" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78185, 3.70015, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1578, 3.70015, 5.89353 )
 
 [node name="Building" parent="StaticBody2" instance=ExtResource( 8 )]
 
 [node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
+shape = SubResource( 3 )
+
+[node name="StaticBody3" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1578, 3.70015, 2.57428 )
+
+[node name="Building" parent="StaticBody3" instance=ExtResource( 8 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
+shape = SubResource( 3 )
+
+[node name="StaticBody4" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.41022, 3.70015, -4.85109 )
+
+[node name="Building" parent="StaticBody4" instance=ExtResource( 8 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody4"]
+shape = SubResource( 3 )
+
+[node name="StaticBody5" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.41328, 3.70015, -6.81401 )
+
+[node name="Building" parent="StaticBody5" instance=ExtResource( 8 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody5"]
+shape = SubResource( 3 )
+
+[node name="StaticBody6" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.47191, 3.70015, -8.77961 )
+
+[node name="Building" parent="StaticBody6" instance=ExtResource( 8 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody6"]
 shape = SubResource( 3 )
 
 [node name="GoodNPC" parent="." instance=ExtResource( 9 )]

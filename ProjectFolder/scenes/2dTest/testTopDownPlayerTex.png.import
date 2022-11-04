@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/testTopDownPlayerTex.png-9caf9af8c6f8f7a23ced3f26bca96942.stex"
+path="res://.import/testTopDownPlayerTex.png-067eff56de92332ae396004d9f7eaa1e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/2dTest/testTopDownPlayerTex.png"
-dest_files=[ "res://.import/testTopDownPlayerTex.png-9caf9af8c6f8f7a23ced3f26bca96942.stex" ]
+source_file="res://Scenes/2dTest/testTopDownPlayerTex.png"
+dest_files=[ "res://.import/testTopDownPlayerTex.png-067eff56de92332ae396004d9f7eaa1e.stex" ]
 
 [params]
 

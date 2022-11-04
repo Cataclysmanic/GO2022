@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Scene 1 shot 1 detective sleeping.png-c68c947a3861ab7673b2851d72919d0f.stex"
+path="res://.import/Scene 1 shot 1 detective sleeping.png-6e2dd7bdc00257f84081f9d11d24d5e2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 1 detective sleeping.png"
-dest_files=[ "res://.import/Scene 1 shot 1 detective sleeping.png-c68c947a3861ab7673b2851d72919d0f.stex" ]
+source_file="res://Scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 1 detective sleeping.png"
+dest_files=[ "res://.import/Scene 1 shot 1 detective sleeping.png-6e2dd7bdc00257f84081f9d11d24d5e2.stex" ]
 
 [params]
 

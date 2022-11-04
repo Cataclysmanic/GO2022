@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Scene 1 shot 2 - bottles.png-b04d9e9eb6bee8a463b22f65e5e2344d.stex"
+path="res://.import/Scene 1 shot 2 - bottles.png-146f28269050ed4563d2d94e61513d1d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 2 - bottles.png"
-dest_files=[ "res://.import/Scene 1 shot 2 - bottles.png-b04d9e9eb6bee8a463b22f65e5e2344d.stex" ]
+source_file="res://Scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 2 - bottles.png"
+dest_files=[ "res://.import/Scene 1 shot 2 - bottles.png-146f28269050ed4563d2d94e61513d1d.stex" ]
 
 [params]
 

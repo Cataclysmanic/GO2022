@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Scene 1 shot 4 - expired license.png-931e71ef2d1d401fa324ed6c65b14693.stex"
+path="res://.import/Scene 1 shot 4 - expired license.png-7cba4700fba37b8554c10d91ffac4878.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 4 - expired license.png"
-dest_files=[ "res://.import/Scene 1 shot 4 - expired license.png-931e71ef2d1d401fa324ed6c65b14693.stex" ]
+source_file="res://Scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 4 - expired license.png"
+dest_files=[ "res://.import/Scene 1 shot 4 - expired license.png-7cba4700fba37b8554c10d91ffac4878.stex" ]
 
 [params]
 

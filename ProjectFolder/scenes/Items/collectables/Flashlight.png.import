@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Flashlight.png-a5f3950738bb12a4c0efbc01e59a10e0.s3tc.stex"
-path.etc2="res://.import/Flashlight.png-a5f3950738bb12a4c0efbc01e59a10e0.etc2.stex"
+path.s3tc="res://.import/Flashlight.png-8753590cb4709e192534abc78435d20b.s3tc.stex"
+path.etc2="res://.import/Flashlight.png-8753590cb4709e192534abc78435d20b.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/Items/collectables/Flashlight.png"
-dest_files=[ "res://.import/Flashlight.png-a5f3950738bb12a4c0efbc01e59a10e0.s3tc.stex", "res://.import/Flashlight.png-a5f3950738bb12a4c0efbc01e59a10e0.etc2.stex" ]
+source_file="res://Scenes/Items/collectables/Flashlight.png"
+dest_files=[ "res://.import/Flashlight.png-8753590cb4709e192534abc78435d20b.s3tc.stex", "res://.import/Flashlight.png-8753590cb4709e192534abc78435d20b.etc2.stex" ]
 
 [params]
 
