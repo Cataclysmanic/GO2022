@@ -23,8 +23,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Global.IO == null:
+		return
+		
 	time_elapsed += delta
 	if time_elapsed > last_polling_time + polling_interval:
+		
 		
 		if len(stored_items) != len(Global.IO.stored_items):
 			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.

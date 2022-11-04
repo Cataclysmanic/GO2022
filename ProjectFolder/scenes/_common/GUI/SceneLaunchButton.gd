@@ -30,7 +30,10 @@ func switch_scene():
 		printerr("configuration error: SceneLaunchButton requires a SceneToLaunch (in the inspector)")
 
 func switch_to_main_scene():
-	Global.world_controller.change_scene(main_scene)
+	if Global.world_controller == null:
+		return
+	else:
+		Global.world_controller.change_scene(main_scene)
 
 
 func _on_SceneLaunchButton_pressed():
