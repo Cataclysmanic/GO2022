@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/flashlightl_LghtCone.png-57e9d8a70c679c5d43e1ec6bf7456992.stex"
+path="res://.import/flashlightl_LghtCone.png-ae58d330d6b4e131dc96d04f1e7abffb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/2dTest/flashlightl_LghtCone.png"
-dest_files=[ "res://.import/flashlightl_LghtCone.png-57e9d8a70c679c5d43e1ec6bf7456992.stex" ]
+source_file="res://scenes/2dTest/flashlightl_LghtCone.png"
+dest_files=[ "res://.import/flashlightl_LghtCone.png-ae58d330d6b4e131dc96d04f1e7abffb.stex" ]
 
 [params]
 

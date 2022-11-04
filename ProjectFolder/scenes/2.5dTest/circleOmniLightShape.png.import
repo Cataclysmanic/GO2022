@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/desk.png-2fdf188fafac7a02668e31bca52e6393.stex"
+path="res://.import/circleOmniLightShape.png-c912879a7b4401770595148f9272b8c4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/2dTest/desk.png"
-dest_files=[ "res://.import/desk.png-2fdf188fafac7a02668e31bca52e6393.stex" ]
+source_file="res://scenes/2.5dTest/circleOmniLightShape.png"
+dest_files=[ "res://.import/circleOmniLightShape.png-c912879a7b4401770595148f9272b8c4.stex" ]
 
 [params]
 

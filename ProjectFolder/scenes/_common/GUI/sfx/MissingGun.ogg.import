@@ -2,12 +2,12 @@
 
 importer="ogg_vorbis"
 type="AudioStreamOGGVorbis"
-path="res://.import/MissingGun.ogg-7dc127c50dade2b93a55a77c4c7a4c83.oggstr"
+path="res://.import/MissingGun.ogg-0cc6d7c6eea5a54a32003f1901bf6b88.oggstr"
 
 [deps]
 
-source_file="res://Scenes/_common/GUI/sfx/MissingGun.ogg"
-dest_files=[ "res://.import/MissingGun.ogg-7dc127c50dade2b93a55a77c4c7a4c83.oggstr" ]
+source_file="res://scenes/_common/GUI/sfx/MissingGun.ogg"
+dest_files=[ "res://.import/MissingGun.ogg-0cc6d7c6eea5a54a32003f1901bf6b88.oggstr" ]
 
 [params]
 

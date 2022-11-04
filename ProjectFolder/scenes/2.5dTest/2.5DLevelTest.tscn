@@ -1,0 +1,186 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://scenes/2.5dTest/flashlightl_LghtCone.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Items/collectables/tempBookWIP.png" type="Texture" id=2]
+[ext_resource path="res://scenes/2.5dTest/detective.png" type="Texture" id=3]
+[ext_resource path="res://scenes/2.5dTest/2.5DPlayer.gd" type="Script" id=4]
+[ext_resource path="res://scenes/City/Indoors/floorTexWIP.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Items/collectables/Typewriter.png" type="Texture" id=6]
+[ext_resource path="res://scenes/2dTest/PointLight.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Items/collectables/flashlightZoom.png" type="Texture" id=8]
+[ext_resource path="res://scenes/2.5dTest/desk.png" type="Texture" id=9]
+[ext_resource path="res://scenes/_common/GUI/icons/key.png" type="Texture" id=10]
+[ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/2.5dTest/2.5DLevelTest.gd" type="Script" id=12]
+[ext_resource path="res://scenes/2.5dTest/circleOmniLightShape.png" type="Texture" id=13]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=19]
+blend_mode = 4
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 27, 14 )
+
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( -65, -35, -66, 34, 68, 33, 66, -35 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 59, 20 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 4.76174 )
+
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( -85, -69, 89, -81, 84, 45, -75, 51 )
+
+[sub_resource type="RectangleShape2D" id=12]
+
+[sub_resource type="CanvasItemMaterial" id=13]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id=14]
+
+[sub_resource type="CanvasItemMaterial" id=15]
+
+[sub_resource type="OpenSimplexNoise" id=16]
+
+[sub_resource type="NoiseTexture" id=17]
+width = 1024
+height = 1024
+seamless = true
+as_normalmap = true
+noise = SubResource( 16 )
+
+[sub_resource type="Environment" id=1]
+ambient_light_energy = 0.0
+
+[sub_resource type="CanvasItemMaterial" id=5]
+light_mode = 2
+
+[node name="environment" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" type="KinematicBody2D" parent="YSort"]
+material = SubResource( 3 )
+position = Vector2( 147, 126 )
+script = ExtResource( 4 )
+
+[node name="PlayerSprite" type="Sprite" parent="YSort/Player"]
+material = SubResource( 19 )
+position = Vector2( -3, 0 )
+scale = Vector2( 0.0702162, 0.0702162 )
+texture = ExtResource( 3 )
+
+[node name="GentleOmnilight" type="Light2D" parent="YSort/Player"]
+show_behind_parent = true
+scale = Vector2( 3.01515, 1.95807 )
+texture = ExtResource( 13 )
+energy = 0.5
+range_z_min = -256
+range_z_max = 256
+
+[node name="Flashlight" type="Light2D" parent="YSort/Player"]
+position = Vector2( 0, 1 )
+scale = Vector2( 4.25075, 3.80483 )
+texture = ExtResource( 1 )
+shadow_enabled = true
+
+[node name="FlashlightSprite" type="Sprite" parent="YSort/Player/Flashlight"]
+visible = false
+position = Vector2( 5.65179, 0.485596 )
+rotation = 0.851237
+scale = Vector2( 0.033022, 0.0337627 )
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/Player"]
+position = Vector2( -4, 20 )
+shape = SubResource( 18 )
+
+[node name="StaticBodyDesk" type="StaticBody2D" parent="YSort"]
+position = Vector2( 567, 128 )
+
+[node name="DeskLightOccluder" type="LightOccluder2D" parent="YSort/StaticBodyDesk"]
+position = Vector2( 0, 18 )
+scale = Vector2( 0.901439, 0.76108 )
+occluder = SubResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/StaticBodyDesk"]
+position = Vector2( -5, 12 )
+shape = SubResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="YSort/StaticBodyDesk"]
+scale = Vector2( 0.547129, 0.547129 )
+texture = ExtResource( 9 )
+
+[node name="StaticBodyTypewriter" type="StaticBody2D" parent="YSort"]
+position = Vector2( 637, 317 )
+scale = Vector2( 0.578455, 0.418995 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/StaticBodyTypewriter"]
+position = Vector2( 0, 26.2358 )
+scale = Vector2( 7.30433, 5.00849 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="YSort/StaticBodyTypewriter"]
+position = Vector2( 0, -14 )
+scale = Vector2( 0.177442, 0.170675 )
+texture = ExtResource( 6 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="YSort/StaticBodyTypewriter"]
+occluder = SubResource( 10 )
+
+[node name="KeyArea" type="Area2D" parent="YSort"]
+position = Vector2( 753, 406 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/KeyArea"]
+scale = Vector2( 4.46989, 4.26852 )
+shape = SubResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="YSort/KeyArea"]
+material = SubResource( 13 )
+scale = Vector2( 0.328223, 0.35515 )
+texture = ExtResource( 10 )
+
+[node name="BookArea" type="Area2D" parent="YSort"]
+position = Vector2( 332, 389 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/BookArea"]
+scale = Vector2( 3.39913, 3.22452 )
+shape = SubResource( 14 )
+
+[node name="Book" type="Sprite" parent="YSort/BookArea"]
+material = SubResource( 15 )
+scale = Vector2( 0.103332, 0.103332 )
+texture = ExtResource( 2 )
+normal_map = SubResource( 17 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = 10.0
+pitch_scale = 1.7
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( 1, 0 )
+color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="FloorTex" type="Sprite" parent="."]
+material = SubResource( 5 )
+position = Vector2( 319, 230 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( -871.125, -770, 3334.5, 3111.75 )
+
+[node name="OmniLight" type="Light2D" parent="."]
+texture = ExtResource( 7 )
+
+[connection signal="body_entered" from="YSort/KeyArea" to="." method="_on_KeyArea_body_entered" flags=6]
+[connection signal="body_entered" from="YSort/BookArea" to="." method="_on_BookArea_body_entered" flags=6]

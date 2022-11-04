@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floorTexWIP.png-4c99cfbf5ba3c6ae73e5cfb1a8e44368.stex"
+path="res://.import/floorTexWIP.png-c94f505821ceb07b4768c9679c84a2ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/City/Indoors/floorTexWIP.png"
-dest_files=[ "res://.import/floorTexWIP.png-4c99cfbf5ba3c6ae73e5cfb1a8e44368.stex" ]
+source_file="res://scenes/City/Indoors/floorTexWIP.png"
+dest_files=[ "res://.import/floorTexWIP.png-c94f505821ceb07b4768c9679c84a2ae.stex" ]
 
 [params]
 

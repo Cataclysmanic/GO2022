@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/six-bullets.png-4324cb8f22871054954a4160765de797.s3tc.stex"
-path.etc2="res://.import/six-bullets.png-4324cb8f22871054954a4160765de797.etc2.stex"
+path.s3tc="res://.import/six-bullets.png-5d6f631f0243e3ea2b91447f0d746cb2.s3tc.stex"
+path.etc2="res://.import/six-bullets.png-5d6f631f0243e3ea2b91447f0d746cb2.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Scenes/Items/weapons/six-bullets.png"
-dest_files=[ "res://.import/six-bullets.png-4324cb8f22871054954a4160765de797.s3tc.stex", "res://.import/six-bullets.png-4324cb8f22871054954a4160765de797.etc2.stex" ]
+source_file="res://scenes/Items/weapons/six-bullets.png"
+dest_files=[ "res://.import/six-bullets.png-5d6f631f0243e3ea2b91447f0d746cb2.s3tc.stex", "res://.import/six-bullets.png-5d6f631f0243e3ea2b91447f0d746cb2.etc2.stex" ]
 
 [params]
 
