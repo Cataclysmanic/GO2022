@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/DialogScenes/TestDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/City/TestField.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/City/Indoors/IndoorTestRoom.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/2dTest/2DLevelTest.tscn" type="PackedScene" id=6]
 
 [node name="DebugMenu" type="Control"]
 anchor_right = 1.0
@@ -18,9 +19,9 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 319.0
-margin_top = 145.0
+margin_top = 77.0
 margin_right = 705.0
-margin_bottom = 455.0
+margin_bottom = 522.0
 custom_constants/separation = 25
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
@@ -64,18 +65,44 @@ margin_bottom = 220.0
 text = "2d Indoor Testing"
 SceneToLaunch = ExtResource( 5 )
 
-[node name="SceneLaunchButton3" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+[node name="2DLightingTestButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 245.0
 margin_right = 386.0
 margin_bottom = 265.0
+text = "2D Lighting Test in flat 2D space"
+SceneToLaunch = ExtResource( 6 )
 
-[node name="ReturnToMainButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+[node name="DebugButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 290.0
 margin_right = 386.0
 margin_bottom = 310.0
+text = "debug"
+
+[node name="DebugButton2" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 335.0
+margin_right = 386.0
+margin_bottom = 355.0
+text = "debug"
+
+[node name="DebugButton3" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 380.0
+margin_right = 386.0
+margin_bottom = 400.0
+text = "debug"
+
+[node name="ReturnToMainButton" parent="MarginContainer/VBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 425.0
+margin_right = 386.0
+margin_bottom = 445.0
 text = "Return To Main"
 return_to_main = true
