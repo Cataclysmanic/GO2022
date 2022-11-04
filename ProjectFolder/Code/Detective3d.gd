@@ -23,7 +23,7 @@ signal gun_missing()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawn_gun_if_carried()
+	spawn_items_if_carried(["gun", "flashlight"])
 	
 
 	if get_parent().is_in_group("Indoor"):
@@ -36,15 +36,18 @@ func _ready():
 	HUD = get_hud()
 
 
-func spawn_gun_if_carried():
+func spawn_items_if_carried(itemList : PoolStringArray):
 	if Global.IO == null: # escape in case we're testing detective without the full game
 		return
-	elif Global.IO.has_item("gun"): # gun already in inventory. spawn a gun object on the player avatar
-		spawn_item(Global.IO.get_item("Gun"))
-	
-	var gun = find_node("Gun")
-	if is_instance_valid(gun):
-		gun.init(self, 6)
+
+	for itemName in itemList:
+		if Global.IO.has_item(itemName): # gun already in inventory. spawn a gun object on the player avatar
+			spawn_item(Global.IO.get_item(itemName))
+		
+		var itemObj = find_node(itemName)
+		if is_instance_valid(itemObj):
+			if itemName.to_lower() == "gun":
+				itemObj.init(self, 6)
 
 	
 
