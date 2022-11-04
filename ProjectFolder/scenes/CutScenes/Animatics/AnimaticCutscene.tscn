@@ -1,10 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
-[ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 2 - bottles.png" type="Texture" id=2]
-[ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 3 - empty appointment book.png" type="Texture" id=3]
-[ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 1 detective sleeping.png" type="Texture" id=4]
-[ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 4 - expired license.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -15,6 +11,14 @@ script/source = "extends PanelContainer
 
 export var next_scene = \"res://scenes/MenuScenes/MainMenu.tscn\"
 
+export var intro_text = \"\"
+export var outro_text = \"\"
+
+export var image_1 : Texture
+export var image_2 : Texture
+export var image_3 : Texture
+export var image_4 : Texture
+var slide_images = []
 
 onready var slide_container = find_node(\"TabContainer\")
 
@@ -22,7 +26,18 @@ onready var slide_container = find_node(\"TabContainer\")
 func _ready():
 	hide_tab_widgets()
 	$AnimationPlayer.play(\"Start\")
-	
+	if intro_text != \"\":
+		find_node(\"IntroText\").text = intro_text
+	if outro_text != \"\":
+		find_node(\"OutroText\").text = outro_text
+
+	for image in [ image_1, image_2, image_3, image_4 ]:
+		if image != null:
+			slide_images.push_back(image)
+		
+	for i in range(len(slide_images)):
+		var slideHolder = slide_container.find_node(\"Shot\"+str(i))
+		slideHolder.set_texture(slide_images[i])
 	
 func hide_tab_widgets():
 	var hiddenTabStyle = StyleBoxEmpty.new()
@@ -63,7 +78,7 @@ func show_slide():
 
 
 func finish():
-	Global.world_controller.change_scene(next_scene)
+	$AnimationPlayer.play(\"Finish\")
 
 func _on_Timer_timeout():
 	$AnimationPlayer.play(\"FadeOut\")
@@ -78,11 +93,15 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	elif anim_name == \"FadeOut\":
 		var currentTab = slide_container.current_tab
 		currentTab += 1
-		if currentTab == slide_container.get_child_count():
+		if currentTab == len(slide_images):
 			finish()
 		else:
 			slide_container.current_tab = currentTab
 			show_slide()
+			
+	elif anim_name == \"Finish\":
+		Global.world_controller.change_scene(next_scene)
+
 "
 
 [sub_resource type="StyleBoxFlat" id=6]
@@ -147,10 +166,49 @@ tracks/1/keys = {
 "values": [ false, true, true ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "Finish"
+tracks/0/type = "value"
+tracks/0/path = NodePath("VBoxContainer/CenterContainer/OutroText:percent_visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("VBoxContainer/CenterContainer/OutroText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("VBoxContainer/CenterContainer/IntroText:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/CenterContainer/RichTextLabel:percent_visible")
+tracks/0/path = NodePath("VBoxContainer/CenterContainer/IntroText:percent_visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -166,7 +224,7 @@ tracks/0/keys = {
 resource_name = "Start"
 length = 3.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/CenterContainer/RichTextLabel:percent_visible")
+tracks/0/path = NodePath("VBoxContainer/CenterContainer/IntroText:percent_visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -215,6 +273,30 @@ tracks/3/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("VBoxContainer/CenterContainer/IntroText:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("VBoxContainer/CenterContainer/OutroText:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
@@ -248,7 +330,8 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 20
 custom_constants/margin_bottom = 20
 
-[node name="RichTextLabel" type="Label" parent="VBoxContainer/CenterContainer"]
+[node name="IntroText" type="Label" parent="VBoxContainer/CenterContainer"]
+visible = false
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
@@ -258,8 +341,23 @@ grow_vertical = 2
 rect_min_size = Vector2( 300, 50 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 1 )
-text = "Wake up detective..."
+text = "Lorem ipsum dolor.."
 align = 1
+
+[node name="OutroText" type="Label" parent="VBoxContainer/CenterContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 300, 50 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "That was fun. Bye"
+align = 1
+autowrap = true
+percent_visible = 0.0
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
 margin_top = 94.0
@@ -286,7 +384,6 @@ anchor_bottom = 1.0
 margin_top = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
 
@@ -297,7 +394,6 @@ anchor_bottom = 1.0
 margin_top = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 2 )
 expand = true
 stretch_mode = 6
 
@@ -308,7 +404,6 @@ anchor_bottom = 1.0
 margin_top = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
@@ -319,12 +414,11 @@ anchor_bottom = 1.0
 margin_top = 24.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 5 )
 expand = true
 stretch_mode = 6
 
 [node name="FadeColorPanel" type="Panel" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 9 )
@@ -334,6 +428,7 @@ custom_styles/panel = SubResource( 9 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 7 )
 anims/FadeOut = SubResource( 8 )
+anims/Finish = SubResource( 10 )
 anims/RESET = SubResource( 2 )
 anims/Start = SubResource( 3 )
 
