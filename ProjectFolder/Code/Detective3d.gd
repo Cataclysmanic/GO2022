@@ -81,6 +81,7 @@ func shoot_gun():
 
 
 func toggle_flashlight():
+	
 	flashlight = !flashlight
 	$AnimatedSprite/Items/Flashlight.visible = flashlight	
 
@@ -113,7 +114,7 @@ func _unhandled_input(event): # ie: clicking anywhere but on the GUI
 	if event.is_action_pressed("ui_disguise"):
 		toggle_disguise()
 
-	if event.is_action_pressed("flashlight"):
+	if event.is_action_pressed("flashlight") and carrying_item_already("flashlight"):
 		toggle_flashlight()
 
 
@@ -227,6 +228,8 @@ func spawn_item(itemResource): # This method doesn't care if you ought to have t
 		if itemName == "Gun":
 			itemScene.init(self, 6)
 			itemScene.name = "Gun"
+		if itemName == "Flashlight":
+			itemScene.name = "Flashlight"
 		var itemsContainer = find_node("Items")
 		itemsContainer.add_child(itemScene)
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Code/Detective3d.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Test Assets/_side idle.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Test Assets/_side walk.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Test Assets/_up idle.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Test Assets/_down walk.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Items/tools/Flashlight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Items/weapons/Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=11]
 
@@ -209,16 +210,6 @@ playing = true
 [node name="Items" type="Spatial" parent="AnimatedSprite"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0 )
 
-[node name="Flashlight" type="Spatial" parent="AnimatedSprite/Items"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.25297e-09, 0.0744193 )
-
-[node name="SpotLight" type="SpotLight" parent="AnimatedSprite/Items/Flashlight"]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.131965, 0, 0 )
-light_energy = 2.0
-shadow_enabled = true
-spot_range = 10.4443
-spot_angle = 32.8943
-
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.35624 )
 current = true
@@ -232,4 +223,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0697891 )
 shape = SubResource( 35 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Gun" ), [ ExtResource( 10 ) ] ]
+resources = [ PoolStringArray( "Flashlight", "Gun" ), [ ExtResource( 9 ), ExtResource( 10 ) ] ]
