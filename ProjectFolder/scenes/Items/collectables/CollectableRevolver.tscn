@@ -14,7 +14,7 @@ item_details = {
 "item_name": "Gun",
 "notes_for_journal": "6 shots. Not much, but maybe enough.",
 "path_to_icon": "res://scenes/Items/weapons/revolver-big.png",
-"path_to_popup_display_image": "res://scenes/Items/weapons/revolver-big.png",
+"path_to_popup_display_image": "res://scenes/Items/weapons/revolver-big - Copy.png",
 "path_to_scene_for_PlayerController_Items": "res://scenes/Items/weapons/Gun.tscn"
 }
 
