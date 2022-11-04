@@ -41,32 +41,37 @@ func get_hud():
 	return find_node("HUD")
 
 
-func _unhandled_input(event):	
-	if Global.is_paused():
-		return
-	
-	if event.is_action("shoot") and event.is_action_pressed("shoot"):
-		if carrying_item_already("Gun"):
-			var gun = locate_item("gun")
-			if gun != null and gun.has_method("shoot"):
-				gun.shoot()
-			else:
-				printerr("something's wrong in Detective3d, related to shooting the gun in _unhandled_input()")
-		else:
-			if not is_connected("gun_missing", HUD, "_on_player_gun_missing"):
-				var _err = connect("gun_missing", HUD, "_on_player_gun_missing")
-			emit_signal("gun_missing")
 
-	if event.is_action_pressed("ui_disguise"):
-		#currently just an input in future triggered by an item or doable only in specific locations(?)
-		if self.is_in_group("goodPeople"):
-			self.remove_from_group("goodPeople")
-			self.add_to_group("badPeople")
-			$AnimatedSprite.modulate = Color(1,0,0,1)
+		
+		
+func toggle_disguise():
+	#currently just an input in future triggered by an item or doable only in specific locations(?)
+	if self.is_in_group("goodPeople"):
+		self.remove_from_group("goodPeople")
+		self.add_to_group("badPeople")
+		$AnimatedSprite.modulate = Color(1,0,0,1)
+	else:
+		self.remove_from_group("badPeople")
+		self.add_to_group("goodPeople")
+		$AnimatedSprite.modulate = Color(0,1,0,1)
+
+
+func shoot_gun():
+	if carrying_item_already("Gun"):
+		var gun = locate_item("gun")
+		if gun != null and gun.has_method("shoot"):
+			gun.shoot()
 		else:
-			self.remove_from_group("badPeople")
-			self.add_to_group("goodPeople")
-			$AnimatedSprite.modulate = Color(0,1,0,1)
+			printerr("something's wrong in Detective3d, related to shooting the gun in _unhandled_input()")
+	else:
+		if not is_connected("gun_missing", HUD, "_on_player_gun_missing"):
+			var _err = connect("gun_missing", HUD, "_on_player_gun_missing")
+		emit_signal("gun_missing")
+
+
+func toggle_flashlight():
+	flashlight = !flashlight
+	$AnimatedSprite/Items/Flashlight.visible = flashlight	
 
 
 func locate_item(itemName):
@@ -75,6 +80,30 @@ func locate_item(itemName):
 		if itemName.to_lower() in item.name.to_lower():
 			gun = item
 	return gun
+
+
+func carrying_item_already(itemName):
+	var found = false
+	var itemContainer = find_node("Items")
+	for item in itemContainer.get_children():
+		if itemName.to_lower() in item.name.to_lower():
+			found = true
+	return found
+
+
+func _unhandled_input(event): # ie: clicking anywhere but on the GUI
+	if Global.is_paused():
+		return
+	
+	if event.is_action("shoot") and event.is_action_pressed("shoot"):
+		shoot_gun()
+
+
+	if event.is_action_pressed("ui_disguise"):
+		toggle_disguise()
+
+	if event.is_action_pressed("flashlight"):
+		toggle_flashlight()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -109,11 +138,7 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_select"):
 		mouse = !mouse
 
-	if Input.is_action_just_pressed("flashlight"):
-		flashlight = !flashlight
-	
-	
-	$AnimatedSprite/Items/Flashlight.visible = flashlight	
+
 	#if mouse is controlling the direction, get and point towards the current mouse position on screen
 	if mouse:
 		point = -$Camera.unproject_position(self.transform.origin).angle_to_point(get_viewport().get_mouse_position())
@@ -190,11 +215,3 @@ func _on_collectible_picked_up(itemObj):
 			
 			itemsContainer.add_child(scene)
 			
-
-func carrying_item_already(itemName):
-	var found = false
-	var itemContainer = find_node("Items")
-	for item in itemContainer.get_children():
-		if itemName.to_lower() in item.name.to_lower():
-			found = true
-	return found

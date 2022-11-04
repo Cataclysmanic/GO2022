@@ -472,6 +472,7 @@ margin_bottom = 600.0
 custom_styles/panel = SubResource( 9 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
+volume_db = -9.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 7 )
