@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/CutScenes/Animatics/Underwood_Typewriter_1.ogg" type="AudioStream" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0, 0, 1 )
@@ -29,7 +30,7 @@ func _ready():
 	$FadeColorPanel.visible = true
 	$FadeColorPanel.set_self_modulate(Color(0,0,0,1)) # opaque
 	hide_tab_widgets()
-	$AnimationPlayer.play(\"Start\")
+	
 	if intro_text != \"\":
 		find_node(\"IntroText\").text = intro_text
 	if outro_text != \"\":
@@ -43,9 +44,17 @@ func _ready():
 		var slideHolder = slide_container.find_node(\"Shot\"+str(i))
 		slideHolder.set_texture(slide_images[i])
 	
+	
+	start_intro()
+	
+func start_intro():
 	if audio != null:
 		$BGMusic.set_stream(audio)
 		$BGMusic.play()
+
+
+	$TypingNoise.play()
+	$AnimationPlayer.play(\"Start\")
 	
 func hide_tab_widgets():
 	var hiddenTabStyle = StyleBoxEmpty.new()
@@ -88,7 +97,7 @@ func _unhandled_input(event): # cardinal sin to not allow skipping cutscenes.
 
 
 func finish():
-
+	$TypingNoise.play(0)
 	$AnimationPlayer.play(\"Finish\")
 
 func _on_Timer_timeout():
@@ -99,6 +108,7 @@ func _on_Timer_timeout():
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == \"Start\":
+		$TypingNoise.stop()
 		$Timer.start()
 		
 	elif anim_name == \"FadeOut\":
@@ -111,7 +121,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			show_slide()
 			
 	elif anim_name == \"Finish\":
-		
+		$TypingNoise.stop()
 		Global.world_controller.change_scene(next_scene)
 
 "
@@ -475,6 +485,9 @@ custom_styles/panel = SubResource( 9 )
 
 [node name="BGMusic" type="AudioStreamPlayer" parent="."]
 volume_db = -9.0
+
+[node name="TypingNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 7 )
