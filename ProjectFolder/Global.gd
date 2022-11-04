@@ -1,10 +1,10 @@
 extends Node
 
 
-var world_controller
-var current_scene
-var IO
-var Utils
+var world_controller = null
+var current_scene = null
+var IO = null
+var Utils = null
 
 
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }

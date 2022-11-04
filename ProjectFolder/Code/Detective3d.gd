@@ -119,8 +119,10 @@ func _unhandled_input(event): # ie: clicking anywhere but on the GUI
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Global.is_paused() and Global.world_controller != null:
-		return
+	
+	if Global.world_controller != null:
+		if Global.is_paused():
+			return
 	
 	
 	if !Global.topdown:
