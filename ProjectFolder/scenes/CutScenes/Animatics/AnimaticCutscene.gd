@@ -88,8 +88,8 @@ func _unhandled_input(event): # cardinal sin to not allow skipping cutscenes.
 
 func finish():
 	$AnimationPlayer.play("Finish") # Outro text
-#	yield(get_tree().create_timer(1.0), "timeout")
-#	$TypingNoise.play()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$TypingNoise.play()
 	
 func _on_Timer_timeout():
 	$AnimationPlayer.play("FadeOut")
@@ -106,7 +106,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		var currentTab = slide_container.current_tab
 		currentTab += 1
 		if currentTab == len(slide_images):
-			finish()
+			finish() # last slide
 		else:
 			slide_container.current_tab = currentTab
 			show_slide()

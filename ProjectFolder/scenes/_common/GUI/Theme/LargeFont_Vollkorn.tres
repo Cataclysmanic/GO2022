@@ -3,5 +3,5 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/Vollkorn-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 32
+size = 48
 font_data = ExtResource( 1 )

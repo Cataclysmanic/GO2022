@@ -216,7 +216,6 @@ func _process(delta):
 
 func _on_collectible_picked_up(itemObj):
 	var itemResource = itemObj.item_details
-	var itemName = itemResource.item_name
 	if itemResource.is_unique and carrying_item_already(itemResource.item_name):
 		return
 	else:

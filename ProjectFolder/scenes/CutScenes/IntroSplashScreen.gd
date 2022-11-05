@@ -9,6 +9,7 @@ func _ready():
 
 
 func _on_Timer_timeout():
+	
 	var _err = connect("finished", Global.world_controller, "_on_cutscene_finished")
 	find_node("AnimationPlayer").play("FadeCutscene")
 

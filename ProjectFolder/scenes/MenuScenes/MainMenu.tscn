@@ -30,29 +30,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
-margin_left = 329.0
-margin_top = 68.0
-margin_right = 695.0
-margin_bottom = 532.0
+margin_left = 235.0
+margin_top = 57.0
+margin_right = 789.0
+margin_bottom = 543.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainMenuVBox" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
-margin_right = 366.0
-margin_bottom = 464.0
+margin_right = 554.0
+margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 25
 
 [node name="Masthead" type="VBoxContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
-margin_right = 366.0
-margin_bottom = 114.0
+margin_right = 554.0
+margin_bottom = 136.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
 [node name="Title" type="Label" parent="CenterContainer/MarginContainer/MainMenuVBox/Masthead"]
-margin_right = 366.0
+margin_right = 554.0
 margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,8 +62,8 @@ align = 1
 
 [node name="Subtitle" type="Label" parent="CenterContainer/MarginContainer/MainMenuVBox/Masthead"]
 margin_top = 48.0
-margin_right = 366.0
-margin_bottom = 114.0
+margin_right = 554.0
+margin_bottom = 136.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -71,16 +71,16 @@ text = "Working Noir Game Title!"
 align = 1
 
 [node name="Body" type="CenterContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
-margin_top = 139.0
-margin_right = 366.0
-margin_bottom = 439.0
+margin_top = 161.0
+margin_right = 554.0
+margin_bottom = 461.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
 [node name="MainMenuButtonContainer" type="GridContainer" parent="CenterContainer/MarginContainer/MainMenuVBox/Body"]
-margin_left = 4.0
-margin_right = 361.0
+margin_left = 98.0
+margin_right = 455.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 150, 300 )
 size_flags_horizontal = 3
@@ -135,8 +135,8 @@ text = "Quit"
 SceneToLaunch = ExtResource( 5 )
 
 [node name="Footer" type="MarginContainer" parent="CenterContainer/MarginContainer/MainMenuVBox"]
-margin_top = 464.0
-margin_right = 366.0
-margin_bottom = 464.0
+margin_top = 486.0
+margin_right = 554.0
+margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 8

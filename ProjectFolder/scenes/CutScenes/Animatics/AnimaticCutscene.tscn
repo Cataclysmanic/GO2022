@@ -262,7 +262,7 @@ size_flags_vertical = 3
 
 [node name="CenterContainer" type="MarginContainer" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 90.0
+margin_bottom = 108.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 custom_constants/margin_right = 20
@@ -274,7 +274,7 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 300, 50 )
@@ -288,7 +288,7 @@ visible = false
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 88.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_min_size = Vector2( 300, 50 )
@@ -300,7 +300,7 @@ autowrap = true
 percent_visible = 0.2
 
 [node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
-margin_top = 94.0
+margin_top = 112.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
