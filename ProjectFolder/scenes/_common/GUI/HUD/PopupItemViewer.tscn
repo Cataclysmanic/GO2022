@@ -39,7 +39,7 @@ custom_constants/margin_bottom = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 272.0
-margin_bottom = 298.0
+margin_bottom = 311.0
 
 [node name="ItemName" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 252.0

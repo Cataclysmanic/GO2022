@@ -19,17 +19,31 @@ func init(itemResource : InventoryItemResource):
 		find_node("ItemImage").texture = imageTex
 	popup_centered_ratio(0.667)
 	$Timer.start()
+
+func _unhandled_input(event):
+	if not is_visible_in_tree():
+		return
 	
+	elif (
+		event.is_action_pressed("ui_accept")
+		or event.is_action_pressed("ui_select")
+		or event.is_action_pressed("ui_cancel")
+	):
+		resume()
 
+	
 func _on_Timer_timeout():
-	hide()
+	resume()
 
-
-func _on_OKButton_pressed():
+		
+func resume():
 	$Timer.stop()
 	Global.resume()
 	hide()
 	
+	
+func _on_OKButton_pressed():
+	resume()	
 
 
 
@@ -38,6 +52,6 @@ func _on_OKButton_pressed():
 
 
 func _on_PopupItemViewer_popup_hide():
-
-	Global.resume()
+	pass
+	#Global.resume()
 

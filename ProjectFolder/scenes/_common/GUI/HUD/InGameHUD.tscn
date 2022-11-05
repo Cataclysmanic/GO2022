@@ -28,7 +28,7 @@ custom_constants/margin_left = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 40.0
+margin_bottom = 44.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -37,16 +37,15 @@ custom_constants/separation = 50
 [node name="QuitButton" parent="Top/Header" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 6.0
-margin_bottom = 20.0
+margin_right = 35.0
+margin_bottom = 24.0
 size_flags_horizontal = 2
 text = "Quit"
 return_to_main = true
 
 [node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
-margin_left = 978.0
+margin_left = 948.0
 margin_right = 984.0
-margin_bottom = 20.0
 size_flags_horizontal = 10
 text = "Help"
 align = 2
@@ -62,52 +61,12 @@ anchor_bottom = 1.0
 margin_left = -109.0
 margin_top = -144.0
 margin_right = 109.0
+margin_bottom = -200.0
 custom_constants/margin_bottom = 20
 
 [node name="Footer" type="HBoxContainer" parent="Bottom"]
 margin_right = 218.0
-margin_bottom = 124.0
 mouse_filter = 2
-
-[node name="InventoryDisplay" type="PanelContainer" parent="Bottom/Footer"]
-margin_right = 218.0
-margin_bottom = 124.0
-size_flags_horizontal = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Bottom/Footer/InventoryDisplay"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 211.0
-margin_bottom = 117.0
-
-[node name="InventoryTitle" type="Label" parent="Bottom/Footer/InventoryDisplay/VBoxContainer"]
-margin_right = 204.0
-margin_bottom = 14.0
-text = "Inventory"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer"]
-margin_top = 18.0
-margin_right = 204.0
-margin_bottom = 82.0
-
-[node name="Ammo" type="GridContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer"]
-margin_right = 200.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 200, 64 )
-custom_constants/vseparation = 5
-custom_constants/hseparation = 5
-columns = 3
-
-[node name="InventoryItems" type="GridContainer" parent="Bottom/Footer/InventoryDisplay/VBoxContainer/HBoxContainer"]
-margin_left = 204.0
-margin_right = 204.0
-margin_bottom = 64.0
-columns = 6
-
-[node name="DebugInfo" type="LineEdit" parent="Bottom/Footer/InventoryDisplay/VBoxContainer"]
-margin_top = 86.0
-margin_right = 204.0
-margin_bottom = 110.0
 
 [node name="PopupItemViewer" parent="." instance=ExtResource( 3 )]
 
@@ -121,3 +80,75 @@ stream = ExtResource( 5 )
 
 [node name="MissingKey" type="AudioStreamPlayer" parent="AudioEvents"]
 stream = ExtResource( 7 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="PopupInventoryContainer" type="PanelContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -25.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 200, 200 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 193.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="PopupInventoryContainer/VBoxContainer"]
+margin_right = 1010.0
+margin_bottom = 24.0
+
+[node name="InventoryButton" type="Button" parent="PopupInventoryContainer/VBoxContainer/CenterContainer"]
+margin_left = 466.0
+margin_right = 543.0
+margin_bottom = 24.0
+toggle_mode = true
+text = "Inventory"
+
+[node name="InventoryDisplay" type="PanelContainer" parent="PopupInventoryContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 1010.0
+margin_bottom = 152.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1003.0
+margin_bottom = 117.0
+
+[node name="InventoryTitle" type="Label" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+margin_right = 996.0
+margin_bottom = 14.0
+text = "Inventory"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+margin_top = 18.0
+margin_right = 996.0
+margin_bottom = 82.0
+
+[node name="Ammo" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 200, 64 )
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 3
+
+[node name="InventoryItems" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_right = 204.0
+margin_bottom = 64.0
+columns = 6
+
+[node name="DebugInfo" type="LineEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+margin_top = 86.0
+margin_right = 996.0
+margin_bottom = 110.0
+
+[connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]

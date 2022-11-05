@@ -34,6 +34,45 @@ func _process(delta):
 			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
 			rebuild_inventory()
 
+
+func _unhandled_key_input(event):
+	if event.is_action_pressed("open_inventory"):
+		toggle_inventory_display()
+		
+
+func toggle_inventory_display():
+	if $PopupInventoryContainer.margin_top == -25:
+		show_inventory()
+	else:
+		hide_inventory()
+
+
+func show_inventory():
+	var hidden_bottom_margin = -25
+	var revealed_bottom_margin = -175
+	var tween = get_node("Tween")
+	tween.interpolate_property($PopupInventoryContainer, "rect_position", Vector2(0, revealed_bottom_margin), Vector2(0,hidden_bottom_margin), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.interpolate_property($PopupInventoryContainer, "margin_bottom", revealed_bottom_margin, hidden_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.interpolate_property($PopupInventoryContainer, "margin_top", hidden_bottom_margin, revealed_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+
+	tween.start()
+	
+func hide_inventory():
+	var hidden_bottom_margin = -25
+	var revealed_bottom_margin = -175
+	var tween = get_node("Tween")
+	tween.interpolate_property($PopupInventoryContainer, "rect_position", Vector2(0,hidden_bottom_margin), Vector2(0,revealed_bottom_margin), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.interpolate_property($PopupInventoryContainer, "margin_bottom",  hidden_bottom_margin, revealed_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.interpolate_property($PopupInventoryContainer, "margin_top", revealed_bottom_margin, hidden_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+	tween.start()
+
+
+		
+
+	
+
+	
+
 func clear_ammo_display():
 	for bullet in ammo_container.get_children():
 		bullet.queue_free()
@@ -151,3 +190,7 @@ func _on_missing_key():
 
 
 	
+
+
+func _on_InventoryButton_toggled(button_pressed):
+	toggle_inventory_display()
