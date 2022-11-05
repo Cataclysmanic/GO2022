@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/City/Indoors/Building_02_test/Building_02.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/DialogScenes/TestDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/City/TestField.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/City/Indoors/IndoorTestRoom.tscn" type="PackedScene" id=5]
@@ -129,8 +130,8 @@ anchor_bottom = 0.0
 margin_top = 177.0
 margin_right = 279.0
 margin_bottom = 206.0
-disabled = true
-text = "debug"
+text = "bldg 2, handdrawn"
+SceneToLaunch = ExtResource( 2 )
 
 [node name="DebugButton4" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
