@@ -97,6 +97,9 @@ func locate_item(itemName):
 	return gun
 
 
+func is_carrying(itemName):
+	return carrying_item_already(itemName)
+	
 func carrying_item_already(itemName):
 	var found = false
 	var itemContainer = find_node("Items")
@@ -235,3 +238,7 @@ func spawn_item(itemResource): # This method doesn't care if you ought to have t
 		var itemsContainer = find_node("Items")
 		itemsContainer.add_child(itemScene)
 		
+
+
+func _on_LightSwitch_body_entered(body):
+	pass # Replace with function body.

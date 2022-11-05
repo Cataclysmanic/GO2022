@@ -13,9 +13,9 @@ func _ready():
 
 
 func _on_Area_body_entered(body):
-
+	
 	if "Detective" in body.name:
-
+		
 
 		if Global.IO.has_item("key"):
 			Global.world_controller.change_scene(path_to_scene)
