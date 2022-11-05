@@ -36,8 +36,10 @@ func _process(delta):
 
 
 func _unhandled_key_input(event):
-	if event.is_action_pressed("open_inventory"):
-		toggle_inventory_display()
+	pass # moved to shortcut key on button
+	
+#	if event.is_action_pressed("open_inventory"):
+#		toggle_inventory_display()
 		
 
 func toggle_inventory_display():

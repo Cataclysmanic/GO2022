@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/floor.glb-70b1a4e488a8cd9699c86cfbf84d38b7.scn"
+path="res://.import/floor.glb-7196961ee0a8eeb4344cb29087291e1b.scn"
 
 [deps]
 
-source_file="res://scenes/City/Indoors/Building_01_municipal_records/floor.glb"
-dest_files=[ "res://.import/floor.glb-70b1a4e488a8cd9699c86cfbf84d38b7.scn" ]
+source_file="res://scenes/City/Indoors/Building_03_test/floor.glb"
+dest_files=[ "res://.import/floor.glb-7196961ee0a8eeb4344cb29087291e1b.scn" ]
 
 [params]
 

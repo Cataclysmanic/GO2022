@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -9,6 +9,14 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/WheresTheKey.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="InputEventAction" id=2]
+action = "open_inventory"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -90,46 +98,49 @@ anchor_bottom = 1.0
 margin_top = -25.0
 margin_bottom = 160.0
 rect_min_size = Vector2( 200, 200 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 193.0
+margin_right = 1024.0
+margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="PopupInventoryContainer/VBoxContainer"]
-margin_right = 1010.0
+margin_right = 1024.0
 margin_bottom = 24.0
 
 [node name="InventoryButton" type="Button" parent="PopupInventoryContainer/VBoxContainer/CenterContainer"]
-margin_left = 466.0
-margin_right = 543.0
+margin_left = 464.0
+margin_right = 560.0
 margin_bottom = 24.0
+hint_tooltip = ".. I wonder what's in my backpack"
+focus_mode = 0
 toggle_mode = true
-text = "Inventory"
+shortcut = SubResource( 3 )
+text = "Inventory [I]"
 
 [node name="InventoryDisplay" type="PanelContainer" parent="PopupInventoryContainer/VBoxContainer"]
 margin_top = 28.0
-margin_right = 1010.0
-margin_bottom = 152.0
+margin_right = 1024.0
+margin_bottom = 200.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 1003.0
-margin_bottom = 117.0
+margin_right = 1017.0
+margin_bottom = 165.0
 
 [node name="InventoryTitle" type="Label" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
-margin_right = 996.0
+margin_right = 1010.0
 margin_bottom = 14.0
 text = "Inventory"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
 margin_top = 18.0
-margin_right = 996.0
+margin_right = 1010.0
 margin_bottom = 82.0
 
 [node name="Ammo" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
@@ -148,7 +159,7 @@ columns = 6
 
 [node name="DebugInfo" type="LineEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
 margin_top = 86.0
-margin_right = 996.0
+margin_right = 1010.0
 margin_bottom = 110.0
 
 [connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]
