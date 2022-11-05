@@ -15,7 +15,7 @@ func _ready():
 
 
 func play_click_noise():
-	var audioPlayer = find_node("AudioStreamPlayer")
+	var audioPlayer = find_node("ClickSound")
 	var randPitch = audioPlayer.get_pitch_scale() * rand_range(0.9, 1.1)
 	audioPlayer.set_pitch_scale(randPitch) 
 	audioPlayer.play()
@@ -42,6 +42,15 @@ func _on_SceneLaunchButton_pressed():
 
 
 
-func _on_AudioStreamPlayer_finished():
-	switch_scene()
 	
+
+
+func _on_ClickSound_finished():
+	switch_scene()
+
+func _on_SceneLaunchButton_mouse_entered():
+	if not disabled:
+		$HoverSound.play()
+	else:
+		$DisabledSound.play()
+		
