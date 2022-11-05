@@ -56,8 +56,11 @@ func die():
 
 func _on_Area_body_entered(body):
 	if "Detective" in body.name:
-		var recipients = [body, Global.IO, body.get_hud()]
-		
+		var recipients = [body]
+		if body.has_method("get_hud"):
+			recipients.push_back(body.get_hud())
+		if Global.IO != null:
+			recipients.push_back(Global.IO)
 		for recipient in recipients:
 			if not is_connected("picked_up", recipient, "_on_collectible_picked_up"):
 				var _err = connect("picked_up", recipient, "_on_collectible_picked_up")
