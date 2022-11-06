@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=9]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/_common/GUI/HUD/InventoryIconButton.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -58,9 +59,6 @@ margin_right = 984.0
 size_flags_horizontal = 10
 text = "Help"
 align = 2
-
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Bullet" ), [ ExtResource( 2 ) ] ]
 
 [node name="Bottom" type="MarginContainer" parent="."]
 anchor_left = 0.5
@@ -137,6 +135,7 @@ margin_left = 7.0
 margin_top = 7.0
 margin_right = 1017.0
 margin_bottom = 165.0
+mouse_filter = 2
 
 [node name="InventoryTitle" type="Label" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
 margin_right = 1010.0
@@ -158,13 +157,20 @@ columns = 3
 
 [node name="InventoryItems" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
-margin_right = 204.0
+margin_right = 1010.0
 margin_bottom = 64.0
+rect_min_size = Vector2( 0, 32 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 6
 
 [node name="DebugInfo" type="LineEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
 margin_top = 86.0
 margin_right = 1010.0
 margin_bottom = 110.0
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Bullet", "InventoryIconButton" ), [ ExtResource( 2 ), ExtResource( 11 ) ] ]
 
 [connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]

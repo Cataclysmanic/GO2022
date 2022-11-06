@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/Items/collectables/CollectableFlashlight.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/Items/collectables/CollectablePaper.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Items/collectables/CollectableRevolver.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Items/collectables/CollectableMagzine.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Items/collectables/CollectableMagazine.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Items/StaticTriggeredObjects/SwitchedOmniLight.tscn" type="PackedScene" id=12]
 
 [sub_resource type="BoxShape" id=1]

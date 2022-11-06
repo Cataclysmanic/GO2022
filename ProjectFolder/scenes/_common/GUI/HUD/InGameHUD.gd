@@ -105,21 +105,26 @@ func clear_inventory():
 	for item in inventory_container.get_children():
 		item.queue_free()
 	
-func display_inventory_item(_cutsceneImagePath : String):
-	pass
+func display_inventory_item(itemResource : Resource):
+	$PopupItemViewer.init(itemResource)
 
 func inventory_add(itemResource : Resource):
-	var item = itemResource
-	var textureRect = TextureRect.new()
-	textureRect.rect_size = iconSize
-	textureRect.rect_min_size = iconSize
-	var iconTexture = load(item.path_to_icon)
-	textureRect.expand = true
-	textureRect.texture = iconTexture
-	textureRect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	inventory_container.add_child(textureRect)
+	var iconButton = $ResourcePreloader.get_resource("InventoryIconButton").instance()
+	iconButton.init(itemResource, self)
+	inventory_container.add_child(iconButton)
 	
-	$PopupItemViewer.init(itemResource)
+	
+#	var item = itemResource
+#	var textureRect = TextureRect.new()
+#	textureRect.rect_size = iconSize
+#	textureRect.rect_min_size = iconSize
+#	var iconTexture = load(item.path_to_icon)
+#	textureRect.expand = true
+#	textureRect.texture = iconTexture
+#	textureRect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+#	inventory_container.add_child(textureRect)
+	
+	display_inventory_item(itemResource)
 	
 	
 func journal_add(_entryName : String, _entryNotes: String):
@@ -193,7 +198,9 @@ func _on_missing_key():
 
 
 	
-
+func _on_inventory_icon_clicked(itemRes):
+	display_inventory_item(itemRes)
+	
 
 func _on_InventoryButton_toggled(_button_pressed):
 	toggle_inventory_display()
