@@ -87,7 +87,10 @@ func toggle_flashlight():
 	
 	flashlight = !flashlight
 	$AnimatedSprite/Items/Flashlight.visible = flashlight	
-
+	if flashlight:
+		$Audio/Flashlight_on.play()
+	else:
+		$Audio/Flashlight_off.play()
 
 func locate_item(itemName):
 	var gun = null

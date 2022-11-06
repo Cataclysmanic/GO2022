@@ -27,7 +27,6 @@ texture = ExtResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1.39034, 0, 0, 0, -6.07738e-08, 1.39034, 0, -1.39034, -6.07738e-08, 0, 6.78069, 0 )
-projection = 1
 size = 10.0
 
 [node name="BulletHitDetectionArea" type="Area" parent="."]
@@ -43,3 +42,7 @@ light_color = Color( 1, 0.984314, 0.882353, 1 )
 shadow_enabled = true
 spot_range = 5.72134
 spot_angle = 13.7389
+
+[node name="EnemyRevealer" type="OmniLight" parent="."]
+portal_mode = 2
+layers = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Code/Detective3d.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Test Assets/_side idle.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Scenes/Items/tools/Flashlight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Items/weapons/Gun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Player/Flashlight_On.wav" type="AudioStream" id=12]
+[ext_resource path="res://scenes/Player/Flashlight_Off.wav" type="AudioStream" id=13]
 
 [sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 8 )
@@ -224,3 +226,11 @@ shape = SubResource( 35 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Flashlight", "Gun" ), [ ExtResource( 9 ), ExtResource( 10 ) ] ]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Flashlight_on" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 12 )
+
+[node name="Flashlight_off" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 13 )

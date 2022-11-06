@@ -3,7 +3,7 @@ extends TextureButton
 
 var safe_icons = ["book", "flashlight", "gun", "paper"]
 var HUD
-var itemRes
+var item_resource
 
 signal inventory_icon_clicked(name)
 
@@ -12,6 +12,7 @@ func _ready():
 	pass
 	
 func init(itemRes, hud):
+	item_resource = itemRes
 	var icon_path = 'res://scenes/_common/GUI/icons'
 
 	if safe_icons.has(itemRes.item_name.to_lower()):
@@ -26,4 +27,4 @@ func init(itemRes, hud):
 
 
 func _on_InventoryIconButton_inventory_icon_clicked():
-	emit_signal("inventory_icon_clicked", itemRes)
+	emit_signal("inventory_icon_clicked", item_resource)
