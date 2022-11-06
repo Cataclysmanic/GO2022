@@ -4,7 +4,7 @@ extends Spatial
 export var path_to_scene : String = "res://Main.tscn"
 export var location_in_scene : Vector3 = Vector3.ZERO
 
-signal missing_key()
+signal missing_key() # emitted by Global.Utils.oneshot_emit. Safe to ignore warning.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -35,7 +35,7 @@ func _process(delta):
 			rebuild_inventory()
 
 
-func _unhandled_key_input(event):
+func _unhandled_key_input(_event):
 	pass # moved to shortcut key on button
 	
 #	if event.is_action_pressed("open_inventory"):
@@ -195,5 +195,5 @@ func _on_missing_key():
 	
 
 
-func _on_InventoryButton_toggled(button_pressed):
+func _on_InventoryButton_toggled(_button_pressed):
 	toggle_inventory_display()

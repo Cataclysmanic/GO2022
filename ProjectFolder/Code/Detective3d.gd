@@ -240,5 +240,5 @@ func spawn_item(itemResource): # This method doesn't care if you ought to have t
 		
 
 
-func _on_LightSwitch_body_entered(body):
+func _on_LightSwitch_body_entered(_body):
 	pass # Replace with function body.
