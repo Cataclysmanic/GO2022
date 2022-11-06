@@ -49,20 +49,14 @@ extents = Vector3( 0.153988, 0.22258, 0.195449 )
 [sub_resource type="BoxShape" id=8]
 extents = Vector3( 0.153988, 0.22258, 0.195449 )
 
-[node name="Spatial" type="KinematicBody" groups=["goodPeople"]]
+[node name="Spatial" type="KinematicBody"]
 script = ExtResource( 2 )
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
-modulate = Color( 0, 1, 0.25098, 1 )
+modulate = Color( 1, 1, 0, 1 )
 billboard = 1
 frames = SubResource( 1 )
 animation = "tidle"
-
-[node name="InteractNotice" type="Sprite3D" parent="."]
-transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.127, -0.205 )
-visible = false
-billboard = 1
-texture = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.504274, 0, 0, 0, 0.504274, 0, 0, 0, 0.504274, 0, 0, 0 )
@@ -84,6 +78,12 @@ max_neighbors = 1
 process_mode = 0
 wait_time = 0.2
 autostart = true
+
+[node name="InteractNotice" type="Sprite3D" parent="."]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.127, -0.205 )
+visible = false
+billboard = 1
+texture = ExtResource( 4 )
 
 [connection signal="body_entered" from="NPCArea" to="." method="_on_NPCArea_body_entered"]
 [connection signal="body_exited" from="NPCArea" to="." method="_on_NPCArea_body_exited"]
