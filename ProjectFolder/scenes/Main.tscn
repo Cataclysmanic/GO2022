@@ -26,8 +26,8 @@ size_flags_vertical = 3
 
 [node name="IO" parent="." instance=ExtResource( 4 )]
 
-[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Fade", "Intro", "MainMenu" ), [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ] ]
-
 [node name="Utils" type="Node" parent="."]
 script = ExtResource( 6 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Fade", "Intro", "MainMenu" ), [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ] ]

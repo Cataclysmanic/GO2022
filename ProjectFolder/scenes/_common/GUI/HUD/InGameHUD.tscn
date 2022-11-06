@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/WheresTheKey.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=9]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -79,6 +80,10 @@ mouse_filter = 2
 [node name="PopupItemViewer" parent="." instance=ExtResource( 3 )]
 
 [node name="AudioEvents" type="Node" parent="."]
+
+[node name="BoxOpemNoise" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 10 )
+volume_db = -7.0
 
 [node name="MissingGun" type="AudioStreamPlayer" parent="AudioEvents"]
 stream = ExtResource( 6 )

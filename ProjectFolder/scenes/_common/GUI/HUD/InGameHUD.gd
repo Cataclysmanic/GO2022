@@ -50,6 +50,7 @@ func toggle_inventory_display():
 
 
 func show_inventory():
+	$AudioEvents/BoxOpemNoise.play()
 	var hidden_bottom_margin = -25
 	var revealed_bottom_margin = -175
 	var tween = get_node("Tween")
