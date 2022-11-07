@@ -1,19 +1,15 @@
 extends KinematicBody2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$PaperDoll.relax()
+	
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	look_at(get_global_mouse_position())
 	move(delta)
 
 
@@ -22,8 +18,13 @@ func _unhandled_input(event):
 		toggle_flashlight()
 
 func toggle_flashlight():
-	$Flashlight.enabled = !$Flashlight.enabled
-	
+	var is_enabled = !$Flashlight.enabled
+	$Flashlight.enabled = is_enabled
+	if is_enabled:
+		$PaperDoll.point_gun()
+	else:
+		$PaperDoll.relax()
+
 
 func move(delta):
 	var style = "ortho"

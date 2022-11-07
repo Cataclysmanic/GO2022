@@ -1,13 +1,10 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://scenes/Items/tools/flashlightl_LghtCone.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Items/collectables/tempBookWIP.png" type="Texture" id=2]
-[ext_resource path="res://scenes/2dTest/testTopDownPlayerTex.png" type="Texture" id=3]
-[ext_resource path="res://scenes/2dTest/2DPlayer.gd" type="Script" id=4]
 [ext_resource path="res://scenes/City/Indoors/floorTexWIP.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Items/collectables/Typewriter.png" type="Texture" id=6]
 [ext_resource path="res://scenes/2dTest/PointLight.png" type="Texture" id=7]
-[ext_resource path="res://scenes/Items/collectables/flashlightZoom.png" type="Texture" id=8]
 [ext_resource path="res://scenes/2dTest/desk.png" type="Texture" id=9]
 [ext_resource path="res://scenes/_common/GUI/icons/key.png" type="Texture" id=10]
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=11]
@@ -19,26 +16,6 @@ light_mode = 2
 
 [sub_resource type="Environment" id=1]
 ambient_light_energy = 0.0
-
-[sub_resource type="CanvasItemMaterial" id=3]
-light_mode = 1
-
-[sub_resource type="Gradient" id=7]
-interpolation_mode = 2
-offsets = PoolRealArray( 0, 0.519293, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.519293, 0.519293, 0.519293, 1, 1, 1, 1, 1 )
-
-[sub_resource type="GradientTexture2D" id=8]
-gradient = SubResource( 7 )
-fill_from = Vector2( 1, 0 )
-fill_to = Vector2( 0.297917, 0.70625 )
-
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 36.0
-height = 6.0
-
-[sub_resource type="CanvasItemMaterial" id=19]
-light_mode = 1
 
 [sub_resource type="OccluderPolygon2D" id=9]
 polygon = PoolVector2Array( -65, -35, -66, 34, 68, 33, 66, -35 )
@@ -86,37 +63,8 @@ region_rect = Rect2( -871.125, -770, 3334.5, 3111.75 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
-material = SubResource( 3 )
-position = Vector2( 147, 126 )
-script = ExtResource( 4 )
-
-[node name="Flashlight" type="Light2D" parent="Player"]
-position = Vector2( 44, 19 )
-rotation = -0.176365
-scale = Vector2( 2.41038, 2.29324 )
-texture = ExtResource( 1 )
-mode = 2
-shadow_enabled = true
-
-[node name="Sprite" type="Sprite" parent="Player/Flashlight"]
-position = Vector2( 5.65179, 0.485596 )
-rotation = 0.851237
-scale = Vector2( 0.0605043, 0.056648 )
-texture = ExtResource( 8 )
-
-[node name="Glow" type="Light2D" parent="Player"]
-scale = Vector2( 4.39199, 4.34772 )
-texture = SubResource( 8 )
-energy = 0.1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="Player"]
-material = SubResource( 19 )
-position = Vector2( -3, 0 )
-texture = ExtResource( 3 )
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 148, 200 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 1, 0 )
