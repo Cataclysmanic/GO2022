@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://scenes/Items/tools/flashlightl_LghtCone.png" type="Texture" id=1]
+[ext_resource path="res://scenes/2dTest/flashlightl_LghtCone2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Items/collectables/flashlightZoom.png" type="Texture" id=2]
 [ext_resource path="res://scenes/2dTest/testTopDownPlayerTex.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayer.gd" type="Script" id=4]
@@ -31,10 +31,11 @@ material = SubResource( 3 )
 script = ExtResource( 4 )
 
 [node name="Flashlight" type="Light2D" parent="."]
-position = Vector2( 44, 19 )
-rotation = -0.176365
-scale = Vector2( 2.41038, 2.29324 )
+position = Vector2( -7.62939e-06, -2.00001 )
+rotation = 4.71845
+scale = Vector2( 1.25965, 0.91552 )
 texture = ExtResource( 1 )
+offset = Vector2( 252.337, 0.993408 )
 mode = 2
 shadow_enabled = true
 

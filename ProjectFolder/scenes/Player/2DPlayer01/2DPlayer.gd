@@ -11,6 +11,7 @@ func _ready():
 
 func _process(delta):
 	move(delta)
+	$Flashlight.look_at(get_global_mouse_position())
 
 
 func _unhandled_input(event):
@@ -58,6 +59,7 @@ func move(delta):
 	var _collision = move_and_collide(directional_vector)
 	play_animations(directional_vector)
 	last_movement_vector = directional_vector
+	
 	
 func play_animations(movement_vector):
 	var currentSpeedSq = movement_vector.length_squared()

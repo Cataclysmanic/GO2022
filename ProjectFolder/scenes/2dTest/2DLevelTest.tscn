@@ -65,6 +65,7 @@ environment = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 148, 200 )
+rotation = 1.57079
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2( 1, 0 )

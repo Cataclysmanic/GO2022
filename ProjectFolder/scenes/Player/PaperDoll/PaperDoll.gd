@@ -34,7 +34,12 @@ func get_animation():
 		return anim_queue[0]
 
 func point_torso_at(targetPos:Vector2):
-	$UpperBody.look_at(targetPos)
+	$Upper.look_at(targetPos)
+
 	
 func point_legs_at(targetPos:Vector2):
-	$LowerBody.look_at(targetPos)
+	$Lower.look_at(targetPos)
+
+
+func _process(delta):
+	point_torso_at(get_global_mouse_position())
