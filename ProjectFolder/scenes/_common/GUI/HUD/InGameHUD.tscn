@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=9]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InventoryIconButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_close_3.wav" type="AudioStream" id=12]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -79,8 +80,12 @@ mouse_filter = 2
 
 [node name="AudioEvents" type="Node" parent="."]
 
-[node name="BoxOpemNoise" type="AudioStreamPlayer" parent="AudioEvents"]
+[node name="BoxOpenNoise" type="AudioStreamPlayer" parent="AudioEvents"]
 stream = ExtResource( 10 )
+volume_db = -7.0
+
+[node name="BoxCloseNoise" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 12 )
 volume_db = -7.0
 
 [node name="MissingGun" type="AudioStreamPlayer" parent="AudioEvents"]
@@ -133,20 +138,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 165.0
-
-[node name="InventoryTitle" type="Label" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
-margin_right = 1010.0
-margin_bottom = 14.0
-text = "Inventory"
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1020.0
+margin_bottom = 172.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
-margin_top = 18.0
-margin_right = 1010.0
-margin_bottom = 82.0
+margin_right = 1016.0
+margin_bottom = 64.0
 
 [node name="Ammo" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
 margin_right = 200.0
@@ -158,7 +157,7 @@ columns = 3
 
 [node name="InventoryItems" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
-margin_right = 1010.0
+margin_right = 1016.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
@@ -166,9 +165,9 @@ size_flags_vertical = 3
 columns = 6
 
 [node name="DebugInfo" type="LineEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
-margin_top = 86.0
-margin_right = 1010.0
-margin_bottom = 110.0
+margin_top = 68.0
+margin_right = 1016.0
+margin_bottom = 92.0
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Bullet", "InventoryIconButton" ), [ ExtResource( 2 ), ExtResource( 11 ) ] ]
