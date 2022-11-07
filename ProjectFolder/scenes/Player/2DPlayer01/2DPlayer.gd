@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-
+var last_movement_vector = Vector2.ZERO
 
 
 # Called when the node enters the scene tree for the first time.
@@ -56,5 +56,25 @@ func move(delta):
 		directional_vector = move_vector
 
 	var _collision = move_and_collide(directional_vector)
+	play_animations(directional_vector)
+	last_movement_vector = directional_vector
 	
-
+func play_animations(movement_vector):
+	var currentSpeedSq = movement_vector.length_squared()
+	var previousSpeedSq = last_movement_vector.length_squared()
+	
+	var faster_than_before = currentSpeedSq > previousSpeedSq
+	var slower_than_before = previousSpeedSq > currentSpeedSq
+	
+	if faster_than_before:
+		if Input.is_action_pressed("sprint"):
+			$PaperDoll.start_running()
+		else:
+			$PaperDoll.start_walking()
+	elif slower_than_before:
+		
+		if movement_vector != Vector2.ZERO:
+			$PaperDoll.start_walking()
+		else:
+			$PaperDoll.relax()
+	

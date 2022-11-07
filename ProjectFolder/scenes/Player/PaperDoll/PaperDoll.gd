@@ -33,3 +33,8 @@ func get_animation():
 	if len(anim_queue) > 0:
 		return anim_queue[0]
 
+func point_torso_at(targetPos:Vector2):
+	$UpperBody.look_at(targetPos)
+	
+func point_legs_at(targetPos:Vector2):
+	$LowerBody.look_at(targetPos)
