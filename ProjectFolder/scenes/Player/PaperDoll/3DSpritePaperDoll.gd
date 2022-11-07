@@ -32,4 +32,6 @@ func point_torso_at(targetPos: Vector3):
 func point_legs_at(movement_vector: Vector3):
 	$LowerBody.look_at(Vector3.ZERO, movement_vector)
 	
+
+	
 	

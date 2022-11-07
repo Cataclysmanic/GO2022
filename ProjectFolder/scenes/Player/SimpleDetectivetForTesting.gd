@@ -82,5 +82,4 @@ func point_flashlight_at_mouse():
 		#$Flashlight.look_at(Vector3(targetPos.x, 0, targetPos.z), Vector3(0,1,0))
 		$Flashlight.look_at(targetPos, Vector3(0,1,0))
 		
-		#mesh.rotate_y(deg2rad(180))
 		$"3DPaperDoll".point_torso_at(Vector3(targetPos.x, 0.0, targetPos.z))
