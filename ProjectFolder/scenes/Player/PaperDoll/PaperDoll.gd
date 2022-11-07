@@ -41,5 +41,5 @@ func point_legs_at(targetPos:Vector2):
 	$Lower.look_at(targetPos)
 
 
-func _process(delta):
+func _process(_delta):
 	point_torso_at(get_global_mouse_position())

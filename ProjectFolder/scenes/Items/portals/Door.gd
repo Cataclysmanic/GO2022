@@ -11,10 +11,13 @@ func _ready():
 	pass # Replace with function body.
 
 
+func unused_method_to_prevent_some_godot_warnings():
+	emit_signal("missing_key")
+
 
 func _on_Area_body_entered(body):
 	
-	if "Detective" in body.name:
+	if "detective" in body.name.to_lower():
 		
 
 		if Global.IO.has_item("key"):
