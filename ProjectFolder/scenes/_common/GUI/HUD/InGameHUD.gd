@@ -199,6 +199,7 @@ func _on_missing_key():
 
 	
 func _on_inventory_icon_clicked(itemRes):
+
 	display_inventory_item(itemRes)
 	
 
