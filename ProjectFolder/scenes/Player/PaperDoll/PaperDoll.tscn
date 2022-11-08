@@ -1531,6 +1531,7 @@ tracks/8/keys = {
 }
 
 [node name="PaperDoll" type="Node2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 3 )
 
 [node name="Lower" type="Node2D" parent="."]
