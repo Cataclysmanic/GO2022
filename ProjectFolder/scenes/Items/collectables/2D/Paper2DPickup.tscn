@@ -1,17 +1,25 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Items/collectables/2D/2DCollectablePickup.gd" type="Script" id=1]
-[ext_resource path="res://scenes/_common/GUI/icons/book-n.png" type="Texture" id=2]
-[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=2]
+[ext_resource path="res://scenes/_common/GUI/icons/paper-n.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 31 )
 
-[node name="2DCollectiblePickup" type="Node2D"]
+[node name="Paper" type="Node2D"]
 script = ExtResource( 1 )
+item_details = {
+"is_unique": true,
+"item_name": "paper",
+"notes_for_journal": "Strange paper",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -20,7 +28,7 @@ position = Vector2( -1, -1 )
 shape = SubResource( 1 )
 
 [node name="PickupNoise" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 2 )
 volume_db = -7.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area_body_entered"]
