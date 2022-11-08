@@ -8,8 +8,13 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	spawn_player()
+	
+func spawn_player():
+	var pos = find_node("PlayerSpawnPoint").get_global_position()
+	var playerScene = $ResourcePreloader.get_resource("Player").instance()
+	playerScene.set_global_position(pos)
+	add_child(playerScene)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -19,11 +24,11 @@ func _ready():
 func _on_KeyArea_body_entered(body):
 	if body.name == "Player":
 		$AudioStreamPlayer.play()
-		$KeyArea.queue_free()
+		$Collectibles/KeyArea.queue_free()
 
 
 
 func _on_BookArea_body_entered(body):
 	if body.name == "Player":
 		$AudioStreamPlayer.play()
-		$BookArea.queue_free()
+		$Collectibles/BookArea.queue_free()

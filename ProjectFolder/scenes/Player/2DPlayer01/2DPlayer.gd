@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 var last_movement_vector = Vector2.ZERO
-
+var sprint_velocity_multiple = 3.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,7 +31,9 @@ func move(delta):
 	var style = "ortho"
 	
 	var speed = 150.0
-	
+	if Input.is_action_pressed("sprint"):
+		speed *= sprint_velocity_multiple
+
 	var move_vector = Vector2.ZERO
 	var directional_vector = Vector2.ZERO
 	
@@ -79,4 +81,10 @@ func play_animations(movement_vector):
 			$PaperDoll.start_walking()
 		else:
 			$PaperDoll.relax()
+	
+func _on_collectible_picked_up(pikcupObj):
+	pass # don't really care yet. Inventory and IO can hash this out between them.
+	
+
+	
 	

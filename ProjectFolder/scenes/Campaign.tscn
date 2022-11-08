@@ -17,7 +17,7 @@ gradient = SubResource( 1 )
 [node name="Campaign" type="Spatial"]
 
 [node name="AnimaticCutscene" parent="." instance=ExtResource( 1 )]
-next_scene = "res://scenes/City/Indoors/IndoorTestRoom.tscn"
+next_scene = "res://scenes/2dTest/2DLevelTest.tscn"
 intro_text = "wake up, detective …"
 outro_text = "Ugh… it’s like someone stuffed a blender into my skull… "
 audio = ExtResource( 5 )
