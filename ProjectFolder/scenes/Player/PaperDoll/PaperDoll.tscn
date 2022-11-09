@@ -1621,6 +1621,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 42.9305, 0.581497 )
 
 [node name="GunLocation" type="Position2D" parent="Upper/UpperBody/ArmBottomR/HandR"]
+rotation = -0.555323
 
 [node name="Hat" type="Sprite" parent="Upper/UpperBody"]
 material = SubResource( 27 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/MysteriousLoop.ogg-f90511d27f185916754203998e445299.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/Music/MysteriousLoop.ogg"
+dest_files=[ "res://.import/MysteriousLoop.ogg-f90511d27f185916754203998e445299.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -4,6 +4,10 @@ extends Node2D
 var ticks = 0
 var occlusionPolygons = []
 export var num_npcs = 6
+var map_scene
+
+signal shit_got_real() # for music
+signal shit_calmed_down() # for music
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +15,9 @@ func _ready():
 	generate_light_occluders_from_bitmap()
 	spawn_npcs(num_npcs)
 
+
+func init(map):
+	map_scene = map
 
 func spawn_npcs(num):
 	
@@ -103,9 +110,14 @@ func spawn_static_body(myPolygon):
 func _on_Area2D_body_entered(body):
 	if "detective" in body.name.to_lower():
 		$Roof.hide()
-		
+		if not is_connected("shit_got_real", map_scene, "_on_shit_got_real"):
+			connect("shit_got_real", map_scene, "_on_shit_got_real")
+		emit_signal("shit_got_real")
 
 
 func _on_Area2D_body_exited(body):
 	if "detective" in body.name.to_lower():
 		$Roof.show()
+		if not is_connected("shit_calmed_down", map_scene, "_on_shit_calmed_down"):
+			connect("shit_calmed_down", map_scene, "_on_shit_calmed_down")
+		emit_signal("shit_calmed_down")
