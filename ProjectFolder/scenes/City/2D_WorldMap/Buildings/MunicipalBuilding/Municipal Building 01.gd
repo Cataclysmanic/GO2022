@@ -21,7 +21,7 @@ func generate_light_occluders_from_bitmap():
 	var wallSprite = $Walls
 	var wallTex :Texture = wallSprite.get_texture()
 	var wallImage : Image = wallTex.get_data()
-	var Stupid_Voodoo_Fudge_Factor = 3.0
+	var Stupid_Voodoo_Fudge_Factor = 3.0 # WHY?!?!?
 	var rectSize = wallImage.get_size() * scale.x * Stupid_Voodoo_Fudge_Factor
 	var rectPos = get_position()-(rectSize/2)
 	var wallRect = Rect2(rectPos, rectSize)

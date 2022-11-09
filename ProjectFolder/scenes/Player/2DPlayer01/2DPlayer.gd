@@ -3,11 +3,42 @@ extends KinematicBody2D
 
 var last_movement_vector = Vector2.ZERO
 var sprint_velocity_multiple = 3.0
+var map_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PaperDoll.relax()
+	if Global.IO.has_item("gun2D"):
+		spawn_item(Global.IO.get_item("Gun2D"))
+
+	manual_spawn_gun() # temporary
+
+
+func init(mapScene):
+	map_scene = mapScene
+
+
+func spawn_item(itemRes):
+	var itemScene
+	if itemRes.path_to_scene_for_PlayerController_Items != null:
+		itemScene = itemRes.path_to_scene_for_PlayerController_Items
+		$Items.add_child(itemScene)
+
+
+
+	elif itemRes.item_name.to_lower() == "gun" or itemRes.item_name.to_lower() == "gun2d":
+		manual_spawn_gun()
+
+
+
+func manual_spawn_gun():
+	var gunScene = $ResourcePreloader.get_resource("Gun2D").instance()
+	var loc = find_node("GunLocation")
 	
+	gunScene.init(map_scene)
+	loc.add_child(gunScene)
+	
+
 
 func _process(delta):
 	move(delta)

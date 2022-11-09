@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Items/weapons/Gun2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/sfx/bang.ogg" type="AudioStream" id=4]
+[ext_resource path="res://scenes/_common/GUI/sfx/click.ogg" type="AudioStream" id=5]
+
+[node name="Gun2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "bullet" ), [ ExtResource( 2 ) ] ]
+
+[node name="EmptyClickNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="GunshotNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="CockTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="CockTimer" to="." method="_on_CockTimer_timeout"]

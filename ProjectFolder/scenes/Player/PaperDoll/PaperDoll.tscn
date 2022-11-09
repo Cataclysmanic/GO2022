@@ -1613,11 +1613,14 @@ scale = Vector2( 1.38378, 1.32279 )
 texture = ExtResource( 5 )
 
 [node name="Gun" type="Sprite" parent="Upper/UpperBody/ArmBottomR/HandR"]
+visible = false
 position = Vector2( -1.06825, -0.162201 )
 rotation = -0.465931
 scale = Vector2( 0.569352, 1 )
 texture = ExtResource( 2 )
 offset = Vector2( 42.9305, 0.581497 )
+
+[node name="GunLocation" type="Position2D" parent="Upper/UpperBody/ArmBottomR/HandR"]
 
 [node name="Hat" type="Sprite" parent="Upper/UpperBody"]
 material = SubResource( 27 )
