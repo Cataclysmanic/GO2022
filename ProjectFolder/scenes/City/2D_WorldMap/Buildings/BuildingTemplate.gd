@@ -25,10 +25,12 @@ func spawn_npcs(num):
 		spawn_npc()
 
 func spawn_npc():
-	var pos = get_random_spawn_location(50)
+	var spawnJitter = 15
+	var pos = get_random_spawn_location(spawnJitter)
 	var npcList = $AvailableNPCs.get_resource_list()
 	var randomNPCName = npcList[randi()%len(npcList)]
 	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
+	npcScene.set_scale(Vector2(1/scale.x, 1/scale.y))
 	npcScene.set_position(pos) # local coords
 	npcScene.name = "NPC Target Dummy"
 	$NPCs.add_child(npcScene)
@@ -54,27 +56,21 @@ func generate_light_occluders_from_bitmap():
 	var wallSprite = $Walls
 	var wallTex :Texture = wallSprite.get_texture()
 	var wallImage : Image = wallTex.get_data()
-	var Stupid_Voodoo_Fudge_Factor = 3.0 # WHY?!?!?
-	var rectSize = wallImage.get_size() * scale.x * Stupid_Voodoo_Fudge_Factor
-	var rectPos = get_position()-(rectSize/2)
+	var rectSize = wallImage.get_size()
+	var rectPos = Vector2.ZERO
 	var wallRect = Rect2(rectPos, rectSize)
 	var wallBitmap = BitMap.new()
 	var xForm = get_transform() # what do I do with this???
 	wallBitmap.create_from_image_alpha(wallImage)
 	
 	occlusionPolygons = wallBitmap.opaque_to_polygons(wallRect)
-#	var offsetPolygons = []
-#	for polygon in occlusionPolygons:
-#		var offsetPoly = translate_polygon(polygon, position)
-#		offsetPolygons.push_back(offsetPoly)
-	
 	
 	for polygon in occlusionPolygons:
 		spawn_light_occluder(polygon)
 		spawn_static_body(polygon)
 		
-	$StaticBodyWalls.position = position/3 # I don't know where the 3 came from
-	$LightOccluders.position = position/3
+	$StaticBodyWalls.position = Vector2.ZERO - ( (rectSize ) / 2)
+	$LightOccluders.position = $StaticBodyWalls.position
 	
 
 func translate_polygon(polygon, translation : Vector2):
@@ -111,7 +107,7 @@ func _on_Area2D_body_entered(body):
 	if "detective" in body.name.to_lower():
 		$Roof.hide()
 		if not is_connected("shit_got_real", map_scene, "_on_shit_got_real"):
-			connect("shit_got_real", map_scene, "_on_shit_got_real")
+			var _err = connect("shit_got_real", map_scene, "_on_shit_got_real")
 		emit_signal("shit_got_real")
 
 
@@ -119,5 +115,5 @@ func _on_Area2D_body_exited(body):
 	if "detective" in body.name.to_lower():
 		$Roof.show()
 		if not is_connected("shit_calmed_down", map_scene, "_on_shit_calmed_down"):
-			connect("shit_calmed_down", map_scene, "_on_shit_calmed_down")
+			var _err = connect("shit_calmed_down", map_scene, "_on_shit_calmed_down")
 		emit_signal("shit_calmed_down")

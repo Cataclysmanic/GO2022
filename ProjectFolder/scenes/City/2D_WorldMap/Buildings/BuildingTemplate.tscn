@@ -13,8 +13,7 @@ polygon = PoolVector2Array( -99.9051, 66.0484, -248.098, 62.7182, -269.189, 43.8
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
 
-[node name="Municipal Building" type="Node2D"]
-scale = Vector2( 1.80171, 1.80171 )
+[node name="Building" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Floor" type="Sprite" parent="."]

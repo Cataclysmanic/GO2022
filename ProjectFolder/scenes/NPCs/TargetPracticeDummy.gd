@@ -5,7 +5,7 @@ var health = 20.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("Practice dummy ready. " + str(get_global_position()))
+	pass
 
 func flash_hit():
 	$AnimationPlayer.play("hit")

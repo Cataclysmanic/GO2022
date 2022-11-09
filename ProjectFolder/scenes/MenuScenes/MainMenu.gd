@@ -17,4 +17,4 @@ func _ready():
 
 
 func _on_NewGameButton_pressed():
-	print("LAUNCH A GAME!")
+	pass

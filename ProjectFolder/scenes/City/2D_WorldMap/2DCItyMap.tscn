@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/textures/BlockGroundTile.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=11]
 [ext_resource path="res://scenes/_common/Music/CalmLoop.mp3" type="AudioStream" id=12]
 [ext_resource path="res://icon.png" type="Texture" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Environment" id=1]
 ambient_light_energy = 0.0
@@ -117,12 +118,17 @@ position = Vector2( 430, -1583 )
 rotation = 3.14159
 
 [node name="Buildings" type="Node2D" parent="Outdoor"]
+scale = Vector2( 1.03418, 1 )
 
 [node name="Office" parent="Outdoor/Buildings" instance=ExtResource( 5 )]
 position = Vector2( 737, 819 )
 
 [node name="Municipal Building" parent="Outdoor/Buildings" instance=ExtResource( 7 )]
 position = Vector2( -1537, -1491 )
+
+[node name="Residential Buildings" parent="Outdoor/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 1428.18, -1661 )
+scale = Vector2( 3.92565, 3.92565 )
 
 [node name="Projectiles" type="Node2D" parent="Outdoor"]
 
