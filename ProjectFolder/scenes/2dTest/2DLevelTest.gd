@@ -8,7 +8,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawn_player()
+	pass
+	#spawn_player()
 	
 func spawn_player():
 	var pos = find_node("PlayerSpawnPoint").get_global_position()
