@@ -20,7 +20,7 @@ light_mode = 2
 script = ExtResource( 6 )
 
 [node name="PlayerSpawnPoint" type="Position2D" parent="."]
-position = Vector2( 1335, 1365 )
+position = Vector2( -1723, -506 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
