@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/TenseLoop.mp3-f2c602ad1d45840b6440a5825763a79e.mp3str"
+
+[deps]
+
+source_file="res://scenes/_common/Music/TenseLoop.mp3"
+dest_files=[ "res://.import/TenseLoop.mp3-f2c602ad1d45840b6440a5825763a79e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

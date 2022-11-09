@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.gd" type="Script" id=1]
+
+[node name="HelpButton" type="Button"]
+margin_left = 217.0
+margin_right = 235.0
+margin_bottom = 24.0
+text = "?"
+script = ExtResource( 1 )
+
+[node name="PlayerInstructions" type="PopupDialog" parent="."]
+modulate = Color( 1, 1, 1, 0.698039 )
+margin_left = -709.0
+margin_top = -20.0
+margin_right = -499.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="PlayerInstructions"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 154.0
+margin_bottom = 21.0
+text = "Controls:
+Arrows/WASD/LeftJoy: Move
+Mouse/RightJoy: Look Around
+Spacebar: Control mode toggle
+Enter: Toggle 2d/2.5d
+E: Change faction (disguise)
+F: Flashlight on/off"
+
+[connection signal="pressed" from="." to="." method="_on_HelpButton_pressed"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/textures/StreetLamp.png" type="Texture" id=1]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/2DOmniLight_01.tscn" type="PackedScene" id=2]
+
+[node name="Streetlamp" type="Node2D"]
+
+[node name="OmniLight" parent="." instance=ExtResource( 2 )]
+position = Vector2( 142, 0 )
+
+[node name="Base" type="Sprite" parent="OmniLight"]
+position = Vector2( -155, 2 )
+rotation = -3.14159
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 89.5824, -8.2234, 38.5634, 63.1848 )
+
+[node name="Top" type="Sprite" parent="OmniLight"]
+position = Vector2( -92, -1 )
+rotation = -3.14159
+z_index = 10
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( -0.387115, 0.264429, 88.8889, 52.0165 )

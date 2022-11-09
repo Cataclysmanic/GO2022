@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/Player/SimpleDetectivetForTesting.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/City/Indoors/Building_03_test/OfficeFloorMaterial.tres" type="Material" id=3]
+[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/GreenMetal.tres" type="Material" id=4]
+[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/BrownWood.tres" type="Material" id=5]
+[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/BrownPine.tres" type="Material" id=6]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0, 0, 0, 1 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[node name="Building01_MunicipalRecords" type="Spatial"]
+
+[node name="RoomManager" type="RoomManager" parent="."]
+roomlist = NodePath("Rooms")
+
+[node name="Detective" parent="RoomManager" instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.379157, 0 )
+axis_lock_motion_y = false
+move_lock_y = false
+
+[node name="Rooms" type="Spatial" parent="RoomManager"]
+
+[node name="Office" type="Room" parent="RoomManager/Rooms"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05044, 0.497928, 0 )
+
+[node name="Walls" type="CSGCombiner" parent="RoomManager/Rooms/Office"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2.42327, 0, 0, 0 )
+calculate_tangents = false
+use_collision = true
+
+[node name="CSGBox" type="CSGBox" parent="RoomManager/Rooms/Office/Walls"]
+transform = Transform( 3.75, 0, 0, 0, 0.5, 0, 0, 0, 2.5, 0, 0, 0 )
+calculate_tangents = false
+
+[node name="CSGBox2" type="CSGBox" parent="RoomManager/Rooms/Office/Walls"]
+transform = Transform( 3.51555, 0, 0, 0, 1, 0, 0, 0, 2.25271, 0, 0, 0 )
+operation = 2
+calculate_tangents = false
+
+[node name="DoorOpening" type="CSGBox" parent="RoomManager/Rooms/Office/Walls"]
+transform = Transform( 0.189603, 0, 0, 0, 0.430083, 0, 0, 0, 0.16549, 3.66866, 4.76837e-07, -1.37811 )
+operation = 2
+calculate_tangents = false
+
+[node name="FLoor" type="CSGBox" parent="RoomManager/Rooms/Office"]
+transform = Transform( 3.55912, 0, 0, 0, 0.0856294, 0, 0, 0, 5.5056, 0, -0.550261, 0 )
+calculate_tangents = false
+use_collision = true
+material = ExtResource( 3 )
+
+[node name="OmniLight" type="OmniLight" parent="RoomManager/Rooms/Office"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00181818, 2.04899, -0.0167568 )
+light_color = Color( 1, 0.980392, 0.905882, 1 )
+light_energy = 0.6
+light_indirect_energy = 0.3
+shadow_enabled = true
+omni_range = 3.71468
+
+[node name="Objects" type="CSGCombiner" parent="RoomManager/Rooms/Office"]
+calculate_tangents = false
+use_collision = true
+
+[node name="Desk" type="CSGBox" parent="RoomManager/Rooms/Office/Objects"]
+transform = Transform( 0.577319, 0, 0, 0, 0.20432, 0, 0, 0, 1.49701, -1.21343, -0.271217, 2.56523 )
+use_collision = true
+material = ExtResource( 5 )
+
+[node name="BookShelves" type="CSGCombiner" parent="RoomManager/Rooms/Office/Objects"]
+use_collision = true
+
+[node name="top" type="CSGBox" parent="RoomManager/Rooms/Office/Objects/BookShelves"]
+transform = Transform( 0.425055, 0, 0, 0, 0.498498, 0, 0, 0, 2.5938, 3.45709, 0, 2.17534 )
+use_collision = true
+material = ExtResource( 6 )
+
+[node name="side" type="CSGBox" parent="RoomManager/Rooms/Office/Objects/BookShelves"]
+transform = Transform( 0.933974, 0, 0, 0, 0.499065, 0, 0, 0, 0.405922, 2.68095, 0, 5.03495 )
+material = ExtResource( 6 )
+
+[node name="Cabinets" type="CSGCombiner" parent="RoomManager/Rooms/Office/Objects"]
+
+[node name="FilingCabinet1" type="CSGBox" parent="RoomManager/Rooms/Office/Objects/Cabinets"]
+transform = Transform( 0.452225, 0, 0, 0, 0.281003, 0, 0, 0, 0.623791, 0.538652, -0.167252, -4.88899 )
+use_collision = true
+material = ExtResource( 4 )
+
+[node name="FilingCabinet2" type="CSGBox" parent="RoomManager/Rooms/Office/Objects/Cabinets"]
+transform = Transform( 0.452225, 0, 0, 0, 0.281003, 0, 0, 0, 0.623791, 1.7424, -0.167252, -4.88899 )
+use_collision = true
+material = ExtResource( 4 )
+
+[node name="FilingCabinet3" type="CSGBox" parent="RoomManager/Rooms/Office/Objects/Cabinets"]
+transform = Transform( 0.452225, 0, 0, 0, 0.281003, 0, 0, 0, 0.623791, -0.718676, -0.167252, -4.88899 )
+use_collision = true
+material = ExtResource( 4 )
+
+[node name="LiquorCabinet" type="CSGBox" parent="RoomManager/Rooms/Office/Objects/Cabinets"]
+transform = Transform( 0.894266, 0, 0, 0, 0.753212, 0, 0, 0, 0.563989, -2.31391, 0.292242, -4.87597 )
+use_collision = true
+material = ExtResource( 5 )
+
+[node name="Portal" type="Portal" parent="RoomManager/Rooms/Office"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3.82366, 2.38419e-07, -3.27735 )
+linked_room = NodePath("../../Foyer")
+
+[node name="Foyer" type="Room" parent="RoomManager/Rooms"]
+transform = Transform( 0.484369, 0, 0, 0, 1, 0, 0, 0, 1, 4.39329, 0, -1.6859 )
+
+[node name="Walls" type="CSGCombiner" parent="RoomManager/Rooms/Foyer"]
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 2.86964, 0, -1.82119 )
+calculate_tangents = false
+use_collision = true
+
+[node name="BaseCube" type="CSGBox" parent="RoomManager/Rooms/Foyer/Walls"]
+transform = Transform( 6.24999, 0, 0, 0, 0.999999, 0, 0, 0, 1.875, -0.0237379, 0, -0.0965929 )
+calculate_tangents = false
+
+[node name="Cutout" type="CSGBox" parent="RoomManager/Rooms/Foyer/Walls"]
+transform = Transform( 5.77283, 0, 0, 0, 0.999998, 0, 0, 0, 1.43494, -0.212193, 1.01239, -0.0965891 )
+operation = 2
+calculate_tangents = false
+
+[node name="Door" type="CSGBox" parent="RoomManager/Rooms/Foyer/Walls"]
+transform = Transform( 1, 0, 0, 0, 0.453275, 0, 0, 0, 0.376708, -5.58862, 0.468319, 0 )
+operation = 2
+calculate_tangents = false
+
+[node name="Door2" type="CSGBox" parent="RoomManager/Rooms/Foyer/Walls"]
+transform = Transform( 1, 0, 0, 0, 0.453275, 0, 0, 0, 0.376708, -2.60459, 0.468319, 1.65203 )
+operation = 2
+calculate_tangents = false
+
+[node name="OmniLight" type="OmniLight" parent="RoomManager/Rooms/Foyer"]
+transform = Transform( 2.06454, 0, 0, 0, 1, 0, 0, 0, 1, 2.92113, 1.06962, -1.88757 )
+light_color = Color( 1, 0.992157, 0.933333, 1 )
+light_energy = 0.4
+omni_range = 2.0
+
+[node name="Portal" type="Portal" parent="RoomManager/Rooms/Foyer"]
+transform = Transform( -1, 0, -1.80488e-07, 0, 1, 0, 4.23449e-08, 0, -1, -9.53674e-07, 0, -0.00321507 )
+linked_room = NodePath("../../Dining")
+
+[node name="Dining" type="Room" parent="RoomManager/Rooms"]
+transform = Transform( 0.484369, 0, 0, 0, 1, 0, 0, 0, 1, 4.5574, 0, 2.17411 )
+
+[node name="Walls" type="CSGCombiner" parent="RoomManager/Rooms/Dining"]
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 1.76296, 2.86964, 0, -0.3273 )
+calculate_tangents = false
+use_collision = true
+
+[node name="BaseCube" type="CSGBox" parent="RoomManager/Rooms/Dining/Walls"]
+transform = Transform( 6.24999, 0, 0, 0, 0.999999, 0, 0, 0, 1.875, -0.0237379, 0, -0.0965929 )
+calculate_tangents = false
+
+[node name="Cutout" type="CSGBox" parent="RoomManager/Rooms/Dining/Walls"]
+transform = Transform( 5.77283, 0, 0, 0, 0.999998, 0, 0, 0, 1.43494, -0.212193, 1.01239, -0.0965891 )
+operation = 2
+calculate_tangents = false
+
+[node name="Door" type="CSGBox" parent="RoomManager/Rooms/Dining/Walls"]
+transform = Transform( 1, 0, 0, 0, 0.453275, 0, 0, 0, 0.376708, -2.59861, 0.468319, -1.7248 )
+operation = 2
+calculate_tangents = false
+
+[node name="OmniLight" type="OmniLight" parent="RoomManager/Rooms/Dining"]
+transform = Transform( 2.06454, 0, 0, 0, 1, 0, 0, 0, 1, 3.10796, 1.06962, -0.354506 )
+light_color = Color( 1, 0.992157, 0.933333, 1 )
+light_energy = 0.4
+light_cull_mask = 4294966273
+omni_range = 3.0
+
+[node name="SuperTallWall" type="CSGBox" parent="RoomManager/Rooms/Dining"]
+transform = Transform( 0.999999, 0, 0, 0, 4.26583, 0, 0, 0, 2.83246, -2.2684, 8.26163, -0.254312 )
+height = 4.01119
+material = SubResource( 1 )
+
+[node name="EnemySprite" type="Sprite3D" parent="RoomManager/Rooms/Dining"]
+transform = Transform( 1.5, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 1.01224, 1.2127, 0 )
+billboard = 1
+shaded = true
+texture = ExtResource( 2 )

@@ -1,0 +1,175 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/_common/GUI/HUD/PopupItemViewer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/_common/GUI/sfx/GunFound.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scenes/_common/GUI/sfx/MissingGun.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/_common/GUI/sfx/WheresTheKey.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=9]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/_common/GUI/HUD/InventoryIconButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_close_3.wav" type="AudioStream" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="InputEventAction" id=2]
+action = "open_inventory"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 9 )
+script = ExtResource( 1 )
+
+[node name="Top" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_bottom = 40.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+
+[node name="Header" type="HBoxContainer" parent="Top"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 44.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 50
+
+[node name="QuitButton" parent="Top/Header" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 35.0
+margin_bottom = 24.0
+size_flags_horizontal = 2
+text = "Quit"
+return_to_main = true
+
+[node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
+margin_left = 948.0
+margin_right = 984.0
+size_flags_horizontal = 10
+text = "Help"
+align = 2
+
+[node name="Bottom" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -109.0
+margin_top = -144.0
+margin_right = 109.0
+margin_bottom = -200.0
+custom_constants/margin_bottom = 20
+
+[node name="Footer" type="HBoxContainer" parent="Bottom"]
+margin_right = 218.0
+mouse_filter = 2
+
+[node name="PopupItemViewer" parent="." instance=ExtResource( 3 )]
+
+[node name="AudioEvents" type="Node" parent="."]
+
+[node name="BoxOpenNoise" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 10 )
+volume_db = -7.0
+
+[node name="BoxCloseNoise" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 12 )
+volume_db = -7.0
+
+[node name="MissingGun" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 6 )
+
+[node name="FoundGun" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 5 )
+
+[node name="MissingKey" type="AudioStreamPlayer" parent="AudioEvents"]
+stream = ExtResource( 7 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="PopupInventoryContainer" type="PanelContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -25.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 200, 200 )
+mouse_filter = 1
+custom_styles/panel = SubResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer"]
+margin_right = 1024.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="PopupInventoryContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 24.0
+
+[node name="InventoryButton" type="Button" parent="PopupInventoryContainer/VBoxContainer/CenterContainer"]
+margin_left = 464.0
+margin_right = 560.0
+margin_bottom = 24.0
+hint_tooltip = ".. I wonder what's in my backpack"
+focus_mode = 0
+toggle_mode = true
+shortcut = SubResource( 3 )
+text = "Inventory [I]"
+
+[node name="InventoryDisplay" type="PanelContainer" parent="PopupInventoryContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 1024.0
+margin_bottom = 200.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1020.0
+margin_bottom = 172.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+margin_right = 1016.0
+margin_bottom = 64.0
+
+[node name="Ammo" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
+margin_right = 200.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 200, 64 )
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 3
+
+[node name="InventoryItems" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
+margin_left = 204.0
+margin_right = 1016.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 32 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 6
+
+[node name="DebugInfo" type="LineEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+margin_top = 68.0
+margin_right = 1016.0
+margin_bottom = 92.0
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Bullet", "InventoryIconButton" ), [ ExtResource( 2 ), ExtResource( 11 ) ] ]
+
+[connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]

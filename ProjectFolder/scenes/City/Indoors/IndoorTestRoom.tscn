@@ -1,0 +1,115 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/Player/Detective3d.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Test Assets/Building/firstTry.dae/Material.material" type="Material" id=2]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectableKeys.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectableBook.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Items/portals/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Test Assets/Desk.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectableTypewriter.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectableFlashlight.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectablePaper.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectableRevolver.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/collectables/3D/CollectableMagazine.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Items/StaticTriggeredObjects/SwitchedOmniLight.tscn" type="PackedScene" id=12]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=5]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[node name="IndoorTestRoom" type="Spatial" groups=["Indoor"]]
+
+[node name="Detective3d" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.319365, 0 )
+
+[node name="CollectableKey" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.188634, 0, 0, 0, 1, 0, 0, 0, 0.183292, -1.26433, 0.50029, 1.49571 )
+
+[node name="CollectableBook" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 1.3056, 0.451021, -1.24976 )
+
+[node name="Door" parent="." instance=ExtResource( 5 )]
+transform = Transform( -1.5846e-08, 0, -0.709325, 0, 0.700711, 0, 0.362514, 0, -3.10056e-08, -0.195919, 0, -1.6229 )
+path_to_scene = "res://scenes/City/TestField.tscn"
+
+[node name="Desk" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.559717, 0, 0, 0, 0.653421, 0, 0, 0, 0.529905, -1.45997, 0.392411, 0 )
+
+[node name="Room" type="StaticBody" parent="."]
+transform = Transform( 0.377269, 0, 0, 0, 1, 0, 0, 0, 0.366585, 0, 0, 0 )
+
+[node name="wall1" type="StaticBody" parent="Room"]
+transform = Transform( -2.05882e-07, -0.180796, 0, -2.05882e-07, 3.45444e-16, -1.58225, 4.71003, -7.90283e-09, -6.91621e-08, 4.51209, 0, 0.219107 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/wall1"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/wall1"]
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="floor4" type="StaticBody" parent="Room"]
+transform = Transform( -2.05882e-07, -0.180796, 0, -2.05882e-07, 3.45444e-16, -1.58225, 4.71003, -7.90283e-09, -6.91621e-08, -4.55644, 0, 0.219107 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor4"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor4"]
+mesh = SubResource( 3 )
+
+[node name="floor3" type="StaticBody" parent="Room"]
+transform = Transform( 4.71003, 0, 0, 0, -2.57862e-09, -1.58225, 0, 0.180796, -2.11965e-07, 0, 0, 5.02516 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor3"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor3"]
+mesh = SubResource( 3 )
+
+[node name="floor2" type="StaticBody" parent="Room"]
+transform = Transform( 4.71003, 0, 0, 0, -2.57862e-09, -1.58225, 0, 0.180796, -2.11965e-07, 0, 0, -4.68368 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor2"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor2"]
+mesh = SubResource( 3 )
+
+[node name="floor" type="StaticBody" parent="Room"]
+transform = Transform( 4.71003, 0, 0, 0, 0.180796, 0, 0, 0, 4.84919, 0, 0, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Room/floor"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Room/floor"]
+mesh = SubResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 27.5444, 0, 0, 0, -0.110312, 0, 0, 0, 29.2544, 0, 0, 0 )
+material = SubResource( 4 )
+
+[node name="Typewriter" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.0828402, 0, 0.309164, 0, 1, 0, -0.309164, 0, 0.0828402, -1.40318, 0.656329, 0.107303 )
+
+[node name="ScrapOfPaper" parent="." instance=ExtResource( 9 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -1.36139, 0.65378, -0.239488 )
+
+[node name="revolver" parent="." instance=ExtResource( 10 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 1.19363, 0.180797, -0.557703 )
+
+[node name="Magazine" parent="." instance=ExtResource( 11 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -1.01569, 0.180801, -1.31848 )
+
+[node name="Flashlight" parent="." instance=ExtResource( 8 )]
+transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, -0.87004, 0.549226, 1.11851 )
+
+[node name="SwitchedOmniLight" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0862073, 1.76457, 0.0589452 )
+myEnergy = 0.8
+myRange = 3.0

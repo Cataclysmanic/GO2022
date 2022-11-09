@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Flashlight_On.wav-3908e512a8fb27ab032efb1cd60506da.sample"
+
+[deps]
+
+source_file="res://scenes/Player/Flashlight_On.wav"
+dest_files=[ "res://.import/Flashlight_On.wav-3908e512a8fb27ab032efb1cd60506da.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

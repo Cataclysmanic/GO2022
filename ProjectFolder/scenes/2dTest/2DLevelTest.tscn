@@ -1,0 +1,286 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/2dTest/WindowLighting.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Items/collectables/2D/Flashlight2DPickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/City/Indoors/floorTexWIP.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Items/collectables/Typewriter.png" type="Texture" id=6]
+[ext_resource path="res://scenes/2dTest/PointLight.png" type="Texture" id=7]
+[ext_resource path="res://scenes/2dTest/desk.png" type="Texture" id=9]
+[ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/2dTest/2DLevelTest.gd" type="Script" id=12]
+[ext_resource path="res://icon.png" type="Texture" id=13]
+
+[sub_resource type="CanvasItemMaterial" id=24]
+blend_mode = 1
+
+[sub_resource type="OccluderPolygon2D" id=9]
+polygon = PoolVector2Array( -65, -35, -66, 34, 68, 33, 66, -35 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 76, 38 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="OccluderPolygon2D" id=10]
+polygon = PoolVector2Array( -85, -69, 89, -81, 84, 45, -75, 51 )
+
+[sub_resource type="CanvasItemMaterial" id=18]
+light_mode = 2
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 517, 21 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.980392, 0.929412, 0.721569, 1 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.654902, 0.533333, 0.105882, 1 )
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="OccluderPolygon2D" id=21]
+polygon = PoolVector2Array( 727, -2, 727, 31, -294, 29, -294, -6 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 517, 21 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+
+[sub_resource type="OccluderPolygon2D" id=22]
+polygon = PoolVector2Array( 1023, 46.9977, 3.00012, 45, 0, -9, 1024, -6.00227 )
+
+[node name="Office" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="Floors" type="Node2D" parent="."]
+position = Vector2( 1120, 528 )
+scale = Vector2( 0.66, 0.34 )
+
+[node name="FloorTex" type="Sprite" parent="Floors"]
+texture = ExtResource( 5 )
+region_enabled = true
+region_rect = Rect2( -871.125, -770, 3334.5, 3111.75 )
+
+[node name="Sprite" type="Sprite" parent="Floors"]
+self_modulate = Color( 1, 1, 1, 0.219608 )
+material = SubResource( 24 )
+position = Vector2( -145.455, 1129.41 )
+scale = Vector2( -2, -2 )
+texture = ExtResource( 2 )
+
+[node name="PlayerSpawnPoint" type="Position2D" parent="."]
+position = Vector2( 392, 283 )
+
+[node name="OmniLight" type="Light2D" parent="."]
+texture = ExtResource( 7 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="StaticBodyDesk" type="StaticBody2D" parent="Objects"]
+position = Vector2( 567, 128 )
+
+[node name="DeskLightOccluder" type="LightOccluder2D" parent="Objects/StaticBodyDesk"]
+occluder = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Objects/StaticBodyDesk/DeskLightOccluder"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/StaticBodyDesk"]
+position = Vector2( 12, -6 )
+shape = SubResource( 11 )
+
+[node name="StaticBodyDesk3" type="StaticBody2D" parent="Objects"]
+position = Vector2( 416, 392 )
+rotation = -0.523598
+
+[node name="DeskLightOccluder" type="LightOccluder2D" parent="Objects/StaticBodyDesk3"]
+occluder = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Objects/StaticBodyDesk3/DeskLightOccluder"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/StaticBodyDesk3"]
+position = Vector2( 12, -6 )
+shape = SubResource( 11 )
+
+[node name="StaticBodyDesk2" type="StaticBody2D" parent="Objects"]
+position = Vector2( 752, 424 )
+rotation = 0.785397
+
+[node name="DeskLightOccluder" type="LightOccluder2D" parent="Objects/StaticBodyDesk2"]
+occluder = SubResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Objects/StaticBodyDesk2/DeskLightOccluder"]
+texture = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/StaticBodyDesk2"]
+position = Vector2( 12, -6 )
+shape = SubResource( 11 )
+
+[node name="StaticBodyTypewriter" type="StaticBody2D" parent="Objects"]
+position = Vector2( 637, 317 )
+scale = Vector2( 0.578455, 0.418995 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/StaticBodyTypewriter"]
+scale = Vector2( 7.30433, 5.00849 )
+shape = SubResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Objects/StaticBodyTypewriter"]
+position = Vector2( 0, -14 )
+scale = Vector2( 0.177442, 0.170675 )
+texture = ExtResource( 6 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Objects/StaticBodyTypewriter"]
+occluder = SubResource( 10 )
+
+[node name="Paper" parent="Objects/StaticBodyTypewriter" instance=ExtResource( 3 )]
+position = Vector2( 1609.46, 560.866 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = 10.0
+pitch_scale = 1.7
+
+[node name="EnemySprite" type="Sprite" parent="."]
+material = SubResource( 18 )
+position = Vector2( 706, 126 )
+texture = ExtResource( 13 )
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Flashlight" parent="Collectibles" instance=ExtResource( 4 )]
+position = Vector2( 392, 504 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="HorizontalWall_01" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/HorizontalWall_01"]
+position = Vector2( 507, 19 )
+shape = SubResource( 19 )
+
+[node name="Panel" type="Panel" parent="Walls/HorizontalWall_01"]
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/HorizontalWall_01"]
+position = Vector2( 294, 8 )
+occluder = SubResource( 21 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HorizontalWall_02" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1212, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/HorizontalWall_02"]
+position = Vector2( 507, 19 )
+shape = SubResource( 19 )
+
+[node name="Panel" type="Panel" parent="Walls/HorizontalWall_02"]
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/HorizontalWall_02"]
+position = Vector2( 294, 8 )
+occluder = SubResource( 21 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="HorizontalWall_03" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1184, 1024 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/HorizontalWall_03"]
+position = Vector2( 507, 19 )
+shape = SubResource( 19 )
+
+[node name="Panel" type="Panel" parent="Walls/HorizontalWall_03"]
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/HorizontalWall_03"]
+position = Vector2( 294, 8 )
+occluder = SubResource( 21 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Window" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1056, 1048 )
+scale = Vector2( 0.119998, 0.442835 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Window"]
+position = Vector2( 507, 19 )
+shape = SubResource( 23 )
+
+[node name="Panel" type="Panel" parent="Walls/Window"]
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 25 )
+
+[node name="HorizontalWall_04" type="StaticBody2D" parent="Walls"]
+position = Vector2( 32, 1024 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/HorizontalWall_04"]
+position = Vector2( 507, 19 )
+shape = SubResource( 19 )
+
+[node name="Panel" type="Panel" parent="Walls/HorizontalWall_04"]
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/HorizontalWall_04"]
+position = Vector2( 294, 8 )
+occluder = SubResource( 21 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="VerticalWall_01" type="StaticBody2D" parent="Walls"]
+position = Vector2( 0, 1062 )
+rotation = -1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/VerticalWall_01"]
+position = Vector2( 507, 19 )
+shape = SubResource( 19 )
+
+[node name="Panel2" type="Panel" parent="Walls/VerticalWall_01"]
+margin_left = -7.0
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/VerticalWall_01"]
+occluder = SubResource( 22 )
+
+[node name="VerticalWall_02" type="StaticBody2D" parent="Walls"]
+position = Vector2( 2200, 1064 )
+rotation = -1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/VerticalWall_02"]
+position = Vector2( 507, 19 )
+shape = SubResource( 19 )
+
+[node name="Panel2" type="Panel" parent="Walls/VerticalWall_02"]
+margin_left = -7.0
+margin_right = 1024.0
+margin_bottom = 40.0
+custom_styles/panel = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/VerticalWall_02"]
+occluder = SubResource( 22 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Player" ), [ ExtResource( 1 ) ] ]

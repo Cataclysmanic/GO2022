@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Underwood_Typewriter_2.ogg-f74e8836df57acb3950c3f2b6cd86e85.oggstr"
+
+[deps]
+
+source_file="res://scenes/CutScenes/Animatics/Underwood_Typewriter_2.ogg"
+dest_files=[ "res://.import/Underwood_Typewriter_2.ogg-f74e8836df57acb3950c3f2b6cd86e85.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

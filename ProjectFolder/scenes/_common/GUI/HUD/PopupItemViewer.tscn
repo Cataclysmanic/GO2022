@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/_common/GUI/HUD/PopupItemViewer.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=2]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="PopupItemViewer" type="PopupPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -100.0
+margin_right = 150.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 200 )
+mouse_filter = 2
+popup_exclusive = true
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 272.0
+margin_bottom = 311.0
+
+[node name="ItemName" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 2 )
+text = "ItemName"
+align = 1
+
+[node name="ItemImage" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 252.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 250, 150 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+
+[node name="ItemDescription" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+margin_top = 204.0
+margin_right = 252.0
+margin_bottom = 254.0
+rect_min_size = Vector2( 250, 50 )
+text = "Item Description"
+
+[node name="OKButton" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 258.0
+margin_right = 252.0
+margin_bottom = 278.0
+focus_mode = 0
+enabled_focus_mode = 0
+shortcut = SubResource( 2 )
+text = "OK"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/OKButton" to="." method="_on_OKButton_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
