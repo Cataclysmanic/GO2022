@@ -60,7 +60,7 @@ func generate_light_occluders_from_bitmap():
 	var rectPos = Vector2.ZERO
 	var wallRect = Rect2(rectPos, rectSize)
 	var wallBitmap = BitMap.new()
-	var xForm = get_transform() # what do I do with this???
+	#var xForm = get_transform() # what do I do with this???
 	wallBitmap.create_from_image_alpha(wallImage)
 	
 	occlusionPolygons = wallBitmap.opaque_to_polygons(wallRect)
