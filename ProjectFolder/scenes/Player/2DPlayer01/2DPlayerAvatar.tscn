@@ -11,7 +11,7 @@
 light_mode = 1
 
 [sub_resource type="CapsuleShape2D" id=4]
-radius = 22.0
+radius = 13.0
 height = 6.0
 
 [sub_resource type="CanvasItemMaterial" id=19]
@@ -47,7 +47,7 @@ texture = ExtResource( 3 )
 
 [node name="PaperDoll" parent="." instance=ExtResource( 5 )]
 position = Vector2( -6, 0 )
-scale = Vector2( 0.33, 0.33 )
+scale = Vector2( 0.207514, 0.207514 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true

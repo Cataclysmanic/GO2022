@@ -82,7 +82,7 @@ func play_animations(movement_vector):
 		else:
 			$PaperDoll.relax()
 	
-func _on_collectible_picked_up(pickupObj):
+func _on_collectible_picked_up(_pickupObj):
 	pass # don't really care yet. Inventory and IO can hash this out between them.
 	
 
