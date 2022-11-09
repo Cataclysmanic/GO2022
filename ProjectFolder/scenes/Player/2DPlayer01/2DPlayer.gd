@@ -13,7 +13,7 @@ func _ready():
 
 	manual_spawn_gun() # temporary
 
-
+	
 func init(mapScene):
 	map_scene = mapScene
 
@@ -40,7 +40,7 @@ func manual_spawn_gun():
 	
 
 
-func _process(delta):
+func _physics_process(delta):
 	move(delta)
 	$Flashlight.look_at(get_global_mouse_position())
 
@@ -59,6 +59,8 @@ func toggle_flashlight():
 
 
 func move(delta):
+	delta = 1.0 # cheat because I switched from move_and_collide to move_and_slide, which doesn't require delta.
+	
 	var style = "ortho"
 	
 	var speed = 150.0
@@ -89,7 +91,7 @@ func move(delta):
 			move_vector += Vector2.DOWN * speed * delta
 		directional_vector = move_vector
 
-	var _collision = move_and_collide(directional_vector)
+	var _collision = move_and_slide(directional_vector)
 	play_animations(directional_vector)
 	last_movement_vector = directional_vector
 	
