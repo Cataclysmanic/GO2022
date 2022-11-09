@@ -3,19 +3,45 @@ extends Node2D
 
 var ticks = 0
 var occlusionPolygons = []
+export var num_npcs = 6
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_light_occluders_from_bitmap()
+	spawn_npcs(num_npcs)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-	#update()
-#	if ticks % 100 == 0:
-#		update()
-#	ticks += 1
+func spawn_npcs(num):
+	
+	for _i in range(num):
+		spawn_npc()
+
+func spawn_npc():
+	var pos = get_random_spawn_location(50)
+	var npcList = $AvailableNPCs.get_resource_list()
+	var randomNPCName = npcList[randi()%len(npcList)]
+	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
+	npcScene.set_position(pos) # local coords
+	npcScene.name = "NPC Target Dummy"
+	$NPCs.add_child(npcScene)
+
+	
+func get_random_spawn_location(spread:int) -> Vector2:
+	# spread is random jitter to apply, within number of pixels
+	var pos = Vector2.ZERO
+	var spawnPoints = $PossibleSpawnPoints.get_children()
+	var chosenPoint = spawnPoints[randi()%len(spawnPoints)]
+	pos = chosenPoint.get_position() #local coords
+
+	var jitterX = rand_range(-spread, spread)
+	var jitterY = rand_range(-spread, spread)
+	pos += Vector2(jitterX, jitterY)
+
+	return pos
+
+
+
 
 func generate_light_occluders_from_bitmap():
 	var wallSprite = $Walls
@@ -72,20 +98,6 @@ func spawn_static_body(myPolygon):
 	$StaticBodyWalls.add_child(newPolyDraw)
 	
 	
-func _draw():
-	
-	for polygon in occlusionPolygons:
-#		var offsetPoly = []
-#		for point in polygon:
-#			offsetPoly.push_back(point + position/3) # How did you get 3? Show your work.
-#		var colors : PoolColorArray = []
-#		for _i in range(len(polygon)):
-#			colors.push_back(Color.blueviolet)
-#		draw_polygon(polygon, colors)
-
-		#draw_colored_polygon(offsetPoly, Color.goldenrod)
-		pass
-		#draw_colored_polygon(polygon, Color.crimson)
 
 
 func _on_Area2D_body_entered(body):

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/municipal building 01 Roof.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/municipal building 01 all walls.png" type="Texture" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/municipal building 01 Floor.png" type="Texture" id=3]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/municipal building 01 exterior walls.png" type="Texture" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/Municipal Building 01.gd" type="Script" id=5]
+[ext_resource path="res://scenes/NPCs/TargetPracticeDummy.tscn" type="PackedScene" id=6]
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -99.9051, 66.0484, -248.098, 62.7182, -269.189, 43.8472, -268.634, -490.645, -250.318, -511.181, 620.522, -513.956, 644.388, -487.87, 647.163, 23.8662, 624.962, 59.943, 512.291, 62.1632, 511.181, 172.614, 452.903, 199.255, 321.361, 198.145, 271.409, 170.949, 269.189, 61.6081, 279.734, 62.7182, 281.954, 167.064, 323.026, 189.82, 455.678, 187.6, 501.191, 165.953, 501.191, 52.1727, 614.416, 51.0626, 636.062, 18.871, 636.062, -484.54, 613.306, -506.741, -241.992, -505.076, -260.863, -484.54, -259.198, 42.1821, -242.547, 52.7277, -91.0246, 57.1679, -90.4696, 169.284, -47.7324, 192.04, 91.0246, 189.82, 132.097, 165.953, 132.652, 57.7229, 157.628, 56.6129, 157.628, 66.0484, 142.642, 66.0484, 142.087, 174.279, 87.6945, 203.695, -48.8425, 203.14, -102.68, 170.949 )
@@ -40,6 +41,31 @@ shape = SubResource( 1 )
 [node name="LightOccluders" type="Node2D" parent="."]
 
 [node name="StaticBodyWalls" type="Node2D" parent="."]
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="PossibleSpawnPoints" type="Node2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -104.9, -356.328 )
+
+[node name="Position2D2" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( 329.132, -385.19 )
+
+[node name="Position2D3" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -398.51, -219.236 )
+
+[node name="Position2D4" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -387.965, -92.6897 )
+
+[node name="Position2D5" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -303.045, -392.405 )
+
+[node name="Position2D6" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( 57.7229, -39.962 )
+
+[node name="AvailableNPCs" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
 
 [node name="Roof" type="Sprite" parent="."]
 visible = false

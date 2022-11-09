@@ -29,7 +29,14 @@ func die():
 
 
 func _on_Area2D_body_entered(body):
+	print(body.name)
+
+	
+		
 	if body.has_method("hit"):
+		var _err = connect("hit", body, "_on_hit")
+		emit_signal("hit", damage)
+	elif body.has_method("_on_hit"):
 		var _err = connect("hit", body, "_on_hit")
 		emit_signal("hit", damage)
 	self.die()
