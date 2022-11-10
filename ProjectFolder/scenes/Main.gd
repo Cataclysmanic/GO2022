@@ -11,6 +11,7 @@ enum STATES { INITIALIZING, ACTIVE, PAUSED }
 var State = STATES.INITIALIZING
 
 func _ready():
+	randomize()
 	Global.world_controller = self
 	start_intro()
 	State = STATES.ACTIVE
