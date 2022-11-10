@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath.gd" type="Script" id=2]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/Car.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 174, 2823, 0, 0, 0, 0, 156, -2978, 0, 0, 0, 0, 79, -3135, 0, 0, 0, 0, -198, -3236, 0, 0, 0, 0, -3017, -3209, 0, 0, 0, 0, -3151, -3127, 0, 0, 0, 0, -3202, -2915, 0, 0, 0, 0, -3092, 57, 0, 0, 0, 0, -3034, 125, 0, 0, 0, 0, -2928, 140, 0, 0, 0, 0, 2926, 189, 0, 0, 0, 0, 2921, 2739, 0, 0, 0, 0, 2794, 2862, 0, 0, 0, 0, -2792, 2845, 0, 0, 0, 0, -2942, 2721, 0, 0, 0, 0, -2916, 213, 0, 0, 0, 0, 3280, 290, 0, 0, 0, 0, 3231, -141, 0, 0, 0, 0, 2863, -168, 0, 0, 0, 0, -32, -157, 0, 0, 0, 0, -204, -38, 0, 0, 0, 0, -187, 2760, 0, 0, 0, 0, -113, 2828 )
+}
+
+[node name="DrivingPath" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Car" ), [ ExtResource( 3 ) ] ]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="Car" parent="." instance=ExtResource( 3 )]
+position = Vector2( 174, 2823 )
+rotation = -1.5739
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

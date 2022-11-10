@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath.gd" type="Script" id=2]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/Car.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 3426, -230, 0, 0, 0, 0, -2575, -191, 0, 0, 0, 0, -2860, -476, 0, 0, 0, 0, -2860, -2938, 0, 0, 0, 0, -137, -2851, 0, 0, 0, 0, -137, 2850, 0, 0, 0, 0, -2995, 2794, 0, 0, 0, 0, -2916, 213, 0, 0, 0, 0, 3569, 261, 0, 0, 0, 0, 3426, -230 )
+}
+
+[node name="DrivingPath" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Car" ), [ ExtResource( 3 ) ] ]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="Car" parent="." instance=ExtResource( 3 )]
+position = Vector2( 3426, -230 )
+rotation = 3.13509
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
