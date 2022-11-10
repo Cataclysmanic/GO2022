@@ -23,7 +23,7 @@ func _ready():
 		$Label.text = "active"
 
 func _physics_process(delta):
-	if nav_agent.is_navigation_finished():
+	if nav_agent.is_navigation_finished() or !(Global.in_danger==str(self.get_parent().get_parent().name)):
 		return
 
 	var target_global_position = nav_agent.get_next_location()

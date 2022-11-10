@@ -143,7 +143,8 @@ resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 5 ) ] ]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 116.23
+radius = 150.0
+max_neighbors = 20
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

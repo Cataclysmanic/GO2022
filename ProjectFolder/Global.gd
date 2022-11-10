@@ -5,6 +5,7 @@ var world_controller = null
 var current_scene = null
 var IO = null
 var Utils = null
+var in_danger = "no"
 
 
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
@@ -18,8 +19,6 @@ var trigger_events = { # a few things we can test for, to see if the user alread
 	"found_gun":false,
 	"missing_tutorial_key_reported":false,
 }
-
-
 
 func pause():
 	game_state = STATES.PAUSED
