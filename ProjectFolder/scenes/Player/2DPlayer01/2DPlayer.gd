@@ -95,22 +95,30 @@ func move(delta):
 	
 	if style == "orbit":
 		if Input.is_action_pressed("ui_up"):
+			$PaperDoll/Lower.rotation_degrees = -90
 			move_vector += Vector2.RIGHT * speed * delta
 		if Input.is_action_pressed("ui_left"):
+			$PaperDoll/Lower.rotation_degrees = 180
 			move_vector += Vector2.UP * speed * delta
 		if Input.is_action_pressed("ui_right"):
+			$PaperDoll/Lower.rotation_degrees = 0
 			move_vector += Vector2.DOWN * speed * delta
 		if Input.is_action_pressed("ui_down"):
+			$PaperDoll/Lower.rotation_degrees = 90
 			move_vector += Vector2.LEFT * speed * delta
 		directional_vector = move_vector.rotated(rotation)
 	elif style == "ortho":
 		if Input.is_action_pressed("ui_up"):
+			$PaperDoll/Lower.rotation_degrees = -90
 			move_vector += Vector2.UP * speed * delta
 		if Input.is_action_pressed("ui_left"):
+			$PaperDoll/Lower.rotation_degrees = 180
 			move_vector += Vector2.LEFT * speed * delta
 		if Input.is_action_pressed("ui_right"):
+			$PaperDoll/Lower.rotation_degrees = 0
 			move_vector += Vector2.RIGHT * speed * delta
 		if Input.is_action_pressed("ui_down"):
+			$PaperDoll/Lower.rotation_degrees = 90
 			move_vector += Vector2.DOWN * speed * delta
 		directional_vector = move_vector
 

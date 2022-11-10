@@ -1535,6 +1535,7 @@ scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 3 )
 
 [node name="Lower" type="Node2D" parent="."]
+rotation = -1.44339
 
 [node name="LowerBody" type="Sprite" parent="Lower"]
 texture = ExtResource( 9 )
