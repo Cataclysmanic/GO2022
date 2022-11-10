@@ -80,9 +80,10 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 23.5, 23.5 )
+extents = Vector2( 17.5646, 19.3223 )
 
 [sub_resource type="CircleShape2D" id=6]
+radius = 9.48202
 
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
 scale = Vector2( 0.227731, 0.207015 )
@@ -125,7 +126,8 @@ anims/die = SubResource( 3 )
 anims/hit = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 0.5 )
+position = Vector2( -1.092e-06, -7.41536e-07 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="DieNoise" type="AudioStreamPlayer2D" parent="."]
@@ -140,14 +142,17 @@ volume_db = 10.0
 resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 5 ) ] ]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 116.23
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[node name="Trigger" type="Area2D" parent="."]
+[node name="damage_area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
-scale = Vector2( -18.9872, 20.3072 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
+scale = Vector2( -3.37249, 3.71667 )
 shape = SubResource( 6 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]

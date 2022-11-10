@@ -3,8 +3,8 @@ extends KinematicBody2D
 export var path_to_player := NodePath()
 var velocity = Vector2.ZERO
 onready var nav_agent = $NavigationAgent2D
-onready var timer := $Timer
-onready var sprite := $Sprite
+onready var timer = $Timer
+onready var sprite = $Sprite
 export var active : bool = false
 var health = 20.0
 var map_scene
@@ -27,7 +27,7 @@ func _physics_process(delta):
 		return
 
 	var target_global_position = nav_agent.get_next_location()
-	var direction := global_position.direction_to(target_global_position)
+	var direction = global_position.direction_to(target_global_position)
 
 	var desiredvelocity = direction * nav_agent.max_speed
 	var steering = (desiredvelocity - velocity) * delta * 4.0
@@ -85,3 +85,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "die":
 		set_visible(false)
 		queue_free()
+
+func _on_damage_area_body_entered(body):
+	if body.name == "PlayerDetective":
+		body._on_hit(1)
