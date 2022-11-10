@@ -1,9 +1,7 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var player
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,7 +31,12 @@ func spawn_player():
 	playerScene.set_global_position(startPos)
 	playerScene.init(self)
 	$Player.add_child(playerScene)
+	player = playerScene
 
+
+func get_player():
+	return player
+	
 
 func _on_loot_ready(itemObj):
 	$Collectibles.call_deferred("add_child", itemObj)

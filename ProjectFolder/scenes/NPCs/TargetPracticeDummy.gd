@@ -4,7 +4,7 @@ export var active : bool = false
 var health = 20.0
 var map_scene
 var current_path = []
-onready var player = $"../../../../../Player"
+onready var player # map_scene will provide this on init now
 
 onready var nav_agent = $NavigationAgent2D
 
@@ -23,7 +23,7 @@ func _ready():
 func init(mapScene):
 	map_scene = mapScene
 	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
-	
+	player = mapScene.get_player()
 
 func flash_hit():
 	$AnimationPlayer.play("hit")
