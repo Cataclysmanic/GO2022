@@ -25,7 +25,8 @@ text = "Controls:
 Arrows/WASD/LeftJoy: Move
 Mouse/RightJoy: Look Around
 Spacebar: Control mode toggle
-Enter: Toggle 2d/2.5d
+Shift: Sprint
+Mouse Wheel (+/-)-: zoom camera
 E: Change faction (disguise)
 F: Flashlight on/off"
 

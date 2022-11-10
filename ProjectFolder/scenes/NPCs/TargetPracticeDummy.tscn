@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NPCs/TargetPracticeDummy.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=3]
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=5]
 light_mode = 1
@@ -131,5 +132,8 @@ volume_db = 10.0
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = 10.0
+
+[node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 5 ) ] ]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -139,10 +139,10 @@ func rebuild_inventory():
 		inventory_add(item)
 
 
-func pickup_gun():
-	if Global.trigger_events["missing_gun_reported"] == false:
-		$AudioClips/FoundGun.play()
-		Global.trigger_events["missing_gun_reported"] = true
+#func pickup_gun():
+#	if Global.trigger_events["missing_gun_reported"] == false:
+#		$AudioClips/FoundGun.play()
+#		Global.trigger_events["missing_gun_reported"] = true
 
 func _on_collectible_picked_up(pickupObj):
 	var itemResource = pickupObj.item_details
@@ -162,7 +162,7 @@ func _on_collectible_picked_up(pickupObj):
 
 
 func play_specific_audio_events(itemName:String):
-	if itemName.to_lower() == "gun" and Global.trigger_events["found_gun"] == false:
+	if "gun" in itemName.to_lower() and Global.trigger_events["found_gun"] == false:
 			$AudioEvents/FoundGun.play()
 			Global.trigger_events["gun_found"] = true
 
@@ -173,6 +173,7 @@ func _on_player_gun_loaded(ammoRemaining, _ammoType):
 		add_bullet_icon()
 
 func _on_player_gun_shot(ammoRemaining):
+
 	if ammoRemaining < ammo_container.get_child_count():
 		var diff = ammo_container.get_child_count() - ammoRemaining
 		for _i in range(diff):

@@ -13,11 +13,13 @@ signal shit_calmed_down() # for music
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_light_occluders_from_bitmap()
+
+
+func init(mapObj):
+
+	map_scene = mapObj
+	
 	spawn_npcs(num_npcs)
-
-
-func init(map):
-	map_scene = map
 
 func spawn_npcs(num):
 	
@@ -33,6 +35,8 @@ func spawn_npc():
 	npcScene.set_scale(Vector2(1/scale.x, 1/scale.y))
 	npcScene.set_position(pos) # local coords
 	npcScene.name = "NPC Target Dummy"
+
+	npcScene.init(map_scene)
 	$NPCs.add_child(npcScene)
 
 	

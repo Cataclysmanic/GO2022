@@ -35,9 +35,12 @@ func manual_spawn_gun():
 	var gunScene = $ResourcePreloader.get_resource("Gun2D").instance()
 	var loc = find_node("GunLocation")
 	
-	gunScene.init(map_scene)
+	gunScene.init(map_scene, self, self.get_hud())
 	loc.add_child(gunScene)
 	
+
+func get_hud():
+	return find_node("HUD")
 
 
 func _physics_process(delta):
