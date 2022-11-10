@@ -33,10 +33,8 @@ func spawn_player():
 	$Player.add_child(playerScene)
 	player = playerScene
 
-
 func get_player():
 	return player
-	
 
 func _on_loot_ready(itemObj):
 	$Collectibles.call_deferred("add_child", itemObj)
