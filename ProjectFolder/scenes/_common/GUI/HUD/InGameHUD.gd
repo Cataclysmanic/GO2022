@@ -114,18 +114,7 @@ func inventory_add(itemResource : Resource):
 	iconButton.init(itemResource, self)
 	inventory_container.add_child(iconButton)
 	
-	
-#	var item = itemResource
-#	var textureRect = TextureRect.new()
-#	textureRect.rect_size = iconSize
-#	textureRect.rect_min_size = iconSize
-#	var iconTexture = load(item.path_to_icon)
-#	textureRect.expand = true
-#	textureRect.texture = iconTexture
-#	textureRect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-#	inventory_container.add_child(textureRect)
-	
-	display_inventory_item(itemResource)
+	#display_inventory_item(itemResource)
 	
 	
 func journal_add(_entryName : String, _entryNotes: String):
