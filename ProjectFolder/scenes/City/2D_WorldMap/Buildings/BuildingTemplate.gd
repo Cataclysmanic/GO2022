@@ -115,6 +115,7 @@ func _on_Area2D_body_entered(body):
 		if not is_connected("shit_got_real", map_scene, "_on_shit_got_real"):
 			var _err = connect("shit_got_real", map_scene, "_on_shit_got_real")
 		emit_signal("shit_got_real")
+		Global.in_danger = str(self.name)
 
 
 func _on_Area2D_body_exited(body):
@@ -123,3 +124,4 @@ func _on_Area2D_body_exited(body):
 		if not is_connected("shit_calmed_down", map_scene, "_on_shit_calmed_down"):
 			var _err = connect("shit_calmed_down", map_scene, "_on_shit_calmed_down")
 		emit_signal("shit_calmed_down")
+		Global.in_danger = "no"
