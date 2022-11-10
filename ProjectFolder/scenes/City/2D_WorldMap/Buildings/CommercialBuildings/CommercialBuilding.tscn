@@ -64,7 +64,25 @@ shape = SubResource( 1 )
 
 [node name="StaticBodyWalls" type="Node2D" parent="."]
 
-[node name="NPCs" type="Node2D" parent="."]
+[node name="NPCs" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 2 )
+
+[node name="NavigationPolygonInstance8" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 3 )
+
+[node name="NavigationPolygonInstance9" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 4 )
+
+[node name="NavigationPolygonInstance10" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 5 )
+
+[node name="NavigationPolygonInstance11" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 6 )
+
+[node name="NavigationPolygonInstance12" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 7 )
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 

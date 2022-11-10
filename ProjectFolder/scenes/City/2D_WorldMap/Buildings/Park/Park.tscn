@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkFloor.png" type="Texture" id=2]
@@ -7,6 +7,11 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( 193, -219, 219, -193, 219, 200, 192, 218, -196, 218, -220, 192, -219, -193, -199, -219 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6, 7 ) ]
+outlines = [ PoolVector2Array( 193, -219, 219, -193, 219, 200, 192, 218, -196, 218, -220, 192, -219, -193, -199, -219 ) ]
 
 [node name="Building" type="Node2D"]
 script = ExtResource( 5 )
@@ -33,7 +38,10 @@ shape = SubResource( 1 )
 
 [node name="StaticBodyWalls" type="Node2D" parent="."]
 
-[node name="NPCs" type="Node2D" parent="."]
+[node name="NPCs" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NPCs"]
+navpoly = SubResource( 2 )
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 

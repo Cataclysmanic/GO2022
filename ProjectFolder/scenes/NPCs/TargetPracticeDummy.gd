@@ -4,6 +4,7 @@ export var active : bool = false
 var health = 20.0
 var map_scene
 var current_path = []
+onready var player = get_node("/root/Global")
 
 onready var nav_agent = $NavigationAgent2D
 
@@ -60,7 +61,7 @@ func _unhandled_input(event):
 
 
 func move_along_path():
-	#current_path = nav_agent.get_path_to()
+	current_path = nav_agent.get_path_to()
 	var dest = nav_agent.get_next_location()
 	look_at(dest)
 	var speed = 80.0

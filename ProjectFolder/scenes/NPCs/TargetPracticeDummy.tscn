@@ -83,6 +83,7 @@ tracks/0/keys = {
 extents = Vector2( 23.5, 23.5 )
 
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
+scale = Vector2( 0.501139, 0.461719 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
