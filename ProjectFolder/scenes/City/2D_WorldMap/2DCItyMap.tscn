@@ -1,10 +1,10 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/textures/BlockGroundTile.png" type="Texture" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/2DStreetlamp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Items/collectables/2D/Flashlight2DPickup.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/2dTest/2DLevelTest.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/Park.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/City/2D_WorldMap/2DCItyMap.gd" type="Script" id=6]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/Municipal Building 01.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Items/collectables/2D/2DGunPickup.tscn" type="PackedScene" id=8]
@@ -13,12 +13,19 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=11]
 [ext_resource path="res://scenes/_common/Music/CalmLoop.mp3" type="AudioStream" id=12]
 [ext_resource path="res://icon.png" type="Texture" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=17]
 
 [sub_resource type="Environment" id=1]
 ambient_light_energy = 0.0
 
 [sub_resource type="CanvasItemMaterial" id=18]
 light_mode = 2
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 20, 86.4 )
 
 [node name="City" type="Node2D"]
 script = ExtResource( 6 )
@@ -117,16 +124,68 @@ position = Vector2( 430, -1583 )
 rotation = 3.14159
 
 [node name="Buildings" type="Node2D" parent="Outdoor"]
+scale = Vector2( 1.03418, 1 )
 
-[node name="Office" parent="Outdoor/Buildings" instance=ExtResource( 5 )]
-position = Vector2( 737, 819 )
-
-[node name="Municipal Building" parent="Outdoor/Buildings" instance=ExtResource( 7 )]
+[node name="MunicipalBuilding" parent="Outdoor/Buildings" instance=ExtResource( 7 )]
 position = Vector2( -1537, -1491 )
+
+[node name="ResidentialBuildings" parent="Outdoor/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 1428.18, -1661 )
+scale = Vector2( 3.92565, 3.92565 )
+
+[node name="CommercialBuildings" parent="Outdoor/Buildings" instance=ExtResource( 15 )]
+position = Vector2( -1480.4, 1483 )
+scale = Vector2( 3.31117, 3.31117 )
+
+[node name="Park" parent="Outdoor/Buildings" instance=ExtResource( 5 )]
+position = Vector2( 1488.14, 1539 )
+scale = Vector2( 3.25559, 3.25559 )
 
 [node name="Projectiles" type="Node2D" parent="Outdoor"]
 
+[node name="InvisibleWalls" type="Node2D" parent="Outdoor"]
+
+[node name="EastWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( 3502, 0 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/EastWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="WestWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( -3662, 0 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/WestWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="SouthWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( -4, 3516 )
+rotation = -1.57079
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/SouthWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="NorthWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( 6, -3514 )
+rotation = -1.57079
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/NorthWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
 [node name="Player" type="Node2D" parent="."]
+
+[node name="VehicularTraffic" type="Node2D" parent="."]
+
+[node name="DrivingPath" parent="VehicularTraffic" instance=ExtResource( 16 )]
+
+[node name="DrivingPath2" parent="VehicularTraffic" instance=ExtResource( 17 )]
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 1 ) ] ]

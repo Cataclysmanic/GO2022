@@ -7,11 +7,11 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 31 )
 
-[node name="2DCollectiblePickup" type="Node2D"]
+[node name="2DGun" type="Node2D"]
 script = ExtResource( 1 )
 item_details = {
-"is_unique": true,
-"item_name": "Gun2D",
+"is_unique": false,
+"item_name": "Gun",
 "notes_for_journal": "It's a 2 - Dimensional Gun. Weird.",
 "path_to_icon": "res://scenes/_common/GUI/icons/gun-n.png",
 "path_to_popup_display_image": "res://scenes/Items/weapons/revolver-big.png",

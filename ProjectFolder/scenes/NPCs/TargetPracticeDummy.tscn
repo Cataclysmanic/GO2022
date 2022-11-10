@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NPCs/TargetPracticeDummy.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=3]
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=5]
 light_mode = 1
@@ -81,7 +82,10 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.5, 23.5 )
 
+[sub_resource type="CircleShape2D" id=6]
+
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
+scale = Vector2( 0.227731, 0.207015 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -131,5 +135,19 @@ volume_db = 10.0
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 volume_db = 10.0
+
+[node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 5 ) ] ]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Trigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+scale = Vector2( -18.9872, 20.3072 )
+shape = SubResource( 6 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

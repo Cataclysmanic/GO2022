@@ -28,7 +28,7 @@ func _on_collectible_picked_up(itemObj): # stored in Collectible as item_info. (
 func get_inventory():
 	return stored_items
 
-func _on_collectible_used(usedItemName):
+func _on_collectible_used(usedItemName): # **** Not finding "magazine"
 	for item in stored_items:
 		if item.item_name.to_lower().strip_edges() == usedItemName.to_lower().strip_edges():
 			stored_items.erase(item) # removes the first occurrence

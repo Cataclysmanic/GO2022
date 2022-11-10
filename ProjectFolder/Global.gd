@@ -20,6 +20,7 @@ var trigger_events = { # a few things we can test for, to see if the user alread
 }
 
 
+
 func pause():
 	game_state = STATES.PAUSED
 	

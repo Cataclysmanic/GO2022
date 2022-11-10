@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/CalmStandaloneSong.mp3-63f26bafe0a004879a3b0d356d3382ad.mp3str"
+
+[deps]
+
+source_file="res://scenes/_common/Music/CalmStandaloneSong.mp3"
+dest_files=[ "res://.import/CalmStandaloneSong.mp3-63f26bafe0a004879a3b0d356d3382ad.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

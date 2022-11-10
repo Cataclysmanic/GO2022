@@ -153,7 +153,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 200, 64 )
 custom_constants/vseparation = 5
 custom_constants/hseparation = 5
-columns = 3
+columns = 6
 
 [node name="InventoryItems" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
