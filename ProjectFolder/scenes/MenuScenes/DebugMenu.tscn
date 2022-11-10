@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/CutScenes/Animatics/IntroCinematic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/DialogScenes/TestDialog.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/City/TestField.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/City/Indoors/IndoorTestRoom.tscn" type="PackedScene" id=5]
@@ -119,8 +120,8 @@ margin_left = 329.0
 margin_top = 118.0
 margin_right = 577.0
 margin_bottom = 147.0
-disabled = true
-text = "debug"
+text = "Intro Cinematic"
+SceneToLaunch = ExtResource( 2 )
 
 [node name="DebugButton3" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
