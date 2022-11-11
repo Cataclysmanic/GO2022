@@ -29,12 +29,15 @@ func _ready():
 	State = States.READY
 
 func _physics_process(delta):
+	
 	if (
 		State == States.DEAD
-		or nav_agent.is_navigation_finished()
-		or home_building.is_player_present() == false # was !(Global.in_danger==str(self.get_parent().get_parent().name)):
+		or !home_building.is_player_present() # was !(Global.in_danger==str(self.get_parent().get_parent().name)):
 	):
 		return
+	elif nav_agent.is_navigation_finished():
+		return
+		
 
 	var target_global_position = nav_agent.get_next_location()
 	var direction = global_position.direction_to(target_global_position)
