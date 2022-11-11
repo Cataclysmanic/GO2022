@@ -48,7 +48,9 @@ func shoot():
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
 	var bulletSpeed = 600.0
-	spawn_bullet(myPos, myRot, bulletSpeed)
+	var jitter = 8.0
+	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
+	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
 	flash_muzzle()
 	cock_gun()
 	ammo_remaining -= 1
@@ -56,9 +58,11 @@ func shoot():
 
 
 func flash_muzzle():
-	$MuzzleFlash.visible = true
+	var flash = $MuzzleFlash
+	flash.rotation = rand_range(-0.2, 0.2)
+	flash.visible = true
 	var tween = get_node("Tween")
-	tween.interpolate_property($MuzzleFlash, "modulate",
+	tween.interpolate_property(flash, "modulate",
 		Color(1,1,1,1), Color(1,1,1,0), .2,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()

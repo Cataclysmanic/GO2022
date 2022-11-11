@@ -34,14 +34,17 @@ one_shot = true
 
 [node name="MuzzleFlash" type="Sprite" parent="."]
 visible = false
-position = Vector2( 104, 5 )
+position = Vector2( 1.00001, 1 )
 scale = Vector2( 5, 5 )
 texture = ExtResource( 6 )
+offset = Vector2( 20.6, 0.8 )
 
 [node name="Glow" type="Light2D" parent="MuzzleFlash"]
 position = Vector2( -18.2, -1 )
 scale = Vector2( 3, 3 )
 texture = ExtResource( 7 )
+color = Color( 1, 0.905882, 0.807843, 1 )
+energy = 0.67
 
 [node name="Tween" type="Tween" parent="."]
 
