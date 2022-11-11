@@ -5,6 +5,8 @@ var ticks = 0
 var occlusionPolygons = []
 export var num_npcs = 6
 var map_scene
+var player_currently_present = false
+
 
 signal shit_got_real() # for music
 signal shit_calmed_down() # for music
@@ -36,7 +38,7 @@ func spawn_npc():
 	npcScene.set_position(pos) # local coords
 	npcScene.name = "NPC Target Dummy"
 
-	npcScene.init(map_scene)
+	npcScene.init(map_scene, self)
 	if "Residential" in self.name:
 		npcScene.active = true
 	$NPCs.add_child(npcScene)
@@ -115,8 +117,15 @@ func _on_Area2D_body_entered(body):
 		if not is_connected("shit_got_real", map_scene, "_on_shit_got_real"):
 			var _err = connect("shit_got_real", map_scene, "_on_shit_got_real")
 		emit_signal("shit_got_real")
-		Global.in_danger = str(self.name)
+		player_currently_present = true
+		if find_node("DebugInfo"):
+			$DebugInfo.text = "Player Present: " + str(player_currently_present)
+		#Global.in_danger = str(self.name)
 
+
+func is_player_present():
+	return player_currently_present
+	
 
 func _on_Area2D_body_exited(body):
 	if "detective" in body.name.to_lower():
@@ -124,4 +133,8 @@ func _on_Area2D_body_exited(body):
 		if not is_connected("shit_calmed_down", map_scene, "_on_shit_calmed_down"):
 			var _err = connect("shit_calmed_down", map_scene, "_on_shit_calmed_down")
 		emit_signal("shit_calmed_down")
-		Global.in_danger = "no"
+		#Global.in_danger = "no"
+		player_currently_present = false
+		if find_node("DebugInfo"):
+			$DebugInfo.text = "Player Present: " + str(player_currently_present)
+		

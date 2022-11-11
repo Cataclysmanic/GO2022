@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingsRoof.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BuildingTemplate.gd" type="Script" id=5]
 [ext_resource path="res://scenes/NPCs/TargetPracticeDummy.tscn" type="PackedScene" id=6]
 
@@ -30,14 +31,17 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArra
 outlines = [ PoolVector2Array( 234, 43, 234, 138, 168, 139, 169, 144, 234, 143, 234, 239, 71, 239, 71, 143, 120, 143, 120, 137, 72, 136, 72, 109, 120, 110, 120, 102, 71, 102, 71, 42, 114, 43, 114, 73, 122, 73, 122, 42 ) ]
 
 [sub_resource type="NavigationPolygon" id=6]
-vertices = PoolVector2Array( -82, 238, -82, 43, -39, 105, -39, 174, 64, 237, -33, 174, 12, 175, -81, 42, 8, 42, -33, 105, 12, 106, 13, 105, 9, 42, 65, 43, 18, 106, 18, 175 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5, 6 ), PoolIntArray( 2, 7, 8, 9 ), PoolIntArray( 5, 9, 8, 10, 6 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 14, 13, 4, 15 ), PoolIntArray( 15, 4, 6 ) ]
-outlines = [ PoolVector2Array( 65, 43, 64, 237, -82, 238, -82, 43, -39, 105, -39, 174, -33, 174, -33, 105, -39, 105, -81, 42, 8, 42, 12, 106, 12, 175, 18, 175, 18, 106, 13, 105, 9, 42 ) ]
+vertices = PoolVector2Array( 65, 43, 64, 237, 19, 176, 19, 105, -82, 43, 11, 105, -82, 238, 12, 176, -33, 176, -40, 176, -39, 105, -33, 105 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 2, 1, 6, 7 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 9, 8, 6 ), PoolIntArray( 9, 6, 4, 10 ), PoolIntArray( 5, 7, 8, 11 ), PoolIntArray( 4, 5, 11 ), PoolIntArray( 4, 11, 10 ) ]
+outlines = [ PoolVector2Array( 65, 43, 64, 237, -82, 238, -82, 43 ), PoolVector2Array( -39, 105, -33, 105, -33, 176, -40, 176 ), PoolVector2Array( 11, 105, 19, 105, 19, 176, 12, 176 ) ]
 
 [sub_resource type="NavigationPolygon" id=7]
 vertices = PoolVector2Array( -235, 238, -236, 161, -169, 161, -89, 238, -138, 109, -89, 109, -169, 154, -235, 154, -236, 41, -175, 41, -175, 106, -168, 108, -138, 104, -168, 42, -89, 42, -89, 103 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 3, 2, 6 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 6, 7, 10, 11 ), PoolIntArray( 4, 6, 11, 12 ), PoolIntArray( 12, 11, 13, 14 ), PoolIntArray( 12, 14, 15 ) ]
 outlines = [ PoolVector2Array( -89, 42, -89, 103, -138, 104, -138, 109, -89, 109, -89, 238, -235, 238, -236, 161, -169, 161, -169, 154, -235, 154, -236, 41, -175, 41, -175, 106, -168, 108, -168, 42 ) ]
+
+[sub_resource type="CanvasItemMaterial" id=8]
+light_mode = 1
 
 [node name="Building" type="Node2D"]
 script = ExtResource( 5 )
@@ -138,28 +142,20 @@ position = Vector2( -40, -32 )
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
 
 [node name="Roof" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 3 )
 
-[node name="NavigationPolygons" type="Node2D" parent="."]
-
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavigationPolygons"]
-navpoly = SubResource( 2 )
-
-[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="NavigationPolygons"]
-navpoly = SubResource( 3 )
-
-[node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="NavigationPolygons"]
-navpoly = SubResource( 4 )
-
-[node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="NavigationPolygons"]
-navpoly = SubResource( 5 )
-
-[node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="NavigationPolygons"]
-navpoly = SubResource( 6 )
-
-[node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="NavigationPolygons"]
-navpoly = SubResource( 7 )
+[node name="DebugInfo" type="Label" parent="."]
+material = SubResource( 8 )
+margin_left = -196.0
+margin_top = -301.0
+margin_right = 218.0
+margin_bottom = -242.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 198, 29 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Player Present: False"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

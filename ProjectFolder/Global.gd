@@ -5,7 +5,7 @@ var world_controller = null
 var current_scene = null
 var IO = null
 var Utils = null
-var in_danger = "no"
+#var in_danger = "no" # moved to building is_player_present()
 
 
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
