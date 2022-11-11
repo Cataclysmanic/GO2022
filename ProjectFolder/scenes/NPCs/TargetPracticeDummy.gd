@@ -67,6 +67,7 @@ func flash_hit():
 func die():
 	State = States.DEAD
 	$DieNoise.play()
+	$Corpse.rotation = rand_range(0, 2*PI)
 	$AnimationPlayer.play("die")
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	spawn_loot()
