@@ -433,6 +433,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ "stationary aim gun" ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Upper/GunLocation:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 168, -8 ) ]
+}
 
 [sub_resource type="Animation" id=21]
 length = 0.001
@@ -484,6 +496,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [ "point gun" ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Upper/GunLocation:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 164, -84 ) ]
+}
 
 [sub_resource type="Animation" id=24]
 resource_name = "Relax"
@@ -523,7 +547,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ "idle relax" ]
+"values": [ "stationary aim gun" ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Upper/Torso:playing")
@@ -536,6 +560,18 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Upper/GunLocation:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 168, -8 ) ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -591,6 +627,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Upper/GunLocation:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 164, -84 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "Walk"
@@ -644,6 +692,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [ "walk gun up" ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Upper/GunLocation:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 164, -84 ) ]
+}
 
 [node name="PaperDoll" type="Node2D"]
 scale = Vector2( 0.25, 0.25 )
@@ -668,7 +728,6 @@ offset = Vector2( 24, 16 )
 
 [node name="GunLocation" type="Position2D" parent="Upper"]
 position = Vector2( 164, -84 )
-rotation = 0.0298025
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/PointGun = SubResource( 23 )
