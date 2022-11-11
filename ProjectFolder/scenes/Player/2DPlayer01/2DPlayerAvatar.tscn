@@ -62,7 +62,6 @@ rotation = 4.71845
 scale = Vector2( 1.25965, 1.51146 )
 texture = ExtResource( 1 )
 offset = Vector2( 252.337, 0.993408 )
-mode = 2
 shadow_enabled = true
 
 [node name="GlowOmniLight" type="Light2D" parent="."]
