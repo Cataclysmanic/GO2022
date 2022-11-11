@@ -4,6 +4,7 @@ extends KinematicBody2D
 var last_movement_vector = Vector2.ZERO
 var sprint_velocity_multiple = 3.0
 var map_scene
+var camera
 
 enum States {INITIALIZING, READY, INVULNERABLE, DYING, DEAD}
 var State = States.INITIALIZING
@@ -23,7 +24,7 @@ func _ready():
 	
 func init(mapScene):
 	map_scene = mapScene
-
+	camera = find_node("Camera2D")
 
 func spawn_item(itemRes):
 	var itemScene

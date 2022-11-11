@@ -4,6 +4,7 @@ var ammo_remaining = 0
 var magazine_capacity = 12
 var map_scene
 var player
+var camera
 var HUD
 
 enum States { INITIALIZING, READY, EMPTY, FIRING, COCKING, EMPTY }
@@ -24,12 +25,14 @@ func init(mapScene, myPlayer, hud):
 	player = myPlayer
 	map_scene = mapScene
 	HUD = hud
+	camera = player.camera
+
 	var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
 	_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
 	_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
 	_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
 	reload(magazine_capacity)
-
+	
 	
 func reload(num):
 	if num == null or num == 0:
@@ -66,7 +69,8 @@ func flash_muzzle():
 		Color(1,1,1,1), Color(1,1,1,0), .2,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
-
+	if camera != null and camera.has_method("shake"):
+		camera.shake()
 	
 	
 		

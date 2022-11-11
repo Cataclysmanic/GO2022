@@ -17,7 +17,16 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("zoom_in"):
 		set_zoom(get_zoom()*(1/zoom_rate))
 		
-	
+func shake():
+	var tween = get_node("Tween")
+	var currentPos = position
+	var jitter = 15.0
+	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
+	tween.interpolate_property(self, "position",
+			currentPos+jitterVec, currentPos, .2,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
