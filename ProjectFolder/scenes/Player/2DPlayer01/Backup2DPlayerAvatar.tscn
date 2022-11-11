@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/_common/Materials/SpotlightLightConeBlurred.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Items/tools/CircleOmniLight.png" type="Texture" id=2]
-[ext_resource path="res://scenes/Player/MerikAnimations/Aim2_Top.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Player/MerikAnimations/Aim_walking.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayer.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Player/PaperDoll/PaperDoll.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=6]

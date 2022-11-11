@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Aim1_Top.png-cfbde8573ee91439d5fe527a0ced9dec.stex"
+path="res://.import/Aim_stopped.png-58223019ecc03c49d3cd7adf2fb67425.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Player/MerikAnimations/Aim1_Top.png"
-dest_files=[ "res://.import/Aim1_Top.png-cfbde8573ee91439d5fe527a0ced9dec.stex" ]
+source_file="res://scenes/Player/MerikAnimations/Aim_stopped.png"
+dest_files=[ "res://.import/Aim_stopped.png-58223019ecc03c49d3cd7adf2fb67425.stex" ]
 
 [params]
 
