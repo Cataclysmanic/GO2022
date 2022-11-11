@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BuildingTemplate.gd" type="Script" id=5]
 [ext_resource path="res://scenes/NPCs/TargetPracticeDummy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/_common/GUI/fonts/VolkornMediumFont.tres" type="DynamicFont" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -142,20 +143,127 @@ position = Vector2( -40, -32 )
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
 
 [node name="Roof" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 
 [node name="DebugInfo" type="Label" parent="."]
 material = SubResource( 8 )
-margin_left = -196.0
-margin_top = -301.0
-margin_right = 218.0
-margin_bottom = -242.0
+margin_left = -202.0
+margin_top = -28.0
+margin_right = 212.0
+margin_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 198, 29 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = ExtResource( 4 )
 text = "Player Present: False"
+
+[node name="Addresses" type="Node2D" parent="."]
+
+[node name="Address" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = -201.0
+margin_top = -336.0
+margin_right = 213.0
+margin_bottom = -277.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 198, 29 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "128 Main Street"
+align = 1
+
+[node name="UnitA" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = -143.0
+margin_top = -276.0
+margin_right = -97.0
+margin_bottom = -252.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 27, 13 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Unit A"
+align = 1
+
+[node name="UnitB" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = -24.0
+margin_top = -277.0
+margin_right = 22.0
+margin_bottom = -253.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 27, 13 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Unit B"
+align = 1
+
+[node name="UnitC" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = 135.0
+margin_top = -275.0
+margin_right = 181.0
+margin_bottom = -251.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 27, 13 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Unit C"
+align = 1
+
+[node name="UnitD" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = 97.0
+margin_top = 250.0
+margin_right = 143.0
+margin_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 27, 13 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Unit D"
+align = 1
+
+[node name="UnitE" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = -1.0
+margin_top = 249.0
+margin_right = 45.0
+margin_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 27, 13 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Unit E"
+align = 1
+
+[node name="UnitF" type="Label" parent="Addresses"]
+material = SubResource( 8 )
+margin_left = -143.0
+margin_top = 249.0
+margin_right = -97.0
+margin_bottom = 273.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 27, 13 )
+size_flags_horizontal = 4
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Unit F"
+align = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
