@@ -49,10 +49,22 @@ func shoot():
 	var myRot = get_global_rotation()
 	var bulletSpeed = 600.0
 	spawn_bullet(myPos, myRot, bulletSpeed)
+	flash_muzzle()
 	cock_gun()
 	ammo_remaining -= 1
 	emit_signal("player_gun_shot", ammo_remaining)
 
+
+func flash_muzzle():
+	$MuzzleFlash.visible = true
+	var tween = get_node("Tween")
+	tween.interpolate_property($MuzzleFlash, "modulate",
+		Color(1,1,1,1), Color(1,1,1,0), .2,
+		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+
+	
+	
 		
 func cock_gun():
 	State = States.COCKING
@@ -96,3 +108,4 @@ func _on_trigger_pressed():
 
 func _on_CockTimer_timeout():
 	State = States.READY
+	$MuzzleFlash.visible = false

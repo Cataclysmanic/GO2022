@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/Items/weapons/Gun2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Items/weapons/Gunshot_v.1.wav" type="AudioStream" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/click.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Items/weapons/MuzzleGlow.png" type="Texture" id=7]
 
 [node name="Gun2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,5 +31,18 @@ one_shot = true
 [node name="CockTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="MuzzleFlash" type="Sprite" parent="."]
+visible = false
+position = Vector2( 104, 5 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 6 )
+
+[node name="Glow" type="Light2D" parent="MuzzleFlash"]
+position = Vector2( -18.2, -1 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 7 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [connection signal="timeout" from="CockTimer" to="." method="_on_CockTimer_timeout"]
