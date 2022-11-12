@@ -1,17 +1,17 @@
 [gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://scenes/NPCs/mook-top-down.png" type="Texture" id=1]
-[ext_resource path="res://scenes/NPCs/TargetPracticeDummy.gd" type="Script" id=2]
+[ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=3]
-[ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=4]
-[ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=6]
-[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=7]
-[ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=8]
-[ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Items/weapons/Gunshot_v.1.wav" type="AudioStream" id=11]
-[ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=12]
+[ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Items/weapons/Gunshot_v.1.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=7]
+[ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/NPCs/mook-top-down.png" type="Texture" id=9]
+[ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=10]
+[ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=12]
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 13.1734
@@ -377,17 +377,17 @@ material = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="Sprite"]
 scale = Vector2( 0.205586, 0.205586 )
-texture = ExtResource( 1 )
+texture = ExtResource( 9 )
 
 [node name="FistL" type="Sprite" parent="Sprite"]
 position = Vector2( 21.9557, -14.4917 )
 scale = Vector2( 0.33, 0.33 )
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 
 [node name="FistR" type="Sprite" parent="Sprite"]
 position = Vector2( 21.9557, 19.3223 )
 scale = Vector2( 0.33, 0.33 )
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 flip_v = true
 
 [node name="BloodSpurtParticles" type="CPUParticles2D" parent="Sprite"]
@@ -407,7 +407,7 @@ color = Color( 0.827451, 0.0901961, 0.0901961, 1 )
 [node name="NPCGun" type="Sprite" parent="Sprite"]
 position = Vector2( 35.1292, -14.4917 )
 scale = Vector2( 0.489305, 0.547802 )
-texture = ExtResource( 9 )
+texture = ExtResource( 5 )
 
 [node name="Muzzle" type="Position2D" parent="Sprite/NPCGun"]
 position = Vector2( 44.8713, -1.90735e-06 )
@@ -416,24 +416,24 @@ position = Vector2( 44.8713, -1.90735e-06 )
 visible = false
 material = SubResource( 13 )
 position = Vector2( 17.9484, -3.8147e-06 )
-texture = ExtResource( 12 )
+texture = ExtResource( 7 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite/NPCGun"]
 position = Vector2( 43.9153, 0.00830078 )
 rotation = -1.57079
 scale = Vector2( 2.04372, 1.82548 )
 enabled = true
-cast_to = Vector2( 0, 200 )
+cast_to = Vector2( 0, 250 )
 
 [node name="ReloadTimer" type="Timer" parent="Sprite/NPCGun"]
 wait_time = 0.5
 one_shot = true
 
 [node name="Ammo" type="ResourcePreloader" parent="Sprite/NPCGun"]
-resources = [ PoolStringArray( "bullet" ), [ ExtResource( 10 ) ] ]
+resources = [ PoolStringArray( "bullet" ), [ ExtResource( 4 ) ] ]
 
 [node name="GunshotNoise" type="AudioStreamPlayer2D" parent="Sprite/NPCGun"]
-stream = ExtResource( 11 )
+stream = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="."]
 visible = false
@@ -460,11 +460,11 @@ stream = ExtResource( 3 )
 volume_db = 10.0
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 8 )
 volume_db = 10.0
 
 [node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 5 ) ] ]
+resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 11 ) ] ]
 
 [node name="damage_area" type="Area2D" parent="."]
 visible = false
@@ -490,14 +490,14 @@ shape = SubResource( 9 )
 [node name="Corpse" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 0.232537, 0.231516 )
-texture = ExtResource( 7 )
+texture = ExtResource( 12 )
 
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource( 12 )
 width = 3.0
 default_color = Color( 0.435294, 0.721569, 0.823529, 0.207843 )
 joint_mode = 2
-script = ExtResource( 8 )
+script = ExtResource( 1 )
 
 [connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
 [connection signal="timeout" from="Sprite/NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
