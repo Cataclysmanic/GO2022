@@ -22,7 +22,7 @@ func _ready():
 		
 
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if still_dialouge == true:
 		
 		if Input.is_action_just_pressed("click"):
@@ -39,6 +39,6 @@ func _physics_process(delta):
 func _on_AudioStreamPlayer_finished():
 	$AudioStreamPlayer.playing = false
 
-func _on_Fade_Player_animation_finished(anim_name):
+func _on_Fade_Player_animation_finished(_anim_name):
 	print(scene_to_change_to)
 	Global.world_controller.change_scene_to(scene_to_change_to)

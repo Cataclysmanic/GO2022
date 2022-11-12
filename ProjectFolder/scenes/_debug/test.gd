@@ -7,7 +7,7 @@ var nav_agent : RID
 
 var current_path = []
 
-func _process(delta):
+func _process(_delta):
 	$Sprite.set_global_position(get_global_mouse_position())
 	
 

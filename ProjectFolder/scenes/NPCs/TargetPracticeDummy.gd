@@ -32,19 +32,23 @@ func _ready():
 	State = States.READY
 	nav_agent.set_navigation(home_building.find_node("NPCs"))
 
-
-func _physics_process(delta):
-	update() # for draw function
-	
+func can_seek():
 	if (
 		State == States.DEAD
 		or !nav_agent.is_target_reachable()
 		or !home_building.is_player_present()
 		or nav_agent.is_navigation_finished()
-		#or len(current_path) == 0
+		or len(current_path) == 0
 	):
-		return
+		return false
 	else:
+		return true
+
+
+func _physics_process(delta):
+	update() # for draw function
+	
+	if can_seek():
 		move_along_path(delta)
 
 
@@ -67,9 +71,12 @@ func update_nav_path():
 	#current_path = nav_agent.get_nav_path()
 	var nav_optimize_path = true
 	current_path = Navigation2DServer.map_get_path(nav_agent.get_navigation_map(), global_position, nav_destination, nav_optimize_path)
-	$Line2D.points = current_path
-	$Line2D.set_global_position(Vector2.ZERO)
-	
+
+	if can_seek():
+		$Line2D.points = current_path
+		$Line2D.set_global_position(Vector2.ZERO)
+	else:
+		$Line2D.points = []
 
 func init(mapScene, homeBuilding):
 	map_scene = mapScene
@@ -149,6 +156,7 @@ func _on_PunchingArea_body_exited(body):
 
 
 func _on_NavUpdateTimer_timeout():
+	
 	update_nav_path()
 	nav_update_timer.set_wait_time(rand_range(0.5, 1.5))
 	nav_update_timer.start()

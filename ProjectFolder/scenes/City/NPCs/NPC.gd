@@ -14,7 +14,7 @@ func _ready():
 		type = -1
 	#for some reason in godot you cannot fetch the group directly but can only get a boolean of wheater it is in a group or not
 	navAgent = $NavigationAgent
-	navAgent.connect("velocity_computed", self, "_on_velocity_computed")
+	var _err = navAgent.connect("velocity_computed", self, "_on_velocity_computed")
 	
 func _process(_delta):
 	if Global.topdown:
@@ -45,7 +45,7 @@ func _on_NPCArea_body_entered(body):
 		#Note, with groups it is easy to trigger all enemies in an area since you can trigger a script in all obj in the same group at onceg
 
 func _on_velocity_computed(_velocity):
-	move_and_slide(_velocity, Vector3.UP)
+	var _remaining_vel = move_and_slide(_velocity, Vector3.UP)
 
 func _on_Timer_timeout():
 	if triggered:
@@ -56,5 +56,5 @@ func _on_Timer_timeout():
 			1:
 				navAgent.set_target_location(get_tree().get_nodes_in_group("badPeople")[0].global_transform.origin)
 				
-func _on_NPCArea_body_exited(body):
+func _on_NPCArea_body_exited(_body):
 	$InteractNotice.hide()
