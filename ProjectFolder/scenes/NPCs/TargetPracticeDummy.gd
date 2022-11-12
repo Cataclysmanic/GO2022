@@ -12,14 +12,16 @@ var map_scene
 var home_building
 var current_path = []
 onready var player # map_scene will provide this on init now
-var ready = false
+var shooting_target_acquired = false
+#var ready = false # use State == States.READY instead
 
-enum States { INITIALIZING, READY, CHASING, FIGHTING, DEAD }
+enum States { INITIALIZING, READY, CHASING, FIGHTING, RELOADING, DEAD }
 var State = States.INITIALIZING
 
 onready var character = self
 
 signal loot_ready(lootObj)
+signal projectile_ready(bulletObj)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +33,21 @@ func _ready():
 	
 	State = States.READY
 	nav_agent.set_navigation(home_building.find_node("NPCs"))
+
+
+func init(mapScene, homeBuilding):
+	map_scene = mapScene
+	home_building = homeBuilding
+	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
+	player = mapScene.get_player()
+
+	var chance_to_have_gun = 0.50
+	if randf() < chance_to_have_gun:
+		has_gun = true
+		$Sprite/NPCGun.show()
+	else:
+		$Sprite/NPCGun.hide()
+
 
 func can_seek():
 	if (
@@ -46,10 +63,15 @@ func can_seek():
 
 
 func _physics_process(delta):
-	update() # for draw function
 	
 	if can_seek():
-		move_along_path(delta)
+		if shooting_target_acquired and has_gun and State == States.READY:
+			var playerPos = player.get_global_position()
+			var myPos = self.get_global_position()
+			turn_toward_vector((playerPos - myPos), delta)
+			shoot()
+		else:
+			move_along_path(delta)
 
 
 func move_along_path(delta):
@@ -62,7 +84,11 @@ func move_along_path(delta):
 	velocity += steering
 
 	velocity = move_and_slide(velocity)
-	sprite.rotation = lerp_angle(sprite.rotation, velocity.angle(), 10.0 * delta)
+	turn_toward_vector(velocity, delta)
+
+func turn_toward_vector(target_vector, delta):
+	sprite.rotation = lerp_angle(sprite.rotation, target_vector.angle(), 10.0 * delta)
+	#why do we only rotate the sprite and not the whole entity object?
 	
 
 func update_nav_path():
@@ -78,11 +104,6 @@ func update_nav_path():
 	else:
 		$Line2D.points = []
 
-func init(mapScene, homeBuilding):
-	map_scene = mapScene
-	home_building = homeBuilding
-	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
-	player = mapScene.get_player()
 
 
 func flash_hit():
@@ -105,17 +126,29 @@ func spawn_loot():
 	lootObject.set_global_position(get_global_position())
 	emit_signal("loot_ready", lootObject)
 
-func _draw():
-	draw_circle(global_position, 10, Color.crimson)
-	if len(current_path) > 0:
+
+func shoot():
+	if not is_connected("projectile_ready", map_scene, "_on_projectile_ready"):
+		if map_scene.has_method("_on_projectile_ready"):
+			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
+
+	# this should all be in a separate gun object, but I'll move it later.
+	if has_gun and shooting_target_acquired and State == States.READY:
 		
-		var last_point = current_path[0]
-		for point in current_path:
-			if point == last_point:
-				pass
-			else:
-				draw_line(last_point, point, Color.red)
-				last_point = point
+		#Why doesn't this work?
+		#look_at(player.get_global_position())
+		
+		var gun = $Sprite/NPCGun
+		var targetted_object = gun.get_node("RayCast2D").get_collider()
+		if targetted_object != null and "detective" in targetted_object.name.to_lower():
+			var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
+			var pos = gun.get_node("Muzzle").get_global_position()
+			var bulletSpeed = 200.0
+			bullet.init(pos, self.rotation, bulletSpeed)
+			emit_signal("projectile_ready", bullet)
+			$Sprite/NPCGun/ReloadTimer.start()
+			
+
 
 func _on_hit(damage):
 	health -= damage
@@ -160,3 +193,23 @@ func _on_NavUpdateTimer_timeout():
 	update_nav_path()
 	nav_update_timer.set_wait_time(rand_range(0.5, 1.5))
 	nav_update_timer.start()
+
+
+func _on_ShootingArea_body_entered(body):
+	if "detective" in body.name.to_lower():
+		if has_gun:
+			shooting_target_acquired = true
+
+
+
+func _on_ShootingArea_body_exited(body):
+	if "detective" in body.name.to_lower():
+		if has_gun:
+			shooting_target_acquired = false
+
+
+
+func _on_ReloadTimer_timeout():
+	if State == States.RELOADING:
+		State = States.READY
+
