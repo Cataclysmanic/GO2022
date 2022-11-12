@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BuildingTemplate.gd" type="Script" id=5]
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/VolkornMediumFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -87,6 +88,7 @@ position = Vector2( -134.872, 135.982 )
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
 
 [node name="Roof" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 
 [node name="Addresses" type="Node2D" parent="."]
@@ -157,6 +159,27 @@ custom_colors/font_color = Color( 0.792157, 0.792157, 0.792157, 1 )
 custom_fonts/font = ExtResource( 7 )
 text = "Player Present: False"
 align = 1
+
+[node name="PossibleQuestTargetLocations" type="Node2D" parent="."]
+
+[node name="QuestTargetLocation" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+location_address = "95 1st St"
+location_details = "Big Square House."
+
+[node name="QuestTargetLocation2" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+position = Vector2( -60, -60 )
+location_address = "107 1st St"
+location_details = "The nice house on the NW corner of the residential district."
+
+[node name="QuestTargetLocation3" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+position = Vector2( -75, 69 )
+location_address = "107 Main St"
+location_details = "The crappy looking house down the road."
+
+[node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+position = Vector2( 117, 100 )
+location_address = "95 Main St"
+location_details = "In the office inside the house on the corner."
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

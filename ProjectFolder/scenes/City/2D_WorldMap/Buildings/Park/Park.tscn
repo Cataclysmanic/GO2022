@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkFloor.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BuildingTemplate.gd" type="Script" id=5]
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -91,6 +92,18 @@ rect_pivot_offset = Vector2( 74.5, 10 )
 custom_colors/font_color = Color( 0, 0.470588, 0.027451, 1 )
 custom_fonts/font = ExtResource( 3 )
 text = "Player Present: False"
+
+[node name="PossibleQuestTargetLocations" type="Node2D" parent="."]
+
+[node name="QuestTargetLocation" parent="PossibleQuestTargetLocations" instance=ExtResource( 7 )]
+position = Vector2( 143, -145 )
+location_address = "Washington Park"
+location_details = "Hidden in the bushes"
+
+[node name="QuestTargetLocation2" parent="PossibleQuestTargetLocations" instance=ExtResource( 7 )]
+position = Vector2( -24, -28 )
+location_address = "Washington Park"
+location_details = "Under the big statue"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
