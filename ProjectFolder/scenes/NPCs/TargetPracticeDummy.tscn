@@ -343,7 +343,6 @@ texture = ExtResource( 6 )
 flip_v = true
 
 [node name="BloodSpurtParticles" type="CPUParticles2D" parent="Sprite"]
-scale = Vector2( 1, 1 )
 emitting = false
 lifetime = 3.0
 one_shot = true

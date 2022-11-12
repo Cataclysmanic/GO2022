@@ -34,7 +34,7 @@ shape = SubResource( 1 )
 
 [node name="StaticBodyWalls" type="Node2D" parent="."]
 
-[node name="NPCs" type="Node2D" parent="."]
+[node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 

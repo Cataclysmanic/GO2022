@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -10,36 +10,6 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
-
-[sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( -78, -103, -76, -46, -118, -46, -119, -75, -123, -104, -126, -75, -170, -146, -235, -146, -236, -240, -75, -239, -75, -147, -123, -145, -126, -45, -236, -45, -235, -138, -171, -137, -123, -111, -123, -138, -75, -137, -75, -112 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 6, 7, 8, 9, 10 ), PoolIntArray( 6, 10, 11 ), PoolIntArray( 12, 13, 14, 15, 5 ), PoolIntArray( 4, 5, 15, 16 ), PoolIntArray( 17, 18, 19, 16, 15 ), PoolIntArray( 17, 15, 6, 11 ) ]
-outlines = [ PoolVector2Array( -75, -239, -236, -240, -235, -146, -170, -146, -171, -137, -235, -138, -236, -45, -126, -45, -126, -75, -119, -75, -118, -46, -76, -46, -78, -103, -123, -104, -123, -111, -75, -112, -75, -137, -123, -138, -123, -145, -75, -147 ) ]
-
-[sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( 30, -87, 78, -88, 78, -45, 1, -45, 1, -75, -6, -44, -68, -43, -69, -240, -6, -75, 79, -240, 30, -95, 78, -95 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 4, 8, 7, 9, 10 ), PoolIntArray( 9, 11, 10 ), PoolIntArray( 0, 4, 10 ), PoolIntArray( 0, 10, 10 ) ]
-outlines = [ PoolVector2Array( 79, -240, -69, -240, -68, -43, -6, -44, -6, -75, 1, -75, 1, -45, 78, -45, 78, -88, 30, -87, 30, -95, 30, -95, 78, -95 ) ]
-
-[sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 232, -239, 233, -146, 183, -146, 87, -240, 232, -138, 233, -44, 86, -44, 184, -138, 86, -139, 134, -139, 134, -146, 86, -146 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 7, 6, 8, 9 ), PoolIntArray( 2, 7, 9, 10 ), PoolIntArray( 3, 2, 10 ), PoolIntArray( 3, 10, 11 ) ]
-outlines = [ PoolVector2Array( 232, -239, 233, -146, 183, -146, 184, -138, 232, -138, 233, -44, 86, -44, 86, -139, 134, -139, 134, -146, 86, -146, 87, -240 ) ]
-
-[sub_resource type="NavigationPolygon" id=5]
-vertices = PoolVector2Array( 71, 102, 71, 42, 114, 43, 114, 73, 120, 102, 122, 73, 72, 136, 72, 109, 120, 110, 120, 137, 169, 144, 234, 143, 234, 239, 71, 239, 71, 143, 120, 143, 168, 139, 122, 42, 234, 43, 234, 138 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 6, 7, 8, 9 ), PoolIntArray( 10, 11, 12, 13 ), PoolIntArray( 10, 13, 14, 15 ), PoolIntArray( 16, 10, 15, 9 ), PoolIntArray( 5, 17, 18, 19, 16 ), PoolIntArray( 4, 5, 16, 8 ), PoolIntArray( 8, 16, 9 ) ]
-outlines = [ PoolVector2Array( 234, 43, 234, 138, 168, 139, 169, 144, 234, 143, 234, 239, 71, 239, 71, 143, 120, 143, 120, 137, 72, 136, 72, 109, 120, 110, 120, 102, 71, 102, 71, 42, 114, 43, 114, 73, 122, 73, 122, 42 ) ]
-
-[sub_resource type="NavigationPolygon" id=6]
-vertices = PoolVector2Array( 65, 43, 64, 237, 19, 176, 19, 105, -82, 43, 11, 105, -82, 238, 12, 176, -33, 176, -40, 176, -39, 105, -33, 105 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 2, 1, 6, 7 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 9, 8, 6 ), PoolIntArray( 9, 6, 4, 10 ), PoolIntArray( 5, 7, 8, 11 ), PoolIntArray( 4, 5, 11 ), PoolIntArray( 4, 11, 10 ) ]
-outlines = [ PoolVector2Array( 65, 43, 64, 237, -82, 238, -82, 43 ), PoolVector2Array( -39, 105, -33, 105, -33, 176, -40, 176 ), PoolVector2Array( 11, 105, 19, 105, 19, 176, 12, 176 ) ]
-
-[sub_resource type="NavigationPolygon" id=7]
-vertices = PoolVector2Array( -235, 238, -236, 161, -169, 161, -89, 238, -138, 109, -89, 109, -169, 154, -235, 154, -236, 41, -175, 41, -175, 106, -168, 108, -138, 104, -168, 42, -89, 42, -89, 103 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 3, 2, 6 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 6, 7, 10, 11 ), PoolIntArray( 4, 6, 11, 12 ), PoolIntArray( 12, 11, 13, 14 ), PoolIntArray( 12, 14, 15 ) ]
-outlines = [ PoolVector2Array( -89, 42, -89, 103, -138, 104, -138, 109, -89, 109, -89, 238, -235, 238, -236, 161, -169, 161, -169, 154, -235, 154, -236, 41, -175, 41, -175, 106, -168, 108, -168, 42 ) ]
 
 [sub_resource type="CanvasItemMaterial" id=8]
 light_mode = 1
@@ -70,24 +40,6 @@ shape = SubResource( 1 )
 [node name="StaticBodyWalls" type="Node2D" parent="."]
 
 [node name="NPCs" type="Navigation2D" parent="."]
-
-[node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 2 )
-
-[node name="NavigationPolygonInstance8" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 3 )
-
-[node name="NavigationPolygonInstance9" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 4 )
-
-[node name="NavigationPolygonInstance10" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 5 )
-
-[node name="NavigationPolygonInstance11" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 6 )
-
-[node name="NavigationPolygonInstance12" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 7 )
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 

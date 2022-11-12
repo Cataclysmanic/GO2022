@@ -16,7 +16,6 @@ signal shit_calmed_down() # for music
 func _ready():
 	generate_light_occluders_from_bitmap()
 
-
 func init(mapObj):
 
 	map_scene = mapObj
@@ -72,14 +71,33 @@ func generate_light_occluders_from_bitmap():
 	wallBitmap.create_from_image_alpha(wallImage)
 	
 	occlusionPolygons = wallBitmap.opaque_to_polygons(wallRect)
+	var navPolygon = NavigationPolygon.new()
+	var navPolygonInstance = NavigationPolygonInstance.new()
 	
+	navPolygon.add_outline(rect_to_outline(wallRect))
+		
 	for polygon in occlusionPolygons:
 		spawn_light_occluder(polygon)
 		spawn_static_body(polygon)
+		navPolygon.add_outline(polygon)
 		
 	$StaticBodyWalls.position = Vector2.ZERO - ( (rectSize ) / 2)
 	$LightOccluders.position = $StaticBodyWalls.position
 	
+	
+	navPolygon.make_polygons_from_outlines()
+	navPolygonInstance.navpoly = navPolygon
+	navPolygonInstance.position = $StaticBodyWalls.position
+	$NPCs.add_child(navPolygonInstance)
+
+func rect_to_outline(rect : Rect2):
+	var outline = []
+	outline.push_back(rect.position)
+	outline.push_back(rect.position+Vector2(0, rect.size.y))
+	outline.push_back(rect.position+rect.size)
+	outline.push_back(rect.position+Vector2(rect.size.x, 0))
+	return outline
+
 
 func translate_polygon(polygon, translation : Vector2):
 	#I'm sure there's a number of built-in functions to do this with xForms, but I'm not sure how yet.
@@ -108,6 +126,7 @@ func spawn_static_body(myPolygon):
 	newPolyDraw.set_color(Color.violet)
 	$StaticBodyWalls.add_child(newPolyDraw)
 	
+
 	
 
 
