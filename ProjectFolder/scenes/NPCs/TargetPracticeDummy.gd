@@ -135,18 +135,18 @@ func shoot():
 	# this should all be in a separate gun object, but I'll move it later.
 	if has_gun and shooting_target_acquired and State == States.READY:
 		
-		#Why doesn't this work?
-		#look_at(player.get_global_position())
-		
 		var gun = $Sprite/NPCGun
 		var targetted_object = gun.get_node("RayCast2D").get_collider()
 		if targetted_object != null and "detective" in targetted_object.name.to_lower():
 			var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 			var pos = gun.get_node("Muzzle").get_global_position()
-			var bulletSpeed = 200.0
-			bullet.init(pos, self.rotation, bulletSpeed)
+			var bulletSpeed = 400.0
+			bullet.init(self, pos, $Sprite.rotation, bulletSpeed)
 			emit_signal("projectile_ready", bullet)
+			$Sprite/NPCGun/GunshotNoise.play()
+			$AnimationPlayer.play("shoot")
 			$Sprite/NPCGun/ReloadTimer.start()
+			State = States.RELOADING
 			
 
 

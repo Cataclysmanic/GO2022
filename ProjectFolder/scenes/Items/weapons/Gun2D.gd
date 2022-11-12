@@ -81,7 +81,7 @@ func cock_gun():
 
 func spawn_bullet(pos, rot, speed):
 	var bullet = $ResourcePreloader.get_resource("bullet").instance()
-	bullet.init(pos, rot, speed)
+	bullet.init(self, pos, rot, speed)
 	# note: bullets shouldn't be children of gun, or they'd track with the gun rotation
 	# ask someone else to spawn the projectile.
 	emit_signal("projectile_ready", bullet)

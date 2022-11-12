@@ -3,6 +3,7 @@ extends Node2D
 export var bullet_speed : float
 var velocity : Vector2
 var damage = 10.0
+var originator
 
 signal hit(damage)
 
@@ -10,7 +11,8 @@ signal hit(damage)
 func _ready():
 	pass # Replace with function body.
 
-func init(pos : Vector2, rot : float, speed : float):
+func init(source, pos : Vector2, rot : float, speed : float):
+	originator = source
 	set_global_position(pos)
 	set_global_rotation(rot)
 	if speed != null:
@@ -29,7 +31,9 @@ func die():
 
 
 func _on_Area2D_body_entered(body):
-	if body.has_method("hit"):
+	if body == originator:
+		return
+	elif body.has_method("hit"):
 		var _err = connect("hit", body, "_on_hit")
 		emit_signal("hit", damage)
 	elif body.has_method("_on_hit"):
