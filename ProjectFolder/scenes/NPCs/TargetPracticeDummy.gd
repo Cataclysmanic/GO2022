@@ -64,6 +64,7 @@ func move_along_path(delta):
 func update_nav_path():
 	nav_agent.set_target_location(player.get_global_position())
 	current_path = nav_agent.get_nav_path()
+	$Line2D.points = current_path
 	if len(current_path) > 0:
 		print(current_path)
 	
