@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/NPCs/mook-top-down.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NPCs/TargetPracticeDummy.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=6]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=7]
+[ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=8]
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 13.1734
@@ -327,6 +328,7 @@ script = ExtResource( 2 )
 avoidance_enabled = true
 
 [node name="NavUpdateTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 11 )
@@ -421,6 +423,8 @@ scale = Vector2( 0.232537, 0.231516 )
 texture = ExtResource( 7 )
 
 [node name="Line2D" type="Line2D" parent="."]
+width = 3.0
+script = ExtResource( 8 )
 
 [connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

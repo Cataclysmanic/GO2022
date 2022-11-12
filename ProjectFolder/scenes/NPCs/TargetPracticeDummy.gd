@@ -62,11 +62,13 @@ func move_along_path(delta):
 	
 
 func update_nav_path():
-	nav_agent.set_target_location(player.get_global_position())
-	current_path = nav_agent.get_nav_path()
+	var nav_destination = player.get_global_position()
+	nav_agent.set_target_location(nav_destination)
+	#current_path = nav_agent.get_nav_path()
+	var nav_optimize_path = true
+	current_path = Navigation2DServer.map_get_path(nav_agent.get_navigation_map(), global_position, nav_destination, nav_optimize_path)
 	$Line2D.points = current_path
-	if len(current_path) > 0:
-		print(current_path)
+	$Line2D.set_global_position(Vector2.ZERO)
 	
 
 func init(mapScene, homeBuilding):
@@ -148,3 +150,5 @@ func _on_PunchingArea_body_exited(body):
 
 func _on_NavUpdateTimer_timeout():
 	update_nav_path()
+	nav_update_timer.set_wait_time(rand_range(0.5, 1.5))
+	nav_update_timer.start()
