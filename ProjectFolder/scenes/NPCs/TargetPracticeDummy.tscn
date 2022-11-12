@@ -8,6 +8,9 @@
 [ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=6]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=7]
 
+[sub_resource type="CircleShape2D" id=11]
+radius = 13.1734
+
 [sub_resource type="CanvasItemMaterial" id=5]
 light_mode = 1
 
@@ -307,9 +310,6 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15.369, 15.6994 )
-
 [sub_resource type="CircleShape2D" id=6]
 radius = 9.48202
 
@@ -322,6 +322,14 @@ extents = Vector2( 281.033, 289.834 )
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
 scale = Vector2( 0.227731, 0.207015 )
 script = ExtResource( 2 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="NavUpdateTimer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 11 )
 
 [node name="Sprite" type="Node2D" parent="."]
 light_mask = 0
@@ -375,10 +383,6 @@ anims/hit = SubResource( 4 )
 anims/punch = SubResource( 7 )
 anims/relax = SubResource( 10 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.38419e-07, 6.03822 )
-shape = SubResource( 1 )
-
 [node name="DieNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 volume_db = 10.0
@@ -389,14 +393,6 @@ volume_db = 10.0
 
 [node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 5 ) ] ]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-radius = 150.0
-max_neighbors = 20
-
-[node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="damage_area" type="Area2D" parent="."]
 visible = false
@@ -424,6 +420,7 @@ visible = false
 scale = Vector2( 0.232537, 0.231516 )
 texture = ExtResource( 7 )
 
+[connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="PunchingArea" to="." method="_on_PunchingArea_body_entered"]

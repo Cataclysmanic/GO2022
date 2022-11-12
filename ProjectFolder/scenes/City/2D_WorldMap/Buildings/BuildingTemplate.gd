@@ -14,7 +14,7 @@ signal shit_calmed_down() # for music
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	generate_light_occluders_from_bitmap()
+	generate_occluders_from_bitmap()
 
 func init(mapObj):
 
@@ -59,7 +59,7 @@ func get_random_spawn_location(spread:int) -> Vector2:
 
 
 
-func generate_light_occluders_from_bitmap():
+func generate_occluders_from_bitmap():
 	var wallSprite = $Walls
 	var wallTex :Texture = wallSprite.get_texture()
 	var wallImage : Image = wallTex.get_data()
@@ -84,11 +84,11 @@ func generate_light_occluders_from_bitmap():
 	$StaticBodyWalls.position = Vector2.ZERO - ( (rectSize ) / 2)
 	$LightOccluders.position = $StaticBodyWalls.position
 	
-	
 	navPolygon.make_polygons_from_outlines()
 	navPolygonInstance.navpoly = navPolygon
 	navPolygonInstance.position = $StaticBodyWalls.position
 	$NPCs.add_child(navPolygonInstance)
+
 
 func rect_to_outline(rect : Rect2):
 	var outline = []

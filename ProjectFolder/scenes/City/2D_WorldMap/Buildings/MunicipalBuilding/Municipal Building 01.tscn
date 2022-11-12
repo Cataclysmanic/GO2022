@@ -32,12 +32,12 @@ position = Vector2( -193.705, 51.6176 )
 occluder = SubResource( 2 )
 
 [node name="Walls" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2( -3.5, -107.236 )
 shape = SubResource( 1 )
 
@@ -49,23 +49,23 @@ shape = SubResource( 1 )
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 
-[node name="Position2D" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -104.9, -356.328 )
+[node name="NPCSpawn01" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -130.987, -343.008 )
 
-[node name="Position2D2" type="Position2D" parent="PossibleSpawnPoints"]
+[node name="NPCSpawn02" type="Position2D" parent="PossibleSpawnPoints"]
 position = Vector2( 329.132, -385.19 )
 
-[node name="Position2D3" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -398.51, -219.236 )
+[node name="NPCSpawn03" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -404.616, -195.37 )
 
-[node name="Position2D4" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -387.965, -92.6897 )
+[node name="NPCSpawn04" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -407.946, -116.556 )
 
-[node name="Position2D5" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -303.045, -392.405 )
+[node name="NPCSpawn05" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( -312.481, -359.103 )
 
-[node name="Position2D6" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 57.7229, -39.962 )
+[node name="NPCSpawn06" type="Position2D" parent="PossibleSpawnPoints"]
+position = Vector2( 50.5076, -144.862 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
