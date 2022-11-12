@@ -79,7 +79,9 @@ func generate_occluders_from_bitmap():
 	for polygon in occlusionPolygons:
 		spawn_light_occluder(polygon)
 		spawn_static_body(polygon)
-		navPolygon.add_outline(polygon)
+		var margin_for_navigation_around_static_bodies = 7.0
+		navPolygon.add_outline(Geometry.offset_polygon_2d(polygon, margin_for_navigation_around_static_bodies)[0])
+		#navPolygon.add_outline(polygon)
 		
 	$StaticBodyWalls.position = Vector2.ZERO - ( (rectSize ) / 2)
 	$LightOccluders.position = $StaticBodyWalls.position
