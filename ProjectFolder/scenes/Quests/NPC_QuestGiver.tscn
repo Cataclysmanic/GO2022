@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/hobo-to-down.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=4]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 97.5, 89.5 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
 
 [node name="NPC_QuestGiver" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -37,5 +42,21 @@ position = Vector2( -1.5, 0.5 )
 shape = SubResource( 2 )
 
 [node name="QuestTargetObjects" type="ResourcePreloader" parent="."]
+
+[node name="Label" type="Label" parent="."]
+visible = false
+material = SubResource( 3 )
+margin_left = 6.0
+margin_top = -135.0
+margin_right = 98.0
+margin_bottom = -43.0
+rect_min_size = Vector2( 92, 92 )
+custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "Hey. I need you to do a thing."
+autowrap = true
+
+[node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]

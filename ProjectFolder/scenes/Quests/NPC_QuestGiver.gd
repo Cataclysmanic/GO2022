@@ -22,14 +22,14 @@ var quest_target_location
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	$Label.hide()
 
 func init(cityMap):
 	city_map = cityMap
 
 func talk_to_player():
-	pass
+	$ThoughtBubble.hide()
+	$Label.show()
 	
 func give_quest():
 	pass
@@ -49,4 +49,5 @@ func ask_city_to_spawn_quest_target():
 
 func _on_InteractionArea_body_entered(body):
 	if "detective" in body.name.to_lower():
+		
 		talk_to_player()
