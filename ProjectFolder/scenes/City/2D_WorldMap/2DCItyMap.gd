@@ -54,3 +54,17 @@ func _on_shit_calmed_down():
 	$Audio/BGMusicCalm.play()
 	$Audio/BGMusicTense.stop()
 	
+func get_random_building():
+	var building
+	var buildingList = $Outdoor/Buildings.get_children()
+	building = buildingList[randi()%len(buildingList)]
+	return building
+	
+	
+func get_random_quest_target_location():
+	var quest_target_location
+	var building = get_random_building()
+	if building.has_method("get_random_quest_target_location"):
+		quest_target_location = building.get_random_quest_target_location()
+	return quest_target_location	
+	

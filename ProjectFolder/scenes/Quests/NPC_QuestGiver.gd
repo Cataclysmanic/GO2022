@@ -18,7 +18,7 @@ extends KinematicBody2D
 
 
 var city_map
-
+var quest_target_location
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,8 +41,12 @@ func produce_quest_target():
 	pass
 	
 func ask_city_to_spawn_quest_target():
-	pass
+	
+	if city_map.has_method("get_random_quest_target_location"):
+		quest_target_location = city_map.get_random_quest_target_location()
 	
 
-	
-	
+
+func _on_InteractionArea_body_entered(body):
+	if "detective" in body.name.to_lower():
+		talk_to_player()
