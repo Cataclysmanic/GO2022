@@ -168,6 +168,7 @@ columns = 6
 margin_top = 68.0
 margin_right = 1016.0
 margin_bottom = 92.0
+editable = false
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Bullet", "InventoryIconButton" ), [ ExtResource( 2 ), ExtResource( 11 ) ] ]

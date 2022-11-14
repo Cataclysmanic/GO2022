@@ -10,7 +10,12 @@ func _ready():
 	play_bg_music()
 	
 	spawn_buildings()
+	Global.current_city_map = self
+
+	initialize_quest_givers()
 	
+
+
 
 func spawn_buildings():
 	
@@ -35,6 +40,12 @@ func spawn_player():
 
 func get_player():
 	return player
+
+
+func initialize_quest_givers():
+	for questGiver in $QuestGivers.get_children():
+		questGiver.init(self)
+
 
 func _on_loot_ready(itemObj):
 	$Collectibles.call_deferred("add_child", itemObj)
@@ -64,7 +75,10 @@ func get_random_building():
 func get_random_quest_target_location():
 	var quest_target_location
 	var building = get_random_building()
+
 	if building.has_method("get_random_quest_target_location"):
 		quest_target_location = building.get_random_quest_target_location()
+	else:
+		printerr("building doesn't have method: get_random_quest_target_location")
 	return quest_target_location	
 	

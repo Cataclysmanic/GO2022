@@ -32,7 +32,7 @@ extents = Vector2( 20, 86.4 )
 script = ExtResource( 6 )
 
 [node name="PlayerSpawnPoint" type="Position2D" parent="."]
-position = Vector2( -1723, -506 )
+position = Vector2( 530, 1536 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -192,6 +192,7 @@ shape = SubResource( 19 )
 
 [node name="NPC_QuestGiver" parent="QuestGivers" instance=ExtResource( 18 )]
 position = Vector2( 1042, 1578 )
+inventory_requirement = "note 01"
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 1 ) ] ]

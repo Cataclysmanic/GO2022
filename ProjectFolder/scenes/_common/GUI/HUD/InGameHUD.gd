@@ -96,7 +96,7 @@ func add_bullet_icon():
 
 func reload_if_possible():
 	
-	if Global.IO.has_item("magazine"):
+	if Global.IO.player_has_item("magazine"):
 		Global.IO._on_collectible_used("magazine")
 		for _i in range(6):
 			add_bullet_icon()

@@ -19,35 +19,107 @@ extends KinematicBody2D
 
 var city_map
 var quest_target_location
+export var inventory_requirement : String # name of the thing that must be in inventory in order to trigger this quest giver
+
+export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
+export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
+
+signal quest_objective_ready(objective)
+
+var clicks = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Label.hide()
-
+	$DialogLabel.hide()
+	
+	
 func init(cityMap):
 	city_map = cityMap
+	produce_quest_objective()
+
 
 func talk_to_player():
 	$ThoughtBubble.hide()
-	$Label.show()
+	$DialogLabel.show()
 	
 func give_quest():
 	pass
 	
-func spawn_quest_pickup_item():
+func get_random_quest_requirement_item():
+	var potentialItems = $PotentialRequiredItems.get_children()
+	var randomItem = potentialItems[randi()%len(potentialItems)]
+
+	return randomItem
+
+func spawn_quest_reward():
 	pass
+
+func spawn_quest_objective(location : Position2D, item : Node2D):
+	if location == null:
+		printerr("NPC Quest Giver needs a location to spawn their objective")
+
+	var questObjective = item.duplicate()
 	
-func produce_quest_target():
-	pass
+	questObjective.set_global_position(location.get_global_position())
+	inventory_requirement = questObjective.item_details["item_name"]
+	dialog_unmet_requirements.push_back("Look in " + location.get_address())
+	dialog_unmet_requirements.push_back(location.get_details())
+	if city_map.has_method("_on_loot_ready"):
+		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
+			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
+			emit_signal("quest_objective_ready", questObjective)
+
+
 	
-func ask_city_to_spawn_quest_target():
+func produce_quest_objective():
+	# come up with some random item?
+	var location = get_random_location()
+	var item = get_random_quest_requirement_item()
+	spawn_quest_objective(location, item)
 	
-	if city_map.has_method("get_random_quest_target_location"):
-		quest_target_location = city_map.get_random_quest_target_location()
 	
+func get_random_location():
+	
+	return city_map.get_random_quest_target_location()
+
+		
 
 
 func _on_InteractionArea_body_entered(body):
-	if "detective" in body.name.to_lower():
-		
+	if body.has_method("is_player") and body.is_player():
 		talk_to_player()
+
+
+func requirements_met(body): 
+	# for now this is just a lock and key system. If player has item in inventory, requirements are met.
+	# someday we could add different types of requirements.
+
+	var requirementsMet = false
+	if inventory_requirement == null or inventory_requirement == "":
+		requirementsMet = true
+	elif body.has_method("has_item") and body.has_item(inventory_requirement):
+		requirementsMet = true
+	return requirementsMet
+
+
+func advance_dialog(body):
+	var dialog_lines
+	if requirements_met(body):
+		dialog_lines = dialog_fulfilled_requirements
+	else:
+		dialog_lines = dialog_unmet_requirements
+
+	$DialogLabel.text = dialog_lines[clicks%(len(dialog_lines))]
+
+
+
+func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
+	if city_map == null:
+		city_map = Global.current_city_map
+	if event.is_action_pressed("click"):
+		var player = city_map.get_player()
+		var bodies_present = $InteractionArea.get_overlapping_bodies()
+		if bodies_present.has(player):
+		
+			advance_dialog(player)
+			clicks += 1

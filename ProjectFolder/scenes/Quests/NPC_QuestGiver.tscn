@@ -1,16 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/hobo-to-down.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=3]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 97.5, 89.5 )
+extents = Vector2( 144.25, 134.5 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -31,32 +32,43 @@ offset = Vector2( -2.88073, -15.1868 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
-[node name="ThoughtBubble" type="Sprite" parent="."]
-position = Vector2( -35, -61 )
-texture = ExtResource( 3 )
-
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2( -1.5, 0.5 )
+position = Vector2( 46.75, -4.5 )
 shape = SubResource( 2 )
 
 [node name="QuestTargetObjects" type="ResourcePreloader" parent="."]
 
-[node name="Label" type="Label" parent="."]
-visible = false
+[node name="ThoughtBubble" type="Sprite" parent="."]
+position = Vector2( -35, -61 )
+texture = ExtResource( 3 )
+
+[node name="DialogLabel" type="Label" parent="."]
 material = SubResource( 3 )
 margin_left = 6.0
 margin_top = -135.0
 margin_right = 98.0
 margin_bottom = -43.0
-rect_min_size = Vector2( 92, 92 )
+rect_min_size = Vector2( 150, 92 )
 custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
 custom_fonts/font = ExtResource( 4 )
-text = "Hey. I need you to do a thing."
 autowrap = true
 
 [node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 
+[node name="PotentialRequiredItems" type="Node" parent="."]
+
+[node name="Paper" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+item_details = {
+"is_unique": true,
+"item_name": "ex-wife's attorney bills",
+"notes_for_journal": "A file clearly delineating the attorney fees paid out by one Margaret A Sawyer during the period of interest.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
+[connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]

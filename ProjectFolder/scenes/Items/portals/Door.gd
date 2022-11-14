@@ -20,7 +20,7 @@ func _on_Area_body_entered(body):
 	if "detective" in body.name.to_lower():
 		
 
-		if Global.IO.has_item("key"):
+		if Global.IO.player_has_item("key"):
 			Global.world_controller.change_scene(path_to_scene)
 		elif Global.trigger_events["missing_tutorial_key_reported"] == false:
 			Global.Utils.oneshot_emit(self, "missing_key", body.get_hud())

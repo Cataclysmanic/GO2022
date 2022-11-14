@@ -15,7 +15,7 @@ export var health = 50.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PaperDoll.relax()
-	if Global.IO.has_item("gun2D"):
+	if Global.IO.player_has_item("gun2D"):
 		spawn_item(Global.IO.get_item("Gun2D"))
 
 	manual_spawn_gun() # temporary
@@ -25,6 +25,13 @@ func _ready():
 func init(mapScene):
 	map_scene = mapScene
 	camera = find_node("Camera2D")
+
+
+func has_item(itemName):
+	return Global.IO.player_has_item(itemName)
+
+func is_player():
+	return true
 
 func spawn_item(itemRes):
 	var itemScene

@@ -34,7 +34,7 @@ func _on_collectible_used(usedItemName): # **** Not finding "magazine"
 			stored_items.erase(item) # removes the first occurrence
 			return
 	
-func has_item(itemNameQuery : String):
+func player_has_item(itemNameQuery : String):
 	var found = false
 	for item in stored_items:
 		if item.item_name.to_lower().strip_edges() == itemNameQuery.to_lower().strip_edges():

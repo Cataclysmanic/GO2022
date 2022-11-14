@@ -56,7 +56,12 @@ func get_random_spawn_location(spread:int) -> Vector2:
 
 	return pos
 
-
+func get_random_quest_target_location() -> Position2D:
+	# it's important that we provide the full Position2D, not just the Vector2 location.
+	# the quest targets contain info about their locations.
+	var locations = $PossibleQuestTargetLocations.get_children()
+	var randIdx = randi()%len(locations)
+	return locations[randIdx]
 
 
 func generate_occluders_from_bitmap():

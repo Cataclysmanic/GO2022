@@ -41,7 +41,7 @@ func spawn_items_if_carried(itemList : PoolStringArray):
 		return
 
 	for itemName in itemList:
-		if Global.IO.has_item(itemName): # gun already in inventory. spawn a gun object on the player avatar
+		if Global.IO.player_has_item(itemName): # gun already in inventory. spawn a gun object on the player avatar
 			spawn_item(Global.IO.get_item(itemName))
 		
 		var itemObj = find_node(itemName)

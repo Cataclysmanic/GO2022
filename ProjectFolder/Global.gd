@@ -2,7 +2,7 @@ extends Node
 
 
 var world_controller = null
-var current_scene = null
+var current_city_map = null
 var IO = null
 var Utils = null
 #var in_danger = "no" # moved to building is_player_present()

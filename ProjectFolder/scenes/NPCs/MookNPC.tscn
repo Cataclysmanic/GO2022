@@ -423,7 +423,7 @@ position = Vector2( 43.9153, 0.00830078 )
 rotation = -1.57079
 scale = Vector2( 2.04372, 1.82548 )
 enabled = true
-cast_to = Vector2( 0, 250 )
+cast_to = Vector2( 0, 300 )
 
 [node name="ReloadTimer" type="Timer" parent="Sprite/NPCGun"]
 wait_time = 0.5
