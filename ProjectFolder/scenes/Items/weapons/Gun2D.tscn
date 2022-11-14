@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Items/weapons/Gun2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Items/weapons/Gunshot_v.1.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_7.wav" type="AudioStream" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/click.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Items/weapons/MuzzleGlow.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_9.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_6.wav" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_11.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_10.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_8.wav" type="AudioStream" id=12]
 
 [node name="Gun2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,9 +25,6 @@ resources = [ PoolStringArray( "bullet" ), [ ExtResource( 2 ) ] ]
 
 [node name="EmptyClickNoise" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-
-[node name="GunshotNoise" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -47,5 +49,31 @@ color = Color( 1, 0.905882, 0.807843, 1 )
 energy = 0.67
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="GunshotNoises" type="Node2D" parent="."]
+
+[node name="GunshotNoise1" type="AudioStreamPlayer" parent="GunshotNoises"]
+stream = ExtResource( 9 )
+bus = "Gunshots"
+
+[node name="GunshotNoise2" type="AudioStreamPlayer" parent="GunshotNoises"]
+stream = ExtResource( 4 )
+bus = "Gunshots"
+
+[node name="GunshotNoise3" type="AudioStreamPlayer" parent="GunshotNoises"]
+stream = ExtResource( 12 )
+bus = "Gunshots"
+
+[node name="GunshotNoise4" type="AudioStreamPlayer" parent="GunshotNoises"]
+stream = ExtResource( 8 )
+bus = "Gunshots"
+
+[node name="GunshotNoise5" type="AudioStreamPlayer" parent="GunshotNoises"]
+stream = ExtResource( 11 )
+bus = "Gunshots"
+
+[node name="GunshotNoise6" type="AudioStreamPlayer" parent="GunshotNoises"]
+stream = ExtResource( 10 )
+bus = "Gunshots"
 
 [connection signal="timeout" from="CockTimer" to="." method="_on_CockTimer_timeout"]

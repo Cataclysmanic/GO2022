@@ -1,17 +1,21 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=3]
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=5]
-[ext_resource path="res://scenes/Items/weapons/Gunshot_v.1.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_3.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=7]
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/NPCs/mook-top-down.png" type="Texture" id=9]
 [ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=10]
 [ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=12]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=13]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=14]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_5.wav" type="AudioStream" id=15]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=16]
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 13.1734
@@ -432,8 +436,27 @@ one_shot = true
 [node name="Ammo" type="ResourcePreloader" parent="Sprite/NPCGun"]
 resources = [ PoolStringArray( "bullet" ), [ ExtResource( 4 ) ] ]
 
-[node name="GunshotNoise" type="AudioStreamPlayer2D" parent="Sprite/NPCGun"]
+[node name="GunshotNoises" type="Node2D" parent="Sprite/NPCGun"]
+
+[node name="GunshotNoise1" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
+stream = ExtResource( 16 )
+bus = "Gunshots"
+
+[node name="GunshotNoise2" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
+stream = ExtResource( 14 )
+bus = "Gunshots"
+
+[node name="GunshotNoise3" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
 stream = ExtResource( 6 )
+bus = "Gunshots"
+
+[node name="GunshotNoise4" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
+stream = ExtResource( 13 )
+bus = "Gunshots"
+
+[node name="GunshotNoise5" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
+stream = ExtResource( 15 )
+bus = "Gunshots"
 
 [node name="Label" type="Label" parent="."]
 visible = false

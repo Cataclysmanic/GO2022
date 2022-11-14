@@ -143,7 +143,11 @@ func shoot():
 			var bulletSpeed = 400.0
 			bullet.init(self, pos, $Sprite.rotation, bulletSpeed)
 			emit_signal("projectile_ready", bullet)
-			$Sprite/NPCGun/GunshotNoise.play()
+			var gunshotNoises = $Sprite/NPCGun/GunshotNoises.get_children()
+			var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
+			gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
+			gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
+			gunshotNoise.play()
 			$AnimationPlayer.play("shoot")
 			$Sprite/NPCGun/ReloadTimer.start()
 			State = States.RELOADING
