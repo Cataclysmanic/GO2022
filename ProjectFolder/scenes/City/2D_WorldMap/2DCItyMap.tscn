@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/textures/BlockGroundTile.png" type="Texture" id=2]
@@ -17,7 +17,9 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Quests/QuestGivers/MagicalHobo.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Quests/QuestGivers/MobBoss.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Quests/QuestGivers/FemmeFatale.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Environment" id=1]
 ambient_light_energy = 0.0
@@ -191,8 +193,11 @@ shape = SubResource( 19 )
 [node name="QuestGivers" type="Node2D" parent="."]
 
 [node name="MagicalHobo" parent="QuestGivers" instance=ExtResource( 18 )]
-position = Vector2( 1042, 1578 )
-inventory_requirement = "note 01"
+
+[node name="MobBoss" parent="QuestGivers" instance=ExtResource( 19 )]
+
+[node name="FemmeFatale" parent="QuestGivers" instance=ExtResource( 20 )]
+position = Vector2( 922, -1044 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 1 ) ] ]
