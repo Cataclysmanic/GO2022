@@ -1,14 +1,17 @@
 extends Camera2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var player
+var hud
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
+
+func init(myPlayer, myHud):
+	player = myPlayer
+	hud = myHud
 
 func _unhandled_input(event):
 	var zoom_rate = 1.2
@@ -27,7 +30,21 @@ func shake():
 			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 
+
+func look_ahead(delta):
+	var damping = 12.0
+	var mousePos = get_global_mouse_position()
+	var playerPos = global_position
+	var window_height = OS.get_window_size().y
+	var inventory_offset = 0
+	if hud != null:
+		inventory_offset = hud.inventory_offset
+	var offset = Vector2(0,(window_height - inventory_offset) / 4)
+	if hud.is_inventory_open() == false:
+		offset = (mousePos - playerPos) / 2
+	position = lerp(position, offset, delta * damping)
+	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	look_ahead(delta)

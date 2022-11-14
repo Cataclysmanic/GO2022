@@ -357,7 +357,7 @@ radius = 9.48202
 extents = Vector2( 59.2805, 65.2127 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 281.033, 289.834 )
+extents = Vector2( 485.221, 289.834 )
 
 [sub_resource type="CanvasItemMaterial" id=12]
 blend_mode = 1
@@ -427,7 +427,12 @@ position = Vector2( 43.9153, 0.00830078 )
 rotation = -1.57079
 scale = Vector2( 2.04372, 1.82548 )
 enabled = true
-cast_to = Vector2( 0, 300 )
+cast_to = Vector2( 0, 750 )
+
+[node name="LaserScope" type="Line2D" parent="Sprite/NPCGun/RayCast2D"]
+points = PoolVector2Array( 0, 0, 0, 750 )
+width = 2.0
+default_color = Color( 1, 0, 0, 0.282353 )
 
 [node name="ReloadTimer" type="Timer" parent="Sprite/NPCGun"]
 wait_time = 0.5
@@ -504,10 +509,10 @@ position = Vector2( -2.19558, 2.41529 )
 shape = SubResource( 8 )
 
 [node name="ShootingArea" type="Area2D" parent="."]
-visible = false
 
 [node name="ShootingRange" type="CollisionShape2D" parent="ShootingArea"]
-position = Vector2( 0, 4.83057 )
+position = Vector2( 204.188, 4.83057 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 9 )
 
 [node name="Corpse" type="Sprite" parent="."]

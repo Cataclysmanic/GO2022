@@ -5,6 +5,7 @@ var last_movement_vector = Vector2.ZERO
 var sprint_velocity_multiple = 3.0
 var map_scene
 var camera
+var hud
 
 enum States {INITIALIZING, READY, INVULNERABLE, DYING, DEAD}
 var State = States.INITIALIZING
@@ -24,7 +25,9 @@ func _ready():
 	
 func init(mapScene):
 	map_scene = mapScene
+	hud = find_node("HUD")
 	camera = find_node("Camera2D")
+	camera.init(self, hud)
 
 
 func has_item(itemName):
@@ -55,7 +58,7 @@ func manual_spawn_gun():
 	
 
 func get_hud():
-	return find_node("HUD")
+	return hud
 
 
 func _physics_process(delta):

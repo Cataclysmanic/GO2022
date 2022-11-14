@@ -2,6 +2,7 @@ extends Control
 
 onready var ammo_container = find_node("Ammo")
 onready var inventory_container = find_node("InventoryItems")
+
 var iconSize = Vector2(32,32)
 
 var stored_items = []
@@ -10,7 +11,10 @@ var time_elapsed : float
 var last_polling_time : float
 var polling_interval : float = 2.0 # seconds between checking with IO about inventory
 
-
+enum InventoryStates { CLOSED, OPEN }
+var InventoryState = InventoryStates.CLOSED
+var inventory_offset = 200
+var inventory_leave_showing = 25
 
 signal reloaded(count)
 
@@ -43,7 +47,7 @@ func _unhandled_key_input(_event):
 		
 
 func toggle_inventory_display():
-	if $PopupInventoryContainer.margin_top == -25:
+	if InventoryState == InventoryStates.CLOSED:
 		show_inventory()
 	else:
 		hide_inventory()
@@ -51,31 +55,34 @@ func toggle_inventory_display():
 
 func show_inventory():
 	$AudioEvents/BoxOpenNoise.play()
-	var hidden_bottom_margin = -25
-	var revealed_bottom_margin = -175
+	var hidden_bottom_margin = -inventory_leave_showing
+	var revealed_bottom_margin = -(inventory_offset-inventory_leave_showing)
 	var tween = get_node("Tween")
 	tween.interpolate_property($PopupInventoryContainer, "rect_position", Vector2(0, revealed_bottom_margin), Vector2(0,hidden_bottom_margin), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_bottom", revealed_bottom_margin, hidden_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_top", hidden_bottom_margin, revealed_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 
 	tween.start()
+	InventoryState = InventoryStates.OPEN
 	
 func hide_inventory():
 	$AudioEvents/BoxCloseNoise.play()
-	var hidden_bottom_margin = -25
-	var revealed_bottom_margin = -175
+	var hidden_bottom_margin = -inventory_leave_showing
+	var revealed_bottom_margin = -(inventory_offset-inventory_leave_showing)
 	var tween = get_node("Tween")
 	tween.interpolate_property($PopupInventoryContainer, "rect_position", Vector2(0,hidden_bottom_margin), Vector2(0,revealed_bottom_margin), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_bottom",  hidden_bottom_margin, revealed_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_top", revealed_bottom_margin, hidden_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.start()
+	InventoryState = InventoryStates.CLOSED
 
 
-		
+func is_inventory_open():
+	if InventoryState == InventoryStates.CLOSED:
+		return false
+	else:
+		return true
 
-	
-
-	
 
 func clear_ammo_display():
 	for bullet in ammo_container.get_children():

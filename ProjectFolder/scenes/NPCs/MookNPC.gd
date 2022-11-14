@@ -7,6 +7,7 @@ onready var nav_agent = $NavigationAgent2D
 onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 export var active : bool = false
+export var chance_to_have_gun = 0.75
 var health = 20.0
 var map_scene
 var home_building
@@ -41,7 +42,6 @@ func init(mapScene, homeBuilding):
 	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
 	player = mapScene.get_player()
 
-	var chance_to_have_gun = 0.50
 	if randf() < chance_to_have_gun:
 		has_gun = true
 		$Sprite/NPCGun.show()
