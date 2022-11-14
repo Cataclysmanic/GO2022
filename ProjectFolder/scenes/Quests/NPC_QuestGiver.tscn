@@ -60,11 +60,31 @@ stream = ExtResource( 5 )
 
 [node name="PotentialRequiredItems" type="Node" parent="."]
 
-[node name="Paper" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+[node name="Ex-Wifes Attorney Bills" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
 item_details = {
 "is_unique": true,
 "item_name": "ex-wife's attorney bills",
 "notes_for_journal": "A file clearly delineating the attorney fees paid out by one Margaret A Sawyer during the period of interest.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Photograph" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+item_details = {
+"is_unique": true,
+"item_name": "photograph of ex-wife with another man",
+"notes_for_journal": "A grainy dark photograph taken through a window. It's not clear what's inside. From the shape of the blury patch, it could be two people.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="InsaneScribblings" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+item_details = {
+"is_unique": true,
+"item_name": "insane scribblings",
+"notes_for_journal": "a torn page with a lot of nonsense scribbled onto it. Some of the worst mean-spirited, paranoid vitriol you'll ever read.",
 "path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
 "path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
 "path_to_scene_for_PlayerController_Items": ""

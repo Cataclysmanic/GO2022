@@ -190,7 +190,7 @@ shape = SubResource( 19 )
 
 [node name="QuestGivers" type="Node2D" parent="."]
 
-[node name="NPC_QuestGiver" parent="QuestGivers" instance=ExtResource( 18 )]
+[node name="MagicalHobo" parent="QuestGivers" instance=ExtResource( 18 )]
 position = Vector2( 1042, 1578 )
 inventory_requirement = "note 01"
 
