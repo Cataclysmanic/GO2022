@@ -107,10 +107,12 @@ func clear_inventory():
 		item.queue_free()
 	
 func display_inventory_item(itemResource : Resource):
+
 	$PopupItemViewer.init(itemResource)
 
 func inventory_add(itemResource : Resource):
 	var iconButton = $ResourcePreloader.get_resource("InventoryIconButton").instance()
+	
 	iconButton.init(itemResource, self)
 	inventory_container.add_child(iconButton)
 	

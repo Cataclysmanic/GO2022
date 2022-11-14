@@ -59,7 +59,7 @@ func die():
 	queue_free()
 
 func _on_Area_body_entered(body):
-	if "detective" in body.name.to_lower():
+	if body.has_method("is_player") and body.is_player() == true:
 		var recipients = [body]
 		if body.has_method("get_hud"):
 			recipients.push_back(body.get_hud())
