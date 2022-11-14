@@ -8,6 +8,7 @@ onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 export var active : bool = false
 export var chance_to_have_gun = 0.75
+export var chance_to_spawn_loot = 0.25
 var health = 20.0
 var map_scene
 var home_building
@@ -119,12 +120,13 @@ func die():
 	spawn_loot()
 
 func spawn_loot():
-	var loader = $SpawnOnDeath
-	var options = loader.get_resource_list()
-	var randOptionName = options[randi()%len(options)]
-	var lootObject = loader.get_resource(randOptionName).instance()
-	lootObject.set_global_position(get_global_position())
-	emit_signal("loot_ready", lootObject)
+	if randf() < chance_to_spawn_loot:
+		var loader = $SpawnOnDeath
+		var options = loader.get_resource_list()
+		var randOptionName = options[randi()%len(options)]
+		var lootObject = loader.get_resource(randOptionName).instance()
+		lootObject.set_global_position(get_global_position())
+		emit_signal("loot_ready", lootObject)
 
 
 func shoot():

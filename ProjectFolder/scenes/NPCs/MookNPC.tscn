@@ -512,7 +512,6 @@ shape = SubResource( 8 )
 
 [node name="ShootingRange" type="CollisionShape2D" parent="ShootingArea"]
 position = Vector2( 204.188, 4.83057 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 9 )
 
 [node name="Corpse" type="Sprite" parent="."]
