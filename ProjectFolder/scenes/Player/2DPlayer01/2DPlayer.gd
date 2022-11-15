@@ -72,10 +72,13 @@ func _physics_process(delta):
 	if !dead:
 		move(delta)
 		$Flashlight.look_at(get_global_mouse_position())
+		if stamina < 100 :
+			stamina += 1
+			update_bars()
 
 
 func _unhandled_input(event):
-	if event.is_action_pressed("flashlight"):
+	if event.is_action_pressed("flashlight") and !dead:
 		toggle_flashlight()
 
 func toggle_flashlight():
@@ -98,16 +101,16 @@ func die_for_real_this_time():
 	dead = true
 	$PaperDoll.hide()
 	$deadPlaceholder.show()
-	$deadPlaceholderLabel.show()
-	
 
 func move(_delta):
 	# delta not required for move_and_slide
 
 	var speed = player_speed
-	if Input.is_action_pressed("sprint"):
+	if Input.is_action_pressed("sprint") and stamina > 0:
 		speed *= sprint_velocity_multiple
-
+		stamina -= 2
+		update_bars()
+	
 	var move_vector = Vector2.ZERO
 	var directional_vector = Vector2.ZERO
 	

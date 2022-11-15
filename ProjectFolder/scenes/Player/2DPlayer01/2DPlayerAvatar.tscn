@@ -165,20 +165,19 @@ color_ramp = SubResource( 23 )
 
 [node name="deadPlaceholder" type="Sprite" parent="."]
 visible = false
-position = Vector2( -5.49999, 4.58332 )
-scale = Vector2( 0.139474, 0.108438 )
+position = Vector2( -5.33334, 3.33331 )
+scale = Vector2( 0.124561, 0.106695 )
 texture = ExtResource( 3 )
 
-[node name="deadPlaceholderLabel" type="Label" parent="."]
-visible = false
-margin_left = -99.3333
-margin_top = -48.6667
-margin_right = 172.667
-margin_bottom = -0.666668
-rect_scale = Vector2( 0.571756, 0.726238 )
-text = "Welp, you failed your mission chief...
-Being dead you will never solve the case...
-But what if, you could QUIT and try again?"
+[node name="Label" type="Label" parent="deadPlaceholder"]
+margin_left = -867.042
+margin_top = -618.588
+margin_right = -609.042
+margin_bottom = -570.588
+rect_scale = Vector2( 4.10399, 3.94309 )
+text = "You failed cheif...
+The case will forever remain unsolved....
+If only you could QUIT and try again..."
 
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]
