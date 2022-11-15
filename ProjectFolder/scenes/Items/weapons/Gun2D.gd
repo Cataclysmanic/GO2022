@@ -121,7 +121,7 @@ func _unhandled_input(event):
 
 
 func _on_trigger_pressed():
-	if State == States.READY:
+	if State == States.READY and !get_parent().get_parent().get_parent().get_parent().dead:
 		if ammo_remaining > 0:
 			shoot()
 		else:

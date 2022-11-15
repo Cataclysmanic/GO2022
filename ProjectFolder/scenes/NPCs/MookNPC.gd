@@ -57,6 +57,7 @@ func can_seek():
 		or !home_building.is_player_present()
 		or nav_agent.is_navigation_finished()
 		or len(current_path) == 0
+		or player.dead
 	):
 		return false
 	else:

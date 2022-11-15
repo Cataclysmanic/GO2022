@@ -43,6 +43,7 @@ func point_legs_at(targetPos:Vector2):
 
 func _process(_delta):
 	point_torso_at(get_global_mouse_position())
+	
 
 
 func _on_DamageArea_body_entered(body):
