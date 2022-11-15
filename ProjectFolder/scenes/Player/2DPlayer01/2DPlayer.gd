@@ -80,6 +80,9 @@ func _physics_process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("flashlight") and !dead:
 		toggle_flashlight()
+	if event.is_action_pressed("melee_attack") and !dead:
+		$PlaceholderMeleeSound.play()
+		$PaperDoll/AnimationPlayer.play("placeholderMelee")
 
 func toggle_flashlight():
 	var is_enabled = !$Flashlight.enabled
