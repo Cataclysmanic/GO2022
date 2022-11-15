@@ -11,11 +11,13 @@ var last_movement_vector = Vector2.ZERO
 enum States {INITIALIZING, READY, INVULNERABLE, DYING, DEAD}
 var State = States.INITIALIZING
 
-export var health = 50.0
+var health = 100
+var stamina = 100
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	update_bars()
 	$PaperDoll.relax()
 	if Global.IO.player_has_item("gun2D"):
 		spawn_item(Global.IO.get_item("Gun2D"))
@@ -30,6 +32,9 @@ func init(mapScene):
 	camera = find_node("Camera2D")
 	camera.init(self, hud)
 
+func update_bars():
+	$CanvasLayer/HUD/Top/Header/HealthBar.value = health
+	$CanvasLayer/HUD/Top/Header/HealthBar/StaminaBar.value = stamina
 
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)

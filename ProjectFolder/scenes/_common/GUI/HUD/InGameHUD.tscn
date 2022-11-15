@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -12,6 +12,12 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InventoryIconButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_close_3.wav" type="AudioStream" id=12]
+[ext_resource path="res://Assets/Test Assets/sprGUIStaminaBack.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Test Assets/sprGUIStaminaFront.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Test Assets/sprGUIHealthBack.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Test Assets/sprGUIHealthFront.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Test Assets/sprGUIHealthText.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Test Assets/sprGUIStaminaText.png" type="Texture" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -53,6 +59,23 @@ margin_bottom = 24.0
 size_flags_horizontal = 2
 text = "Quit"
 return_to_main = true
+
+[node name="HealthBar" type="TextureProgress" parent="Top/Header"]
+margin_left = 407.0
+margin_right = 577.0
+margin_bottom = 24.0
+texture_under = ExtResource( 15 )
+texture_over = ExtResource( 17 )
+texture_progress = ExtResource( 16 )
+
+[node name="StaminaBar" type="TextureProgress" parent="Top/Header/HealthBar"]
+margin_left = 27.0
+margin_top = 22.0
+margin_right = 140.0
+margin_bottom = 34.0
+texture_under = ExtResource( 13 )
+texture_over = ExtResource( 18 )
+texture_progress = ExtResource( 14 )
 
 [node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
 margin_left = 948.0
