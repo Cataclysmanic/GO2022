@@ -117,7 +117,6 @@ func _on_HUD_reloaded(numAmmo):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("shoot"):
-
 		_on_trigger_pressed()
 
 

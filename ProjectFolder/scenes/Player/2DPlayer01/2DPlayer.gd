@@ -1,11 +1,12 @@
 extends KinematicBody2D
 
 
-var last_movement_vector = Vector2.ZERO
-var sprint_velocity_multiple = 3.0
+export var sprint_velocity_multiple = 1.75
+export var player_speed = 325.0
 var map_scene
 var camera
 var hud
+var last_movement_vector = Vector2.ZERO
 
 enum States {INITIALIZING, READY, INVULNERABLE, DYING, DEAD}
 var State = States.INITIALIZING
@@ -92,48 +93,31 @@ func die_for_real_this_time():
 	
 	
 
-func move(delta):
-	delta = 1.0 # cheat because I switched from move_and_collide to move_and_slide, which doesn't require delta.
-	
-	var style = "ortho"
-	
-	var speed = 150.0
+func move(_delta):
+	# delta not required for move_and_slide
+
+	var speed = player_speed
 	if Input.is_action_pressed("sprint"):
 		speed *= sprint_velocity_multiple
 
 	var move_vector = Vector2.ZERO
 	var directional_vector = Vector2.ZERO
 	
-	if style == "orbit":
-		if Input.is_action_pressed("ui_up"):
-			$PaperDoll/Lower.rotation_degrees = -90
-			move_vector += Vector2.RIGHT * speed * delta
-		if Input.is_action_pressed("ui_left"):
-			$PaperDoll/Lower.rotation_degrees = 180
-			move_vector += Vector2.UP * speed * delta
-		if Input.is_action_pressed("ui_right"):
-			$PaperDoll/Lower.rotation_degrees = 0
-			move_vector += Vector2.DOWN * speed * delta
-		if Input.is_action_pressed("ui_down"):
-			$PaperDoll/Lower.rotation_degrees = 90
-			move_vector += Vector2.LEFT * speed * delta
-		directional_vector = move_vector.rotated(rotation)
-	elif style == "ortho":
-		if Input.is_action_pressed("ui_up"):
-			$PaperDoll/Lower.rotation_degrees = -90
-			move_vector += Vector2.UP * speed * delta
-		if Input.is_action_pressed("ui_left"):
-			$PaperDoll/Lower.rotation_degrees = 180
-			move_vector += Vector2.LEFT * speed * delta
-		if Input.is_action_pressed("ui_right"):
-			$PaperDoll/Lower.rotation_degrees = 0
-			move_vector += Vector2.RIGHT * speed * delta
-		if Input.is_action_pressed("ui_down"):
-			$PaperDoll/Lower.rotation_degrees = 90
-			move_vector += Vector2.DOWN * speed * delta
-		directional_vector = move_vector
+	if Input.is_action_pressed("ui_up"):
+		$PaperDoll/Lower.rotation_degrees = -90
+		move_vector += Vector2.UP * speed
+	if Input.is_action_pressed("ui_left"):
+		$PaperDoll/Lower.rotation_degrees = 180
+		move_vector += Vector2.LEFT * speed
+	if Input.is_action_pressed("ui_right"):
+		$PaperDoll/Lower.rotation_degrees = 0
+		move_vector += Vector2.RIGHT * speed
+	if Input.is_action_pressed("ui_down"):
+		$PaperDoll/Lower.rotation_degrees = 90
+		move_vector += Vector2.DOWN * speed
+	directional_vector = move_vector
 
-	var _collision = move_and_slide(directional_vector)
+	var _collision = move_and_slide(directional_vector) # move and slide doesn't use delta.
 	play_animations(directional_vector)
 	last_movement_vector = directional_vector
 	

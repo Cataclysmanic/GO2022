@@ -32,7 +32,7 @@ func shake():
 
 
 func look_ahead(delta):
-	var damping = 12.0
+	var damping = 35.0 # higher numbers give snappier camera movement
 	var mousePos = get_global_mouse_position()
 	var playerPos = global_position
 	var window_height = OS.get_window_size().y
