@@ -74,6 +74,7 @@ colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0 )
 
 [node name="PlayerDetective" type="KinematicBody2D"]
 material = SubResource( 3 )
+scale = Vector2( 1.5, 1.5 )
 script = ExtResource( 4 )
 
 [node name="Flashlight" type="Light2D" parent="."]
