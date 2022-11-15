@@ -13,6 +13,7 @@ var State = States.INITIALIZING
 
 var health = 100
 var stamina = 100
+var dead = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -68,8 +69,9 @@ func get_hud():
 
 
 func _physics_process(delta):
-	move(delta)
-	$Flashlight.look_at(get_global_mouse_position())
+	if !dead:
+		move(delta)
+		$Flashlight.look_at(get_global_mouse_position())
 
 
 func _unhandled_input(event):
@@ -93,9 +95,10 @@ func begin_dying():
 	$AnimationPlayer.play("dying")
 	
 func die_for_real_this_time():
-	# ask world_controller to return us to the main menu?
-	pass
-	
+	dead = true
+	$PaperDoll.hide()
+	$deadPlaceholder.show()
+	$deadPlaceholderLabel.show()
 	
 
 func move(_delta):
@@ -161,6 +164,7 @@ func _on_hit(damage):
 		$AnimationPlayer.play("hit")
 		$Timers/InvulnerbailityTimer.start()
 		health -= damage
+		update_bars()
 		if health < 0:
 			begin_dying()
 	
