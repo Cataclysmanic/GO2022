@@ -50,6 +50,11 @@ func init(mapScene, homeBuilding):
 	else:
 		$Sprite/NPCGun.hide()
 
+	set_difficulty(Global.difficulty)
+	
+func set_difficulty(difficultyValue): # 0.5 to 3.0
+	assert(difficultyValue != 0)
+	$Sprite/NPCGun/ReloadTimer.set_wait_time(0.5 / difficultyValue)
 
 func can_seek():
 		
