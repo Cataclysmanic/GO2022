@@ -73,11 +73,20 @@ func shoot():
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+	eject_casing()
 	flash_muzzle()
 	knockback_shooter(Vector2.RIGHT.rotated(myRot))
 	cock_gun()
 	ammo_remaining -= 1
 	emit_signal("player_gun_shot", ammo_remaining)
+
+
+func eject_casing():
+	var casing = $ResourcePreloader.get_resource("casing").instance()
+	casing.rotation = rand_range(-PI, PI)
+	casing.set_global_position(get_global_position())
+	emit_signal("projectile_ready", casing)
+
 
 func knockback_shooter(impactVector):
 	var magnitude = 10.0
