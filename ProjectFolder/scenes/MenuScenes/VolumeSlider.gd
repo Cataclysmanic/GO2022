@@ -7,9 +7,10 @@ export var audio_stream : AudioStream
 
 func _ready() -> void:
 	$AudioStreamPlayer.set_bus(audio_bus_name)
-	value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(audio_bus_name)))
 	$AudioStreamPlayer.set_stream(audio_stream)
-
+	
+	value = db2linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index(audio_bus_name)))
+	
 
 
 func _on_VolumeSlider_drag_started():

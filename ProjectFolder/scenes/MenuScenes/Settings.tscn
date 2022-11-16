@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/MenuScenes/Settings.gd" type="Script" id=3]
 [ext_resource path="res://scenes/MenuScenes/VolumeSlider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/_common/Music/MysteriousLoop.ogg" type="AudioStream" id=5]
-[ext_resource path="res://scenes/_common/Music/CalmLoop.mp3" type="AudioStream" id=6]
+[ext_resource path="res://scenes/_common/Music/TenseLoop.mp3" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_9.wav" type="AudioStream" id=7]
 
 [node name="Settings" type="Control"]
@@ -79,6 +79,7 @@ margin_bottom = 162.0
 text = "Master Volume"
 
 [node name="MasterVolSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 4 )]
+value = 0.5
 audio_stream = ExtResource( 5 )
 
 [node name="SFXVolLabel" type="Label" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
@@ -90,6 +91,7 @@ text = "Sound Effects Volume"
 [node name="SFXVolSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 4 )]
 margin_top = 166.0
 margin_bottom = 245.0
+value = 0.5
 audio_bus_name = "sfx"
 audio_stream = ExtResource( 7 )
 
@@ -102,6 +104,7 @@ text = "Music Volume"
 [node name="MusicVolSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 4 )]
 margin_top = 249.0
 margin_bottom = 328.0
+value = 0.5
 audio_bus_name = "Music"
 audio_stream = ExtResource( 6 )
 
