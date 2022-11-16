@@ -144,7 +144,6 @@ scale_amount_random = 0.75
 color_ramp = SubResource( 21 )
 
 [node name="BloodDripParticles" type="CPUParticles2D" parent="."]
-z_index = -1
 emitting = false
 amount = 30
 lifetime = 20.0

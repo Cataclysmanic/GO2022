@@ -69,7 +69,7 @@ func shoot():
 	gunshotNoise.play()
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
-	var bulletSpeed = 600.0
+	var bulletSpeed = 1000.0
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
