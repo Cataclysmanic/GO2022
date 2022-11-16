@@ -15,6 +15,7 @@ var home_building
 var current_path = []
 onready var player # map_scene will provide this on init now
 var shooting_target_acquired = false
+var player_engaged = false
 #var ready = false # use State == States.READY instead
 
 enum States { INITIALIZING, READY, CHASING, FIGHTING, RELOADING, DEAD }
@@ -34,8 +35,8 @@ func _ready():
 		$Label.text = "active"
 	
 	State = States.READY
-	nav_agent.set_navigation(home_building.find_node("NPCs"))
-
+	#nav_agent.set_navigation(home_building.find_node("NPCs"))
+	nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
 
 func init(mapScene, homeBuilding):
 	map_scene = mapScene
@@ -51,10 +52,12 @@ func init(mapScene, homeBuilding):
 
 
 func can_seek():
+		
+	
 	if (
 		State == States.DEAD
-		or !nav_agent.is_target_reachable()
-		or !home_building.is_player_present()
+		or (!nav_agent.is_target_reachable() and !player_engaged)
+		or (!home_building.is_player_present() and !player_engaged)
 		or nav_agent.is_navigation_finished()
 		or len(current_path) == 0
 		or player.dead
@@ -141,6 +144,7 @@ func shoot():
 		var gun = $Sprite/NPCGun
 		var targetted_object = gun.get_node("RayCast2D").get_collider()
 		if targetted_object != null and "detective" in targetted_object.name.to_lower():
+			player_engaged = true
 			var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 			var pos = gun.get_node("Muzzle").get_global_position()
 			var bulletSpeed = 400.0

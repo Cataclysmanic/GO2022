@@ -77,7 +77,7 @@ func generate_occluders_from_bitmap():
 	
 	occlusionPolygons = wallBitmap.opaque_to_polygons(wallRect)
 	var navPolygon = NavigationPolygon.new()
-	var navPolygonInstance = NavigationPolygonInstance.new()
+	#var navPolygonInstance = NavigationPolygonInstance.new()
 	
 	navPolygon.add_outline(rect_to_outline(wallRect))
 		
@@ -91,10 +91,10 @@ func generate_occluders_from_bitmap():
 	$StaticBodyWalls.position = Vector2.ZERO - ( (rectSize ) / 2)
 	$LightOccluders.position = $StaticBodyWalls.position
 	
-	navPolygon.make_polygons_from_outlines()
-	navPolygonInstance.navpoly = navPolygon
-	navPolygonInstance.position = $StaticBodyWalls.position
-	$NPCs.add_child(navPolygonInstance)
+#	navPolygon.make_polygons_from_outlines()
+#	navPolygonInstance.navpoly = navPolygon
+#	navPolygonInstance.position = $StaticBodyWalls.position
+#	$NPCs.add_child(navPolygonInstance)
 
 
 func rect_to_outline(rect : Rect2):

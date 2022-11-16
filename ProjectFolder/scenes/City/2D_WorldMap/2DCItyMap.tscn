@@ -119,7 +119,6 @@ position = Vector2( 430, -1583 )
 rotation = 3.14159
 
 [node name="Buildings" type="Node2D" parent="Outdoor"]
-scale = Vector2( 1.03418, 1 )
 
 [node name="MunicipalBuilding" parent="Outdoor/Buildings" instance=ExtResource( 7 )]
 position = Vector2( -1537, -1491 )
@@ -215,3 +214,5 @@ volume_db = -7.0
 
 [node name="Bandage" parent="." instance=ExtResource( 13 )]
 position = Vector2( -973, -545 )
+
+[node name="NavPolygons" type="Navigation2D" parent="."]
