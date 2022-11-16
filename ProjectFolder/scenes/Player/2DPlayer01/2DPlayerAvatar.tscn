@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/_common/Materials/SpotlightLightConeBlurred.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Items/tools/CircleOmniLight.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=9]
 [ext_resource path="res://scenes/Player/2DPlayer01/BloodDecal.png" type="Texture" id=10]
 [ext_resource path="res://scenes/_common/GUI/sfx/bang.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=12]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -32,6 +33,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaperDoll:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaperDoll:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -64,6 +89,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaperDoll:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Gradient" id=21]
 offsets = PoolRealArray( 0.00787402, 0.348031, 0.637795, 0.856693, 0.993701 )
@@ -73,6 +110,12 @@ colors = PoolColorArray( 0.987442, 0, 0, 1, 0.924413, 0, 0, 1, 0, 0, 0, 1, 1, 1,
 interpolation_mode = 2
 offsets = PoolRealArray( 0, 0.78719, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=25]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=26]
+light_mode = 1
 
 [node name="PlayerDetective" type="KinematicBody2D"]
 material = SubResource( 3 )
@@ -117,12 +160,14 @@ pitch_scale = 1.5
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="Timers"]
-wait_time = 0.2
+wait_time = 10.0
 one_shot = true
 
 [node name="InvulnerbailityTimer" type="Timer" parent="Timers"]
 wait_time = 0.2
 one_shot = true
+
+[node name="DyingWarningUpdateTimer" type="Timer" parent="Timers"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 24 )
@@ -164,6 +209,23 @@ scale_amount = 1.1
 scale_amount_random = 0.5
 color_ramp = SubResource( 23 )
 
+[node name="RecoveryFireworks" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.6
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+angle = 45.0
+angle_random = 0.52
+scale_amount = 6.0
+scale_amount_random = 0.5
+color = Color( 0.682353, 0, 1, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
 [node name="deadPlaceholder" type="Sprite" parent="."]
 visible = false
 position = Vector2( -5.33334, 3.33331 )
@@ -171,6 +233,7 @@ scale = Vector2( 0.124561, 0.106695 )
 texture = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="deadPlaceholder"]
+material = SubResource( 25 )
 margin_left = -867.042
 margin_top = -618.588
 margin_right = -609.042
@@ -187,5 +250,18 @@ volume_db = 9.59
 pitch_scale = 0.68
 attenuation = 38.0546
 
+[node name="DebugInfo" type="Label" parent="."]
+material = SubResource( 26 )
+margin_left = -20.6667
+margin_top = -70.0
+margin_right = 19.3333
+margin_bottom = -56.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 21.3333, 6 )
+custom_fonts/font = ExtResource( 12 )
+text = "State"
+align = 1
+
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]
+[connection signal="timeout" from="Timers/DyingWarningUpdateTimer" to="." method="_on_DyingWarningUpdateTimer_timeout"]

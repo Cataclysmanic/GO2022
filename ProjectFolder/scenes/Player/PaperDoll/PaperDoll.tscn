@@ -770,7 +770,7 @@ script = ExtResource( 3 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 11
+frame = 12
 playing = true
 offset = Vector2( 8, 0 )
 

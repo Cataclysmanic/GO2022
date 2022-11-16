@@ -11,11 +11,8 @@ func die():
 
 func _on_Area_body_entered(body):
 	if body.has_method("is_player") and body.is_player() == true and body.health < 100:
-		for i in 10:
-			if body.health < 100:
-				body.health += 1
-				body.update_bars()
-	#else say or show you already have enought heealt?
+		if body.has_method("_on_healed"):
+			body._on_healed(10)
 
 		emit_signal("picked_up", self)
 		disappear()

@@ -17,7 +17,8 @@ func start_running():
 	$AnimationPlayer.play("Run")
 	
 func point_gun():
-	$AnimationPlayer.play("Point Gun")
+	#$AnimationPlayer.play("Point Gun")
+	pass
 	
 func start_idling():
 	$AnimationPlayer.play("Idle")

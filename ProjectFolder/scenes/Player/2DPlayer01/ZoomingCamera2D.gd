@@ -47,4 +47,5 @@ func look_ahead(delta):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	look_ahead(delta)
+	if player.State != player.States.DEAD:
+		look_ahead(delta)

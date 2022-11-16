@@ -3,9 +3,16 @@ extends KinematicBody2D
 
 export var sprint_velocity_multiple = 1.75
 export var player_speed = 325.0
+export var max_health = 100.0
+
 var map_scene
 var camera
 var hud
+var health_bar
+
+var stamina_bar
+var dying_warning_label
+
 var last_movement_vector = Vector2.ZERO
 
 enum States {INITIALIZING, READY, INVULNERABLE, DYING, DEAD}
@@ -30,12 +37,20 @@ func _ready():
 func init(mapScene):
 	map_scene = mapScene
 	hud = find_node("HUD")
+	health_bar = hud.find_node("HealthBar")
+	stamina_bar = hud.find_node("StaminaBar")
+	dying_warning_label = hud.find_node("DyingWarningLabel")
 	camera = find_node("Camera2D")
 	camera.init(self, hud)
 
 func update_bars():
-	$CanvasLayer/HUD/Top/Header/HealthBar.value = health
-	$CanvasLayer/HUD/Top/Header/HealthBar/StaminaBar.value = stamina
+	health_bar.value = health
+	stamina_bar.value = stamina
+	if State == States.DYING:
+		dying_warning_label.visible = true
+		dying_warning_label.text = "You're dying, find bandades: " + str(int($Timers/DeathTimer.get_time_left()))
+	else:
+		dying_warning_label.visible = false
 
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)
@@ -69,12 +84,16 @@ func get_hud():
 
 
 func _physics_process(delta):
-	if !dead:
+	if State == States.INITIALIZING:
+		return
+	elif State != States.DEAD:
 		move(delta)
 		$Flashlight.look_at(get_global_mouse_position())
 		if stamina < 100 :
 			stamina += 1
 			update_bars()
+	if has_node("DebugInfo"):
+		$DebugInfo.text = States.keys()[State]
 
 
 func _unhandled_input(event):
@@ -99,9 +118,22 @@ func begin_dying():
 	$Timers/DeathTimer.start()
 	State = States.DYING
 	$AnimationPlayer.play("dying")
-	
+	dying_warning_label.visible = true
+	$Timers/DyingWarningUpdateTimer.start()
+
+func recover_from_near_death():
+	# player found a bandage after dying process started.
+	# Celebrate and give max_health
+		
+	dying_warning_label.hide()
+	State = States.READY
+	health = max_health
+	$RecoveryFireworks.emitting = true
+	update_bars()
+
 func die_for_real_this_time():
 	dead = true
+	State = States.DEAD
 	$PaperDoll.hide()
 	$deadPlaceholder.show()
 
@@ -162,20 +194,32 @@ func _on_collectible_picked_up(_pickupObj):
 func _on_hit(damage):
 	# play a noise, flash the sprite or queue animation, launch particles, start invulnerability timer
 	# in some games, taking damage supercharges your adrenaline and you gain speed / damage
-	if State != States.READY:
+	if State == States.INITIALIZING:
 		return
 	else:
-		State = States.INVULNERABLE
 		$HitNoise.play()
 		$AnimationPlayer.play("hit")
-		$Timers/InvulnerbailityTimer.start()
 		health -= damage
 		update_bars()
-		if health < 0:
+		if health <= 0:
 			begin_dying()
-	
+		else:
+			State = States.INVULNERABLE
+			$Timers/InvulnerbailityTimer.start()
+		
+func _on_healed(amount):
+	if health < max_health:
+		health = min(health + amount, max_health)
+		update_bars()
+	if State == States.DYING:
+		recover_from_near_death()
+
+
 func _on_InvulnerbailityTimer_timeout():
-	State = States.READY
+	if health > 0:
+		State = States.READY
+	
+		
 	
 func _on_DeathTimer_timeout():
 	if health <= 0:
@@ -185,3 +229,11 @@ func _on_DeathTimer_timeout():
 
 
 
+
+
+func _on_DyingWarningUpdateTimer_timeout():
+	update_bars()
+	if health <= 0:
+		$Timers/DyingWarningUpdateTimer.start()
+	# no need to recover here, the bandage calls recover_from_near_death
+	
