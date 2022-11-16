@@ -7,7 +7,12 @@ var IO = null
 var Utils = null
 #var in_danger = "no" # moved to building is_player_present()
 
-var difficulty = 1.0 # 0.5 to 3.0 (represents multiples of enemies, enemy strength, etc.)
+var user_preferences = {
+	"difficulty": 1.0, #0.5 to 3.0
+	"gore": true,
+	"shake_and_flash":true,
+}
+
 
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
 var game_state = STATES.INITIALIZING

@@ -20,7 +20,7 @@ func init(mapObj):
 
 	map_scene = mapObj
 	
-	spawn_npcs(int(num_npcs) * Global.difficulty)
+	spawn_npcs(int(num_npcs) * Global.user_preferences["difficulty"])
 
 func spawn_npcs(num):
 	

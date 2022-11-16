@@ -50,7 +50,7 @@ func init(mapScene, homeBuilding):
 	else:
 		$Sprite/NPCGun.hide()
 
-	set_difficulty(Global.difficulty)
+	set_difficulty(Global.user_preferences["difficulty"])
 	
 func set_difficulty(difficultyValue): # 0.5 to 3.0
 	assert(difficultyValue != 0)
@@ -117,14 +117,19 @@ func update_nav_path():
 
 
 func flash_hit():
-	$AnimationPlayer.play("hit")
+	if Global.user_preferences["gore"]:
+		$AnimationPlayer.play("hit")
 	$HitNoise.play()
 
 func die():
 	State = States.DEAD
 	$DieNoise.play()
 	$Corpse.rotation = rand_range(0, 2*PI)
-	$AnimationPlayer.play("die")
+	if Global.user_preferences["gore"]:
+		$AnimationPlayer.play("die")
+	else:
+		set_visible(false)
+		call_deferred("queue_free")
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	spawn_loot()
 

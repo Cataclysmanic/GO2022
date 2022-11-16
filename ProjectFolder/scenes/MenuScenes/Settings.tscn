@@ -147,3 +147,5 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
 [connection signal="drag_ended" from="VBoxContainer/PanelContainer/Body/GridContainer/DifficultySlider" to="." method="_on_DifficultySlider_drag_ended"]
+[connection signal="toggled" from="VBoxContainer/PanelContainer/Body/GridContainer/GoreCheckButton" to="." method="_on_GoreCheckButton_toggled"]
+[connection signal="toggled" from="VBoxContainer/PanelContainer/Body/GridContainer/ShakeNFlashButton" to="." method="_on_ShakeNFlashButton_toggled"]

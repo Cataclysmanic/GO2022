@@ -117,7 +117,10 @@ func begin_dying():
 	# give the player a chance to heal up or kill one more guy to save his life?
 	$Timers/DeathTimer.start()
 	State = States.DYING
+	if Global.user_preferences["gore"] == false:
+			$BloodDripParticles.texture = null
 	$AnimationPlayer.play("dying")
+	
 	dying_warning_label.visible = true
 	$Timers/DyingWarningUpdateTimer.start()
 
@@ -202,7 +205,8 @@ func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 		return
 	elif not State in [States.INVULNERABLE, States.DYING, States.DEAD]: 
 		$HitNoise.play()
-		$AnimationPlayer.play("hit")
+		if Global.user_preferences["gore"]:
+			$AnimationPlayer.play("hit")
 		health -= damage
 		update_bars()
 		knockback(impactVector.normalized() * damage)

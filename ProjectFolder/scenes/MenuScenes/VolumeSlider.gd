@@ -17,7 +17,7 @@ func _on_VolumeSlider_drag_started():
 	
 
 
-func _on_VolumeSlider_drag_ended(value_changed):
+func _on_VolumeSlider_drag_ended(_value_changed):
 	$AudioStreamPlayer.stop()
 
 
