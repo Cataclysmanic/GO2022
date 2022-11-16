@@ -43,3 +43,11 @@ func point_legs_at(targetPos:Vector2):
 
 func _process(_delta):
 	point_torso_at(get_global_mouse_position())
+	
+
+
+func _on_DamageArea_body_entered(body):
+	if "Target" in body.name:
+		body._on_hit(5)
+		$Upper/Fist.hide()
+		$Upper/Fist/DamageArea/CollisionShape2D.disabled = true

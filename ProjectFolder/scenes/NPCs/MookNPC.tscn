@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=14]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_5.wav" type="AudioStream" id=15]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=16]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=17]
 
 [sub_resource type="CircleShape2D" id=11]
 radius = 13.1734
@@ -492,7 +493,7 @@ stream = ExtResource( 8 )
 volume_db = 10.0
 
 [node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Magazine2DPickup" ), [ ExtResource( 11 ) ] ]
+resources = [ PoolStringArray( "Bandage2DPickup", "Magazine2DPickup" ), [ ExtResource( 17 ), ExtResource( 11 ) ] ]
 
 [node name="damage_area" type="Area2D" parent="."]
 visible = false
