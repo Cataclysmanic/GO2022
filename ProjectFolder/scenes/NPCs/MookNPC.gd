@@ -161,13 +161,20 @@ func shoot():
 			
 
 
-func _on_hit(damage):
+func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 	health -= damage
 	if health <= 0:
 		die()
 	else:
 		flash_hit()
+		if incomingVector != Vector2.ZERO:
+			knock_back(incomingVector.normalized() * damage)
 		
+
+func knock_back(impactVector):
+	# ideally we'd tween / lerp to this, but I'll just teleport the NPC backwards for now.
+	position += impactVector
+
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "die":

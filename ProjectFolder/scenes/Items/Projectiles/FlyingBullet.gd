@@ -35,8 +35,8 @@ func _on_Area2D_body_entered(body):
 		return
 	elif body.has_method("hit"):
 		var _err = connect("hit", body, "_on_hit")
-		emit_signal("hit", damage)
+		emit_signal("hit", damage, velocity)
 	elif body.has_method("_on_hit"):
 		var _err = connect("hit", body, "_on_hit")
-		emit_signal("hit", damage)
+		emit_signal("hit", damage, velocity)
 	self.die()

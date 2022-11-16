@@ -195,7 +195,7 @@ func _on_collectible_picked_up(_pickupObj):
 	pass # don't really care yet. Inventory and IO can hash this out between them.
 	
 
-func _on_hit(damage):
+func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 	# play a noise, flash the sprite or queue animation, launch particles, start invulnerability timer
 	# in some games, taking damage supercharges your adrenaline and you gain speed / damage
 	if State == States.INITIALIZING:

@@ -74,9 +74,14 @@ func shoot():
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
 	flash_muzzle()
+	knockback_shooter(Vector2.RIGHT.rotated(myRot))
 	cock_gun()
 	ammo_remaining -= 1
 	emit_signal("player_gun_shot", ammo_remaining)
+
+func knockback_shooter(impactVector):
+	var magnitude = 10.0
+	player.position -= impactVector.normalized()*magnitude
 
 
 func flash_muzzle():
