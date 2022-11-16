@@ -129,6 +129,7 @@ func recover_from_near_death():
 	State = States.READY
 	health = max_health
 	$RecoveryFireworks.emitting = true
+	$BloodDripParticles.emitting = false
 	update_bars()
 
 func die_for_real_this_time():
@@ -196,12 +197,12 @@ func _on_hit(damage):
 	# in some games, taking damage supercharges your adrenaline and you gain speed / damage
 	if State == States.INITIALIZING:
 		return
-	else:
+	elif not State in [States.INVULNERABLE, States.DYING, States.DEAD]: 
 		$HitNoise.play()
 		$AnimationPlayer.play("hit")
 		health -= damage
 		update_bars()
-		if health <= 0:
+		if health <= 0 and State != States.DYING:
 			begin_dying()
 		else:
 			State = States.INVULNERABLE
