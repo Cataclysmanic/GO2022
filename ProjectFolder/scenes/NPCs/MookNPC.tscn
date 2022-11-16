@@ -502,7 +502,6 @@ scale = Vector2( -3.37249, 3.71667 )
 shape = SubResource( 6 )
 
 [node name="PunchingArea" type="Area2D" parent="."]
-visible = false
 
 [node name="MeleeThreatRange" type="CollisionShape2D" parent="PunchingArea"]
 position = Vector2( -2.19558, 2.41529 )

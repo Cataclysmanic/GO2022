@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Test Assets/Building/firstTry.dae/Material.material" type="Material" id=2]
 [ext_resource path="res://scenes/Items/collectables/3D/CollectableKeys.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Items/collectables/3D/CollectableBook.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Items/portals/Door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Items/portals/3DSpatialDoor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Test Assets/Desk.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Items/collectables/3D/CollectableTypewriter.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Items/collectables/3D/CollectableFlashlight.tscn" type="PackedScene" id=8]

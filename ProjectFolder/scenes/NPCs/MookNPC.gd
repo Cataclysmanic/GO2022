@@ -50,7 +50,20 @@ func init(mapScene, homeBuilding):
 	else:
 		$Sprite/NPCGun.hide()
 
+	jump_out_of_walls()
+
 	set_difficulty(Global.user_preferences["difficulty"])
+	
+
+func jump_out_of_walls():
+	var overlappingBodies = $damage_area.get_overlapping_bodies()
+	if len(overlappingBodies) > 0:
+		var averageVector = Vector2.ZERO
+		for body in overlappingBodies:
+			averageVector += global_position - body.global_position
+		set_global_position(global_position + averageVector)
+	
+	
 	
 func set_difficulty(difficultyValue): # 0.5 to 3.0
 	assert(difficultyValue != 0)

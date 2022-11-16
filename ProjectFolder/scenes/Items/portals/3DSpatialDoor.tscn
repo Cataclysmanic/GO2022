@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/Items/portals/Door.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Items/portals/3DSpatialDoor.gd" type="Script" id=1]
 
 [sub_resource type="BoxShape" id=1]
 

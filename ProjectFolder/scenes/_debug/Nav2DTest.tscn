@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/_debug/test.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_debug/Nav2DTest.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/Materials/SmallWhiteSquare.png" type="Texture" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 

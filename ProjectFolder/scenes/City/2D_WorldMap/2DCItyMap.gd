@@ -11,6 +11,8 @@ func _ready():
 	
 	spawn_buildings()
 	generate_navmesh()
+	
+	
 	Global.current_city_map = self
 
 	initialize_quest_givers()
@@ -41,8 +43,30 @@ func generate_navmesh():
 	
 	navPolygon.make_polygons_from_outlines()
 	navPolygonInstance.navpoly = navPolygon
+	navPolygonInstance.name = "city_nav_polygon_instance"
 	$NavPolygons.add_child(navPolygonInstance)
+	#add_doors(navPolygon)
 
+func add_doors(big_nav_poly):
+	pass
+	# place some static bodies on the map.
+	# we'll enable/disable their collision shape as required to let the player through
+	# we'll use their outline to modify the big city_nav_polygon_instance
+	# we'll create new NavigationPolygonInstance for the door
+	# we'll enable and disable that as required for NPCs.
+	
+	#  add manual NavPolygonInstances for doors.
+#	var doorOutlines = []
+#	for navPolygonInstance in $NavPolygons.get_children():
+#		if "door" in navPolygonInstance.name.to_lower():
+#			doorOutlines.push_back(navPolygonInstance.get_navigation_polygon())
+#
+#	for doorOutline in doorOutlines:
+#		big_nav_poly.add_poly(doorOutline)
+#	var big_nav_poly_instance = big_nav_poly.get_navigation_polygon()
+#	big_nav_poly_instance.make_polygons_from_outlines()
+	
+		
 
 func generate_nav_outlines(building):
 	var outlines = []
