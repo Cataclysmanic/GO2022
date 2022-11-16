@@ -1,19 +1,58 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Items/Projectiles/bullet.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Items/Projectiles/BulletImpact.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 25.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "impact",
+"speed": 25.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17, 6 )
 
 [node name="Bullet" type="Node2D"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.795558, 0.795558 )
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 8, 0 )
-scale = Vector2( 0.889535, 0.577865 )
-texture = ExtResource( 2 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 16, 0 )
+scale = Vector2( 0.606047, 0.596734 )
+frames = SubResource( 7 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( 18, -4.76837e-07 )
@@ -25,4 +64,24 @@ shape = SubResource( 1 )
 
 [node name="CrunchNoise" type="AudioStreamPlayer2D" parent="."]
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2( 22, 0 )
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 0.95
+randomness = 0.25
+lifetime_randomness = 0.5
+local_coords = false
+direction = Vector2( -1, 0 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.25
+angle = 45.0
+angle_random = 0.25
+scale_amount = 12.0
+scale_amount_random = 0.5
+color = Color( 0.435294, 0.427451, 0.427451, 1 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -352,7 +352,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=6]
-radius = 9.48202
+radius = 11.7903
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 59.2805, 65.2127 )
@@ -496,7 +496,6 @@ volume_db = 10.0
 resources = [ PoolStringArray( "Bandage2DPickup", "Magazine2DPickup" ), [ ExtResource( 17 ), ExtResource( 11 ) ] ]
 
 [node name="damage_area" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
 scale = Vector2( -3.37249, 3.71667 )
@@ -512,6 +511,7 @@ shape = SubResource( 8 )
 [node name="ShootingArea" type="Area2D" parent="."]
 
 [node name="ShootingRange" type="CollisionShape2D" parent="ShootingArea"]
+visible = false
 position = Vector2( 204.188, 4.83057 )
 shape = SubResource( 9 )
 

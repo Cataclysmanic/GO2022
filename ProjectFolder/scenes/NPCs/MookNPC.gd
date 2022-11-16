@@ -147,7 +147,7 @@ func shoot():
 			player_engaged = true
 			var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 			var pos = gun.get_node("Muzzle").get_global_position()
-			var bulletSpeed = 400.0
+			var bulletSpeed = 600.0
 			bullet.init(self, pos, $Sprite.rotation, bulletSpeed)
 			emit_signal("projectile_ready", bullet)
 			var gunshotNoises = $Sprite/NPCGun/GunshotNoises.get_children()

@@ -36,7 +36,15 @@ func _on_Area2D_body_entered(body):
 	elif body.has_method("hit"):
 		var _err = connect("hit", body, "_on_hit")
 		emit_signal("hit", damage, velocity)
+		die()
 	elif body.has_method("_on_hit"):
 		var _err = connect("hit", body, "_on_hit")
 		emit_signal("hit", damage, velocity)
+		die()
+	else: # probably hit a wall
+		$AnimatedSprite.play("impact")
+		velocity = Vector2.ZERO
+		$CPUParticles2D.emitting = true
+
+func _on_AnimatedSprite_animation_finished():
 	self.die()

@@ -205,11 +205,15 @@ func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 		$AnimationPlayer.play("hit")
 		health -= damage
 		update_bars()
+		knockback(impactVector.normalized() * damage)
 		if health <= 0 and State != States.DYING:
 			begin_dying()
 		else:
 			State = States.INVULNERABLE
 			$Timers/InvulnerbailityTimer.start()
+		
+func knockback(impactVector):
+	position += impactVector
 		
 func _on_healed(amount):
 	if health < max_health:
