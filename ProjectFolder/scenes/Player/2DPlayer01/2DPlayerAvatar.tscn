@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://scenes/_common/Materials/SpotlightLightConeBlurred.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Items/tools/CircleOmniLight.png" type="Texture" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scenes/Player/2DPlayer01/BloodDecal.png" type="Texture" id=10]
 [ext_resource path="res://scenes/_common/GUI/sfx/bang.ogg" type="AudioStream" id=11]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/_common/GUI/sfx/hooray.wav" type="AudioStream" id=13]
+[ext_resource path="res://scenes/_common/GUI/sfx/aaaahh.wav" type="AudioStream" id=14]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -164,6 +166,14 @@ stream = ExtResource( 9 )
 volume_db = 20.0
 pitch_scale = 1.5
 
+[node name="DeathScream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = 10.0
+
+[node name="RecoveryNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = 10.0
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="Timers"]
@@ -171,7 +181,7 @@ wait_time = 10.0
 one_shot = true
 
 [node name="InvulnerbailityTimer" type="Timer" parent="Timers"]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="DyingWarningUpdateTimer" type="Timer" parent="Timers"]

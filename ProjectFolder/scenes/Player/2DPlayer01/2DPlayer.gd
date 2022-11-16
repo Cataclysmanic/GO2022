@@ -128,6 +128,8 @@ func recover_from_near_death():
 	dying_warning_label.hide()
 	State = States.READY
 	health = max_health
+	$RecoveryNoise.set_pitch_scale(rand_range(0.9, 1.1))
+	$RecoveryNoise.play()
 	$RecoveryFireworks.emitting = true
 	$BloodDripParticles.emitting = false
 	update_bars()
@@ -135,6 +137,7 @@ func recover_from_near_death():
 func die_for_real_this_time():
 	dead = true
 	State = States.DEAD
+	$DeathScream.play()
 	$PaperDoll.hide()
 	$deadPlaceholder.show()
 
