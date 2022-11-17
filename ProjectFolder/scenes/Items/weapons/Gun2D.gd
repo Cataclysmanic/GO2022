@@ -52,20 +52,22 @@ func shoot():
 	var distortionIdx = 1
 	var delay = AudioServer.get_bus_effect(audioBusIdx, delayIdx) # see Class: AudioEffectDelay
 	var distortion = AudioServer.get_bus_effect(audioBusIdx, distortionIdx) # see Class: AudioEffectDistortion
-	delay.set_dry(rand_range(0.0, 0.02))
+	#delay.set_dry(rand_range(0.0, 0.02))
 	
-	delay.set_tap1_active(true)
+	delay.set_tap1_active(true) 
 	delay.set_tap1_delay_ms(rand_range(0, 75))
 	delay.set_tap1_level_db(rand_range(0.0, 10.0))
 	delay.set_tap2_active(false)
-	distortion.set_drive(rand_range(0.0, 0.03))
+	#distortion.set_drive(rand_range(0.0, 0.03))
 
-	AudioServer.set_bus_effect_enabled(audioBusIdx, delayIdx, true)
-	AudioServer.set_bus_effect_enabled(audioBusIdx, distortionIdx, true)
+	AudioServer.set_bus_effect_enabled(audioBusIdx, delayIdx, false) # change this to true if you want reverb
+	AudioServer.set_bus_effect_enabled(audioBusIdx, distortionIdx, false)#  change this to true if you want distortion
 
 	var gunshotNoise = $GunshotNoises.get_children()[randi()%$GunshotNoises.get_child_count()]
-	gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
-	gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
+	gunshotNoise.set_pitch_scale(rand_range(0.98, 1.02))
+	#gunshotNoise.set_volume_db(rand_range(-4.0, -4.0))
+	gunshotNoise.set_volume_db(-4.0)
+	
 	gunshotNoise.play()
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
