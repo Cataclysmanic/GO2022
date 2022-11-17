@@ -46,8 +46,25 @@ func empty_click():
 	emit_signal("player_gun_reload_requested", self)
 
 func shoot():
-	var audio_effects_enabled = false
 	State = States.FIRING
+	make_gunshot_noise()
+	
+	var myPos = get_global_position()
+	var myRot = get_global_rotation()
+	var bulletSpeed = 1000.0
+	var jitter = 8.0
+	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
+	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+	eject_casing()
+	flash_muzzle()
+	knockback_shooter(Vector2.RIGHT.rotated(myRot))
+	cock_gun()
+	ammo_remaining -= 1
+	emit_signal("player_gun_shot", ammo_remaining)
+
+
+func make_gunshot_noise():
+	var audio_effects_enabled = false
 	var audioBusIdx = AudioServer.get_bus_index("Gunshots")
 	var delayIdx = 0
 	var distortionIdx = 1
@@ -68,22 +85,10 @@ func shoot():
 	var gunshotNoise = $GunshotNoises.get_children()[randi()%$GunshotNoises.get_child_count()]
 	gunshotNoise.set_pitch_scale(rand_range(0.98, 1.02))
 	#gunshotNoise.set_volume_db(rand_range(-4.0, -4.0))
-	gunshotNoise.set_volume_db(-4.0)
+	gunshotNoise.set_volume_db(-2.0)
 	
-	gunshotNoise.play()
-	var myPos = get_global_position()
-	var myRot = get_global_rotation()
-	var bulletSpeed = 1000.0
-	var jitter = 8.0
-	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
-	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
-	eject_casing()
-	flash_muzzle()
-	knockback_shooter(Vector2.RIGHT.rotated(myRot))
-	cock_gun()
-	ammo_remaining -= 1
-	emit_signal("player_gun_shot", ammo_remaining)
-
+	gunshotNoise.play()	
+	
 
 func eject_casing():
 	var casing = $ResourcePreloader.get_resource("casing").instance()
