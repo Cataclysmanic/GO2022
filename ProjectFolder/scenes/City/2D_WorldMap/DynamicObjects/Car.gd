@@ -59,14 +59,16 @@ func wreck():
 	$FireballParticles2D.emitting = true
 	State = States.CRASHING
 	$CrashTimer.start()
+	$Sprite.set_z_index(-1)
 	
 
 func _on_Area2D_body_entered(body):
-	if body.has_method("_on_hit"):
-		var _err = connect("hit", body, "_on_hit")
-	elif body.has_method("hit"):
-		var _err = connect("hit", body, "hit")
-	emit_signal("hit", damage)
+	if not State in [States.WRECKED]: # don't harm humans after wrecking
+		if body.has_method("_on_hit"):
+			var _err = connect("hit", body, "_on_hit")
+		elif body.has_method("hit"):
+			var _err = connect("hit", body, "hit")
+		emit_signal("hit", damage)
 
 
 func _on_CrashTimer_timeout():
