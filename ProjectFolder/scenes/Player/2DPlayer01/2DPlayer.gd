@@ -49,7 +49,7 @@ func update_bars():
 	stamina_bar.value = stamina
 	if State == States.DYING:
 		dying_warning_label.visible = true
-		dying_warning_label.text = "You're dying, find bandades: " + str(int($Timers/DeathTimer.get_time_left()))
+		dying_warning_label.text = "You're dying, find bandages: " + str(int($Timers/DeathTimer.get_time_left()))
 	else:
 		dying_warning_label.visible = false
 

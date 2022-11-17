@@ -251,9 +251,9 @@ texture = ExtResource( 3 )
 [node name="Label" type="Label" parent="deadPlaceholder"]
 material = SubResource( 25 )
 margin_left = -867.042
-margin_top = -618.588
-margin_right = -609.042
-margin_bottom = -570.588
+margin_top = -487.373
+margin_right = -359.042
+margin_bottom = -406.373
 rect_scale = Vector2( 4.10399, 3.94309 )
 custom_fonts/font = SubResource( 28 )
 text = "You failed cheif...
