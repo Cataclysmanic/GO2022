@@ -45,11 +45,10 @@ func _on_hit(hitDamage, impactVector):
 		if not State in [ States.CRASHING, States.WRECKED]:
 			wreck()
 		else: # already crashing or dead
-			knockback_a_bit(impactVector)
+			knockback(impactVector, 10.0)
 			
 
-func knockback_a_bit(impactVector):
-	var magnitude = 10.0
+func knockback(impactVector, magnitude = 10.0):
 	position += impactVector.normalized() * magnitude
 
 
@@ -72,3 +71,13 @@ func _on_Area2D_body_entered(body):
 
 func _on_CrashTimer_timeout():
 	State = States.WRECKED
+
+
+func _on_Area2D_area_entered(area):
+	var impactVector = self.get_global_position() - area.get_global_position()
+
+	if not State in [ States.CRASHING, States.WRECKED ]:
+		if "Car" in area.get_parent().name:
+			_on_hit(100.0, impactVector)
+	else:
+		knockback(impactVector, 10.0)

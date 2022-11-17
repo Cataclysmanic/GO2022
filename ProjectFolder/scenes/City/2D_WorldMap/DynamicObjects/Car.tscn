@@ -19,9 +19,9 @@ script = ExtResource( 2 )
 rotation = 3.14159
 texture = ExtResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CarArea2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarArea2D"]
 position = Vector2( -1.75, 0 )
 shape = SubResource( 1 )
 
@@ -56,5 +56,6 @@ color_ramp = SubResource( 2 )
 wait_time = 2.0
 one_shot = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="CarArea2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="CarArea2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="CrashTimer" to="." method="_on_CrashTimer_timeout"]
