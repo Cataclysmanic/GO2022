@@ -109,6 +109,9 @@ func wreck():
 	State = States.CRASHING
 	$CrashTimer.start()
 	$Sprite.set_z_index(-1)
+	$VroomNoise.stop()
+	$Headlight.hide()
+	path_follow_target.die()
 	
 
 func _on_Car_body_entered(body):

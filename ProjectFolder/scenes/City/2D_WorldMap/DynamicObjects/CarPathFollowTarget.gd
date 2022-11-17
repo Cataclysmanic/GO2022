@@ -13,6 +13,9 @@ func _ready():
 func _process(delta):
 	set_offset(get_offset() + speed * delta)
 
+func die():
+	call_deferred("queue_free")
+
 func speed_up():
 	speed += 0.1
 	
