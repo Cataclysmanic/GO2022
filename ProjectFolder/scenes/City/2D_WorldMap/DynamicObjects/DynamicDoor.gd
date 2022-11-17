@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 # Should be able to
 
@@ -15,12 +15,11 @@ extends StaticBody2D
 enum States { INITIALIZING, OPEN, CLOSED }
 var State = States.INITIALIZING
 
+enum Types { SLIDING, ROTATING }
+export (Types) var Type = Types.SLIDING
 
+var width = 16.0
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -88,28 +87,38 @@ func translate_outline(outline, translateVector):
 
 func open():
 	# rotate the door sprite, disable the collision shape, enable the navmesh
-	$Sprite.set_rotation(PI/2)
-	var collisionNode = get_node("ObstacleCollisionShape")
-	if collisionNode != null and is_instance_valid(collisionNode):
-		collisionNode.call_deferred("set_disabled", true)
+	if Type == Types.ROTATING:
+		$DoorSprite.set_rotation(PI/2)
+	else:
+		$DoorSprite.position.x -= width * $DoorSprite.scale.x
+	#var collisionNode = find_node("ObstacleCollisionShape")
+#	if collisionNode != null and is_instance_valid(collisionNode):
+#		collisionNode.call_deferred("set_disabled", true)
 	State = States.OPEN
 	
 func close():
-	$Sprite.set_rotation(0.0)
-	$ObstacleCollisionShape2D.call_deferred("set_disabled", false)
+	if Type == Types.ROTATING:
+		$DoorSprite.set_rotation(0.0)
+	else:
+		$DoorSprite.position.x += width * $DoorSprite.scale.x
+	#$ObstacleCollisionShape2D.call_deferred("set_disabled", false)
 	State = States.CLOSED
 	
  
 
 
 func _on_OpeningZone_body_entered(body):
-	
 	if body.has_method("is_player") and body.is_player() == true:
-		if State == States.CLOSED:
-			open()
-		else:
-			close()
-		
+		$InteractInstructionLabel.show()
+	
+
+func _unhandled_input(event):
+	if $OpeningZone.get_overlapping_bodies().has(Global.player):
+		if event.is_action_pressed("interact"):
+			if State == States.CLOSED:
+				open()
+			else:
+				close()
 
 
 func _on_InitDelayTimer_timeout():
@@ -118,3 +127,9 @@ func _on_InitDelayTimer_timeout():
 #	print(bigmap_navPolyInstance.name)
 #	cutout_shape(bigmap_navPolyInstance)
 	pass
+
+
+func _on_OpeningZone_body_exited(body):
+	if body.has_method("is_player") and body.is_player() == true:
+		$InteractInstructionLabel.hide()
+	

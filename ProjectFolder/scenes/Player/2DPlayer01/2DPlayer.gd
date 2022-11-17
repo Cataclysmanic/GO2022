@@ -42,6 +42,7 @@ func init(mapScene):
 	dying_warning_label = hud.find_node("DyingWarningLabel")
 	camera = find_node("Camera2D")
 	camera.init(self, hud)
+	Global.player = self
 
 func update_bars():
 	health_bar.value = health

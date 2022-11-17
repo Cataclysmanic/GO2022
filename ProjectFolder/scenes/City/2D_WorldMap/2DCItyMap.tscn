@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/textures/BlockGroundTile.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/Quests/QuestGivers/MagicalHobo.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/Quests/QuestGivers/MobBoss.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/Quests/QuestGivers/FemmeFatale.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Environment" id=1]
 ambient_light_energy = 0.0
@@ -31,7 +32,7 @@ extents = Vector2( 20, 86.4 )
 script = ExtResource( 6 )
 
 [node name="PlayerSpawnPoint" type="Position2D" parent="."]
-position = Vector2( 530, 1536 )
+position = Vector2( -1470, -612 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -218,3 +219,62 @@ position = Vector2( -973, -545 )
 [node name="NavPolygons" type="Navigation2D" parent="."]
 
 [node name="Doors" type="Node2D" parent="."]
+
+[node name="MunicipalEntrance" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1514, -1286 )
+scale = Vector2( 2.09672, 2.09672 )
+Type = 1
+
+[node name="CommercialUnitA" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1881, 678 )
+scale = Vector2( 2, 2 )
+
+[node name="CommercialUnitA2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -2154, 1350 )
+scale = Vector2( 1.67, 1.67 )
+
+[node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1581, 1350 )
+scale = Vector2( 1.3, 1.3 )
+
+[node name="CommercialUnitB" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1462, 678 )
+scale = Vector2( 2.6, 2.6 )
+
+[node name="CommercialUnitC" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -950, 678 )
+scale = Vector2( 2.19659, 2.19659 )
+
+[node name="CommercialUnitC2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -869, 1351 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="107MainDoor" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1022, -870 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95MainDoorFront" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 2052, -873 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95MainDoorBack" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1588, -1337 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="107First" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 989, -2270 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95FirstDoorFront" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1721, -2335 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95FirstDoorBack" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1987, -1803 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
