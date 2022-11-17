@@ -188,6 +188,8 @@ interact={
 2d_physics/layer_1="player"
 2d_physics/layer_2="NPCs"
 2d_physics/layer_3="objects"
+2d_physics/layer_4="cars"
+2d_physics/layer_5="bullets"
 
 [physics]
 

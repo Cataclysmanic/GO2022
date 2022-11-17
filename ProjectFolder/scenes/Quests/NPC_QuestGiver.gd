@@ -24,7 +24,7 @@ export var inventory_requirement : String # name of the thing that must be in in
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
 
-signal quest_objective_ready(objective, itemPosition)
+#signal quest_objective_ready(objective, itemPosition)
 
 var clicks = 0
 

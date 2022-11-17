@@ -12,8 +12,10 @@ func spawn_car():
 	cars_on_road += 1
 	var carScene = $ResourcePreloader.get_resource("Car").instance()
 	carScene.name = "Car_" + str(cars_on_road)
-	add_child(carScene)
-
+	var carPathFollow = $ResourcePreloader.get_resource("CarPathFollowTarget").instance()
+	add_child(carPathFollow)
+	carScene.init(carPathFollow)
+	get_parent().add_child(carScene)
 
 func _on_SpawnTimer_timeout():
 	if cars_on_road <= max_cars:

@@ -1,9 +1,12 @@
-extends PathFollow2D
+extends Area2D
+
 
 var speed = 200.0
+var steering_speed = 10.0
 var health = 100.0
 var max_health = 100.0
 var crash_vector := Vector2.ZERO
+var path_follow_target : PathFollow2D
 
 # maybe player should be able to shoot cars.. or they take damage from collisions. later
 
@@ -18,17 +21,62 @@ signal hit(damage)
 func _ready():
 	State = States.READY
 
-
+func init(pathFollowNode):
+	path_follow_target = pathFollowNode
+	set_global_position(path_follow_target.get_global_position()+Vector2.RIGHT)
+	rotate(PI)
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if State in [ States.READY, States.MOVING ]:
-		set_offset(get_offset()+speed * delta)
+		if $RayCast2D.is_colliding():
+			var _collisionObject = $RayCast2D.get_collider()
+			# try to drive around?
+			pass
+		else:
+			# head toward path_follow_target
+			var targetPos = path_follow_target.get_global_position()
+			var myPos = get_global_position()
+			#var vectorToTarget = targetPos - myPos
+			var myForwardVector = Vector2.RIGHT.rotated(rotation)
+			#var movementVector = vectorToTarget.normalized() * speed
+			var movementVector = myForwardVector * speed
+			position += movementVector * delta
+			
+			
+			var ideal_distance = 250.0
+			var dist_sq = myPos.distance_squared_to(targetPos)
+			if dist_sq > pow((0.9*ideal_distance),2):
+				path_follow_target.slow_down()
+			elif dist_sq < pow((1.1*ideal_distance), 2):
+				path_follow_target.speed_up()
+
+			rotation += steering_speed * get_turn_dir() * delta
+
+			
 	elif State == States.CRASHING:
 		var crashVelocity = crash_vector
 		var crashAngularVel = 3.0
 		position += crashVelocity * delta
 		rotation += crashAngularVel * delta
+
+func get_turn_dir():
+	# dot product of our tangent with vector to target.
+	var targetPos = path_follow_target.get_global_position()
+	var myPos = get_global_position()
+	var tangentVec = Vector2.DOWN.rotated(rotation)
+	var targetVec = targetPos - myPos
+	var dotProd = tangentVec.dot(targetVec)
+	var safe_range = 3.0
+	if abs(dotProd) < safe_range:
+		return 0
+	elif dotProd < 0:
+		return -1
+	else:
+		return 1
 		
+	
 
 func _on_hit(hitDamage, impactVector):
 	# change the sprite to a damaged version?
@@ -79,7 +127,7 @@ func _on_Area2D_area_entered(area):
 	var impactVector = self.get_global_position() - area.get_global_position()
 
 	if not State in [ States.CRASHING, States.WRECKED ]:
-		if "Car" in area.get_parent().name:
+		if "Car" in area.name:
 			_on_hit(100.0, impactVector)
 	else:
 		knockback(impactVector, 10.0)
