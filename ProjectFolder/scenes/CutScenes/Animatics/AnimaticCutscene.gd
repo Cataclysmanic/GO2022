@@ -11,6 +11,10 @@ export var image_2 : Texture
 export var image_3 : Texture
 export var image_4 : Texture
 export var image_5 : Texture
+export var image_6 : Texture
+export var image_7 : Texture
+export var image_8 : Texture
+export var image_9 : Texture
 var slide_images = []
 
 onready var slide_container = find_node("TabContainer")
@@ -26,7 +30,7 @@ func _ready():
 	if outro_text != "":
 		find_node("OutroText").text = outro_text
 
-	for image in [ image_1, image_2, image_3, image_4, image_5 ]:
+	for image in [ image_1, image_2, image_3, image_4, image_5, image_6, image_7, image_8, image_9 ]:
 		if image != null:
 			slide_images.push_back(image)
 		

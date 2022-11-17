@@ -29,7 +29,7 @@ extents = Vector2( 20, 86.4 )
 script = ExtResource( 6 )
 
 [node name="PlayerSpawnPoint" type="Position2D" parent="."]
-position = Vector2( -1470, -612 )
+position = Vector2( -2013, 899 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
