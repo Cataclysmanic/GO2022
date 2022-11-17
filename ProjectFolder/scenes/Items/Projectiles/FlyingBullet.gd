@@ -51,8 +51,8 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_Area2D_area_entered(area):
-	if "Car" in area.get_parent().name:
-		var car = area.get_parent()
+	if "Car" in area.name:
+		var car = area
 		car._on_hit(damage, velocity)
 		$AnimatedSprite.play("impact")
 		velocity = Vector2.ZERO

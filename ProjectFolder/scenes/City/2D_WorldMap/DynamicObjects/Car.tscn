@@ -13,12 +13,16 @@ offsets = PoolRealArray( 0, 0.108742, 0.58209, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.848614, 0.795576, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1 )
 
 [node name="Car" type="Area2D"]
+collision_layer = 8
+collision_mask = 11
 script = ExtResource( 2 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 73, 0 )
 rotation = -1.5708
 scale = Vector2( 1, 8 )
+enabled = true
+cast_to = Vector2( -1.00344, 118.75 )
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
@@ -61,3 +65,7 @@ color_ramp = SubResource( 2 )
 [node name="CrashTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_Car_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Car_body_entered"]
+[connection signal="timeout" from="CrashTimer" to="." method="_on_CrashTimer_timeout"]

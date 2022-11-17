@@ -365,6 +365,8 @@ blend_mode = 1
 
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
 scale = Vector2( 0.227731, 0.207015 )
+collision_layer = 2
+collision_mask = 15
 script = ExtResource( 2 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

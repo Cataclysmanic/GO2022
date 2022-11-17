@@ -2,6 +2,7 @@ extends Area2D
 
 
 var speed = 200.0
+var max_speed = 200.0
 var steering_speed = 10.0
 var health = 100.0
 var max_health = 100.0
@@ -30,30 +31,30 @@ func init(pathFollowNode):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if State in [ States.READY, States.MOVING ]:
-		if $RayCast2D.is_colliding():
-			var _collisionObject = $RayCast2D.get_collider()
+		if $RayCast2D.is_colliding(): # evasive maneuvers!
+			var collisionObject = $RayCast2D.get_collider()
 			# try to drive around?
-			pass
-		else:
-			# head toward path_follow_target
-			var targetPos = path_follow_target.get_global_position()
-			var myPos = get_global_position()
-			#var vectorToTarget = targetPos - myPos
-			var myForwardVector = Vector2.RIGHT.rotated(rotation)
-			#var movementVector = vectorToTarget.normalized() * speed
-			var movementVector = myForwardVector * speed
-			position += movementVector * delta
-			
-			
-			var ideal_distance = 250.0
-			var dist_sq = myPos.distance_squared_to(targetPos)
-			if dist_sq > pow((0.9*ideal_distance),2):
-				path_follow_target.slow_down()
-			elif dist_sq < pow((1.1*ideal_distance), 2):
-				path_follow_target.speed_up()
+			if "Car" in collisionObject.name:
+				speed = max(speed - (3.0 * delta), max_speed / 2.0)
+				rotation -= steering_speed * get_turn_dir(collisionObject) * delta
+		else: # no obstacles, head for the path_follow_target
+			speed = min(speed + (3.0 * delta), max_speed)
+			rotation += steering_speed * get_turn_dir(path_follow_target) * delta
 
-			rotation += steering_speed * get_turn_dir() * delta
+		var myForwardVector = Vector2.RIGHT.rotated(rotation)
+		var movementVector = myForwardVector * speed
+		position += movementVector * delta
+			
+		var targetPos = path_follow_target.get_global_position()
+		var myPos = get_global_position()
+		var ideal_distance = 250.0
+		var dist_sq = myPos.distance_squared_to(targetPos)
+		if dist_sq > pow((0.9*ideal_distance),2):
+			path_follow_target.slow_down()
+		elif dist_sq < pow((1.1*ideal_distance), 2):
+			path_follow_target.speed_up()
 
+			
 			
 	elif State == States.CRASHING:
 		var crashVelocity = crash_vector
@@ -61,9 +62,9 @@ func _process(delta):
 		position += crashVelocity * delta
 		rotation += crashAngularVel * delta
 
-func get_turn_dir():
+func get_turn_dir(target):
 	# dot product of our tangent with vector to target.
-	var targetPos = path_follow_target.get_global_position()
+	var targetPos = target.get_global_position()
 	var myPos = get_global_position()
 	var tangentVec = Vector2.DOWN.rotated(rotation)
 	var targetVec = targetPos - myPos
@@ -110,7 +111,7 @@ func wreck():
 	$Sprite.set_z_index(-1)
 	
 
-func _on_Area2D_body_entered(body):
+func _on_Car_body_entered(body):
 	if not State in [States.WRECKED]: # don't harm humans after wrecking
 		if body.has_method("_on_hit"):
 			var _err = connect("hit", body, "_on_hit")
@@ -123,7 +124,7 @@ func _on_CrashTimer_timeout():
 	State = States.WRECKED
 
 
-func _on_Area2D_area_entered(area):
+func _on_Car_area_entered(area):
 	var impactVector = self.get_global_position() - area.get_global_position()
 
 	if not State in [ States.CRASHING, States.WRECKED ]:
@@ -131,3 +132,5 @@ func _on_Area2D_area_entered(area):
 			_on_hit(100.0, impactVector)
 	else:
 		knockback(impactVector, 10.0)
+
+
