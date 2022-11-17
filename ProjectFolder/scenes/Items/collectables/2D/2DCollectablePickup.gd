@@ -4,6 +4,8 @@
 
 extends Node2D
 
+enum States { INITIALIZING, READY, DISABLED }
+var State = States.INITIALIZING
 
 # All this should be a resource, so we can store it in the 
 
@@ -45,10 +47,8 @@ func _ready():
 	if not item_details["path_to_popup_display_image"]:
 		item_info.set("path_to_popup_display_image", spritePath)
 		
+	State = States.READY
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func disappear():
 	set_visible(false)
@@ -58,7 +58,21 @@ func disappear():
 func die():
 	queue_free()
 
+func disable_pickup():
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	State = States.DISABLED
+	
+	
+func enable_pickup():
+	$Area2D/CollisionShape2D.set_deferred("disabled", false)
+	State = States.READY	
+	
+
+
 func _on_Area_body_entered(body):
+	if State != States.READY:
+		return
+	
 	if body.has_method("is_player") and body.is_player() == true:
 		var recipients = [body]
 		if body.has_method("get_hud"):

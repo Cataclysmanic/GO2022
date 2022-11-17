@@ -32,7 +32,10 @@ var clicks = 0
 func _ready():
 	$DialogLabel.hide()
 	$InteractInstruction.hide()
-	
+	for item in $PotentialRequiredItems.get_children():
+		item.hide()
+		item.disable_pickup()
+		
 	
 func init(cityMap):
 	city_map = cityMap
@@ -49,39 +52,42 @@ func give_quest():
 func get_random_quest_requirement_item():
 	var potentialItems = $PotentialRequiredItems.get_children()
 	var randomItem = potentialItems[randi()%len(potentialItems)]
-
+	
 	return randomItem
 
 func spawn_quest_reward():
 	pass
 
-func spawn_quest_objective(targetLocation : Position2D, item : Node2D):
+func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	
 	if targetLocation == null:
 		printerr("NPC Quest Giver needs a location to spawn their objective")
 
-	#item.set_global_position( targetLocation.get_global_position() )
-	var questObjective = item.duplicate()
-	questObjective.position = Vector2.ZERO
-	#questObjective.show()
-	
+	var questObjective = itemTemplate.duplicate()
+	questObjective.set_global_position(targetLocation.get_global_position())
+	questObjective.visible = true
+
+	print("NPC_Questiver.gd. Quest objective Target Location = " + str(targetLocation.get_global_position()))
 	
 	inventory_requirement = questObjective.item_details["item_name"]
 	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
 	dialog_unmet_requirements.push_back(targetLocation.get_details())
-	if city_map.has_method("_on_loot_ready"):
-		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
-			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
-			emit_signal("quest_objective_ready", questObjective, targetLocation.get_global_position())
+#	if city_map.has_method("_on_loot_ready"):
+#		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
+#			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
+#			emit_signal("quest_objective_ready", questObjective, targetLocation.get_global_position())
+	add_child(questObjective)
+	questObjective.set_global_position(targetLocation.get_global_position())
+	questObjective.show()
+	questObjective.enable_pickup()
 
 
-	
 func produce_quest_objective():
 	# come up with some random item?
 	var location = get_random_location()
-	var item = get_random_quest_requirement_item()
-	spawn_quest_objective(location, item)
-	item.show()
+	var itemTemplate = get_random_quest_requirement_item()
+	spawn_quest_objective(location, itemTemplate)
+	
 	
 func get_random_location():
 	

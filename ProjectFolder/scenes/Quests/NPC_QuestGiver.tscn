@@ -59,7 +59,7 @@ autowrap = true
 [node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 
-[node name="PotentialRequiredItems" type="Node" parent="."]
+[node name="PotentialRequiredItems" type="Node2D" parent="."]
 
 [node name="Ex-Wifes Attorney Bills" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
 item_details = {
