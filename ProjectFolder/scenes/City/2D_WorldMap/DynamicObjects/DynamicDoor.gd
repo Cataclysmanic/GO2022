@@ -89,7 +89,9 @@ func translate_outline(outline, translateVector):
 func open():
 	# rotate the door sprite, disable the collision shape, enable the navmesh
 	$Sprite.set_rotation(PI/2)
-	$ObstacleCollisionShape.call_deferred("set_disabled", true)
+	var collisionNode = get_node("ObstacleCollisionShape")
+	if collisionNode != null and is_instance_valid(collisionNode):
+		collisionNode.call_deferred("set_disabled", true)
 	State = States.OPEN
 	
 func close():

@@ -48,3 +48,12 @@ func _on_Area2D_body_entered(body):
 
 func _on_AnimatedSprite_animation_finished():
 	self.die()
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_parent().name == "Car":
+		var car = area.get_parent()
+		car._on_hit(damage, velocity)
+		$AnimatedSprite.play("impact")
+		velocity = Vector2.ZERO
+		$CPUParticles2D.emitting = true
