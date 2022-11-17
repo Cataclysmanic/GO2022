@@ -47,7 +47,7 @@ func generate_navmesh():
 	$NavPolygons.add_child(navPolygonInstance)
 	#add_doors(navPolygon)
 
-func add_doors(big_nav_poly):
+func add_doors(_big_nav_poly):
 	pass
 	# place some static bodies on the map.
 	# we'll enable/disable their collision shape as required to let the player through

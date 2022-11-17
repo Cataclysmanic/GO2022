@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/2dTest/flashlightl_LghtCone2.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50.5, 48 )
+extents = Vector2( 74.25, 48 )
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.108742, 0.58209, 1 )
@@ -22,7 +22,7 @@ texture = ExtResource( 1 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 22, 0 )
+position = Vector2( -1.75, 0 )
 shape = SubResource( 1 )
 
 [node name="VroomNoise" type="AudioStreamPlayer2D" parent="."]
@@ -44,7 +44,6 @@ one_shot = true
 explosiveness = 0.9
 randomness = 0.2
 lifetime_randomness = 0.2
-local_coords = false
 spread = 180.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 200.0
@@ -53,4 +52,9 @@ scale_amount = 16.0
 scale_amount_random = 0.3
 color_ramp = SubResource( 2 )
 
+[node name="CrashTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="timeout" from="CrashTimer" to="." method="_on_CrashTimer_timeout"]

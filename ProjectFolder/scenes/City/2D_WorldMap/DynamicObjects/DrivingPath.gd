@@ -11,6 +11,7 @@ func _ready():
 func spawn_car():
 	cars_on_road += 1
 	var carScene = $ResourcePreloader.get_resource("Car").instance()
+	carScene.name = "Car_" + str(cars_on_road)
 	add_child(carScene)
 
 
