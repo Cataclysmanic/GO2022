@@ -57,3 +57,7 @@ func _on_Area2D_area_entered(area):
 		$AnimatedSprite.play("impact")
 		velocity = Vector2.ZERO
 		$CPUParticles2D.emitting = true
+
+
+func _on_LifetimeTimer_timeout():
+	die() # Replace with function body.

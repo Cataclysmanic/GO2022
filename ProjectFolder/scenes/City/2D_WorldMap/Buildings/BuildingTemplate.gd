@@ -156,7 +156,7 @@ func is_player_present():
 
 func _on_Area2D_body_exited(body):
 	if "detective" in body.name.to_lower():
-		$Roof.show()
+		#$Roof.show()
 		if not is_connected("shit_calmed_down", map_scene, "_on_shit_calmed_down"):
 			var _err = connect("shit_calmed_down", map_scene, "_on_shit_calmed_down")
 		emit_signal("shit_calmed_down")

@@ -18,8 +18,8 @@
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=16]
 [ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=17]
 
-[sub_resource type="CircleShape2D" id=11]
-radius = 13.1734
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 27.5, 25 )
 
 [sub_resource type="CanvasItemMaterial" id=5]
 light_mode = 1
@@ -351,8 +351,8 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 11.7903
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 8.15421, 6.72645 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 59.2805, 65.2127 )
@@ -364,7 +364,7 @@ extents = Vector2( 485.221, 289.834 )
 blend_mode = 1
 
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
-scale = Vector2( 0.227731, 0.207015 )
+scale = Vector2( 0.2, 0.2 )
 collision_layer = 2
 collision_mask = 15
 script = ExtResource( 2 )
@@ -376,7 +376,9 @@ avoidance_enabled = true
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 11 )
+position = Vector2( 17.5, -1.78814e-06 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 16 )
 
 [node name="Sprite" type="Node2D" parent="."]
 light_mask = 0
@@ -417,7 +419,7 @@ scale = Vector2( 0.489305, 0.547802 )
 texture = ExtResource( 5 )
 
 [node name="Muzzle" type="Position2D" parent="Sprite/NPCGun"]
-position = Vector2( 44.8713, -1.90735e-06 )
+position = Vector2( 9.95453, -0.927891 )
 
 [node name="MuzzleFlash" type="Sprite" parent="Sprite/NPCGun/Muzzle"]
 visible = false
@@ -500,8 +502,10 @@ resources = [ PoolStringArray( "Bandage2DPickup", "Magazine2DPickup" ), [ ExtRes
 [node name="damage_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
-scale = Vector2( -3.37249, 3.71667 )
-shape = SubResource( 6 )
+position = Vector2( 2.5, 2.38419e-06 )
+rotation = 3.14159
+scale = Vector2( 3.37249, -3.71667 )
+shape = SubResource( 15 )
 
 [node name="PunchingArea" type="Area2D" parent="."]
 
@@ -512,7 +516,6 @@ shape = SubResource( 8 )
 [node name="ShootingArea" type="Area2D" parent="."]
 
 [node name="ShootingRange" type="CollisionShape2D" parent="ShootingArea"]
-visible = false
 position = Vector2( 204.188, 4.83057 )
 shape = SubResource( 9 )
 
