@@ -131,8 +131,11 @@ func initialize_quest_givers():
 		questGiver.init(self)
 
 
-func _on_loot_ready(itemObj):
-	$Collectibles.call_deferred("add_child", itemObj)
+func _on_loot_ready(itemObj, lootPosition:Vector2 = Vector2.ZERO):
+		
+	$Collectibles.add_child(itemObj)
+	if lootPosition != Vector2.ZERO:
+		itemObj.set_global_position(lootPosition)
 
 
 func _on_projectile_ready(projectile):

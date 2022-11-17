@@ -24,13 +24,14 @@ export var inventory_requirement : String # name of the thing that must be in in
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
 
-signal quest_objective_ready(objective)
+signal quest_objective_ready(objective, itemPosition)
 
 var clicks = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$DialogLabel.hide()
+	$InteractInstruction.hide()
 	
 	
 func init(cityMap):
@@ -54,20 +55,24 @@ func get_random_quest_requirement_item():
 func spawn_quest_reward():
 	pass
 
-func spawn_quest_objective(location : Position2D, item : Node2D):
-	if location == null:
+func spawn_quest_objective(targetLocation : Position2D, item : Node2D):
+	
+	if targetLocation == null:
 		printerr("NPC Quest Giver needs a location to spawn their objective")
 
+	#item.set_global_position( targetLocation.get_global_position() )
 	var questObjective = item.duplicate()
+	questObjective.position = Vector2.ZERO
+	#questObjective.show()
 	
-	questObjective.set_global_position(location.get_global_position())
+	
 	inventory_requirement = questObjective.item_details["item_name"]
-	dialog_unmet_requirements.push_back("Look in " + location.get_address())
-	dialog_unmet_requirements.push_back(location.get_details())
+	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
+	dialog_unmet_requirements.push_back(targetLocation.get_details())
 	if city_map.has_method("_on_loot_ready"):
 		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
 			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
-			emit_signal("quest_objective_ready", questObjective)
+			emit_signal("quest_objective_ready", questObjective, targetLocation.get_global_position())
 
 
 	
@@ -76,17 +81,23 @@ func produce_quest_objective():
 	var location = get_random_location()
 	var item = get_random_quest_requirement_item()
 	spawn_quest_objective(location, item)
-	
+	item.show()
 	
 func get_random_location():
 	
 	return city_map.get_random_quest_target_location()
 
 		
+func _unhandled_input(event):
+	if $InteractionArea.get_overlapping_bodies().has(Global.player):
+		if event.is_action_pressed("interact"):
+			advance_dialog(Global.player)
+			clicks += 1
 
 
 func _on_InteractionArea_body_entered(body):
 	if body.has_method("is_player") and body.is_player():
+		$InteractInstruction.show()
 		talk_to_player()
 
 
@@ -116,10 +127,15 @@ func advance_dialog(body):
 func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
 	if city_map == null:
 		city_map = Global.current_city_map
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("interact"):
 		var player = city_map.get_player()
 		var bodies_present = $InteractionArea.get_overlapping_bodies()
 		if bodies_present.has(player):
 		
 			advance_dialog(player)
 			clicks += 1
+
+
+func _on_InteractionArea_body_exited(body):
+	if body.has_method("is_player") and body.is_player() == true:
+		$InteractInstruction.hide()

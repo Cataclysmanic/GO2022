@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=4]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Items/collectables/2D/2DCollectablePickup.gd" type="Script" id=7]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
@@ -18,7 +18,7 @@ extents = Vector2( 144.25, 134.5 )
 light_mode = 1
 
 [node name="MagicalHobo" type="KinematicBody2D"]
-position = Vector2( 1042, 1578 )
+position = Vector2( 2, 2 )
 script = ExtResource( 1 )
 inventory_requirement = "note 01"
 
@@ -61,10 +61,10 @@ autowrap = true
 [node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
 
-[node name="PotentialRequiredItems" type="Node" parent="."]
+[node name="PotentialRequiredItems" type="Node2D" parent="."]
 
-[node name="Ex-Wifes Attorney Bills" type="Node2D" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
-script = ExtResource( 7 )
+[node name="Ex-Wifes Attorney Bills" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
 item_details = {
 "is_unique": true,
 "item_name": "ex-wife's attorney bills",
@@ -74,8 +74,8 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="Photograph" type="Node2D" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
-script = ExtResource( 7 )
+[node name="Photograph" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
 item_details = {
 "is_unique": true,
 "item_name": "photograph of ex-wife with another man",
@@ -85,8 +85,8 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="InsaneScribblings" type="Node2D" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
-script = ExtResource( 7 )
+[node name="InsaneScribblings" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
 item_details = {
 "is_unique": true,
 "item_name": "insane scribblings",
@@ -96,5 +96,13 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
+[node name="InteractInstruction" type="Label" parent="."]
+margin_left = 58.0
+margin_top = -90.0
+margin_right = 152.0
+margin_bottom = -13.0
+custom_fonts/font = ExtResource( 7 )
+text = "[F]"
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
-[connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]
