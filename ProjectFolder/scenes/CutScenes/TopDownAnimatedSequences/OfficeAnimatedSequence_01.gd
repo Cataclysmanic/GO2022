@@ -15,6 +15,10 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Global.world_controller._on_cutscene_finished("Brother") # Replace with function body.
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	Global.world_controller._on_cutscene_finished("Brother") # Replace with function body.

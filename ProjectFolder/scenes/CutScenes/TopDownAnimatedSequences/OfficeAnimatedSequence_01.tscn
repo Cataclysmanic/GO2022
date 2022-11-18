@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/2.5dTest/detective.png" type="Texture" id=1]
 [ext_resource path="res://scenes/2dTest/WindowLighting.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/BrothersHouseFloors.png" type="Texture" id=7]
 [ext_resource path="res://scenes/_common/GUI/sfx/sirenBad.ogg" type="AudioStream" id=8]
 [ext_resource path="res://scenes/CutScenes/TopDownAnimatedSequences/OfficeAnimatedSequence_01.gd" type="Script" id=9]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=10]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.921569, 0.921569, 0.921569, 1 )
@@ -159,10 +160,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 0, 11, 11.9 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 11, 11.9, 14.7, 15.5, 16.1, 17 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 620, 385 ) ]
+"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 620, 385 ), Vector2( 620, 385 ), Vector2( 612, 256 ), Vector2( 481, 249 ), Vector2( 334, 134 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("BrothersJouseFloor/PoliceLights:modulate")
@@ -492,5 +493,17 @@ color = Color( 0, 0, 0, 1 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -20.0
+
+[node name="EscToQuitLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 893.0
+margin_top = 545.0
+margin_right = 980.0
+margin_bottom = 559.0
+custom_fonts/font = ExtResource( 10 )
+text = "[esc to skip]"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
