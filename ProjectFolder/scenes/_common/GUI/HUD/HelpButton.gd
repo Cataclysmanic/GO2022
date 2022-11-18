@@ -18,3 +18,4 @@ func _ready():
 
 func _on_HelpButton_pressed():
 	$PlayerInstructions.popup_centered_ratio(0.40)
+	$PlayerInstructions/VBoxContainer.popup()

@@ -52,6 +52,13 @@ func update_bars():
 		dying_warning_label.text = "You're dying, find bandages: " + str(int($Timers/DeathTimer.get_time_left()))
 	else:
 		dying_warning_label.visible = false
+		
+func update_journal(currentQuest):
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"quest": str(currentQuest)}) 
+
+func complete_quest(currentQuest):
+#	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.complete(currentQuest) WIP
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"quest": str(currentQuest) , "status": " COMPLETED"}) 
 
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)
