@@ -72,8 +72,6 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 
 	print("NPC_Questiver.gd. Quest objective Target Location = " + str(targetLocation.get_global_position()))
 	
-	print(questObjective)
-	
 	
 	inventory_requirement = questObjective.item_details["item_name"]
 	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
@@ -108,15 +106,15 @@ func _unhandled_input(event):
 		if event.is_action_pressed("interact"):
 			advance_dialog(Global.player)
 			clicks += 1
-
+			if !alreadyTaken:
+				Global.player.update_journal(currentQuest)
+				alreadyTaken = true
 
 func _on_InteractionArea_body_entered(body):
 	if body.has_method("is_player") and body.is_player():
 		$InteractInstruction.show()
 		talk_to_player()
-		if !alreadyTaken:
-			body.update_journal(currentQuest)
-			alreadyTaken = true
+		
 
 
 func requirements_met(body): 

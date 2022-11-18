@@ -101,6 +101,14 @@ size_flags_horizontal = 10
 text = "Journal"
 align = 2
 
+[node name="UpdateNotice" type="Label" parent="Top/Header/HelpButton"]
+visible = false
+margin_left = -34.0
+margin_top = 39.0
+margin_right = 71.0
+margin_bottom = 53.0
+text = "Journal Updated!"
+
 [node name="Bottom" type="MarginContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0

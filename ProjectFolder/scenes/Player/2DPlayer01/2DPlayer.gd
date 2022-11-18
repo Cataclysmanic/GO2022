@@ -55,11 +55,17 @@ func update_bars():
 		
 func update_journal(currentQuest):
 	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"quest": str(currentQuest)}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
 
 func complete_quest(currentQuest):
 #	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.complete(currentQuest) WIP
 	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"quest": str(currentQuest) , "status": " COMPLETED"}) 
-
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)
 
