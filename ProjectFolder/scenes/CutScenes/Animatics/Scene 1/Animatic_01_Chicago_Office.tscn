@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="AnimaticCutscene" parent="." instance=ExtResource( 5 )]
-next_scene = "res://scenes/City/2D_WorldMap/2DCItyMap.tscn"
+next_scene = "res://scenes/CutScenes/TopDownAnimatedSequences/OfficeAnimatedSequence_01.tscn"
 intro_text = "Dark.    Chicago.    1940s..."
 outro_text = "This damn, old case file...  .  . ."
 audio = ExtResource( 11 )
