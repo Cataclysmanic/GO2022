@@ -79,8 +79,8 @@ func set_difficulty(difficultyValue): # 0.5 to 3.0
 func can_seek():
 	if (
 		State == States.DEAD
-		or (!nav_agent.is_target_reachable() and !player_engaged)
-		or (!home_building.is_player_present() and !player_engaged)
+		or (!nav_agent.is_target_reachable())
+		#or (!home_building.is_player_present() and !player_engaged)
 		#or nav_agent.is_navigation_finished()
 		#or len(current_path) == 0
 		or player.dead
