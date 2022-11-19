@@ -79,6 +79,7 @@ position = Vector2( 202, 0.5 )
 shape = SubResource( 3 )
 
 [node name="DebugInfo" type="Node2D" parent="."]
+visible = false
 
 [node name="IntentionLine2D" type="Line2D" parent="DebugInfo"]
 points = PoolVector2Array( 0, 0, 100, 0 )

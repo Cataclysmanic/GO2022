@@ -233,7 +233,7 @@ func spawn_npc():
 	
 
 func _on_Car_body_entered(body):
-	if not State in [States.WRECKED, States.PARKED]: # don't harm humans after wrecking
+	if not State in [States.WRECKED, States.PARKING, States.PARKED]: # don't harm humans after wrecking
 		if body.has_method("_on_hit"):
 			var _err = connect("hit", body, "_on_hit")
 		elif body.has_method("hit"):
@@ -268,7 +268,7 @@ func _on_Car_area_entered(area):
 
 
 func _on_RandomParkTimer_timeout():
-	var chance_to_spawn_NPCs = 0.5
+	var chance_to_spawn_NPCs = 0.1
 	if randf() < chance_to_spawn_NPCs:
 		State = States.PARKING
 		switch_collision_layer_to_object()
