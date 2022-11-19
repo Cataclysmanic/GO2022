@@ -106,7 +106,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("interact"):
 			advance_dialog(Global.player)
 			clicks += 1
-			if !alreadyTaken and !Global.player.has_item(inventory_requirement):
+			if !alreadyTaken:
 				Global.player.update_journal(currentQuest)
 				alreadyTaken = true
 
@@ -126,7 +126,12 @@ func requirements_met(body):
 		requirementsMet = true
 	elif body.has_method("has_item") and body.has_item(inventory_requirement):
 		requirementsMet = true
-		if !alreadyCompleted:
+		if !alreadyCompleted and alreadyTaken:
+			body.complete_quest(currentQuest)
+			alreadyCompleted = true
+		elif !alreadyCompleted and !alreadyTaken:
+			Global.player.update_journal(currentQuest)
+			alreadyTaken = true
 			body.complete_quest(currentQuest)
 			alreadyCompleted = true
 	return requirementsMet
