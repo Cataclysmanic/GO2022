@@ -106,7 +106,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("interact"):
 			advance_dialog(Global.player)
 			clicks += 1
-			if !alreadyTaken:
+			if !alreadyTaken and !Global.player.has_item(inventory_requirement):
 				Global.player.update_journal(currentQuest)
 				alreadyTaken = true
 
@@ -140,8 +140,6 @@ func advance_dialog(body):
 		dialog_lines = dialog_unmet_requirements
 
 	$DialogLabel.text = dialog_lines[clicks%(len(dialog_lines))]
-
-
 
 
 func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
