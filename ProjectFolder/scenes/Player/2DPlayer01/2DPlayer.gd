@@ -54,14 +54,20 @@ func update_bars():
 		dying_warning_label.visible = false
 		
 func update_journal(currentQuest):
-	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"quest": str(currentQuest)}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Quest:", "quest": str(currentQuest), "status": ""}) 
 	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
 	yield(get_tree().create_timer(1.0), "timeout")
 	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
 
 func complete_quest(currentQuest):
 #	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.complete(currentQuest) WIP
-	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"quest": str(currentQuest) , "status": " COMPLETED"}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Quest:", "quest": str(currentQuest) , "status": " COMPLETED"}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	
+func update_item(currentItem):
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Item:", "quest": str(currentItem) , "status": " Picked Up"}) 
 	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
 	yield(get_tree().create_timer(1.0), "timeout")
 	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()

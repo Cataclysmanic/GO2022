@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-var quests = [{"quest": "Quests: ", "status": ""}]
+var quests = [{"type": "JOURNAL:", "quest": "", "status": ""}]
 
 func _process(_delta):
 	if !self.is_visible_in_tree():
@@ -16,7 +16,9 @@ func popup():
 	for quest in quests:
 		var quest_row = HBoxContainer.new()
 		var quest_details = Label.new()
-		quest_details.text = str(quest.values())
+		quest_details.text += str(quest.type)
+		quest_details.text += str(quest.quest)
+		quest_details.text += str(quest.status)
 		quest_row.add_child(quest_details)
 		add_child(quest_row)
 	show()
