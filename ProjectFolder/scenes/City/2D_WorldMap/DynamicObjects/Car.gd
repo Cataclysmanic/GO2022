@@ -34,19 +34,30 @@ func _process(delta):
 	if State in [ States.READY, States.MOVING ]:
 		
 		var collisionAvoidanceVector = get_collision_avoidance_vector()
+		if collisionAvoidanceVector != Vector2.ZERO:
+			brake(delta)
+		else:
+			accelerate(delta)
+		
 		var pathFollowVector = get_path_follow_vector()
 		
 		var vectors_of_concern = [ collisionAvoidanceVector, pathFollowVector ]
 
 		var averageVector = Vector2.ZERO
+		var count = 0
 		for vector in vectors_of_concern:
-			averageVector += vector
-		averageVector = averageVector / vectors_of_concern.size()
+			if vector != Vector2.ZERO:
+				averageVector += vector.normalized()
+				count += 1
+		if count > 0:
+			averageVector = averageVector / count
+		else:
+			averageVector = Vector2.ZERO
 			
 		turn_toward_vector(averageVector, delta)
 
 		
-		var movementVector = get_forward_vector().normalized() * speed
+		var movementVector = get_forward_vector() * speed
 		position += movementVector * delta
 
 		
@@ -91,27 +102,43 @@ func turn_toward_vector(vector, delta):
 	
 
 func get_collision_avoidance_vector():
-	var avoidanceVector = get_forward_vector()
+	var avoidanceVector = Vector2.ZERO
 	
-	if $RayCast2D.is_colliding(): # evasive maneuvers!
-		var collisionObject = $RayCast2D.get_collider()
-		# try to drive around?
-		if "Car" in collisionObject.name:
-			var obstaclePos = collisionObject.get_global_position()
-			var myPos = get_global_position()
-			var impactVector = obstaclePos - myPos
-			# figure out if impact vector is left or right of my forward vector
-			if get_forward_vector().rotated(PI/2).dot(impactVector) > 0:
-				# turn left
-				avoidanceVector = get_forward_vector().rotated(-PI/4) * speed
-			else:
-				avoidanceVector = get_forward_vector().rotated(PI/4) * speed
-	return avoidanceVector
-			
+	var possibleThreats = $CrashImminentArea.get_overlapping_areas()
+	var likelyThreats = []
+	for threat in possibleThreats:
+		if "Car" in threat.name and threat.get_parent() != self:
+			likelyThreats.push_back(threat)
+	
+	var collisionVector = Vector2.ZERO
+	for threat in likelyThreats:
+		collisionVector = collisionVector + (threat.global_position - self.global_position)
+	collisionVector = collisionVector / likelyThreats.size()
+	
+	if collisionVector != Vector2.ZERO:
+		avoidanceVector = collisionVector.rotated(PI)
+	return avoidanceVector.normalized()
+	
+#
+#	if $RayCast2D.is_colliding(): # evasive maneuvers!
+#		var collisionObject = $RayCast2D.get_collider()
+#		# try to drive around?
+#		if "Car" in collisionObject.name:
+#			var obstaclePos = collisionObject.get_global_position()
+#			var myPos = get_global_position()
+#			var impactVector = obstaclePos - myPos
+#			# figure out if impact vector is left or right of my forward vector
+#			if get_forward_vector().rotated(PI/2).dot(impactVector) > 0:
+#				# turn left
+#				avoidanceVector = get_forward_vector().rotated(-PI/2) * speed
+#			else:
+#				avoidanceVector = get_forward_vector().rotated(PI/2) * speed
+#	return avoidanceVector
+#
 
 
 func get_forward_vector():
-	return Vector2.RIGHT.rotated(rotation) * speed
+	return Vector2.RIGHT.rotated(rotation).normalized()
 
 
 func get_turn_dir(target):
