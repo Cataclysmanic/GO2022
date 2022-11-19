@@ -432,6 +432,7 @@ rotation = -1.57079
 scale = Vector2( 2.04372, 1.82548 )
 enabled = true
 cast_to = Vector2( 0, 750 )
+collision_mask = 43
 
 [node name="LaserScope" type="Line2D" parent="Sprite/NPCGun/RayCast2D"]
 points = PoolVector2Array( 0, 0, 0, 750 )
@@ -440,6 +441,10 @@ default_color = Color( 1, 0, 0, 0.282353 )
 
 [node name="ReloadTimer" type="Timer" parent="Sprite/NPCGun"]
 wait_time = 0.5
+one_shot = true
+
+[node name="TriggerFingerTimer" type="Timer" parent="Sprite/NPCGun"]
+wait_time = 0.2
 one_shot = true
 
 [node name="Ammo" type="ResourcePreloader" parent="Sprite/NPCGun"]
@@ -532,6 +537,7 @@ script = ExtResource( 1 )
 
 [connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
 [connection signal="timeout" from="Sprite/NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="Sprite/NPCGun/TriggerFingerTimer" to="." method="_on_TriggerFingerTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="PunchingArea" to="." method="_on_PunchingArea_body_entered"]

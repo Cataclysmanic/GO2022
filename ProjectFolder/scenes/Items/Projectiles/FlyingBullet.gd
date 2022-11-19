@@ -2,7 +2,7 @@ extends Node2D
 
 export var bullet_speed : float
 var velocity : Vector2
-var damage = 10.0
+var damage = 15.0
 var originator
 
 signal hit(damage)

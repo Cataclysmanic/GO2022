@@ -1,33 +1,33 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://scenes/City/NPCs/NPC.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Test Assets/_down idle.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Test Assets/spr_placeholder_dialogue.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Test Assets/_down idle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Test Assets/spr_placeholder_dialogue.png" type="Texture" id=3]
+[ext_resource path="res://scenes/City/3DNPCs/3DNPC.gd" type="Script" id=4]
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 23
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 23
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 64, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 23
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 128, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 23
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 192, 0, 64, 64 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 23
-atlas = ExtResource( 3 )
+atlas = ExtResource( 2 )
 region = Rect2( 0, 64, 64, 64 )
 
 [sub_resource type="SpriteFrames" id=1]
@@ -50,7 +50,7 @@ extents = Vector3( 0.153988, 0.22258, 0.195449 )
 extents = Vector3( 0.153988, 0.22258, 0.195449 )
 
 [node name="Spatial" type="KinematicBody" groups=["goodPeople"]]
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Sprite3D" type="AnimatedSprite3D" parent="."]
 modulate = Color( 0, 1, 0.25098, 1 )
@@ -62,7 +62,7 @@ animation = "tidle"
 transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.127, -0.205 )
 visible = false
 billboard = 1
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.504274, 0, 0, 0, 0.504274, 0, 0, 0, 0.504274, 0, 0, 0 )
