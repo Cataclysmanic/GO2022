@@ -53,15 +53,28 @@ position = Vector2( -6.35783e-06, 0 )
 scale = Vector2( 1.66667, 1.66667 )
 occluder = SubResource( 4 )
 
-[node name="InteractInstructionLabel" type="Label" parent="."]
-visible = false
+[node name="LabelContainer" type="Node2D" parent="."]
+z_index = -1
+
+[node name="InteractInstructionLabel" type="Label" parent="LabelContainer"]
 margin_left = -19.0
 margin_top = 18.0
 margin_right = 21.0
 margin_bottom = 32.0
-rect_pivot_offset = Vector2( 19, 7 )
+rect_pivot_offset = Vector2( 19, -18 )
 text = "[F]"
 align = 1
+valign = 1
+
+[node name="InteractInstructionLabel2" type="Label" parent="LabelContainer"]
+margin_left = -20.0
+margin_top = -54.0
+margin_right = 20.0
+margin_bottom = -40.0
+rect_pivot_offset = Vector2( 20, 54 )
+text = "[F]"
+align = 1
+valign = 1
 
 [connection signal="body_entered" from="OpeningZone" to="." method="_on_OpeningZone_body_entered"]
 [connection signal="body_exited" from="OpeningZone" to="." method="_on_OpeningZone_body_exited"]

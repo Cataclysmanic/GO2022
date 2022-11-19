@@ -25,8 +25,8 @@ var width = 96.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = States.CLOSED
-
-
+	$LabelContainer.scale = Vector2(1.0/scale.x, 1.0/scale.y)
+	$LabelContainer.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -109,7 +109,7 @@ func close():
 
 func _on_OpeningZone_body_entered(body):
 	if body.has_method("is_player") and body.is_player() == true:
-		$InteractInstructionLabel.show()
+		$LabelContainer.show()
 	
 
 func _unhandled_input(event):
@@ -131,5 +131,5 @@ func _on_InitDelayTimer_timeout():
 
 func _on_OpeningZone_body_exited(body):
 	if body.has_method("is_player") and body.is_player() == true:
-		$InteractInstructionLabel.hide()
+		$LabelContainer.hide()
 	

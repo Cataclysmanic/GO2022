@@ -127,6 +127,7 @@ func spawn_static_body(myPolygon):
 	collisionPolygon.set_polygon(myPolygon)
 	newStatic.add_child(collisionPolygon)
 	newStatic.name = "static_wall_" + str($StaticBodyWalls.get_child_count()).pad_zeros(2)
+	newStatic.layers = 6 # walls
 	$StaticBodyWalls.add_child(newStatic)
 	
 	var newPolyDraw = Polygon2D.new()

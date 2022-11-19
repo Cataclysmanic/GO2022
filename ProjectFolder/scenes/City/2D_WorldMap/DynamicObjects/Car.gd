@@ -2,7 +2,9 @@ extends Area2D
 
 
 var speed = 200.0
-var max_speed = 200.0
+var max_speed = 600.0
+var acceleration = 50.0
+var braking = 100.0
 var steering_speed = 2.0
 var health = 100.0
 var max_health = 100.0
@@ -60,16 +62,7 @@ func _process(delta):
 		var movementVector = get_forward_vector() * speed
 		position += movementVector * delta
 
-		
-		var targetPos = path_follow_target.get_global_position()
-		var myPos = get_global_position()
-		var ideal_distance = 250.0
-		var dist_sq = myPos.distance_squared_to(targetPos)
-		if dist_sq > pow((0.9*ideal_distance),2):
-			path_follow_target.slow_down()
-		elif dist_sq < pow((1.1*ideal_distance), 2):
-			path_follow_target.speed_up()
-
+		ask_path_follow_target_to_adjust_speed(delta)
 		update_debug_info(movementVector)
 			
 	elif State == States.CRASHING:
@@ -77,6 +70,17 @@ func _process(delta):
 		var crashAngularVel = crash_angular_vel
 		position += crashVelocity * delta
 		rotation += crashAngularVel * delta
+
+func ask_path_follow_target_to_adjust_speed(delta):
+	var targetPos = path_follow_target.get_global_position()
+	var myPos = get_global_position()
+	var ideal_dist_sq = 200.0 * 200.0
+	var dist_sq = myPos.distance_squared_to(targetPos)
+	if dist_sq > 1.5 * ideal_dist_sq:
+		path_follow_target.slow_down(delta)
+	else:
+		
+		path_follow_target.speed_up(delta)
 
 
 func update_debug_info(movementVector):
@@ -199,12 +203,12 @@ func wreck():
 	
 
 func accelerate(delta):
-	var throttleForce = 1.0
+	var throttleForce = acceleration
 	speed = min( speed + ( throttleForce * delta ) , max_speed )
 
 	
 func brake(delta):
-	var brakeForce = 5.0
+	var brakeForce = braking
 	speed = max(speed - (brakeForce * delta), 0 )
 	
 	
@@ -216,6 +220,10 @@ func _on_Car_body_entered(body):
 		elif body.has_method("hit"):
 			var _err = connect("hit", body, "hit")
 		emit_signal("hit", damage)
+		
+
+		if body._get_layers() == 6: # hit a wall
+			_on_hit(100.0, get_forward_vector().rotated(PI))
 
 
 func _on_CrashTimer_timeout():
