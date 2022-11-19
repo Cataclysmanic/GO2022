@@ -268,3 +268,5 @@ Type = 1
 position = Vector2( 1987, -1803 )
 scale = Vector2( 0.870445, 0.870445 )
 Type = 1
+
+[node name="NPCs" type="Node2D" parent="."]

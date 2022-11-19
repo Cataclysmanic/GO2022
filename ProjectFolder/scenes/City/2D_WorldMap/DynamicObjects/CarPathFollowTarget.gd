@@ -6,14 +6,19 @@ var max_speed = 900.0
 var min_speed = 10.0
 var acceleration = 100.0
 
+enum States { INITIALIZING, READY, MOVING, STOPPED }
+var State = States.INITIALIZING
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	State = States.READY
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	set_offset(get_offset() + (speed * delta))
+	if State in [States.READY, States.MOVING]:
+		set_offset(get_offset() + (speed * delta))
+
 
 func die():
 	call_deferred("queue_free")
@@ -24,4 +29,8 @@ func speed_up(_delta):
 	
 func slow_down(_delta):
 	speed = max(speed - (acceleration*_delta), min_speed )
+
+func stop():
+	State = States.STOPPED
+	set_v_offset(200.0)
 	

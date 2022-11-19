@@ -12,9 +12,13 @@ var crash_vector := Vector2.ZERO
 var crash_angular_vel := 3.0
 var path_follow_target : PathFollow2D
 
-# maybe player should be able to shoot cars.. or they take damage from collisions. later
+var max_npcs = 5
+var npcs_spawned = 0
 
-enum States { INITIALIZING, READY, MOVING, CRASHING, WRECKED }
+var city_map
+var home_building
+
+enum States { INITIALIZING, READY, MOVING, CRASHING, WRECKED, PARKING, PARKED }
 var State = States.INITIALIZING
 
 
@@ -24,12 +28,14 @@ signal hit(damage)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = States.READY
+	city_map = Global.world_controller.current_scene
+	home_building = city_map.get_random_building()
+
 
 func init(pathFollowNode):
 	path_follow_target = pathFollowNode
 	set_global_position(path_follow_target.get_global_position()+Vector2.RIGHT)
 	rotate(PI)
-	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -199,7 +205,7 @@ func wreck():
 	$Sprite.set_z_index(-1)
 	$VroomNoise.stop()
 	$Headlight.hide()
-	path_follow_target.die()
+	#path_follow_target.die()
 	
 
 func accelerate(delta):
@@ -211,10 +217,23 @@ func brake(delta):
 	var brakeForce = braking
 	speed = max(speed - (brakeForce * delta), 0 )
 	
+
+func spawn_npc():
+	
+	var npcs = $AvailableNPCs.get_resource_list()
+	var randomNPCName = npcs[randi()%npcs.size()]
+	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
+	npcScene.set_global_position($NPCSpawnPosition.get_global_position())
+	npcScene.init(city_map, home_building)
+	#npcScene.set_scale((Vector2(1/home_building.scale.x, 1/home_building.scale.y)))	
+	#home_building.get_node("NPCs").add_child(npcScene)
+	npcScene.set_scale(Vector2(1.25, 1.25))
+	npcScene.set_modulate(Color.blue)
+	city_map.get_node("NPCs").add_child(npcScene)
 	
 
 func _on_Car_body_entered(body):
-	if not State in [States.WRECKED]: # don't harm humans after wrecking
+	if not State in [States.WRECKED, States.PARKED]: # don't harm humans after wrecking
 		if body.has_method("_on_hit"):
 			var _err = connect("hit", body, "_on_hit")
 		elif body.has_method("hit"):
@@ -226,9 +245,15 @@ func _on_Car_body_entered(body):
 			_on_hit(100.0, get_forward_vector().rotated(PI))
 
 
+func switch_collision_layer_to_object():
+	# so as not to damage pedestrians after crash is finished
+	set_collision_layer_bit(4, false)
+	set_collision_layer_bit(3, true)
+
+
 func _on_CrashTimer_timeout():
 	State = States.WRECKED
-
+	switch_collision_layer_to_object()
 
 func _on_Car_area_entered(area):
 	var impactVector = self.get_global_position() - area.get_global_position()
@@ -239,4 +264,22 @@ func _on_Car_area_entered(area):
 	else:
 		knockback(impactVector, 10.0)
 
+
+
+
+func _on_RandomParkTimer_timeout():
+	var chance_to_spawn_NPCs = 0.5
+	if randf() < chance_to_spawn_NPCs:
+		State = States.PARKING
+		switch_collision_layer_to_object()
+		$NPCSpawnTimer.start()
+		$RandomParkTimer.stop()
+
+
+func _on_NPCSpawnTimer_timeout():
+	if npcs_spawned < max_npcs:
+		spawn_npc()
+		npcs_spawned += 1
+		$NPCSpawnTimer.start()
+		
 
