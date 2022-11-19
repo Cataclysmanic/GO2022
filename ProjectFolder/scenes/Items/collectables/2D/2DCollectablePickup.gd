@@ -84,6 +84,8 @@ func _on_Area_body_entered(body):
 				var _err = connect("picked_up", recipient, "_on_collectible_picked_up")
 			
 		emit_signal("picked_up", self)
+		if !self.name=="Magazine":
+			body.update_item(self.name)
 		disappear()
 		$PickupNoise.pitch_scale *= rand_range(0.9, 1.5)
 		$PickupNoise.play()

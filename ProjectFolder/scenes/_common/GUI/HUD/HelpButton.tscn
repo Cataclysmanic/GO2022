@@ -26,6 +26,7 @@ margin_left = -162.097
 margin_right = 68.9033
 margin_bottom = 133.0
 rect_scale = Vector2( 0.659044, 0.925028 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Controls:
 Arrows/WASD/LeftJoy: Move
 Mouse/RightJoy: Look Around
