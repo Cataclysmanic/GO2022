@@ -418,7 +418,7 @@ scale = Vector2( 0.489305, 0.547802 )
 texture = ExtResource( 5 )
 
 [node name="Muzzle" type="Position2D" parent="Sprite/NPCGun"]
-position = Vector2( 9.95453, -0.927891 )
+position = Vector2( -30.9198, -0.927891 )
 
 [node name="MuzzleFlash" type="Sprite" parent="Sprite/NPCGun/Muzzle"]
 visible = false
@@ -427,12 +427,12 @@ position = Vector2( 17.9484, -3.8147e-06 )
 texture = ExtResource( 7 )
 
 [node name="RayCast2D" type="RayCast2D" parent="Sprite/NPCGun"]
-position = Vector2( 43.9153, 0.00830078 )
+position = Vector2( -32.0559, -1.03987 )
 rotation = -1.57079
 scale = Vector2( 2.04372, 1.82548 )
 enabled = true
 cast_to = Vector2( 0, 750 )
-collision_mask = 43
+collision_mask = 41
 
 [node name="LaserScope" type="Line2D" parent="Sprite/NPCGun/RayCast2D"]
 visible = false
