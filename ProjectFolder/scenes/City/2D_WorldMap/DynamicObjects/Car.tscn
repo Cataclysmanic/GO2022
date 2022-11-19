@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/car.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/Car.gd" type="Script" id=2]
@@ -12,6 +12,9 @@ extents = Vector2( 74.25, 48 )
 offsets = PoolRealArray( 0, 0.108742, 0.58209, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 0.848614, 0.795576, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 274, 129 )
+
 [node name="Car" type="Area2D"]
 collision_layer = 8
 collision_mask = 11
@@ -22,7 +25,7 @@ position = Vector2( 73, 0 )
 rotation = -1.5708
 scale = Vector2( 1, 8 )
 enabled = true
-cast_to = Vector2( -1.00344, 118.75 )
+cast_to = Vector2( 0, 75 )
 collision_mask = 8
 collide_with_areas = true
 collide_with_bodies = false
@@ -65,6 +68,28 @@ color_ramp = SubResource( 2 )
 [node name="CrashTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="CrashImminentArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrashImminentArea"]
+position = Vector2( 202, 66 )
+shape = SubResource( 3 )
+
+[node name="DebugInfo" type="Node2D" parent="."]
+
+[node name="IntentionLine2D" type="Line2D" parent="DebugInfo"]
+points = PoolVector2Array( 0, 0, 100, 0 )
+
+[node name="fwdLine2D" type="Line2D" parent="DebugInfo"]
+points = PoolVector2Array( 0, 0, 100, 0 )
+default_color = Color( 0.0313726, 0.815686, 0.00392157, 1 )
+
+[node name="RotationLabel" type="Label" parent="DebugInfo"]
+margin_left = -26.0
+margin_top = -27.0
+margin_right = 40.0
+margin_bottom = -13.0
+text = "rotation: 0"
 
 [connection signal="area_entered" from="." to="." method="_on_Car_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Car_body_entered"]

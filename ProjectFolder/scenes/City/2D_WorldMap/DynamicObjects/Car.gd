@@ -3,10 +3,11 @@ extends Area2D
 
 var speed = 200.0
 var max_speed = 200.0
-var steering_speed = 10.0
+var steering_speed = 2.0
 var health = 100.0
 var max_health = 100.0
 var crash_vector := Vector2.ZERO
+var crash_angular_vel := 3.0
 var path_follow_target : PathFollow2D
 
 # maybe player should be able to shoot cars.. or they take damage from collisions. later
@@ -31,20 +32,24 @@ func init(pathFollowNode):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if State in [ States.READY, States.MOVING ]:
-		if $RayCast2D.is_colliding(): # evasive maneuvers!
-			var collisionObject = $RayCast2D.get_collider()
-			# try to drive around?
-			if "Car" in collisionObject.name:
-				speed = max(speed - (3.0 * delta), max_speed / 2.0)
-				rotation -= steering_speed * get_turn_dir(collisionObject) * delta
-		else: # no obstacles, head for the path_follow_target
-			speed = min(speed + (3.0 * delta), max_speed)
-			rotation += steering_speed * get_turn_dir(path_follow_target) * delta
+		
+		var collisionAvoidanceVector = get_collision_avoidance_vector()
+		var pathFollowVector = get_path_follow_vector()
+		
+		var vectors_of_concern = [ collisionAvoidanceVector, pathFollowVector ]
 
-		var myForwardVector = Vector2.RIGHT.rotated(rotation)
-		var movementVector = myForwardVector * speed
-		position += movementVector * delta
+		var averageVector = Vector2.ZERO
+		for vector in vectors_of_concern:
+			averageVector += vector
+		averageVector = averageVector / vectors_of_concern.size()
 			
+		turn_toward_vector(averageVector, delta)
+
+		
+		var movementVector = get_forward_vector().normalized() * speed
+		position += movementVector * delta
+
+		
 		var targetPos = path_follow_target.get_global_position()
 		var myPos = get_global_position()
 		var ideal_distance = 250.0
@@ -54,19 +59,66 @@ func _process(delta):
 		elif dist_sq < pow((1.1*ideal_distance), 2):
 			path_follow_target.speed_up()
 
-			
+		update_debug_info(movementVector)
 			
 	elif State == States.CRASHING:
 		var crashVelocity = crash_vector
-		var crashAngularVel = 3.0
+		var crashAngularVel = crash_angular_vel
 		position += crashVelocity * delta
 		rotation += crashAngularVel * delta
+
+
+func update_debug_info(movementVector):
+	$DebugInfo.set_global_rotation(0)
+	$DebugInfo/IntentionLine2D.points = [Vector2.ZERO, movementVector]
+	$DebugInfo/fwdLine2D.points = [Vector2.ZERO, get_forward_vector()]
+	$DebugInfo/RotationLabel.text = "rot = " + str(rotation).pad_decimals(2)
+
+func get_path_follow_vector():
+	var targetPos = path_follow_target.get_global_position()
+	var myPos = get_global_position()
+	var vectorToTarget = targetPos - myPos
+	return vectorToTarget
+	
+	
+func turn_toward_vector(vector, delta):
+	if get_forward_vector().rotated(PI/2).dot(vector) > 0:
+		# turn right
+		rotation += steering_speed * delta
+	else:
+		# turn left
+		rotation -= steering_speed * delta
+	
+
+func get_collision_avoidance_vector():
+	var avoidanceVector = get_forward_vector()
+	
+	if $RayCast2D.is_colliding(): # evasive maneuvers!
+		var collisionObject = $RayCast2D.get_collider()
+		# try to drive around?
+		if "Car" in collisionObject.name:
+			var obstaclePos = collisionObject.get_global_position()
+			var myPos = get_global_position()
+			var impactVector = obstaclePos - myPos
+			# figure out if impact vector is left or right of my forward vector
+			if get_forward_vector().rotated(PI/2).dot(impactVector) > 0:
+				# turn left
+				avoidanceVector = get_forward_vector().rotated(-PI/4) * speed
+			else:
+				avoidanceVector = get_forward_vector().rotated(PI/4) * speed
+	return avoidanceVector
+			
+
+
+func get_forward_vector():
+	return Vector2.RIGHT.rotated(rotation) * speed
+
 
 func get_turn_dir(target):
 	# dot product of our tangent with vector to target.
 	var targetPos = target.get_global_position()
 	var myPos = get_global_position()
-	var tangentVec = Vector2.DOWN.rotated(rotation)
+	var tangentVec = Vector2.RIGHT.rotated(rotation).rotated(PI/2)
 	var targetVec = targetPos - myPos
 	var dotProd = tangentVec.dot(targetVec)
 	var safe_range = 3.0
@@ -105,6 +157,11 @@ func wreck():
 	# what should this look like? 
 		# Explosion, spin out of control?
 	crash_vector = Vector2(speed + rand_range(-50.0, 50.0), rand_range(-20.0, 20.0)).rotated(global_rotation)
+	
+	crash_angular_vel = rand_range(1.0, 3.0)
+	if randf()<0.5:
+		crash_angular_vel *= -1
+		
 	$FireballParticles2D.emitting = true
 	State = States.CRASHING
 	$CrashTimer.start()
@@ -112,6 +169,17 @@ func wreck():
 	$VroomNoise.stop()
 	$Headlight.hide()
 	path_follow_target.die()
+	
+
+func accelerate(delta):
+	var throttleForce = 1.0
+	speed = min( speed + ( throttleForce * delta ) , max_speed )
+
+	
+func brake(delta):
+	var brakeForce = 5.0
+	speed = max(speed - (brakeForce * delta), 0 )
+	
 	
 
 func _on_Car_body_entered(body):
