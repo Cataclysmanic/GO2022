@@ -121,6 +121,7 @@ func inventory_add(itemResource : Resource):
 	var iconButton = $ResourcePreloader.get_resource("InventoryIconButton").instance()
 	
 	iconButton.init(itemResource, self)
+	iconButton.focus_mode = Control.FOCUS_NONE
 	inventory_container.add_child(iconButton)
 	
 	#display_inventory_item(itemResource)

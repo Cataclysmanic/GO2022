@@ -130,7 +130,7 @@ func requirements_met(body):
 			body.complete_quest(currentQuest)
 			alreadyCompleted = true
 		elif !alreadyCompleted and !alreadyTaken:
-			Global.player.update_journal(currentQuest)
+			body.update_journal(currentQuest)
 			alreadyTaken = true
 			body.complete_quest(currentQuest)
 			alreadyCompleted = true

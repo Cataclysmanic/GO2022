@@ -4,7 +4,7 @@ extends KinematicBody2D
 export var sprint_velocity_multiple = 1.75
 export var player_speed = 325.0
 export var max_health = 100.0
-
+onready var space_state = get_world_2d().direct_space_state
 var map_scene
 var camera
 var hud
@@ -22,6 +22,7 @@ var health = 100
 var stamina = 100
 var dead = false
 
+var FOV_increment = 2 * PI / 60
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,6 +33,8 @@ func _ready():
 
 	manual_spawn_gun() # temporary
 	State = States.READY
+	
+#	set_primary_target_area(get_FOV_circle(Vector2(0,0),500))
 
 	
 func init(mapScene):
@@ -102,19 +105,42 @@ func manual_spawn_gun():
 func get_hud():
 	return hud
 
+func raycast_arc(from:Vector2,radius,start_angle,end_angle):
+	var angle = start_angle	
+	var points = PoolVector2Array()
+	while angle < end_angle:
+		var to = Vector2(radius,0).rotated(angle)
+		var result = space_state.intersect_ray(from,to,[],1)
+		if result:
+			points.append(result.position)
+		else:
+			points.append(to)
+		angle += FOV_increment
+	return points
+
+func get_FOV_circle(from:Vector2,radius):
+	return raycast_arc(from,radius,FOV_increment,2*PI)
 
 func _physics_process(delta):
 	if State == States.INITIALIZING:
 		return
 	elif State != States.DEAD:
-		move(delta)
-		$Flashlight.look_at(get_global_mouse_position())
-		if stamina < 100 :
-			stamina += 1
-			update_bars()
+		if delta != 0:
+			move(delta)
+			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
+			$Flashlight.look_at(get_global_mouse_position())
+			if stamina < 100 :
+				stamina += 1
+				update_bars()
 	if has_node("DebugInfo"):
 		$DebugInfo.text = States.keys()[State]
-
+		
+	
+	
+	
+func set_primary_target_area(points:PoolVector2Array):
+	$PaperDoll/TargetArea/Area2D/CollisionPolygon2D.polygon = points
+	$PaperDoll/TargetArea/Area2D/Polygon2D.polygon = points
 
 func _unhandled_input(event):
 	if event.is_action_pressed("flashlight") and !dead:
@@ -269,3 +295,12 @@ func _on_DyingWarningUpdateTimer_timeout():
 		$Timers/DyingWarningUpdateTimer.start()
 	# no need to recover here, the bandage calls recover_from_near_death
 	
+
+
+func _on_TargetArea_body_entered(body):
+	if "Target" in body:
+		body.show()
+
+func _on_TargetArea_body_exited(body):
+	if "Target" in body:
+		body.hide()

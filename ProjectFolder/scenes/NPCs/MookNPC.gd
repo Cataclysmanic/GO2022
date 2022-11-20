@@ -20,6 +20,8 @@ var shooting_target_acquired = false
 var player_engaged = false
 var last_known_target_position: Vector2
 
+
+
 onready var gun = $Sprite/NPCGun
 
 
