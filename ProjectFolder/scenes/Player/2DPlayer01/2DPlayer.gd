@@ -42,16 +42,36 @@ func init(mapScene):
 	dying_warning_label = hud.find_node("DyingWarningLabel")
 	camera = find_node("Camera2D")
 	camera.init(self, hud)
+	Global.player = self
 
 func update_bars():
 	health_bar.value = health
 	stamina_bar.value = stamina
 	if State == States.DYING:
 		dying_warning_label.visible = true
-		dying_warning_label.text = "You're dying, find bandades: " + str(int($Timers/DeathTimer.get_time_left()))
+		dying_warning_label.text = "You're dying, find bandages: " + str(int($Timers/DeathTimer.get_time_left()))
 	else:
 		dying_warning_label.visible = false
+		
+func update_journal(currentQuest):
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Quest:", "quest": str(currentQuest), "status": ""}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
 
+func complete_quest(currentQuest):
+#	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.complete(currentQuest) WIP
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Quest:", "quest": str(currentQuest) , "status": " COMPLETED"}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	
+func update_item(currentItem):
+	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Item:", "quest": str(currentItem) , "status": " Picked Up"}) 
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)
 
@@ -117,7 +137,10 @@ func begin_dying():
 	# give the player a chance to heal up or kill one more guy to save his life?
 	$Timers/DeathTimer.start()
 	State = States.DYING
+	if Global.user_preferences["gore"] == false:
+			$BloodDripParticles.texture = null
 	$AnimationPlayer.play("dying")
+	
 	dying_warning_label.visible = true
 	$Timers/DyingWarningUpdateTimer.start()
 
@@ -195,21 +218,26 @@ func _on_collectible_picked_up(_pickupObj):
 	pass # don't really care yet. Inventory and IO can hash this out between them.
 	
 
-func _on_hit(damage):
+func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 	# play a noise, flash the sprite or queue animation, launch particles, start invulnerability timer
 	# in some games, taking damage supercharges your adrenaline and you gain speed / damage
 	if State == States.INITIALIZING:
 		return
 	elif not State in [States.INVULNERABLE, States.DYING, States.DEAD]: 
 		$HitNoise.play()
-		$AnimationPlayer.play("hit")
+		if Global.user_preferences["gore"]:
+			$AnimationPlayer.play("hit")
 		health -= damage
 		update_bars()
+		knockback(impactVector.normalized() * damage)
 		if health <= 0 and State != States.DYING:
 			begin_dying()
 		else:
 			State = States.INVULNERABLE
 			$Timers/InvulnerbailityTimer.start()
+		
+func knockback(impactVector):
+	position += impactVector
 		
 func _on_healed(amount):
 	if health < max_health:

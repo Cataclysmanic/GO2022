@@ -56,7 +56,9 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 35.0
 margin_bottom = 28.0
+focus_mode = 0
 size_flags_horizontal = 2
+enabled_focus_mode = 0
 text = "Quit"
 return_to_main = true
 
@@ -92,12 +94,20 @@ margin_bottom = 47.0
 text = "You're Dying! Find Bandages"
 
 [node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
-margin_left = 948.0
+margin_left = 923.0
 margin_right = 984.0
 margin_bottom = 28.0
 size_flags_horizontal = 10
-text = "Help"
+text = "Journal"
 align = 2
+
+[node name="UpdateNotice" type="Label" parent="Top/Header/HelpButton"]
+visible = false
+margin_left = -34.0
+margin_top = 39.0
+margin_right = 71.0
+margin_bottom = 53.0
+text = "Journal Updated!"
 
 [node name="Bottom" type="MarginContainer" parent="."]
 anchor_left = 0.5

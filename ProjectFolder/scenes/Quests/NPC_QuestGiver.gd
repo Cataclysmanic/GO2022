@@ -23,15 +23,22 @@ export var inventory_requirement : String # name of the thing that must be in in
 
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
+var currentQuest
+var alreadyCompleted = false
+var alreadyTaken = false
 
-signal quest_objective_ready(objective)
+#signal quest_objective_ready(objective, itemPosition)
 
 var clicks = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$DialogLabel.hide()
-	
+	$InteractInstruction.hide()
+	for item in $PotentialRequiredItems.get_children():
+		item.hide()
+		item.disable_pickup()
+		
 	
 func init(cityMap):
 	city_map = cityMap
@@ -48,34 +55,45 @@ func give_quest():
 func get_random_quest_requirement_item():
 	var potentialItems = $PotentialRequiredItems.get_children()
 	var randomItem = potentialItems[randi()%len(potentialItems)]
-
+	
 	return randomItem
 
 func spawn_quest_reward():
 	pass
 
-func spawn_quest_objective(location : Position2D, item : Node2D):
-	if location == null:
+func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
+	
+	if targetLocation == null:
 		printerr("NPC Quest Giver needs a location to spawn their objective")
 
-	var questObjective = item.duplicate()
+	var questObjective = itemTemplate.duplicate()
+	questObjective.set_global_position(targetLocation.get_global_position())
+	questObjective.visible = true
+
+	print("NPC_Questiver.gd. Quest objective Target Location = " + str(targetLocation.get_global_position()))
 	
-	questObjective.set_global_position(location.get_global_position())
+	
 	inventory_requirement = questObjective.item_details["item_name"]
-	dialog_unmet_requirements.push_back("Look in " + location.get_address())
-	dialog_unmet_requirements.push_back(location.get_details())
-	if city_map.has_method("_on_loot_ready"):
-		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
-			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
-			emit_signal("quest_objective_ready", questObjective)
-
-
+	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
 	
+	currentQuest = str("Find " + inventory_requirement + " at " + targetLocation.get_address())
+	
+	dialog_unmet_requirements.push_back(targetLocation.get_details())
+#	if city_map.has_method("_on_loot_ready"):
+#		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
+#			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
+#			emit_signal("quest_objective_ready", questObjective, targetLocation.get_global_position())
+	add_child(questObjective)
+	questObjective.set_global_position(targetLocation.get_global_position())
+	questObjective.show()
+	questObjective.enable_pickup()
+	
+
 func produce_quest_objective():
 	# come up with some random item?
 	var location = get_random_location()
-	var item = get_random_quest_requirement_item()
-	spawn_quest_objective(location, item)
+	var itemTemplate = get_random_quest_requirement_item()
+	spawn_quest_objective(location, itemTemplate)
 	
 	
 func get_random_location():
@@ -83,22 +101,39 @@ func get_random_location():
 	return city_map.get_random_quest_target_location()
 
 		
-
+func _unhandled_input(event):
+	if $InteractionArea.get_overlapping_bodies().has(Global.player):
+		if event.is_action_pressed("interact"):
+			advance_dialog(Global.player)
+			clicks += 1
+			if !alreadyTaken:
+				Global.player.update_journal(currentQuest)
+				alreadyTaken = true
 
 func _on_InteractionArea_body_entered(body):
 	if body.has_method("is_player") and body.is_player():
+		$InteractInstruction.show()
 		talk_to_player()
+		
 
 
 func requirements_met(body): 
 	# for now this is just a lock and key system. If player has item in inventory, requirements are met.
 	# someday we could add different types of requirements.
-
+	
 	var requirementsMet = false
 	if inventory_requirement == null or inventory_requirement == "":
 		requirementsMet = true
 	elif body.has_method("has_item") and body.has_item(inventory_requirement):
 		requirementsMet = true
+		if !alreadyCompleted and alreadyTaken:
+			body.complete_quest(currentQuest)
+			alreadyCompleted = true
+		elif !alreadyCompleted and !alreadyTaken:
+			Global.player.update_journal(currentQuest)
+			alreadyTaken = true
+			body.complete_quest(currentQuest)
+			alreadyCompleted = true
 	return requirementsMet
 
 
@@ -112,14 +147,18 @@ func advance_dialog(body):
 	$DialogLabel.text = dialog_lines[clicks%(len(dialog_lines))]
 
 
-
 func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
 	if city_map == null:
 		city_map = Global.current_city_map
-	if event.is_action_pressed("click"):
+	if event.is_action_pressed("interact"):
 		var player = city_map.get_player()
 		var bodies_present = $InteractionArea.get_overlapping_bodies()
 		if bodies_present.has(player):
-		
+			
 			advance_dialog(player)
 			clicks += 1
+
+
+func _on_InteractionArea_body_exited(body):
+	if body.has_method("is_player") and body.is_player() == true:
+		$InteractInstruction.hide()

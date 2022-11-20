@@ -67,6 +67,8 @@ func _on_cutscene_finished(cutsceneName):
 	if cutsceneName == "Intro":
 		var mainMenu = $ResourcePreloader.get_resource("MainMenu")
 		change_scene_to(mainMenu)
+	elif cutsceneName == "Brother":
+		change_scene("res://scenes/City/2D_WorldMap/2DCItyMap.tscn")
 	else:
 		change_scene("res://GUI/MainMenu.tscn")
 		

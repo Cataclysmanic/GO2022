@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sirenBad.ogg-745637d568c2f251d3ebbb5ab99d21d0.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/GUI/sfx/sirenBad.ogg"
+dest_files=[ "res://.import/sirenBad.ogg-745637d568c2f251d3ebbb5ab99d21d0.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

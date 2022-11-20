@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Scene 1 shot 3 - empty appointment book.png-8b6bb92782f66422dc3e199f106bc22d.stex"
+path="res://.import/Scene 1 shot 3 - empty appointment book.png-f09084e6041b3ed49810a37bc10fea7b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/CutScenes/Animatics/Scene 1/Scene 1 shot 3 - empty appointment book.png"
-dest_files=[ "res://.import/Scene 1 shot 3 - empty appointment book.png-8b6bb92782f66422dc3e199f106bc22d.stex" ]
+source_file="res://scenes/CutScenes/Animatics/Scene 1/old/Scene 1 shot 3 - empty appointment book.png"
+dest_files=[ "res://.import/Scene 1 shot 3 - empty appointment book.png-f09084e6041b3ed49810a37bc10fea7b.stex" ]
 
 [params]
 

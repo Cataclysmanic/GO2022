@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Quests/QuestGivers/femme-fatale.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=4]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
@@ -17,7 +18,7 @@ extents = Vector2( 144.25, 134.5 )
 light_mode = 1
 
 [node name="FemmeFatale" type="KinematicBody2D"]
-position = Vector2( -1581, 1977 )
+position = Vector2( 6, 0 )
 script = ExtResource( 2 )
 inventory_requirement = "note 01"
 
@@ -59,9 +60,10 @@ autowrap = true
 [node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 
-[node name="PotentialRequiredItems" type="Node" parent="."]
+[node name="PotentialRequiredItems" type="Node2D" parent="."]
 
 [node name="Evidence" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
 item_details = {
 "is_unique": true,
 "item_name": "Eyewitness Account of Mob Boss paying off the Mayor",
@@ -71,5 +73,14 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
+[node name="InteractInstruction" type="Label" parent="."]
+visible = false
+margin_left = 46.0
+margin_top = -101.0
+margin_right = 140.0
+margin_bottom = -24.0
+custom_fonts/font = ExtResource( 7 )
+text = "[F]"
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
-[connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/hobo-to-down.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
@@ -58,7 +59,7 @@ autowrap = true
 [node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 
-[node name="PotentialRequiredItems" type="Node" parent="."]
+[node name="PotentialRequiredItems" type="Node2D" parent="."]
 
 [node name="Ex-Wifes Attorney Bills" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
 item_details = {
@@ -90,5 +91,14 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
+[node name="InteractInstruction" type="Label" parent="."]
+margin_left = 50.0
+margin_top = -45.0
+margin_right = 90.0
+margin_bottom = -31.0
+custom_fonts/font = ExtResource( 7 )
+text = "[F]"
+
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]
 [connection signal="input_event" from="InteractionArea" to="." method="_on_InteractionArea_input_event"]

@@ -21,14 +21,15 @@ func _unhandled_input(event):
 		set_zoom(get_zoom()*(1/zoom_rate))
 		
 func shake():
-	var tween = get_node("Tween")
-	var currentPos = position
-	var jitter = 15.0
-	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
-	tween.interpolate_property(self, "position",
-			currentPos+jitterVec, currentPos, .2,
-			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
+	if Global.user_preferences["shake_and_flash"]:
+		var tween = get_node("Tween")
+		var currentPos = position
+		var jitter = 15.0
+		var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
+		tween.interpolate_property(self, "position",
+				currentPos+jitterVec, currentPos, .2,
+				Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
 
 
 func look_ahead(delta):

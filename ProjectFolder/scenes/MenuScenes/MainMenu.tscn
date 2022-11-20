@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/MenuScenes/MainMenu.gd" type="Script" id=2]
@@ -8,9 +8,10 @@
 [ext_resource path="res://scenes/MenuScenes/DebugMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/RainShaderOverlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/_common/GUI/HeavyFogOverlay.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/Campaign.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Animatic_01_Chicago_Office.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/_common/GUI/Theme/MainGUITheme.tres" type="Theme" id=10]
 [ext_resource path="res://scenes/CutScenes/DetectiveFramed.png" type="Texture" id=11]
+[ext_resource path="res://scenes/MenuScenes/Settings.tscn" type="PackedScene" id=12]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -131,13 +132,22 @@ margin_bottom = 120.0
 text = "Credits"
 SceneToLaunch = ExtResource( 4 )
 
-[node name="QuitButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+[node name="SettingsButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 211.0
 margin_top = 85.0
 margin_right = 357.0
 margin_bottom = 120.0
+text = "Preferences"
+SceneToLaunch = ExtResource( 12 )
+
+[node name="QuitButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 170.0
+margin_right = 111.0
+margin_bottom = 205.0
 text = "Quit"
 SceneToLaunch = ExtResource( 5 )
 

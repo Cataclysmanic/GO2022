@@ -3,9 +3,16 @@ extends Node
 
 var world_controller = null
 var current_city_map = null
+var player
 var IO = null
 var Utils = null
 #var in_danger = "no" # moved to building is_player_present()
+
+var user_preferences = {
+	"difficulty": 1.0, #0.5 to 3.0
+	"gore": true,
+	"shake_and_flash":true,
+}
 
 
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }

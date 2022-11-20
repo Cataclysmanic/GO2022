@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/_debug/DoorTest.gd" type="Script" id=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 2, 601, 425, 304, 569, 298, 997, 298, 1025, 323, 1028, 601, 1026, 244, 995, 262, 567, 266, 424, 262, 50, 302, 2, 317.518, 2, 228.904, 51, 261, 2, 4, 1027, 2 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 6, 4, 3, 7 ), PoolIntArray( 8, 2, 1, 9 ), PoolIntArray( 10, 1, 0, 11 ), PoolIntArray( 10, 11, 12, 13 ), PoolIntArray( 14, 15, 6, 7, 8, 9 ), PoolIntArray( 14, 9, 13, 12 ) ]
+outlines = [ PoolVector2Array( 2, 4, 1027, 2, 1026, 244, 1025, 323, 1028, 601, 2, 601, 2, 317.518, 2, 228.904 ), PoolVector2Array( 51, 261, 424, 262, 425, 304, 50, 302 ), PoolVector2Array( 995, 262, 567, 266, 569, 298, 997, 298 ) ]
+
+[node name="DoorTest" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="DynamicDoor" parent="Navigation2D" instance=ExtResource( 1 )]
+position = Vector2( 491, 284 )
+scale = Vector2( 3.40471, 3.40471 )
