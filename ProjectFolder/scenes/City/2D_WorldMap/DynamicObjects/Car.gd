@@ -228,7 +228,7 @@ func spawn_npc():
 	#npcScene.set_scale((Vector2(1/home_building.scale.x, 1/home_building.scale.y)))	
 	#home_building.get_node("NPCs").add_child(npcScene)
 	npcScene.set_scale(Vector2(1.0, 1.0))
-	npcScene.set_modulate(Color.blue)
+	npcScene.set_modulate(Color.aqua)
 	city_map.get_node("NPCs").add_child(npcScene)
 	
 

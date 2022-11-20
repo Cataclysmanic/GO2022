@@ -289,26 +289,29 @@ func _on_NavUpdateTimer_timeout():
 func _on_VisionCone_body_entered(body):
 	# Note: Area2D nodes can see through walls.
 	# should have a raycast to confirm the detection
-	
-	if body.has_method("is_player") and body.is_player() == true:
-		State = States.CHASING
-		last_known_target_position = body.get_global_position()
+	if not State in [ States.DEAD ]:
+		if body.has_method("is_player") and body.is_player() == true:
+			State = States.CHASING
+			last_known_target_position = body.get_global_position()
 
 
 
 func _on_VisionCone_body_exited(body):
-	if "detective" in body.name.to_lower():
-		last_known_target_position = body.get_global_position()
-		#State = States.SEEKING
+	if not State in [ States.DEAD ]:
+		if "detective" in body.name.to_lower():
+			last_known_target_position = body.get_global_position()
+			#State = States.SEEKING
 
 
 func _on_ReloadTimer_timeout():
-	if State == States.RELOADING:
-		State = States.CHASING
+	if not State in [States.DEAD]:
+		if State == States.RELOADING:
+			State = States.CHASING
 
 
 
 func _on_TriggerFingerTimer_timeout():
-	shoot()
+	if not State in [ States.DEAD ]:
+		shoot()
 	
 
