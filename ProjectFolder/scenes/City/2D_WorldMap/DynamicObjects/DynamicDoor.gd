@@ -18,7 +18,7 @@ var State = States.INITIALIZING
 enum Types { SLIDING, ROTATING }
 export (Types) var Type = Types.SLIDING
 
-var width = 96.0
+var width = 115.0
 
 
 

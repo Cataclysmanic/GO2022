@@ -369,6 +369,8 @@ script = ExtResource( 2 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
+radius = 20.0
+max_speed = 300.0
 
 [node name="NavUpdateTimer" type="Timer" parent="."]
 wait_time = 0.25
@@ -515,7 +517,6 @@ scale = Vector2( 0.232537, 0.231516 )
 texture = ExtResource( 12 )
 
 [node name="Line2D" type="Line2D" parent="."]
-visible = false
 material = SubResource( 12 )
 width = 3.0
 default_color = Color( 0.435294, 0.721569, 0.823529, 0.207843 )

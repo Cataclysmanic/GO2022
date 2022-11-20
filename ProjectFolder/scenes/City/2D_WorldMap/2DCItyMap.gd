@@ -83,7 +83,7 @@ func generate_nav_outlines(building):
 	var occlusionPolygons = wallBitmap.opaque_to_polygons(wallRect)
 	
 	for outline in occlusionPolygons:
-		var margin_for_navigation_around_static_bodies = 10.0
+		var margin_for_navigation_around_static_bodies = 25.0
 		var scaledOutline = scale_outline(outline, building.scale)
 		var translatedOutline = translate_outline(scaledOutline, building.position - (Vector2(rectSize.x * building.scale.x, rectSize.y * building.scale.y)/2))
 		

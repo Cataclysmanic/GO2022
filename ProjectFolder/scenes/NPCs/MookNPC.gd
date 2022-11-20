@@ -152,6 +152,7 @@ func move_along_path(delta):
 	velocity += steering
 
 	if State in [States.FIGHTING, States.CHASING]:
+		# Why do NPCs still get hung up on walls?
 		velocity = move_and_slide(velocity)
 	elif State == States.PATROLLING and not near_target(target_global_position, 5.0): # prevent needless spinning?
 		turn_toward_vector(velocity, delta)
