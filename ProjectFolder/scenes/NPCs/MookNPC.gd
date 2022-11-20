@@ -127,6 +127,9 @@ func pull_trigger():
 	State = States.AIMING
 
 func move_along_path(delta):
+	if State == States.DEAD:
+		return
+		
 	var target_global_position = nav_agent.get_next_location()
 
 	var direction = global_position.direction_to(target_global_position)
@@ -144,6 +147,9 @@ func turn_toward_vector(target_vector, delta):
 	
 
 func update_nav_path(destination):
+	if State == States.DEAD:
+		return
+
 	var nav_destination = destination
 	nav_agent.set_target_location(nav_destination)
 	#current_path = nav_agent.get_nav_path()
@@ -171,6 +177,8 @@ func die():
 		call_deferred("queue_free")
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	spawn_loot()
+	if patrol_route_target != null:
+		patrol_route_target.die()
 
 func spawn_loot():
 	if randf() < chance_to_spawn_loot:
@@ -252,6 +260,9 @@ func _on_PunchingArea_body_exited(body):
 
 
 func _on_NavUpdateTimer_timeout():
+	if State == States.DEAD:
+		return
+
 	if can_seek():
 		if patrol_route_target != null:
 			update_nav_path(patrol_route_target.get_global_position())
@@ -259,7 +270,7 @@ func _on_NavUpdateTimer_timeout():
 			update_nav_path(player.get_global_position())
 		
 	else:
-		if patrol_route_target != null:
+		if patrol_route_target != null and is_instance_valid(patrol_route_target):
 			update_nav_path(patrol_route_target.get_global_position())
 		else:
 			update_nav_path(home_position)

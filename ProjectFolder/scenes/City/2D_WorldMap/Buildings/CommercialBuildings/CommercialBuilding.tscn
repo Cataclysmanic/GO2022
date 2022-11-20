@@ -51,23 +51,21 @@ shape = SubResource( 10 )
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 
-[node name="Position2D15" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -131, 77 )
-
-[node name="Position2D16" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -160, 128 )
-
-[node name="Position2D17" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -206, 95 )
-
-[node name="Position2D18" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -186, 198 )
-
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 138, 59 )
 
+[node name="NPCPatrolRoute8" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
+position = Vector2( -192, 177 )
+
+[node name="NPCPatrolRoute9" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
+position = Vector2( -222, 76 )
+scale = Vector2( 1.43135, 1.21749 )
+
 [node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( -49, 54 )
+
+[node name="NPCPatrolRoute10" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
+position = Vector2( -52, 178 )
 
 [node name="NPCPatrolRoute5" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 118, -113 )

@@ -6,8 +6,8 @@ var speed = 25.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	set_unit_offset(randf())
+	speed = rand_range(speed * 0.8, speed * 1.25)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
