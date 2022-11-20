@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=16]
 [ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=18]
+[ext_resource path="res://scenes/NPCs/DynamicVisionCone.tscn" type="PackedScene" id=19]
 
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 27.5, 25 )
@@ -362,7 +363,6 @@ extents = Vector2( 59.2805, 65.2127 )
 blend_mode = 1
 
 [node name="TargetPracticeDummyNPC" type="KinematicBody2D"]
-scale = Vector2( 0.2, 0.2 )
 collision_layer = 2
 collision_mask = 59
 script = ExtResource( 2 )
@@ -507,15 +507,7 @@ shape = SubResource( 15 )
 position = Vector2( -2.19558, 2.41529 )
 shape = SubResource( 8 )
 
-[node name="VisionCone" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionCone"]
-polygon = PoolVector2Array( 615, -295, 610, 295, -10, -10 )
-
-[node name="Polygon2D" type="Polygon2D" parent="VisionCone"]
-color = Color( 0.886275, 0.815686, 0.427451, 0.0156863 )
-polygon = PoolVector2Array( 0, 0, 615, -295, 610, 295 )
+[node name="VisionCone" parent="." instance=ExtResource( 19 )]
 
 [node name="Corpse" type="Sprite" parent="."]
 visible = false
@@ -551,5 +543,3 @@ align = 1
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="PunchingArea" to="." method="_on_PunchingArea_body_entered"]
 [connection signal="body_exited" from="PunchingArea" to="." method="_on_PunchingArea_body_exited"]
-[connection signal="body_entered" from="VisionCone" to="." method="_on_VisionCone_body_entered"]
-[connection signal="body_exited" from="VisionCone" to="." method="_on_VisionCone_body_exited"]
