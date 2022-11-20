@@ -15,3 +15,4 @@ func spawn_player():
 	playerScene.init(self)
 	$Player.add_child(playerScene)
 	player = playerScene
+
