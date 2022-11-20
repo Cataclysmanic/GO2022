@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkFloor.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BuildingTemplate.gd" type="Script" id=5]
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteCircle.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -16,6 +17,7 @@ light_mode = 1
 
 [node name="Building" type="Node2D"]
 script = ExtResource( 5 )
+num_npcs = 12
 
 [node name="Floor" type="Sprite" parent="."]
 z_index = -1
@@ -42,27 +44,13 @@ shape = SubResource( 1 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
+scale = Vector2( 0.192582, 0.192582 )
 
-[node name="Position2D" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -29, -201 )
-
-[node name="Position2D2" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 16, -170 )
-
-[node name="Position2D3" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -53, -149 )
-
-[node name="Position2D4" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -17, 118 )
-
-[node name="Position2D5" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 43, -114 )
-
-[node name="Position2D6" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 89, -6 )
+[node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 8 )]
+position = Vector2( -140.2, -207.703 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
+resources = [ PoolStringArray( "MookNPC" ), [ ExtResource( 6 ) ] ]
 
 [node name="Roof" type="Sprite" parent="."]
 visible = false
