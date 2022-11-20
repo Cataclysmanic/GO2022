@@ -111,8 +111,8 @@ func can_seek():
 		return false
 	elif player.dead == true:
 		return false
-	elif nav_agent.is_target_reachable() == false:
-		return false
+#	elif nav_agent.is_target_reachable() == false: # disabling, since player can hide in margin between wall and navmesh
+#		return false
 	else:
 		return true
 
@@ -222,7 +222,7 @@ func die():
 		call_deferred("queue_free")
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	spawn_loot()
-	if patrol_route_target != null:
+	if patrol_route_target != null and is_instance_valid(patrol_route_target):
 		patrol_route_target.die()
 
 func spawn_loot():
@@ -314,6 +314,8 @@ func _on_NavUpdateTimer_timeout():
 			update_nav_path(patrol_route_target.get_global_position())
 		elif State in [ States.CHASING, States.FIGHTING ]:
 			update_nav_path(player.get_global_position())
+		else: # for cops, because they don't have a patrol route yet?
+			update_nav_path(home_position)
 		
 	else: # player is gone, return to home
 		if patrol_route_target != null and is_instance_valid(patrol_route_target):

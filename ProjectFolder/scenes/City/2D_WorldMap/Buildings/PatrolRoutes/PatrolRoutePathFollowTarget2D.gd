@@ -18,6 +18,10 @@ func move_along_path(delta):
 	offset += speed * delta * get_speed_modifiers()
 	
 
+func set_speed(newSpeed):
+	speed = newSpeed
+
+
 func get_speed_modifiers():
 	var speedModifier = 1.0
 	var potentialSpeedZones = $Area2D.get_overlapping_areas()

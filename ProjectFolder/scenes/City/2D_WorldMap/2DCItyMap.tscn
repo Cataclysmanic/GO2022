@@ -166,6 +166,8 @@ scale = Vector2( 2, 2 )
 scale = Vector2( 1, 40 )
 shape = SubResource( 19 )
 
+[node name="NPCPatrolRoutes" type="Node2D" parent="Outdoor"]
+
 [node name="Player" type="Node2D" parent="."]
 
 [node name="VehicularTraffic" type="Node2D" parent="."]

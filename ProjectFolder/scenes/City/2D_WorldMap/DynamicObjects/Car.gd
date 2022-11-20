@@ -14,6 +14,9 @@ var path_follow_target : PathFollow2D
 
 var max_npcs = 5
 var npcs_spawned = 0
+var chance_to_spawn_NPCs = 0.1
+var npc_patrol_route # PathFollow object for pedestrian cops to walk around, once spawned
+
 
 var city_map
 var home_building
@@ -217,20 +220,33 @@ func brake(delta):
 	var brakeForce = braking
 	speed = max(speed - (brakeForce * delta), 0 )
 	
+func spawn_patrol_route():
+	var routeNames = $AvailablePatrolRoutes.get_resource_list()
+	var routeScene = $AvailablePatrolRoutes.get_resource(routeNames[randi()%routeNames.size()]).instance()
+
+	city_map.get_node("Outdoor/NPCPatrolRoutes").add_child(routeScene)
+	routeScene.set_global_position(self.get_global_position())
+	return routeScene
+
+func spawn_path_follower(routeScene):
+	var follower = routeScene.spawn_path_follower()
+	follower.set_speed(80.0)
+	return follower
 
 func spawn_npc():
-	
+	# Generate cops that roam around on a simple path
 	var npcs = $AvailableNPCs.get_resource_list()
 	var randomNPCName = npcs[randi()%npcs.size()]
 	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
 	npcScene.set_global_position($NPCSpawnPosition.get_global_position())
-	npcScene.init(city_map, home_building, null)
+	var pathFollower = spawn_path_follower(npc_patrol_route)
+	npcScene.init(city_map, home_building, pathFollower)
 	#npcScene.set_scale((Vector2(1/home_building.scale.x, 1/home_building.scale.y)))	
 	#home_building.get_node("NPCs").add_child(npcScene)
 	npcScene.set_scale(Vector2(1.0, 1.0))
 	npcScene.set_modulate(Color.aqua)
 	city_map.get_node("NPCs").add_child(npcScene)
-	
+
 
 func _on_Car_body_entered(body):
 	if not State in [States.WRECKED, States.PARKING, States.PARKED]: # don't harm humans after wrecking
@@ -270,10 +286,11 @@ func _on_Car_area_entered(area):
 
 
 func _on_RandomParkTimer_timeout():
-	var chance_to_spawn_NPCs = 0.1
+	
 	if randf() < chance_to_spawn_NPCs:
 		State = States.PARKING
 		switch_collision_layer_to_object()
+		npc_patrol_route = spawn_patrol_route()
 		$NPCSpawnTimer.start()
 		$RandomParkTimer.stop()
 
