@@ -224,7 +224,7 @@ func spawn_npc():
 	var randomNPCName = npcs[randi()%npcs.size()]
 	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
 	npcScene.set_global_position($NPCSpawnPosition.get_global_position())
-	npcScene.init(city_map, home_building)
+	npcScene.init(city_map, home_building, null)
 	#npcScene.set_scale((Vector2(1/home_building.scale.x, 1/home_building.scale.y)))	
 	#home_building.get_node("NPCs").add_child(npcScene)
 	npcScene.set_scale(Vector2(1.25, 1.25))
@@ -235,9 +235,11 @@ func spawn_npc():
 func _on_Car_body_entered(body):
 	if not State in [States.WRECKED, States.PARKING, States.PARKED]: # don't harm humans after wrecking
 		if body.has_method("_on_hit"):
-			var _err = connect("hit", body, "_on_hit")
+			if not is_connected("hit", body, "_on_hit"):
+				var _err = connect("hit", body, "_on_hit")
 		elif body.has_method("hit"):
-			var _err = connect("hit", body, "hit")
+			if not is_connected("hit", body, "hit"):
+				var _err = connect("hit", body, "hit")
 		emit_signal("hit", damage)
 		
 

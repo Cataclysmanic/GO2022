@@ -29,32 +29,45 @@ func spawn_npcs(num):
 
 func spawn_npc():
 	var spawnJitter = 15
-	var pos = get_random_spawn_location(spawnJitter)
+	var spawnLocationRouteTuple = get_random_spawn_location(spawnJitter)
+	var pos = spawnLocationRouteTuple[0]
+	var pathFollowObj = spawnLocationRouteTuple[1]
+	
 	var npcList = $AvailableNPCs.get_resource_list()
 	var randomNPCName = npcList[randi()%len(npcList)]
 	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
 	npcScene.set_scale(Vector2(1/scale.x, 1/scale.y))
-	npcScene.set_position(pos) # local coords
+	npcScene.set_position(pos)
 	npcScene.name = "NPC Target Dummy"
 
-	npcScene.init(map_scene, self)
+	npcScene.init(map_scene, self, pathFollowObj)
 	if "Residential" in self.name:
+		# What's this for?
 		npcScene.active = true
 	$NPCs.add_child(npcScene)
 
 	
-func get_random_spawn_location(spread:int) -> Vector2:
+func get_random_spawn_location(spread:int) -> Array:
+	# returns position (Vector2) and pathFollowObject (PathFollow2D)
+	
 	# spread is random jitter to apply, within number of pixels
+	
 	var pos = Vector2.ZERO
-	var spawnPoints = $PossibleSpawnPoints.get_children()
-	var chosenPoint = spawnPoints[randi()%len(spawnPoints)]
-	pos = chosenPoint.get_position() #local coords
+	var pathFollowObj = null
+	var spawnLocations = $PossibleSpawnPoints.get_children()
+	var chosenLocation = spawnLocations[randi()%len(spawnLocations)]
+	if "PatrolRoute" in chosenLocation.name:
+		pathFollowObj = chosenLocation.spawn_path_follower()
+		pos = chosenLocation.get_position()
+	else:
+		pathFollowObj = null
+		pos = chosenLocation.get_position() #local coords
 
 	var jitterX = rand_range(-spread, spread)
 	var jitterY = rand_range(-spread, spread)
 	pos += Vector2(jitterX, jitterY)
-
-	return pos
+	
+	return [ pos, pathFollowObj ]
 
 func get_random_quest_target_location() -> Position2D:
 	# it's important that we provide the full Position2D, not just the Vector2 location.

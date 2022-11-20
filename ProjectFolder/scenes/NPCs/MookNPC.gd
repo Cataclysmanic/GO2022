@@ -13,6 +13,7 @@ var health = rand_range(10.0,20.0) # should take 1 or 2 hits to kill them
 var map_scene
 var home_building
 var home_position
+var patrol_route_target
 var current_path = []
 onready var player # map_scene will provide this on init now
 var shooting_target_acquired = false
@@ -45,9 +46,11 @@ func _ready():
 	home_position = get_global_position()
 
 
-func init(mapScene, homeBuilding):
+func init(mapScene, homeBuilding, pathFollowObj):
 	map_scene = mapScene
 	home_building = homeBuilding
+	if pathFollowObj != null:
+		patrol_route_target = pathFollowObj
 	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
 	player = mapScene.get_player()
 
@@ -250,9 +253,16 @@ func _on_PunchingArea_body_exited(body):
 
 func _on_NavUpdateTimer_timeout():
 	if can_seek():
-		update_nav_path(player.get_global_position())
+		if patrol_route_target != null:
+			update_nav_path(patrol_route_target.get_global_position())
+		else:
+			update_nav_path(player.get_global_position())
+		
 	else:
-		update_nav_path(home_position)
+		if patrol_route_target != null:
+			update_nav_path(patrol_route_target.get_global_position())
+		else:
+			update_nav_path(home_position)
 	nav_update_timer.set_wait_time(rand_range(0.5, 1.5))
 	nav_update_timer.start()
 
