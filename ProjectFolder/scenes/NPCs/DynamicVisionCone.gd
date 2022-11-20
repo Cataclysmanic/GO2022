@@ -25,12 +25,23 @@ func update_polygon_shape():
 			polygon.push_back(ray.get_cast_to())
 	$Polygon2D.set_polygon(polygon)
 	$CollisionPolygon2D.set_polygon(polygon)
+
+
+func is_near_player(distance):
+	if global_position.distance_squared_to(Global.player.position) < pow(distance, 2):
+		return true
+	else:
+		return false
+
+
+func is_patrolling():
+	if NPC.State == NPC.States.PATROLLING:
+		return true
+	else:
+		return false
 	
-
-
 func _on_ShapeUpdateTimer_timeout():
-	var distance_to_show_flashlights = 1000.0
-	if global_position.distance_squared_to(Global.player.position) < pow(distance_to_show_flashlights, 2):
+	if is_near_player(1000.0) and is_patrolling():
 		$Polygon2D.show()
 		update_polygon_shape()
 	else:
@@ -42,4 +53,4 @@ func _on_VisionCone_body_entered(body):
 		if body.has_method("is_player") and body.is_player():
 			# found the detective.
 			if NPC.has_method("_on_VisionCone_saw_detective"):
-				NPC._on_VisionCone_saw_detective()
+				NPC._on_VisionCone_saw_detective(body.get_global_position())

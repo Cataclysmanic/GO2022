@@ -27,6 +27,7 @@ onready var gun = $Sprite/NPCGun
 
 enum States { INITIALIZING, READY, PATROLLING, CHASING, SEEKING, FIGHTING, AIMING, RELOADING, DEAD }
 var State = States.INITIALIZING
+var previous_states = [] # hax! technical_debt. push states onto the stack so you can recall them later? But really, gun states should be separated out from awareness states
 
 onready var character = self
 
@@ -41,7 +42,8 @@ func _ready():
 #	if active:
 #		$Label.text = "active"
 	
-	State = States.READY
+	#State = States.READY # This is overriding out Patrolling state set on init
+	
 	#nav_agent.set_navigation(home_building.find_node("NPCs"))
 	nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
 
@@ -148,8 +150,22 @@ func move_along_path(delta):
 	var steering = (desiredvelocity - velocity) * delta * 4.0
 	velocity += steering
 
-	velocity = move_and_slide(velocity)
-	turn_toward_vector(velocity, delta)
+
+		
+	
+	if not near_target(target_global_position, 5.0): # prevent needless spinning?
+		turn_toward_vector(velocity, delta)
+		velocity = move_and_slide(velocity)
+	else:
+		velocity = move_and_slide(velocity / 2.0)
+
+
+
+func near_target(pos : Vector2, proximity : float):
+	if get_global_position().distance_squared_to(pos) < pow(proximity,2):
+		return true
+	else:
+		return false	
 
 func turn_toward_vector(target_vector, delta):
 	#sprite.rotation = lerp_angle(sprite.rotation, target_vector.angle(), 10.0 * delta)
@@ -201,7 +217,7 @@ func spawn_loot():
 		emit_signal("loot_ready", lootObject)
 
 
-func shoot():
+func shoot(): # this ought to be in a separate gun object
 	if not is_connected("projectile_ready", map_scene, "_on_projectile_ready"):
 		if map_scene.has_method("_on_projectile_ready"):
 			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
@@ -308,14 +324,18 @@ func _on_NavUpdateTimer_timeout():
 func _on_ReloadTimer_timeout():
 	if not State in [States.DEAD]:
 		if State == States.RELOADING:
-			State = States.CHASING
+			State = States.FIGHTING
 
 
 
 func _on_TriggerFingerTimer_timeout():
-	if not State in [ States.DEAD ]:
+	if State == States.AIMING: # must not be dead then
 		shoot()
 
 	
-func _on_VisionCone_saw_detective():
-	State = States.FIGHTING
+func _on_VisionCone_saw_detective(location):
+	if State == States.PATROLLING: # must not be dead then
+		State = States.CHASING
+		last_known_target_position = location
+		# TODO: once we're in a fight, is it safe to disable the vision cone?
+
