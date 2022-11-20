@@ -70,8 +70,9 @@ func init(mapScene, homeBuilding, pathFollowObj):
 	set_difficulty(Global.user_preferences["difficulty"])
 
 func patrol(pathFollowObj):
-	patrol_route_target = pathFollowObj
-	State = States.PATROLLING
+	if pathFollowObj != null and is_instance_valid(pathFollowObj):
+		patrol_route_target = pathFollowObj
+		State = States.PATROLLING
 	
 
 func jump_out_of_walls():
@@ -286,20 +287,25 @@ func _on_PunchingArea_body_exited(body):
 
 
 func _on_NavUpdateTimer_timeout():
+	# set the navigation target and update the NPC state if necessary.
+	
 	if State == States.DEAD:
 		return
 
 	if can_seek():
-		if patrol_route_target != null:
+		if State == States.PATROLLING:
 			update_nav_path(patrol_route_target.get_global_position())
-		else:
+		elif State in [ States.CHASING, States.FIGHTING ]:
 			update_nav_path(player.get_global_position())
 		
-	else:
+	else: # player is gone, return to home
 		if patrol_route_target != null and is_instance_valid(patrol_route_target):
 			update_nav_path(patrol_route_target.get_global_position())
+			State = States.PATROLLING
 		else:
 			update_nav_path(home_position)
+			State = States.READY
+			
 	nav_update_timer.set_wait_time(rand_range(0.5, 1.5))
 	nav_update_timer.start()
 
