@@ -22,6 +22,7 @@
 [ext_resource path="res://scenes/Quests/QuestGivers/FemmeFatale.tscn" type="PackedScene" id=20]
 
 [sub_resource type="Environment" id=1]
+background_energy = 0.0
 ambient_light_energy = 0.0
 
 [sub_resource type="RectangleShape2D" id=19]
@@ -70,7 +71,7 @@ region_rect = Rect2( -129.075, -127.458, 1153.1, 1153.22 )
 position = Vector2( -422, -869 )
 
 [node name="Streetlamp2" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 3 )]
-position = Vector2( -419, -2097 )
+position = Vector2( -408, -2214 )
 
 [node name="Streetlamp3" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 3 )]
 position = Vector2( 430, -1583 )
