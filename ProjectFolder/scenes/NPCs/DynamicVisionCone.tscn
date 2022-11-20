@@ -10,6 +10,7 @@ script = ExtResource( 1 )
 polygon = PoolVector2Array( 615, -295, 610, 295, -10, -10 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+visible = false
 color = Color( 1, 1, 1, 0.207843 )
 polygon = PoolVector2Array( 0, 0, 615, -295, 584, -160, 576, 84, 610, 295 )
 
@@ -29,7 +30,8 @@ cast_to = Vector2( 750, -300 )
 collision_mask = 32
 
 [node name="ShapeUpdateTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 autostart = true
 
+[connection signal="body_entered" from="." to="." method="_on_VisionCone_body_entered"]
 [connection signal="timeout" from="ShapeUpdateTimer" to="." method="_on_ShapeUpdateTimer_timeout"]

@@ -1,14 +1,12 @@
 extends Area2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var NPC
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	NPC = get_parent()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,6 +24,7 @@ func update_polygon_shape():
 		else:
 			polygon.push_back(ray.get_cast_to())
 	$Polygon2D.set_polygon(polygon)
+	$CollisionPolygon2D.set_polygon(polygon)
 	
 
 
@@ -36,3 +35,11 @@ func _on_ShapeUpdateTimer_timeout():
 		update_polygon_shape()
 	else:
 		$Polygon2D.hide()
+
+
+func _on_VisionCone_body_entered(body):
+	if not NPC.State in [NPC.States.DEAD, NPC.States.AIMING, NPC.States.INITIALIZING ]:
+		if body.has_method("is_player") and body.is_player():
+			# found the detective.
+			if NPC.has_method("_on_VisionCone_saw_detective"):
+				NPC._on_VisionCone_saw_detective()
