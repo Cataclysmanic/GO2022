@@ -151,10 +151,9 @@ func move_along_path(delta):
 	var steering = (desiredvelocity - velocity) * delta * 4.0
 	velocity += steering
 
-
-		
-	
-	if not near_target(target_global_position, 5.0): # prevent needless spinning?
+	if State in [States.FIGHTING, States.CHASING]:
+		velocity = move_and_slide(velocity)
+	elif State == States.PATROLLING and not near_target(target_global_position, 5.0): # prevent needless spinning?
 		turn_toward_vector(velocity, delta)
 		velocity = move_and_slide(velocity)
 	else:

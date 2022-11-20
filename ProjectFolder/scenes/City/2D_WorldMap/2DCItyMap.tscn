@@ -221,12 +221,12 @@ position = Vector2( -1881, 678 )
 scale = Vector2( 2, 2 )
 
 [node name="CommercialUnitA2" parent="Doors" instance=ExtResource( 21 )]
-position = Vector2( -2154, 1350 )
+position = Vector2( -2161, 1347 )
 scale = Vector2( 1.67, 1.67 )
 
 [node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 21 )]
-position = Vector2( -1581, 1350 )
-scale = Vector2( 1.3, 1.3 )
+position = Vector2( -1588, 1349 )
+scale = Vector2( 1.55423, 1.28862 )
 
 [node name="CommercialUnitB" parent="Doors" instance=ExtResource( 21 )]
 position = Vector2( -1462, 678 )

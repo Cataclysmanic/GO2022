@@ -7,7 +7,7 @@ extents = Vector2( 12.5, 10 )
 
 [node name="Casing" type="RigidBody2D"]
 position = Vector2( -18, 0 )
-collision_layer = 4
+collision_layer = 0
 mass = 0.25
 
 [node name="Sprite" type="Sprite" parent="."]
