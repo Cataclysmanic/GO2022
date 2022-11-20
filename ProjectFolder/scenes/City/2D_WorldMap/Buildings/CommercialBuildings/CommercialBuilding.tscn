@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteTemplate.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWallsThick.png" type="Texture" id=10]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Trashcan.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -250,6 +251,16 @@ location_details = "The Haberdasher"
 position = Vector2( 93, 84 )
 location_address = "128 Main St, Unit D"
 location_details = "The Local Union Office"
+
+[node name="Furniture" type="Node2D" parent="."]
+
+[node name="Trashcan" parent="Furniture" instance=ExtResource( 11 )]
+
+[node name="Trashcan2" parent="Furniture" instance=ExtResource( 11 )]
+position = Vector2( -190, -115 )
+
+[node name="Trashcan3" parent="Furniture" instance=ExtResource( 11 )]
+position = Vector2( -119, -126 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

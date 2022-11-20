@@ -179,3 +179,5 @@ func _on_Area2D_body_exited(body):
 		if find_node("DebugInfo"):
 			$DebugInfo.text = "Player Present: " + str(player_currently_present)
 		
+
+

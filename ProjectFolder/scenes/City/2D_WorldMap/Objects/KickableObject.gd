@@ -1,0 +1,20 @@
+extends RigidBody2D
+
+enum States { READY, KICKED }
+var State = States.READY
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	State = States.READY
+
+
+
+
+
+func _on_Body_entered(body):
+	if State == States.READY and body.has_method("is_player") and body.is_player():
+		print("kicked")
+		$AnimatedSprite.play("kick")
+		State = States.KICKED
+		$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
+		
