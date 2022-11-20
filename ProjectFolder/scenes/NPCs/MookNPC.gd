@@ -26,7 +26,7 @@ onready var gun = $Sprite/NPCGun
 
 
 enum States { INITIALIZING, READY, PATROLLING, CHASING, SEEKING, FIGHTING, AIMING, RELOADING, DEAD }
-var State = States.INITIALIZING
+var State = States.INITIALIZING setget set_state, get_state
 var previous_states = [] # hax! technical_debt. push states onto the stack so you can recall them later? But really, gun states should be separated out from awareness states
 
 onready var character = self
@@ -42,7 +42,6 @@ func _ready():
 #	if active:
 #		$Label.text = "active"
 	
-	#State = States.READY # This is overriding out Patrolling state set on init
 	
 	#nav_agent.set_navigation(home_building.find_node("NPCs"))
 	nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
@@ -69,10 +68,28 @@ func init(mapScene, homeBuilding, pathFollowObj):
 
 	set_difficulty(Global.user_preferences["difficulty"])
 
+
+func set_state(newState):
+	# relocate all State = State.whatever statements to set_state, so we can test logic
+	store_old_state()
+	State = newState
+
+
+func get_state():
+	return State
+
+
+func store_old_state():
+	var numberToStore = 5
+	previous_states.push_back(State)
+	if previous_states.size() > numberToStore:
+		var _discard = previous_states.pop_front()
+
+
 func patrol(pathFollowObj):
 	if pathFollowObj != null and is_instance_valid(pathFollowObj):
 		patrol_route_target = pathFollowObj
-		State = States.PATROLLING
+		set_state(States.PATROLLING)
 	
 
 func jump_out_of_walls():
@@ -137,7 +154,7 @@ func turn_toward_player(delta):
 
 func pull_trigger():
 	$Sprite/NPCGun/TriggerFingerTimer.start() 
-	State = States.AIMING
+	set_state(States.AIMING)
 
 func move_along_path(delta):
 	if State == States.DEAD:
@@ -145,19 +162,19 @@ func move_along_path(delta):
 		
 	var target_global_position = nav_agent.get_next_location()
 
-	var direction = global_position.direction_to(target_global_position)
+	var normalVectorToTarget = global_position.direction_to(target_global_position)
 
-	var desiredvelocity = direction * nav_agent.max_speed
-	var steering = (desiredvelocity - velocity) * delta * 4.0
-	velocity += steering
+	var desiredvelocity = normalVectorToTarget * nav_agent.max_speed
+	var acceleration = (desiredvelocity - velocity) * delta * 4.0
+	velocity += acceleration
 
 	if State in [States.FIGHTING, States.CHASING]:
-		# Why do NPCs still get hung up on walls?
+		turn_toward_vector(velocity, delta)
 		velocity = move_and_slide(velocity)
 	elif State == States.PATROLLING and not near_target(target_global_position, 5.0): # prevent needless spinning?
 		turn_toward_vector(velocity, delta)
 		velocity = move_and_slide(velocity)
-	else:
+	else: # patrolling, but too close to the nav_target, slow down and don't spin
 		velocity = move_and_slide(velocity / 2.0)
 
 
@@ -195,7 +212,7 @@ func flash_hit():
 	$HitNoise.play()
 
 func die():
-	State = States.DEAD
+	set_state(States.DEAD)
 	$DieNoise.play()
 	$Corpse.rotation = rand_range(0, 2*PI)
 	if Global.user_preferences["gore"]:
@@ -238,7 +255,7 @@ func shoot(): # this ought to be in a separate gun object
 		gunshotNoise.play()
 		$AnimationPlayer.play("shoot")
 		$Sprite/NPCGun/ReloadTimer.start()
-		State = States.RELOADING
+		set_state(States.RELOADING)
 
 
 func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
@@ -301,36 +318,20 @@ func _on_NavUpdateTimer_timeout():
 	else: # player is gone, return to home
 		if patrol_route_target != null and is_instance_valid(patrol_route_target):
 			update_nav_path(patrol_route_target.get_global_position())
-			State = States.PATROLLING
+			set_state(States.PATROLLING)
 		else:
 			update_nav_path(home_position)
-			State = States.READY
+			set_state(States.READY)
 			
 	nav_update_timer.set_wait_time(rand_range(0.5, 1.5))
 	nav_update_timer.start()
 
 
-#func _on_VisionCone_body_entered(body):
-#	# Note: Area2D nodes can see through walls.
-#	# should have a raycast to confirm the detection
-#	if not State in [ States.DEAD ]:
-#		if body.has_method("is_player") and body.is_player() == true:
-#			State = States.CHASING
-#			last_known_target_position = body.get_global_position()
-
-
-
-#func _on_VisionCone_body_exited(body):
-#	if not State in [ States.DEAD ]:
-#		if "detective" in body.name.to_lower():
-#			last_known_target_position = body.get_global_position()
-#			#State = States.SEEKING
-
 
 func _on_ReloadTimer_timeout():
 	if not State in [States.DEAD]:
 		if State == States.RELOADING:
-			State = States.FIGHTING
+			set_state(States.FIGHTING)
 
 
 
@@ -341,7 +342,7 @@ func _on_TriggerFingerTimer_timeout():
 	
 func _on_VisionCone_saw_detective(location):
 	if State == States.PATROLLING: # must not be dead then
-		State = States.CHASING
+		set_state(States.CHASING)
 		last_known_target_position = location
 		# TODO: once we're in a fight, is it safe to disable the vision cone?
 

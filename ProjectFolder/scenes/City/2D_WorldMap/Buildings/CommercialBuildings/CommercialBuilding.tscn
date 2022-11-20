@@ -21,6 +21,7 @@ extents = Vector2( 152.5, 101 )
 
 [node name="Building" type="Node2D"]
 script = ExtResource( 5 )
+num_npcs = 12
 
 [node name="Floor" type="Sprite" parent="."]
 z_index = -1
@@ -53,32 +54,40 @@ shape = SubResource( 10 )
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
 
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 138, 59 )
+position = Vector2( 80, 51 )
+scale = Vector2( 1.72782, 1.51989 )
 
 [node name="NPCPatrolRoute8" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -192, 177 )
+position = Vector2( -226, 170 )
+scale = Vector2( 1.67118, 1.29556 )
 
 [node name="NPCPatrolRoute9" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -222, 76 )
-scale = Vector2( 1.43135, 1.21749 )
+position = Vector2( -227, 55 )
+scale = Vector2( 1.65695, 1.84102 )
 
 [node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -49, 54 )
+position = Vector2( -70, 53 )
+scale = Vector2( 1.57397, 1.62445 )
 
 [node name="NPCPatrolRoute10" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -52, 178 )
+position = Vector2( -70, 150 )
+scale = Vector2( 1.51859, 1.57429 )
 
 [node name="NPCPatrolRoute5" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 118, -113 )
+position = Vector2( 95, -127 )
+scale = Vector2( 1.70239, 1.5969 )
 
 [node name="NPCPatrolRoute6" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 118, -216 )
+position = Vector2( 100, -227 )
+scale = Vector2( 1.45301, 1.30603 )
 
 [node name="NPCPatrolRoute7" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -9, -221 )
+position = Vector2( -56, -223 )
+scale = Vector2( 1.49151, 1.72749 )
 
 [node name="NPCPatrolRoute3" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( -58, -139 )
+scale = Vector2( 1.53947, 1.61613 )
 
 [node name="NPCPatrolRoute2" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 84, 157 )
