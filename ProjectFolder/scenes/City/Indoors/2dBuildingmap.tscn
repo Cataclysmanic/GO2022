@@ -1,8 +1,9 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/Indoors/2dBuildingmap.gd" type="Script" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/textures/roads.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Objects/SimplerCar.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=49]
 _data = {
@@ -157,8 +158,18 @@ flip_v = true
 [node name="BottomRoad" type="Path2D" parent="Roads/Cars"]
 curve = SubResource( 49 )
 
+[node name="PathFollow2D" parent="Roads/Cars/BottomRoad" instance=ExtResource( 4 )]
+position = Vector2( -854.532, -678.539 )
+rotation = 0.00599023
+offset = 243.813
+
 [node name="Path2D" type="Path2D" parent="Roads/Cars"]
 curve = SubResource( 50 )
+
+[node name="PathFollow2D" parent="Roads/Cars/Path2D" instance=ExtResource( 4 )]
+position = Vector2( -553.271, -823.557 )
+rotation = -0.000804654
+offset = 683.017
 
 [node name="Gradients" type="Node2D" parent="."]
 
