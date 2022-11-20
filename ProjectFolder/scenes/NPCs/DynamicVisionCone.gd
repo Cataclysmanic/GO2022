@@ -30,5 +30,9 @@ func update_polygon_shape():
 
 
 func _on_ShapeUpdateTimer_timeout():
-	update_polygon_shape()
-	
+	var distance_to_show_flashlights = 1000.0
+	if global_position.distance_squared_to(Global.player.position) < pow(distance_to_show_flashlights, 2):
+		$Polygon2D.show()
+		update_polygon_shape()
+	else:
+		$Polygon2D.hide()

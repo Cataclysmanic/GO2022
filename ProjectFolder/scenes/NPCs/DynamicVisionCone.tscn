@@ -10,23 +10,23 @@ script = ExtResource( 1 )
 polygon = PoolVector2Array( 615, -295, 610, 295, -10, -10 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color( 1, 1, 1, 0.482353 )
+color = Color( 1, 1, 1, 0.207843 )
 polygon = PoolVector2Array( 0, 0, 615, -295, 584, -160, 576, 84, 610, 295 )
 
 [node name="RayCast2D2" type="RayCast2D" parent="Polygon2D"]
 enabled = true
 cast_to = Vector2( 750, 300 )
-collision_mask = 44
+collision_mask = 32
 
 [node name="RayCast2D" type="RayCast2D" parent="Polygon2D"]
 enabled = true
 cast_to = Vector2( 750, 0 )
-collision_mask = 44
+collision_mask = 32
 
 [node name="RayCast2D3" type="RayCast2D" parent="Polygon2D"]
 enabled = true
 cast_to = Vector2( 750, -300 )
-collision_mask = 44
+collision_mask = 32
 
 [node name="ShapeUpdateTimer" type="Timer" parent="."]
 wait_time = 0.1
