@@ -1,16 +1,10 @@
 extends Node2D
 
+var melee_damage = 15
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
+	pass
+	
 func start_running():
 	$AnimationPlayer.play("Run")
 
@@ -47,7 +41,8 @@ func _process(_delta):
 
 
 func _on_DamageArea_body_entered(body):
-	if "Target" in body.name:
-		body._on_hit(5)
+	if body != Global.player and body.has_method("_on_hit"):
+		body._on_hit(melee_damage)
 		$Upper/Fist.hide()
-		$Upper/Fist/DamageArea/CollisionShape2D.disabled = true
+		var collisionShape = $Upper/Fist/DamageArea/CollisionShape2D
+		collisionShape.set_deferred("disabled", true)

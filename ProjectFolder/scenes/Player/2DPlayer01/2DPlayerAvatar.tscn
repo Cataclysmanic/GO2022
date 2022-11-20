@@ -129,7 +129,7 @@ light_mode = 1
 [node name="PlayerDetective" type="KinematicBody2D"]
 material = SubResource( 3 )
 scale = Vector2( 1.25, 1.25 )
-collision_mask = 63
+collision_mask = 62
 script = ExtResource( 4 )
 
 [node name="Flashlight" type="Light2D" parent="."]

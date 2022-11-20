@@ -41,9 +41,9 @@ func spawn_npc():
 	npcScene.name = "NPC Target Dummy"
 
 	npcScene.init(map_scene, self, pathFollowObj)
-	if "Residential" in self.name:
-		# What's this for?
-		npcScene.active = true
+#	if "Residential" in self.name:
+#		# What's this for?
+#		npcScene.active = true
 	$NPCs.add_child(npcScene)
 
 	

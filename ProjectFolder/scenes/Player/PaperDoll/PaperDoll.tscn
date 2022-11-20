@@ -770,7 +770,7 @@ script = ExtResource( 3 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 12
+frame = 5
 playing = true
 offset = Vector2( 8, 0 )
 
@@ -795,6 +795,8 @@ texture = ExtResource( 7 )
 flip_v = true
 
 [node name="DamageArea" type="Area2D" parent="Upper/Fist"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Upper/Fist/DamageArea"]
 shape = SubResource( 111 )
