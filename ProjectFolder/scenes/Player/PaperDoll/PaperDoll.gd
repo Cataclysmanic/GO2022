@@ -1,9 +1,11 @@
 extends Node2D
 
 var melee_damage = 15
+var player
+
 
 func _ready():
-	pass
+	player = get_parent()
 	
 func start_running():
 	$AnimationPlayer.play("Run")
@@ -36,7 +38,7 @@ func get_animation():
 
 func point_torso_at(targetPos:Vector2):
 	$Upper.look_at(targetPos)
-
+	
 	
 func point_legs_at(targetPos:Vector2):
 	$Lower.look_at(targetPos)

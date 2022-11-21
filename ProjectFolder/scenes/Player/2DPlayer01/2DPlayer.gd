@@ -131,6 +131,7 @@ func _physics_process(delta):
 	elif State != States.DEAD:
 		if delta != 0:
 			move(delta)
+			rotate_melee_attack_zone(delta)
 			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
 			$Flashlight.look_at(get_global_mouse_position())
 			if stamina < 100 :
@@ -144,8 +145,8 @@ func _physics_process(delta):
 	
 func set_primary_target_area(points:PoolVector2Array):
 	pass
-	#$TargetArea/CollisionPolygon2D.polygon = points
-	#$TargetArea/Polygon2D.polygon = points
+	#$PaperDoll/TargetArea/CollisionPolygon2D.polygon = points
+	#$PaperDoll/TargetArea/Polygon2D.polygon = points
 
 func _unhandled_input(event):
 	if event.is_action_pressed("flashlight") and !dead:
@@ -203,6 +204,11 @@ func die_for_real_this_time():
 	$DeathScream.play()
 	$PaperDoll.hide()
 	$deadPlaceholder.show()
+
+
+func rotate_melee_attack_zone(_delta):
+	$MeleeAttackZone.look_at(get_global_mouse_position())
+
 
 func move(_delta):
 	# delta not required for move_and_slide
