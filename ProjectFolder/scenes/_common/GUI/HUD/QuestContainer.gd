@@ -14,6 +14,8 @@ var quests = [{"type": "JOURNAL:", "quest": "", "status": ""}]
 #	close()
 
 func populate_questlog():
+	
+
 	for quest in quests:
 		var quest_row = HBoxContainer.new()
 		var quest_details = Label.new()
@@ -25,7 +27,7 @@ func populate_questlog():
 		quest_details.text += str(quest.status)
 		quest_row.add_child(quest_details)
 		add_child(quest_row)
-	show()
+	#show()
 
 #Work in progress
 #func complete(currentQuest):
@@ -36,4 +38,4 @@ func populate_questlog():
 func erase_visible_questlog():
 	for quest in get_children():
 		quest.queue_free()
-	hide()
+	#hide()

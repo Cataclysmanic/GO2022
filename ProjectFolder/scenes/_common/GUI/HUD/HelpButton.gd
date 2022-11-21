@@ -38,11 +38,11 @@ func _on_HelpButton_toggled(_button_pressed):
 
 
 func _on_PlayerInstructions_about_to_show():
+	quest_log.erase_visible_questlog()
 	quest_log.populate_questlog()
-
+	
 
 func _on_PlayerInstructions_popup_hide():
-	quest_log.erase_visible_questlog()
 	Global.resume()
 	
 
