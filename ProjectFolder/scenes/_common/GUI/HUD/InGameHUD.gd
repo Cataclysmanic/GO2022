@@ -114,6 +114,7 @@ func clear_inventory():
 		item.queue_free()
 	
 func display_inventory_item(itemResource : Resource):
+	assert(itemResource != null)
 	$PopupItemViewer.init(itemResource)
 
 func inventory_add(itemResource : Resource):
@@ -143,7 +144,7 @@ func rebuild_inventory():
 #		Global.trigger_events["missing_gun_reported"] = true
 
 func _on_collectible_picked_up(pickupObj):
-	var itemResource = pickupObj.item_details
+	var itemResource = pickupObj.item_info
 	
 	#Global.pause() # why isn't this firing the second time we pick something up?
 
@@ -158,6 +159,7 @@ func _on_collectible_picked_up(pickupObj):
 
 	play_specific_audio_events(itemResource.item_name)
 	if itemResource["display_immediately"] == true:
+
 		display_inventory_item(itemResource)
 
 
