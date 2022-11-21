@@ -21,7 +21,14 @@ func start_idling():
 	
 func point_gun():
 	$AnimationPlayer.play("PointGun")
-	
+
+func melee_attack():
+	if randf() < 0.5:
+		$AnimationPlayer.play("melee attack 1")
+	elif randf() < 0.95:
+		$AnimationPlayer.play("melee attack 2")
+
+
 func get_animation():
 	var anim_queue = $AnimationPlayer.get_queue()
 	if len(anim_queue) > 0:

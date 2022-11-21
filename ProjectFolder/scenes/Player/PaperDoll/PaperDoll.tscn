@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://scenes/Player/MerikAnimations/Aim_walking.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player/MerikAnimations/Walking_Legs.png" type="Texture" id=2]
@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/Player/MerikAnimations/Idle_Legs.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Player/MerikAnimations/Idle_Top.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Player/MerikAnimations/Aim_stopped.png" type="Texture" id=6]
-[ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Player/MerikAnimations/Melee2_Top.png" type="Texture" id=8]
 
 [sub_resource type="AtlasTexture" id=49]
 flags = 4
@@ -291,6 +291,81 @@ flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 318, 498, 159, 249 )
 
+[sub_resource type="AtlasTexture" id=112]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=113]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 237, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=114]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 474, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=115]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 711, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=116]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 948, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=117]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1185, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=118]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1422, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=119]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1659, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=127]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1659, 0, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=128]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 0, 258, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=129]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 237, 258, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=130]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 474, 258, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=131]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 711, 258, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=132]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 948, 258, 237, 258 )
+
+[sub_resource type="AtlasTexture" id=133]
+flags = 4
+atlas = ExtResource( 8 )
+region = Rect2( 1185, 258, 237, 258 )
+
 [sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 1 )
@@ -408,6 +483,16 @@ animations = [ {
 "name": "idle relax",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 112 ), SubResource( 113 ), SubResource( 114 ), SubResource( 115 ), SubResource( 116 ), SubResource( 117 ), SubResource( 118 ), SubResource( 119 ) ],
+"loop": true,
+"name": "melee attack",
+"speed": 24.0
+}, {
+"frames": [ SubResource( 127 ), SubResource( 128 ), SubResource( 129 ), SubResource( 130 ), SubResource( 131 ), SubResource( 132 ), SubResource( 133 ) ],
+"loop": true,
+"name": "melee attack 2",
+"speed": 25.0
+}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "stationary aim gun",
@@ -418,9 +503,6 @@ animations = [ {
 "name": "walk gun up",
 "speed": 21.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=111]
-extents = Vector2( 31.807, 27.8527 )
 
 [sub_resource type="Animation" id=23]
 resource_name = "PointGun"
@@ -511,6 +593,42 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 164, -84 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Upper/GunLocation:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Upper/Torso:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Upper/GunLocation:rotation_degrees")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 49.8288 ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -709,11 +827,12 @@ tracks/4/keys = {
 "values": [ Vector2( 164, -84 ) ]
 }
 
-[sub_resource type="Animation" id=110]
-resource_name = "placeholderMelee"
+[sub_resource type="Animation" id=126]
+resource_name = "melee attack 1"
 length = 0.2
+step = 0.02
 tracks/0/type = "value"
-tracks/0/path = NodePath("Upper/Fist:visible")
+tracks/0/path = NodePath("Upper/Torso:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -721,44 +840,133 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ true, false ]
+"update": 1,
+"values": [ "melee attack", "stationary aim gun" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Upper/Fist:rotation_degrees")
+tracks/1/path = NodePath("Upper/Torso:playing")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 47.9701, -13.8938 ]
+"update": 1,
+"values": [ false, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Upper/Fist:position")
-tracks/2/interp = 0
+tracks/2/path = NodePath("Upper/Torso:frame")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
+"times": PoolRealArray( 0, 0.15 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 56, 120 ), Vector2( 148, 56 ) ]
+"values": [ 0, 7 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Upper/Fist/DamageArea/CollisionShape2D:disabled")
+tracks/3/path = NodePath("Upper/GunLocation:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0, 0.02, 0.1, 0.16, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 96, -80 ), Vector2( 76, -80 ), Vector2( 144, 12 ), Vector2( 96, -72 ), Vector2( 156, -8 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Upper/GunLocation:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.02, 0.1, 0.16, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 49.8288, 0.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=134]
+resource_name = "melee attack 2"
+length = 0.2
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Upper/Torso:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "melee attack 2", "stationary aim gun" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Upper/Torso:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Upper/GunLocation:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Upper/Torso:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.18 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1, 6 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Upper/GunLocation:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 0.16, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 124, 112 ), Vector2( 148, -4 ), Vector2( 116, 100 ), Vector2( 156, -4 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Upper/GunLocation:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 0.16, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -48.8917, 0.0, 0.0 ]
 }
 
 [node name="PaperDoll" type="Node2D"]
@@ -770,7 +978,7 @@ script = ExtResource( 3 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 5
+frame = 19
 playing = true
 offset = Vector2( 8, 0 )
 
@@ -785,26 +993,7 @@ offset = Vector2( 24, 16 )
 
 [node name="GunLocation" type="Position2D" parent="Upper"]
 position = Vector2( 164, -84 )
-
-[node name="Fist" type="Sprite" parent="Upper"]
-visible = false
-position = Vector2( 148, 56 )
-rotation = -0.242493
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 7 )
-flip_v = true
-
-[node name="DamageArea" type="Area2D" parent="Upper/Fist"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Upper/Fist/DamageArea"]
-position = Vector2( 8.80438, -0.24065 )
-rotation = -1.76815
-shape = SubResource( 111 )
-disabled = true
-one_way_collision = true
-one_way_collision_margin = 5.0
+rotation = 0.869677
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/PointGun = SubResource( 23 )
@@ -812,6 +1001,5 @@ anims/RESET = SubResource( 21 )
 anims/Relax = SubResource( 24 )
 anims/Run = SubResource( 25 )
 anims/Walk = SubResource( 22 )
-anims/placeholderMelee = SubResource( 110 )
-
-[connection signal="body_entered" from="Upper/Fist/DamageArea" to="." method="_on_DamageArea_body_entered"]
+"anims/melee attack 1" = SubResource( 126 )
+"anims/melee attack 2" = SubResource( 134 )

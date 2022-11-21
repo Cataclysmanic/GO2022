@@ -150,8 +150,8 @@ func _unhandled_input(event):
 	if event.is_action_pressed("flashlight") and !dead:
 		toggle_flashlight()
 	if event.is_action_pressed("melee_attack") and !dead:
-		$PlaceholderMeleeSound.play()
-		$PaperDoll/AnimationPlayer.play("placeholderMelee")
+		melee_attack()
+		
 
 func toggle_flashlight():
 	var is_enabled = !$Flashlight.enabled
@@ -160,6 +160,11 @@ func toggle_flashlight():
 		$PaperDoll.point_gun()
 	else:
 		$PaperDoll.relax()
+
+
+func melee_attack():
+	$PlaceholderMeleeSound.play()
+	$PaperDoll.melee_attack()
 
 
 func begin_dying():
