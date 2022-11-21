@@ -770,7 +770,7 @@ script = ExtResource( 3 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 3
+frame = 5
 playing = true
 offset = Vector2( 8, 0 )
 
@@ -787,6 +787,7 @@ offset = Vector2( 24, 16 )
 position = Vector2( 164, -84 )
 
 [node name="Fist" type="Sprite" parent="Upper"]
+visible = false
 position = Vector2( 148, 56 )
 rotation = -0.242493
 scale = Vector2( 2.5, 2.5 )
@@ -800,7 +801,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Upper/Fist/DamageArea"]
 position = Vector2( 8.80438, -0.24065 )
 rotation = -1.76815
-scale = Vector2( 1, 1 )
 shape = SubResource( 111 )
 disabled = true
 one_way_collision = true

@@ -37,7 +37,7 @@ func _ready():
 
 	manual_spawn_gun() # temporary
 	State = States.READY
-	
+	$DebugInfo.visible = Global.user_preferences["debug"]
 #	set_primary_target_area(get_FOV_circle(Vector2(0,0),500))
 
 	
