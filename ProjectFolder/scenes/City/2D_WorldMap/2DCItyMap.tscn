@@ -182,7 +182,7 @@ shape = SubResource( 19 )
 position = Vector2( 1101, 1541 )
 
 [node name="MobBoss" parent="QuestGivers" instance=ExtResource( 19 )]
-position = Vector2( -1508, 1956 )
+position = Vector2( -1465, 1087 )
 
 [node name="FemmeFatale" parent="QuestGivers" instance=ExtResource( 20 )]
 position = Vector2( 1566, -1054 )
