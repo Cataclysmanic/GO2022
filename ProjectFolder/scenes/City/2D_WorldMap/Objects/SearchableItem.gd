@@ -2,6 +2,9 @@ extends Node2D
 
 var player_present : bool = false
 
+enum States { READY, EMPTY }
+var State = States.READY
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if has_node("InteractionLabel"):
@@ -12,10 +15,11 @@ func _ready():
 
 
 func _unhandled_input(event):
-	if player_present:
+	if player_present and State != States.EMPTY:
 		if event.is_action_pressed("interact"):
 			$AudioStreamPlayer2D.play()
 			spawn_loot()
+			State = States.EMPTY
 
 
 func disable_possible_items():
@@ -41,7 +45,7 @@ func spawn_loot():
 func _on_InteractionArea_body_entered(body):
 	if body.has_method("is_player") and body.is_player():
 		player_present = true
-		if has_node("InteractionLabel"):
+		if has_node("InteractionLabel") and State != States.EMPTY:
 			$InteractionLabel.show()
 	
 

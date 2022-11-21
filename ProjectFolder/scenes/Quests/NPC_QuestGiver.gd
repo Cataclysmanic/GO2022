@@ -74,6 +74,10 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	
 	
 	inventory_requirement = questObjective.item_details["item_name"]
+	
+	var preposition = preposition_a_or_an(inventory_requirement)
+	
+	dialog_unmet_requirements.push_back("It's " + preposition + " " + inventory_requirement + ".")
 	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
 	
 	currentQuest = str("Find " + inventory_requirement + " at " + targetLocation.get_address())
@@ -88,6 +92,13 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	questObjective.show()
 	questObjective.enable_pickup()
 	
+	
+func preposition_a_or_an(nextWordString):
+	if nextWordString.left(1) in ["a", "e", "o", "i", "u"]:
+		return "an"
+	else:
+		return "a"
+
 
 func produce_quest_objective():
 	# come up with some random item?

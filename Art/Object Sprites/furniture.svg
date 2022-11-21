@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
-   inkscape:export-filename="PottedPlant.png"
+   inkscape:export-filename="../../ProjectFolder/scenes/City/Indoors/MaterialsLibrary/Chair_Kickable_01.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
    sodipodi:docname="furniture.svg"
@@ -28,9 +28,9 @@
      inkscape:deskcolor="#57594a"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:zoom="5.7632654"
-     inkscape:cx="11.972379"
-     inkscape:cy="32.793909"
+     inkscape:zoom="7.4451889"
+     inkscape:cx="18.26683"
+     inkscape:cy="32.772842"
      inkscape:window-width="1339"
      inkscape:window-height="766"
      inkscape:window-x="0"
@@ -188,7 +188,7 @@
     <color-profile
        name="sRGB-IEC61966-2.1"
        xlink:href="file:///System/Library/ColorSync/Profiles/sRGB%20Profile.icc"
-       id="color-profile7690" />
+       id="color-profile812" />
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
@@ -246,7 +246,7 @@
        x2="49.250618"
        y2="53.306549"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.85964913,0,0,1,-68.056724,-30.166054)" />
+       gradientTransform="matrix(0.85964913,0,0,1,2.7680863,-30.798418)" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient4802"
@@ -256,7 +256,7 @@
        x2="42.732155"
        y2="41.71817"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(-72.712407,-30.166054)" />
+       gradientTransform="translate(-1.8875967,-30.798418)" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient6629"
@@ -346,7 +346,7 @@
        xlink:href="#linearGradient7620"
        id="linearGradient7595"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.143348,0,0,1,-16.351213,5.0315469)"
+       gradientTransform="matrix(1.143348,0,0,1,-16.351213,65.031547)"
        x1="17.38257"
        y1="53.451405"
        x2="65.944046"
@@ -356,7 +356,7 @@
        xlink:href="#linearGradient4802"
        id="linearGradient7597"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.2055993,0,0,1,-21.16521,5.0315469)"
+       gradientTransform="matrix(1.2055993,0,0,1,-21.16521,65.031547)"
        x1="24.3356"
        y1="41.71817"
        x2="42.732155"
@@ -366,7 +366,27 @@
        xlink:href="#linearGradient4802"
        id="linearGradient7605"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.2592339,0,0,1,1.3318821,5.0315469)"
+       gradientTransform="matrix(1.2592339,0,0,1,1.3318821,65.031547)"
+       x1="24.3356"
+       y1="41.71817"
+       x2="42.732155"
+       y2="41.71817" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient463"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.85964913,0,0,1,18.014447,-85.510901)"
+       x1="17.38257"
+       y1="53.451405"
+       x2="49.250618"
+       y2="53.306549" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient465"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,1.4308382,13.358763,-107.29163)"
        x1="24.3356"
        y1="41.71817"
        x2="42.732155"
@@ -625,8 +645,8 @@
        id="rect4794"
        width="19.410538"
        height="14.340621"
-       x="-48.956226"
-       y="6.0476346"
+       x="21.868584"
+       y="5.4152703"
        rx="1.967887"
        ry="2.0333428" />
     <rect
@@ -634,8 +654,8 @@
        id="rect4796"
        width="28.391533"
        height="6.5184641"
-       x="-53.736431"
-       y="20.243401"
+       x="17.088379"
+       y="19.611036"
        rx="1.9678872"
        ry="2.0333428"
        inkscape:export-filename="Chair_01.png"
@@ -909,7 +929,7 @@
        width="23.401331"
        height="14.340621"
        x="7.4752245"
-       y="41.245235"
+       y="101.24524"
        rx="1.9678869"
        ry="2.0333428"
        inkscape:export-filename="couch.png"
@@ -918,15 +938,68 @@
     <path
        id="rect7593"
        style="fill:url(#linearGradient7595);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="m 4.6635038,55.440195 c -1.0902085,0 -1.96875,0.906732 -1.96875,2.033203 v 2.453125 c 0,1.126471 0.8785415,2.033203 1.96875,2.033203 H 24.097098 38.487723 57.921316 c 1.090209,0 1.96875,-0.906732 1.96875,-2.033203 v -2.453125 c 0,-1.126471 -0.878541,-2.033203 -1.96875,-2.033203 H 38.487723 24.097098 Z" />
+       d="m 4.6635038,115.4402 c -1.0902085,0 -1.96875,0.90673 -1.96875,2.0332 v 2.45312 c 0,1.12647 0.8785415,2.03321 1.96875,2.03321 H 24.097098 38.487723 57.921316 c 1.090209,0 1.96875,-0.90674 1.96875,-2.03321 v -2.45312 c 0,-1.12647 -0.878541,-2.0332 -1.96875,-2.0332 H 38.487723 24.097098 Z" />
     <rect
        style="fill:url(#linearGradient7605);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="rect7599"
        width="24.442408"
        height="14.340621"
        x="31.246469"
-       y="41.245235"
+       y="101.24524"
        rx="1.9678869"
        ry="2.0333428" />
+    <rect
+       style="fill:url(#linearGradient465);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect459"
+       width="19.410538"
+       height="20.519108"
+       x="37.114948"
+       y="-55.475704"
+       rx="1.967887"
+       ry="2.0333428"
+       transform="rotate(90)" />
+    <rect
+       style="fill:url(#linearGradient463);fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       id="rect461"
+       width="28.391533"
+       height="6.5184641"
+       x="32.334743"
+       y="-35.101444"
+       rx="1.9678872"
+       ry="2.0333428"
+       inkscape:export-filename="Chair_01.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96"
+       transform="rotate(90)" />
+    <rect
+       style="fill:#4d4d4d;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+       id="rect519"
+       width="12.894233"
+       height="3.760818"
+       x="15.177587"
+       y="44.323929" />
+    <path
+       id="rect573"
+       style="fill:#4d4d4d;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+       d="m 10.476564,36.667976 h 4.835338 c 3.087143,7.109317 2.257976,13.435371 0,19.475664 h -4.835338 c 3.4833,-6.491888 3.321196,-12.983776 0,-19.475664 z"
+       sodipodi:nodetypes="ccccc" />
+    <circle
+       style="fill:#333333;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+       id="path627"
+       cx="7.9245811"
+       cy="37.070927"
+       r="2.2833538" />
+    <circle
+       style="fill:#333333;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+       id="path629"
+       cx="12.558446"
+       cy="46.405811"
+       r="2.3505113" />
+    <circle
+       style="fill:#333333;stroke:#000000;stroke-linecap:round;stroke-linejoin:round"
+       id="path631"
+       cx="8.1932106"
+       cy="56.009331"
+       r="2.4176686" />
   </g>
 </svg>
