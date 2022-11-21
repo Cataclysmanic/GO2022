@@ -6,7 +6,7 @@ export var dash_stamina_cost = 25.0
 export var min_dash_stamina_requirement = 50.0
 export var stamina_recovery_rate = 25.0
 export var max_stamina = 100.0
-export var player_speed = 325.0
+export var player_speed = 375.0
 export var max_health = 100.0
 onready var space_state = get_world_2d().direct_space_state
 var map_scene
