@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=110 format=2]
 
 [ext_resource path="res://scenes/Player/MerikAnimations/Aim_walking.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Player/MerikAnimations/Walking_Legs.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/Player/MerikAnimations/Idle_Legs.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Player/MerikAnimations/Idle_Top.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Player/MerikAnimations/Aim_stopped.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Player/PaperDoll/LeapingDetective.png" type="Texture" id=7]
 [ext_resource path="res://scenes/Player/MerikAnimations/Melee2_Top.png" type="Texture" id=8]
 
 [sub_resource type="AtlasTexture" id=49]
@@ -478,6 +479,11 @@ region = Rect2( 675, 498, 225, 249 )
 
 [sub_resource type="SpriteFrames" id=48]
 animations = [ {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "dash",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 83 ), SubResource( 84 ), SubResource( 85 ), SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ), SubResource( 93 ), SubResource( 94 ), SubResource( 95 ), SubResource( 96 ), SubResource( 97 ), SubResource( 98 ), SubResource( 99 ), SubResource( 100 ), SubResource( 101 ), SubResource( 102 ), SubResource( 103 ), SubResource( 104 ), SubResource( 105 ), SubResource( 106 ), SubResource( 107 ), SubResource( 108 ), SubResource( 109 ) ],
 "loop": true,
 "name": "idle relax",
@@ -851,6 +857,47 @@ tracks/5/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="Animation" id=135]
+resource_name = "dash"
+length = 0.66
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Upper/Torso:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "dash", "melee attack" ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Lower/Legs:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "idle", "walk" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("DashParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
 [sub_resource type="Animation" id=126]
 resource_name = "melee attack 1"
 length = 0.2
@@ -997,12 +1044,26 @@ tracks/5/keys = {
 scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 3 )
 
+[node name="DashParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+local_coords = false
+direction = Vector2( -1, 0 )
+gravity = Vector2( 0, 0 )
+initial_velocity = 800.0
+initial_velocity_random = 0.5
+scale_amount = 10.0
+scale_amount_random = 0.25
+color = Color( 0.611765, 0.611765, 0.611765, 1 )
+
 [node name="Lower" type="Node2D" parent="."]
 
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 7
 playing = true
 offset = Vector2( 8, 0 )
 
@@ -1011,7 +1072,7 @@ offset = Vector2( 8, 0 )
 [node name="Torso" type="AnimatedSprite" parent="Upper"]
 position = Vector2( 4, 0 )
 frames = SubResource( 48 )
-animation = "walk gun up"
+animation = "dash"
 playing = true
 offset = Vector2( 24, 16 )
 
@@ -1025,5 +1086,6 @@ anims/RESET = SubResource( 21 )
 anims/Relax = SubResource( 24 )
 anims/Run = SubResource( 25 )
 anims/Walk = SubResource( 22 )
+anims/dash = SubResource( 135 )
 "anims/melee attack 1" = SubResource( 126 )
 "anims/melee attack 2" = SubResource( 134 )

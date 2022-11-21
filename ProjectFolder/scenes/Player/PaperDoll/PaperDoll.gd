@@ -31,6 +31,10 @@ func melee_attack():
 		$AnimationPlayer.play("melee attack 2")
 
 
+func dash():
+	$AnimationPlayer.play("dash")
+
+
 func get_animation():
 	var anim_queue = $AnimationPlayer.get_queue()
 	if len(anim_queue) > 0:

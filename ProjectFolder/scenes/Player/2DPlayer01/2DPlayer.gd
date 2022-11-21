@@ -1,7 +1,11 @@
 extends KinematicBody2D
 
 
-export var sprint_velocity_multiple = 1.75
+export var dash_velocity_multiple = 10.0
+export var dash_stamina_cost = 25.0
+export var min_dash_stamina_requirement = 50.0
+export var stamina_recovery_rate = 25.0
+export var max_stamina = 100.0
 export var player_speed = 325.0
 export var max_health = 100.0
 onready var space_state = get_world_2d().direct_space_state
@@ -15,8 +19,9 @@ var dying_warning_label
 
 var last_movement_vector = Vector2.ZERO
 
-enum States {INITIALIZING, READY, INVULNERABLE, DYING, DEAD}
+enum States {INITIALIZING, READY, INVULNERABLE, DASHING, DYING, DEAD}
 var State = States.INITIALIZING
+var previous_states = [] # stack of previous states, allows us to revert state after dashing, etc.
 
 var health = 100
 var stamina = 100
@@ -36,7 +41,7 @@ func _ready():
 		spawn_item(Global.IO.get_item("Gun2D"))
 
 	manual_spawn_gun() # temporary
-	State = States.READY
+	set_state(States.READY)
 	$DebugInfo.visible = Global.user_preferences["debug"]
 #	set_primary_target_area(get_FOV_circle(Vector2(0,0),500))
 
@@ -50,6 +55,17 @@ func init(mapScene):
 	camera = find_node("Camera2D")
 	camera.init(self, hud)
 	Global.player = self
+
+func set_state(state):
+	previous_states.push_back(State)
+	State = state # current state is not on the stack, only previous states
+	
+func get_state():
+	return State
+	
+func revert_state():
+	State = previous_states.pop_back()
+	
 
 func update_bars():
 	health_bar.value = health
@@ -135,7 +151,7 @@ func _physics_process(delta):
 			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
 			$Flashlight.look_at(get_global_mouse_position())
 			if stamina < 100 :
-				stamina += 1
+				stamina = min(stamina + stamina_recovery_rate * delta, max_stamina)
 				update_bars()
 	if has_node("DebugInfo"):
 		$DebugInfo.text = States.keys()[State]
@@ -181,7 +197,7 @@ func begin_dying():
 	# play an animation.
 	# give the player a chance to heal up or kill one more guy to save his life?
 	$Timers/DeathTimer.start()
-	State = States.DYING
+	set_state(States.DYING)
 	if Global.user_preferences["gore"] == false:
 			$BloodDripParticles.texture = null
 	$AnimationPlayer.play("dying")
@@ -194,7 +210,7 @@ func recover_from_near_death():
 	# Celebrate and give max_health
 		
 	dying_warning_label.hide()
-	State = States.READY
+	set_state(States.READY)
 	health = max_health
 	$RecoveryNoise.set_pitch_scale(rand_range(0.9, 1.1))
 	$RecoveryNoise.play()
@@ -204,7 +220,7 @@ func recover_from_near_death():
 
 func die_for_real_this_time():
 	dead = true
-	State = States.DEAD
+	set_state(States.DEAD)
 	$DeathScream.play()
 	$PaperDoll.hide()
 	$deadPlaceholder.show()
@@ -218,10 +234,18 @@ func move(_delta):
 	# delta not required for move_and_slide
 
 	var speed = player_speed
-	if Input.is_action_pressed("sprint") and stamina > 0:
-		speed *= sprint_velocity_multiple
-		stamina -= 2
+	
+	if Input.is_action_just_pressed("sprint") and get_state() != States.DASHING and stamina > min_dash_stamina_requirement:
+		start_dash()
+	elif Input.is_action_just_pressed("sprint") and get_state() != States.DASHING and stamina < min_dash_stamina_requirement:
+		$DashAudio/InsufficientEnergySound.play()
+		
+	elif get_state() == States.DASHING and Input.is_action_pressed("sprint") and stamina > 0: # continue dashing
+		speed *= dash_velocity_multiple
+		stamina -= dash_stamina_cost
 		update_bars()
+	elif get_state() == States.DASHING: # no longer holding shift, revert back to walking
+		revert_state()
 	
 	var move_vector = Vector2.ZERO
 	var directional_vector = Vector2.ZERO
@@ -244,6 +268,11 @@ func move(_delta):
 	play_animations(directional_vector)
 	last_movement_vector = directional_vector
 	
+
+func start_dash():
+	set_state(States.DASHING)
+	$PaperDoll.dash()
+	$DashAudio/DashSound.play()
 	
 func play_animations(movement_vector):
 	var currentSpeedSq = movement_vector.length_squared()
@@ -273,7 +302,7 @@ func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 	# in some games, taking damage supercharges your adrenaline and you gain speed / damage
 	if State == States.INITIALIZING:
 		return
-	elif not State in [States.INVULNERABLE, States.DYING, States.DEAD]: 
+	elif not State in [States.INVULNERABLE, States.DASHING, States.DYING, States.DEAD]: 
 		$HitNoise.play()
 		if Global.user_preferences["gore"]:
 			$AnimationPlayer.play("hit")
@@ -283,7 +312,7 @@ func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 		if health <= 0 and State != States.DYING:
 			begin_dying()
 		else:
-			State = States.INVULNERABLE
+			set_state(States.INVULNERABLE)
 			$Timers/InvulnerbailityTimer.start()
 		
 func knockback(impactVector):
@@ -299,7 +328,7 @@ func _on_healed(amount):
 
 func _on_InvulnerbailityTimer_timeout():
 	if health > 0:
-		State = States.READY
+		set_state(States.READY)
 	
 		
 	

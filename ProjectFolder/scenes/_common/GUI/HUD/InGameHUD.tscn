@@ -83,6 +83,7 @@ margin_top = 19.0
 margin_right = 141.0
 margin_bottom = 28.0
 size_flags_horizontal = 4
+value = 100.0
 texture_under = ExtResource( 13 )
 texture_over = ExtResource( 18 )
 texture_progress = ExtResource( 14 )
