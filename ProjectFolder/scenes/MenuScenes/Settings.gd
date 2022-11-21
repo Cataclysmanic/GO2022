@@ -22,3 +22,7 @@ func _on_GoreCheckButton_toggled(button_pressed):
 
 func _on_ShakeNFlashButton_toggled(button_pressed):
 	Global.user_preferences["shake_and_flash"] = button_pressed
+
+
+func _on_DebugModeButton_toggled(button_pressed):
+	Global.user_preferences["debug"] = button_pressed

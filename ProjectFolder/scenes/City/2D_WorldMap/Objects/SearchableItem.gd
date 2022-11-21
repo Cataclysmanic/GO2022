@@ -18,6 +18,7 @@ func _unhandled_input(event):
 	if player_present and State != States.EMPTY:
 		if event.is_action_pressed("interact"):
 			$AudioStreamPlayer2D.play()
+			$InteractionLabel.hide()
 			spawn_loot()
 			State = States.EMPTY
 

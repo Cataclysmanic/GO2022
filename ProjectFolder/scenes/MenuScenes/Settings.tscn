@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/_common/GUI/Theme/MainGUITheme.tres" type="Theme" id=2]
+[ext_resource path="res://scenes/_common/GUI/Theme/settings_menu_theme.tres" type="Theme" id=2]
 [ext_resource path="res://scenes/MenuScenes/Settings.gd" type="Script" id=3]
 [ext_resource path="res://scenes/MenuScenes/VolumeSlider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/_common/Music/MysteriousLoop.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scenes/_common/Music/TenseLoop.mp3" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Items/weapons/GunshotNoises/Gun_9mm_9.wav" type="AudioStream" id=7]
+[ext_resource path="res://scenes/Campaign.tscn" type="PackedScene" id=8]
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
@@ -20,50 +21,54 @@ anchor_bottom = 1.0
 
 [node name="Header" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 79.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.2
 
 [node name="SettingsTitle" type="Label" parent="VBoxContainer/Header"]
+margin_top = 22.0
 margin_right = 1024.0
-margin_bottom = 79.0
+margin_bottom = 61.0
 size_flags_horizontal = 3
 text = "Settings"
 align = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
-margin_left = 156.0
-margin_top = 83.0
-margin_right = 868.0
-margin_bottom = 520.0
+margin_left = 250.0
+margin_top = 88.0
+margin_right = 774.0
+margin_bottom = 511.0
 size_flags_horizontal = 4
+size_flags_vertical = 3
 
 [node name="Body" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 712.0
-margin_bottom = 437.0
+margin_right = 524.0
+margin_bottom = 423.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/separation = 30
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/PanelContainer/Body"]
-margin_right = 708.0
-margin_bottom = 368.0
+margin_right = 520.0
+margin_bottom = 419.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/vseparation = 20
+custom_constants/hseparation = 20
 columns = 2
 
 [node name="DifficultyLabel" type="Label" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_right = 404.0
-margin_bottom = 79.0
+margin_top = 5.0
+margin_right = 200.0
+margin_bottom = 44.0
 text = "Difficulty"
 
 [node name="DifficultySlider" type="HSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_left = 408.0
-margin_right = 708.0
-margin_bottom = 79.0
+margin_left = 220.0
+margin_right = 520.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -73,76 +78,104 @@ step = 0.1
 value = 1.0
 
 [node name="MasterVolLabel" type="Label" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_top = 83.0
-margin_right = 404.0
-margin_bottom = 162.0
+margin_top = 75.0
+margin_right = 200.0
+margin_bottom = 114.0
 text = "Master Volume"
 
 [node name="MasterVolSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 4 )]
+margin_left = 220.0
+margin_top = 70.0
+margin_right = 520.0
+margin_bottom = 120.0
 value = 0.5
 audio_stream = ExtResource( 5 )
 
 [node name="SFXVolLabel" type="Label" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_top = 166.0
-margin_right = 404.0
-margin_bottom = 245.0
+margin_top = 145.0
+margin_right = 200.0
+margin_bottom = 184.0
 text = "Sound Effects Volume"
 
 [node name="SFXVolSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 4 )]
-margin_top = 166.0
-margin_bottom = 245.0
+margin_left = 220.0
+margin_top = 140.0
+margin_right = 520.0
+margin_bottom = 190.0
 value = 0.5
 audio_bus_name = "sfx"
 audio_stream = ExtResource( 7 )
 
 [node name="MusicVolLabel" type="Label" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_top = 249.0
-margin_right = 404.0
-margin_bottom = 328.0
+margin_top = 215.0
+margin_right = 200.0
+margin_bottom = 254.0
 text = "Music Volume"
 
 [node name="MusicVolSlider" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 4 )]
-margin_top = 249.0
-margin_bottom = 328.0
+margin_left = 220.0
+margin_top = 210.0
+margin_right = 520.0
+margin_bottom = 259.0
 value = 0.5
 audio_bus_name = "Music"
 audio_stream = ExtResource( 6 )
 
 [node name="GoreCheckButton" type="CheckButton" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_left = 142.0
-margin_top = 332.0
-margin_right = 262.0
-margin_bottom = 368.0
+margin_left = 45.0
+margin_top = 279.0
+margin_right = 154.0
+margin_bottom = 315.0
 focus_mode = 0
 size_flags_horizontal = 4
 pressed = true
 text = "Gore"
 
 [node name="ShakeNFlashButton" type="CheckButton" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
-margin_left = 450.0
-margin_top = 332.0
-margin_right = 666.0
-margin_bottom = 368.0
+margin_left = 283.0
+margin_top = 279.0
+margin_right = 457.0
+margin_bottom = 315.0
 focus_mode = 0
 size_flags_horizontal = 4
 pressed = true
 text = "Shake & Flash"
 
-[node name="ReturnToMainButton" parent="VBoxContainer/PanelContainer/Body" instance=ExtResource( 1 )]
+[node name="DebugModeButton" type="CheckButton" parent="VBoxContainer/PanelContainer/Body/GridContainer"]
+margin_left = 18.0
+margin_top = 335.0
+margin_right = 181.0
+margin_bottom = 371.0
+size_flags_horizontal = 4
+text = "Debug Mode"
+
+[node name="ReturnToMainButton" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 272.0
-margin_top = 398.0
-margin_right = 436.0
-margin_bottom = 433.0
+margin_left = 311.0
+margin_top = 335.0
+margin_right = 428.0
+margin_bottom = 363.0
 focus_mode = 0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "Return To Main"
 return_to_main = true
 
+[node name="LaunchCampaignButton" parent="VBoxContainer/PanelContainer/Body/GridContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 49.0
+margin_top = 391.0
+margin_right = 151.0
+margin_bottom = 419.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Launch Game"
+SceneToLaunch = ExtResource( 8 )
+
 [node name="Footer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 524.0
+margin_top = 515.0
 margin_right = 1024.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -152,3 +185,4 @@ size_flags_stretch_ratio = 0.2
 [connection signal="drag_ended" from="VBoxContainer/PanelContainer/Body/GridContainer/DifficultySlider" to="." method="_on_DifficultySlider_drag_ended"]
 [connection signal="toggled" from="VBoxContainer/PanelContainer/Body/GridContainer/GoreCheckButton" to="." method="_on_GoreCheckButton_toggled"]
 [connection signal="toggled" from="VBoxContainer/PanelContainer/Body/GridContainer/ShakeNFlashButton" to="." method="_on_ShakeNFlashButton_toggled"]
+[connection signal="toggled" from="VBoxContainer/PanelContainer/Body/GridContainer/DebugModeButton" to="." method="_on_DebugModeButton_toggled"]

@@ -8,6 +8,9 @@ export var speed = 25.0
 func _ready():
 	set_unit_offset(randf())
 	speed = rand_range(speed * 0.8, speed * 1.25)
+	
+	$TargetSprite.set_visible(Global.user_preferences["debug"])
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

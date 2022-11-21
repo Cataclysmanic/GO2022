@@ -42,12 +42,12 @@ func _ready():
 #	if active:
 #		$Label.text = "active"
 	
-	
 	#nav_agent.set_navigation(home_building.find_node("NPCs"))
 	nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
-
 	home_position = get_global_position()
 
+	$DebugInfo.set_visible(Global.user_preferences["debug"])
+	find_node("LaserScope").set_visible(Global.user_preferences["debug"])
 
 func init(mapScene, homeBuilding, pathFollowObj):
 	map_scene = mapScene
@@ -201,8 +201,8 @@ func update_nav_path(destination):
 	var nav_optimize_path = true
 	current_path = Navigation2DServer.map_get_path(nav_agent.get_navigation_map(), global_position, nav_destination, nav_optimize_path)
 	
-	$Line2D.points = current_path
-	$Line2D.set_global_position(Vector2.ZERO)
+	$DebugInfo/Line2D.points = current_path
+	$DebugInfo/Line2D.set_global_position(Vector2.ZERO)
 	
 
 

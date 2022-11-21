@@ -516,13 +516,6 @@ visible = false
 scale = Vector2( 0.232537, 0.231516 )
 texture = ExtResource( 12 )
 
-[node name="Line2D" type="Line2D" parent="."]
-material = SubResource( 12 )
-width = 3.0
-default_color = Color( 0.435294, 0.721569, 0.823529, 0.207843 )
-joint_mode = 2
-script = ExtResource( 1 )
-
 [node name="DebugInfo" type="Node2D" parent="."]
 
 [node name="StateLabel" type="Label" parent="DebugInfo"]
@@ -536,6 +529,13 @@ rect_pivot_offset = Vector2( 27.5, 7 )
 custom_fonts/font = ExtResource( 18 )
 text = "Bad Guy"
 align = 1
+
+[node name="Line2D" type="Line2D" parent="DebugInfo"]
+material = SubResource( 12 )
+width = 3.0
+default_color = Color( 0.435294, 0.721569, 0.823529, 0.207843 )
+joint_mode = 2
+script = ExtResource( 1 )
 
 [connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
 [connection signal="timeout" from="Sprite/NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

@@ -12,6 +12,7 @@ var user_preferences = {
 	"difficulty": 1.0, #0.5 to 3.0
 	"gore": true,
 	"shake_and_flash":true,
+	"debug":false,
 }
 
 

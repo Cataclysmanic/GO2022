@@ -70,7 +70,6 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	questObjective.set_global_position(targetLocation.get_global_position())
 	questObjective.visible = true
 
-	print("NPC_Questiver.gd. Quest objective Target Location = " + str(targetLocation.get_global_position()))
 	
 	
 	inventory_requirement = questObjective.item_details["item_name"]

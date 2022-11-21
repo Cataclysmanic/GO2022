@@ -15,6 +15,7 @@ signal shit_calmed_down() # for music
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	generate_occluders_from_bitmap()
+	$DebugInfo.set_visible(Global.user_preferences["debug"])
 
 func init(mapObj):
 
