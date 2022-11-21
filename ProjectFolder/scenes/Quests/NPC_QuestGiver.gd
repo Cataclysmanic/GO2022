@@ -149,6 +149,7 @@ func requirements_met(body):
 
 func advance_dialog(body):
 	var dialog_lines
+	$InteractInstruction.hide()
 	if requirements_met(body):
 		dialog_lines = dialog_fulfilled_requirements
 	else:

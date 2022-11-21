@@ -268,6 +268,15 @@ func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 			knock_back(incomingVector.normalized() * damage)
 
 
+func extreme_knock_back(impactVector):
+
+	var tween = get_tree().create_tween()
+	tween.tween_property(self, "position", position+(impactVector*60.0), 0.2)
+	yield(tween, "finished")
+	die()
+	
+
+
 func knock_back(impactVector):
 	# ideally we'd tween / lerp to this, but I'll just teleport the NPC backwards for now.
 	position += impactVector
