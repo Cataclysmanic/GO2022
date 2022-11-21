@@ -6,7 +6,6 @@ Team Members by Discord username:
 "Avarice",
 "Sir_Capybara",
 "Cataclymanic",
-"CH51",
 "Das",
 "Elmanana",
 "GlordaX",
