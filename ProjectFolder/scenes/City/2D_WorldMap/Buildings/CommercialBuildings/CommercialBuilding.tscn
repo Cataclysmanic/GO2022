@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskStatic.tscn" type="PackedScene" id=19]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -60,6 +61,7 @@ shape = SubResource( 10 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
+visible = false
 
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 80, 51 )
@@ -267,6 +269,12 @@ position = Vector2( -182, -57 )
 [node name="Trashcan2" parent="Furniture" instance=ExtResource( 11 )]
 position = Vector2( -161, -227 )
 
+[node name="Trashcan4" parent="Furniture" instance=ExtResource( 11 )]
+position = Vector2( -30, -186 )
+
+[node name="Trashcan5" parent="Furniture" instance=ExtResource( 11 )]
+position = Vector2( 25, -79 )
+
 [node name="Trashcan3" parent="Furniture" instance=ExtResource( 11 )]
 position = Vector2( -226, -106 )
 
@@ -278,6 +286,12 @@ position = Vector2( -225, -226 )
 
 [node name="PottedPlant4" parent="Furniture" instance=ExtResource( 12 )]
 position = Vector2( 69, -187 )
+
+[node name="PottedPlant6" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( 208, -165 )
+
+[node name="PottedPlant7" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( 106, -163 )
 
 [node name="PottedPlant5" parent="Furniture" instance=ExtResource( 12 )]
 position = Vector2( -39, -230 )
@@ -303,6 +317,10 @@ rotation = -1.78037
 position = Vector2( -97, -59 )
 rotation = -0.404664
 
+[node name="Couch5" parent="Furniture" instance=ExtResource( 16 )]
+position = Vector2( 30, 73 )
+rotation = -2.55579
+
 [node name="Couch3" parent="Furniture" instance=ExtResource( 16 )]
 position = Vector2( 61, -218 )
 rotation = -2.11977
@@ -312,18 +330,116 @@ position = Vector2( -80, -125 )
 rotation = 1.57079
 scale = Vector2( 0.780171, 0.780171 )
 
+[node name="Sink2" parent="Furniture" instance=ExtResource( 14 )]
+position = Vector2( 24, 136 )
+rotation = 4.71238
+scale = Vector2( 0.780171, 0.780171 )
+
+[node name="Sink3" parent="Furniture" instance=ExtResource( 14 )]
+position = Vector2( -44, 137 )
+rotation = 7.85397
+scale = Vector2( 0.780171, 0.780171 )
+
 [node name="TableLamp" parent="Furniture" instance=ExtResource( 17 )]
 position = Vector2( -86, -181 )
 
 [node name="TableLamp3" parent="Furniture" instance=ExtResource( 17 )]
 position = Vector2( 68, -107 )
 
+[node name="TableLamp6" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( 96, -129 )
+
+[node name="TableLamp4" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( 128, -185 )
+
+[node name="TableLamp5" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( 189, -108 )
+
 [node name="TableLamp2" parent="Furniture" instance=ExtResource( 17 )]
 position = Vector2( -228, -53 )
 
+[node name="TableLamp7" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( -45, -75 )
+
+[node name="Trashcan6" parent="Furniture" instance=ExtResource( 11 )]
+position = Vector2( -104, 173 )
+
+[node name="PottedPlant8" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( -216, 129 )
+
+[node name="PottedPlant9" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( 38, 223 )
+
+[node name="PottedPlant10" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( -48, 223 )
+
+[node name="Couch4" parent="Furniture" instance=ExtResource( 16 )]
+position = Vector2( -115, 138 )
+rotation = -2.11977
+
+[node name="TableLamp8" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( -109, 61 )
+
+[node name="TableLamp9" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( -215, 221 )
+
 [node name="KickableChair" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( -194, -106 )
-scale = Vector2( 0.690411, 0.690411 )
+position = Vector2( -193, -107 )
+scale = Vector2( 0.503913, 0.503913 )
+
+[node name="KickableChair2" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( 12, -161 )
+rotation = -0.705204
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="KickableChair3" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( 57, -59 )
+rotation = -0.034587
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic" parent="Furniture" instance=ExtResource( 19 )]
+position = Vector2( 54, -78 )
+
+[node name="KickableChair4" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( 161, -85 )
+rotation = -0.034587
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic2" parent="Furniture" instance=ExtResource( 19 )]
+position = Vector2( 158, -104 )
+
+[node name="KickableChair5" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( 157, -201 )
+rotation = -3.14159
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic3" parent="Furniture" instance=ExtResource( 19 )]
+position = Vector2( 156, -182 )
+rotation = -3.14159
+
+[node name="PottedPlant11" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( 220, 156 )
+
+[node name="PottedPlant12" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( 143, 60 )
+
+[node name="KickableChair6" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( 210, 189 )
+rotation = -0.938986
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic4" parent="Furniture" instance=ExtResource( 19 )]
+position = Vector2( 186, 183 )
+rotation = -1.57079
+
+[node name="KickableChair7" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( 218, 101 )
+rotation = -1.09278
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic5" parent="Furniture" instance=ExtResource( 19 )]
+position = Vector2( 194, 85 )
+rotation = -1.02742
 
 [node name="collectibles" type="Node2D" parent="."]
 
