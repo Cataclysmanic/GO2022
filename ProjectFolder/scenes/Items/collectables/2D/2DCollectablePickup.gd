@@ -15,6 +15,7 @@ export var item_details : Dictionary = {
 	"item_name":"",
 	"notes_for_journal":"",
 	"is_unique":false,
+	"display_immediately":false,
 	"path_to_scene_for_PlayerController_Items":"",
 }
 

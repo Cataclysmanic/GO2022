@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -12,11 +12,12 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWallsThick.png" type="Texture" id=10]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Trashcan.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Desk.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Sink.tscn" type="PackedScene" id=14]
-[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Chair.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=18]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -275,26 +276,24 @@ position = Vector2( -224, -157 )
 [node name="PottedPlant2" parent="Furniture" instance=ExtResource( 12 )]
 position = Vector2( -225, -226 )
 
+[node name="PottedPlant4" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( 69, -187 )
+
+[node name="PottedPlant5" parent="Furniture" instance=ExtResource( 12 )]
+position = Vector2( -39, -230 )
+
 [node name="PottedPlant3" parent="Furniture" instance=ExtResource( 12 )]
 position = Vector2( -228, -129 )
 
-[node name="Desk" parent="Furniture" instance=ExtResource( 13 )]
+[node name="DeskSearchable1" parent="Furniture" instance=ExtResource( 13 )]
 position = Vector2( -151, -55 )
 rotation = 3.14159
 
-[node name="Chair" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( -195, -116 )
-
-[node name="Chair2" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( -147, -77 )
-rotation = -2.55747
-
-[node name="Chair3" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( -84, -95 )
-rotation = -2.55747
-
-[node name="Desk2" parent="Furniture" instance=ExtResource( 13 )]
+[node name="DeskSearchable2" parent="Furniture" instance=ExtResource( 13 )]
 position = Vector2( -196, -127 )
+
+[node name="DeskSearchable3" parent="Furniture" instance=ExtResource( 13 )]
+position = Vector2( 5, -189 )
 
 [node name="Couch" parent="Furniture" instance=ExtResource( 16 )]
 position = Vector2( -90, -215 )
@@ -304,6 +303,10 @@ rotation = -1.78037
 position = Vector2( -97, -59 )
 rotation = -0.404664
 
+[node name="Couch3" parent="Furniture" instance=ExtResource( 16 )]
+position = Vector2( 61, -218 )
+rotation = -2.11977
+
 [node name="Sink" parent="Furniture" instance=ExtResource( 14 )]
 position = Vector2( -80, -125 )
 rotation = 1.57079
@@ -312,8 +315,21 @@ scale = Vector2( 0.780171, 0.780171 )
 [node name="TableLamp" parent="Furniture" instance=ExtResource( 17 )]
 position = Vector2( -86, -181 )
 
+[node name="TableLamp3" parent="Furniture" instance=ExtResource( 17 )]
+position = Vector2( 68, -107 )
+
 [node name="TableLamp2" parent="Furniture" instance=ExtResource( 17 )]
 position = Vector2( -228, -53 )
+
+[node name="KickableChair" parent="Furniture" instance=ExtResource( 15 )]
+position = Vector2( -194, -106 )
+scale = Vector2( 0.690411, 0.690411 )
+
+[node name="collectibles" type="Node2D" parent="."]
+
+[node name="Paper" parent="collectibles" instance=ExtResource( 18 )]
+position = Vector2( -141, -126 )
+scale = Vector2( 0.204744, 0.204744 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

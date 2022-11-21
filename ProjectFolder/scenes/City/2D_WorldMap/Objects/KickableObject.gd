@@ -6,7 +6,7 @@ var State = States.READY
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = States.READY
-
+	set_global_scale(Vector2(1,1))
 
 
 

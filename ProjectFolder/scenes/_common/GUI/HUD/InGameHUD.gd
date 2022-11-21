@@ -114,7 +114,6 @@ func clear_inventory():
 		item.queue_free()
 	
 func display_inventory_item(itemResource : Resource):
-
 	$PopupItemViewer.init(itemResource)
 
 func inventory_add(itemResource : Resource):
@@ -158,6 +157,8 @@ func _on_collectible_picked_up(pickupObj):
 	find_node("DebugInfo").text = debugText
 
 	play_specific_audio_events(itemResource.item_name)
+	if itemResource["display_immediately"] == true:
+		display_inventory_item(itemResource)
 
 
 func play_specific_audio_events(itemName:String):
