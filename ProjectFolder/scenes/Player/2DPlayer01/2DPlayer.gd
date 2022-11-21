@@ -165,13 +165,17 @@ func toggle_flashlight():
 
 
 func melee_attack():
-	$PlaceholderMeleeSound.play()
+	#$PlaceholderMeleeSound.play()
 	$PaperDoll.melee_attack()
 	var targets = $MeleeAttackZone.get_overlapping_bodies()
 	for target in targets:
 		if target.has_method("extreme_knock_back"):
 			var impactVector = target.global_position - self.global_position
 			target.extreme_knock_back(impactVector)
+			var meleeAudioFiles = $MeleeAttackZone/MeleeAudio.get_children()
+			var randAudio = meleeAudioFiles[randi()%meleeAudioFiles.size()]
+			randAudio.set_pitch_scale(rand_range(0.9, 1.1))
+			randAudio.play()
 
 func begin_dying():
 	# play an animation.
@@ -324,3 +328,8 @@ func _on_TargetArea_body_entered(body):
 func _on_TargetArea_body_exited(body):
 	if "Target" in body:
 		body.hide()
+
+
+func _on_MeleeAttackZone_body_entered(body):
+	if body.has_method("extreme_knock_back"):
+		melee_attack()

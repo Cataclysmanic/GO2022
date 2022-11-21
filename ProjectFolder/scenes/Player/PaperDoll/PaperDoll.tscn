@@ -695,6 +695,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 168, -8 ) ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("Upper/GunLocation:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="Animation" id=25]
 resource_name = "Run"
@@ -825,6 +837,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 164, -84 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Upper/GunLocation:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=126]
@@ -978,7 +1002,7 @@ script = ExtResource( 3 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 14
+frame = 7
 playing = true
 offset = Vector2( 8, 0 )
 
@@ -987,7 +1011,7 @@ offset = Vector2( 8, 0 )
 [node name="Torso" type="AnimatedSprite" parent="Upper"]
 position = Vector2( 4, 0 )
 frames = SubResource( 48 )
-animation = "stationary aim gun"
+animation = "walk gun up"
 playing = true
 offset = Vector2( 24, 16 )
 
