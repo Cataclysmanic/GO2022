@@ -269,7 +269,7 @@ func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 
 
 func extreme_knock_back(impactVector):
-
+	impactVector = impactVector.normalized()
 	var tween = get_tree().create_tween()
 	tween.tween_property(self, "position", position+(impactVector*60.0), 0.2)
 	yield(tween, "finished")

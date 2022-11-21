@@ -143,8 +143,9 @@ func _physics_process(delta):
 	
 	
 func set_primary_target_area(points:PoolVector2Array):
-	$PaperDoll/TargetArea/Area2D/CollisionPolygon2D.polygon = points
-	$PaperDoll/TargetArea/Area2D/Polygon2D.polygon = points
+	pass
+	#$TargetArea/CollisionPolygon2D.polygon = points
+	#$TargetArea/Polygon2D.polygon = points
 
 func _unhandled_input(event):
 	if event.is_action_pressed("flashlight") and !dead:
@@ -165,7 +166,11 @@ func toggle_flashlight():
 func melee_attack():
 	$PlaceholderMeleeSound.play()
 	$PaperDoll.melee_attack()
-
+	var targets = $MeleeAttackZone.get_overlapping_bodies()
+	for target in targets:
+		if target.has_method("extreme_knock_back"):
+			var impactVector = target.global_position - self.global_position
+			target.extreme_knock_back(impactVector)
 
 func begin_dying():
 	# play an animation.

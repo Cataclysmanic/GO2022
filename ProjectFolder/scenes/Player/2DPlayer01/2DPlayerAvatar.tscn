@@ -14,7 +14,6 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=12]
 [ext_resource path="res://scenes/_common/GUI/sfx/hooray.wav" type="AudioStream" id=13]
 [ext_resource path="res://scenes/_common/GUI/sfx/aaaahh.wav" type="AudioStream" id=14]
-[ext_resource path="res://scenes/Player/2DPlayer01/TargetArea.gd" type="Script" id=15]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -22,6 +21,9 @@ light_mode = 1
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 13.0
 height = 6.0
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 107.945, 159.989 )
 
 [sub_resource type="Animation" id=24]
 length = 0.001
@@ -150,23 +152,20 @@ energy = 0.3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
 
+[node name="MeleeAttackZone" type="Area2D" parent="."]
+position = Vector2( 9.6, -1.6 )
+scale = Vector2( 0.207514, 0.207514 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackZone"]
+position = Vector2( 61.6826, 5.78274 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 29 )
+
 [node name="PaperDoll" parent="." instance=ExtResource( 5 )]
 position = Vector2( -6, 0 )
 scale = Vector2( 0.207514, 0.207514 )
-
-[node name="TargetArea" type="Node2D" parent="PaperDoll"]
-position = Vector2( 28.9137, 0 )
-scale = Vector2( 4.81895, 4.81895 )
-script = ExtResource( 15 )
-
-[node name="Area2D" type="Area2D" parent="PaperDoll/TargetArea"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PaperDoll/TargetArea/Area2D"]
-visible = false
-
-[node name="Polygon2D" type="Polygon2D" parent="PaperDoll/TargetArea/Area2D"]
-visible = false
-color = Color( 1, 1, 1, 0.12549 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
 
@@ -295,8 +294,12 @@ custom_fonts/font = ExtResource( 12 )
 text = "State"
 align = 1
 
-[connection signal="body_entered" from="PaperDoll/TargetArea/Area2D" to="." method="_on_TargetArea_body_entered"]
-[connection signal="body_exited" from="PaperDoll/TargetArea/Area2D" to="." method="_on_TargetArea_body_exited"]
+[node name="TargetArea" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TargetArea"]
+
+[node name="Polygon2D" type="Polygon2D" parent="TargetArea"]
+
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]
 [connection signal="timeout" from="Timers/DyingWarningUpdateTimer" to="." method="_on_DyingWarningUpdateTimer_timeout"]
