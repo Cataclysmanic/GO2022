@@ -54,6 +54,8 @@ func toggle_inventory_display():
 
 
 func show_inventory():
+	Global.pause()
+	
 	$AudioEvents/BoxOpenNoise.play()
 	var hidden_bottom_margin = -inventory_leave_showing
 	var revealed_bottom_margin = -(inventory_offset-inventory_leave_showing)
@@ -66,6 +68,8 @@ func show_inventory():
 	InventoryState = InventoryStates.OPEN
 	
 func hide_inventory():
+	Global.resume()
+	
 	$AudioEvents/BoxCloseNoise.play()
 	var hidden_bottom_margin = -inventory_leave_showing
 	var revealed_bottom_margin = -(inventory_offset-inventory_leave_showing)

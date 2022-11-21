@@ -28,6 +28,7 @@ action = "open_inventory"
 shortcut = SubResource( 2 )
 
 [node name="HUD" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -94,11 +95,12 @@ margin_bottom = 47.0
 text = "You're Dying! Find Bandages"
 
 [node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
-margin_left = 923.0
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 902.0
 margin_right = 984.0
 margin_bottom = 28.0
 size_flags_horizontal = 10
-text = "Journal"
 align = 2
 
 [node name="UpdateNotice" type="Label" parent="Top/Header/HelpButton"]

@@ -24,6 +24,10 @@ var dead = false
 
 var FOV_increment = 2 * PI / 60
 
+onready var quest_log = find_node("QuestLog")
+onready var quest_notification = find_node("UpdateNotice")
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_bars()
@@ -57,23 +61,23 @@ func update_bars():
 		dying_warning_label.visible = false
 		
 func update_journal(currentQuest):
-	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Quest:", "quest": str(currentQuest), "status": ""}) 
-	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	quest_log.quests.append({"type": "Quest:", "quest": str(currentQuest), "status": ""}) 
+	quest_notification.show()
 	yield(get_tree().create_timer(1.0), "timeout")
-	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	quest_notification.hide()
 
 func complete_quest(currentQuest):
 #	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.complete(currentQuest) WIP
-	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Quest:", "quest": str(currentQuest) , "status": " COMPLETED"}) 
-	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	quest_log.quests.append({"type": "Quest:", "quest": str(currentQuest) , "status": " COMPLETED"}) 
+	quest_notification.show()
 	yield(get_tree().create_timer(1.0), "timeout")
-	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	quest_notification.hide()
 	
 func update_item(currentItem):
-	$CanvasLayer/HUD/Top/Header/HelpButton/PlayerInstructions/VBoxContainer.quests.append({"type": "Item:", "quest": str(currentItem) , "status": " Picked Up"}) 
-	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.show()
+	quest_log.quests.append({"type": "Item:", "quest": str(currentItem) , "status": " Picked Up"}) 
+	quest_notification.show()
 	yield(get_tree().create_timer(1.0), "timeout")
-	$CanvasLayer/HUD/Top/Header/HelpButton/UpdateNotice.hide()
+	quest_notification.hide()
 	
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)

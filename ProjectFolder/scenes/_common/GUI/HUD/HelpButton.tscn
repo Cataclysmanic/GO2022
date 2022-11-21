@@ -1,32 +1,79 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/HUD/QuestContainer.gd" type="Script" id=2]
+[ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/_common/GUI/HUD/journal_theme.tres" type="Theme" id=4]
 
 [node name="HelpButton" type="Button"]
-margin_left = 217.0
-margin_right = 235.0
+pause_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -61.0
 margin_bottom = 24.0
 focus_mode = 0
+theme = ExtResource( 3 )
+toggle_mode = true
 enabled_focus_mode = 0
-text = "?"
+text = "Journal [J]"
 script = ExtResource( 1 )
 
-[node name="PlayerInstructions" type="PopupDialog" parent="."]
+[node name="PlayerInstructions" type="PopupPanel" parent="."]
 visible = true
-modulate = Color( 1, 1, 1, 0.698039 )
-margin_left = -709.0
-margin_top = -20.0
-margin_right = -499.0
-margin_bottom = 108.0
-rect_scale = Vector2( 1.24, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -916.5
+margin_top = 32.0
+margin_right = -116.5
+margin_bottom = 532.0
+mouse_filter = 2
+theme = ExtResource( 4 )
+popup_exclusive = true
 
-[node name="Label2" type="Label" parent="PlayerInstructions"]
-margin_left = -162.097
-margin_right = 68.9033
-margin_bottom = 133.0
-rect_scale = Vector2( 0.659044, 0.925028 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+[node name="MarginContainer" type="MarginContainer" parent="PlayerInstructions"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 792.0
+margin_bottom = 460.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 40
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInstructions/MarginContainer"]
+margin_left = 20.0
+margin_top = 40.0
+margin_right = 764.0
+margin_bottom = 432.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer"]
+margin_right = 744.0
+margin_bottom = 24.0
+alignment = 2
+
+[node name="CloseButton" type="Button" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 702.0
+margin_right = 744.0
+margin_bottom = 24.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Close"
+
+[node name="HBox" type="HBoxContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 744.0
+margin_bottom = 392.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 50
+
+[node name="HelpInstructions" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox"]
+margin_right = 347.0
+margin_bottom = 364.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
 text = "Controls:
 Arrows/WASD/LeftJoy: Move
 Mouse/RightJoy: Look Around
@@ -36,15 +83,35 @@ Shift: Sprint
 Mouse Wheel (+/-)-: zoom camera
 F: Interact
 L: Toggle Flashlight
+J: open/close Journal
+I: open/close Inventory
 Click items in Inventory to get
 item details"
+autowrap = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PlayerInstructions"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 80.0
-margin_bottom = 73.0
-rect_scale = Vector2( 0.583317, 0.789241 )
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox"]
+margin_left = 397.0
+margin_right = 744.0
+margin_bottom = 364.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="QuestLog" type="VBoxContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/ScrollContainer"]
+margin_right = 347.0
+margin_bottom = 364.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 2 )
 
-[connection signal="pressed" from="." to="." method="_on_HelpButton_pressed"]
+[node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/ScrollContainer/QuestLog"]
+margin_right = 347.0
+margin_bottom = 364.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Quests"
+
+[connection signal="toggled" from="." to="." method="_on_HelpButton_toggled"]
+[connection signal="about_to_show" from="PlayerInstructions" to="." method="_on_PlayerInstructions_about_to_show"]
+[connection signal="popup_hide" from="PlayerInstructions" to="." method="_on_PlayerInstructions_popup_hide"]
+[connection signal="pressed" from="PlayerInstructions/MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

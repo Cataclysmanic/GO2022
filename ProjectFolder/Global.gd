@@ -30,9 +30,19 @@ var trigger_events = { # a few things we can test for, to see if the user alread
 
 func pause():
 	game_state = STATES.PAUSED
-	
+
+	# I don't normally like to use get_tree().paused,
+	# but for a quick game jam, it'll do.
+	get_tree().paused = true
+
+
 func resume():
 	game_state = STATES.ACTIVE
+
+	# I don't normally like to use get_tree().paused,
+	# but for a quick game jam, it'll do.
+	get_tree().paused = false
+
 
 func is_paused():
 	if game_state == STATES.ACTIVE:

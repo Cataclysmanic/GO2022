@@ -185,7 +185,7 @@ position = Vector2( 1101, 1541 )
 position = Vector2( -1465, 1087 )
 
 [node name="FemmeFatale" parent="QuestGivers" instance=ExtResource( 20 )]
-position = Vector2( 1566, -1054 )
+position = Vector2( 1640, -1887 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 1 ) ] ]
