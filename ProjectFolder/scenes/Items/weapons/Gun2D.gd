@@ -15,7 +15,7 @@ signal projectile_ready(projectile)
 signal player_gun_shot(ammoRemaining)
 signal player_gun_loaded(ammoRemaining, ammoType)
 signal player_gun_reload_requested()
-
+signal loud_noise(location)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,6 +31,7 @@ func init(mapScene, myPlayer, hud):
 	_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
 	_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
 	_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
+	_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
 	reload(magazine_capacity)
 	
 	
@@ -51,7 +52,7 @@ func shoot():
 	
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
-	var bulletSpeed = 1000.0
+	var bulletSpeed = 1200.0
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
@@ -61,7 +62,7 @@ func shoot():
 	cock_gun()
 	ammo_remaining -= 1
 	emit_signal("player_gun_shot", ammo_remaining)
-
+	emit_signal("loud_noise", get_global_position())
 
 func make_gunshot_noise():
 	var audio_effects_enabled = false

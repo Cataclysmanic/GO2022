@@ -1,9 +1,11 @@
 extends Node2D
 
 var melee_damage = 15
+var player
+
 
 func _ready():
-	pass
+	player = get_parent()
 	
 func start_running():
 	$AnimationPlayer.play("Run")
@@ -21,7 +23,18 @@ func start_idling():
 	
 func point_gun():
 	$AnimationPlayer.play("PointGun")
-	
+
+func melee_attack():
+	if randf() < 0.5:
+		$AnimationPlayer.play("melee attack 1")
+	elif randf() < 0.95:
+		$AnimationPlayer.play("melee attack 2")
+
+
+func dash():
+	$AnimationPlayer.play("dash")
+
+
 func get_animation():
 	var anim_queue = $AnimationPlayer.get_queue()
 	if len(anim_queue) > 0:
@@ -29,7 +42,7 @@ func get_animation():
 
 func point_torso_at(targetPos:Vector2):
 	$Upper.look_at(targetPos)
-
+	
 	
 func point_legs_at(targetPos:Vector2):
 	$Lower.look_at(targetPos)

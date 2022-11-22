@@ -16,6 +16,8 @@ var InventoryState = InventoryStates.CLOSED
 var inventory_offset = 200
 var inventory_leave_showing = 25
 
+var death_time_remaining = 30.0
+
 signal reloaded(count)
 
 
@@ -23,7 +25,7 @@ signal reloaded(count)
 func _ready():
 	time_elapsed = 0.0
 	last_polling_time = 0.0
-
+	hide_blood_vignette()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,6 +54,11 @@ func toggle_inventory_display():
 	else:
 		hide_inventory()
 
+func show_blood_vignette():
+	$BloodSpatterVignette.show()
+	$BloodSpatterVignette/ImminentDeathWarningLabel.hide()
+func hide_blood_vignette():
+	$BloodSpatterVignette.hide()
 
 func show_inventory():
 	Global.pause()
@@ -213,3 +220,20 @@ func _on_inventory_icon_clicked(itemRes):
 
 func _on_InventoryButton_toggled(_button_pressed):
 	toggle_inventory_display()
+
+#func _on_player_dying(time):
+#	$BloodSpatterVignette/DeathCountdownTimer.start()
+
+func show_dire_countdown(time_left):
+	var bigCounter = $BloodSpatterVignette/ImminentDeathWarningLabel
+	if time_left < 3 and time_left > 0:
+		bigCounter.show()
+		bigCounter.text = str(time_left)
+	else:
+		bigCounter.hide()
+
+
+func _on_player_recovered():
+	$BloodSpatterVignette/ImminentDeathWarningLabel.hide()
+	$BloodSpatterVignette.hide()
+	

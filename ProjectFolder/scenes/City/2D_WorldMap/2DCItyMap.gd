@@ -138,6 +138,11 @@ func _on_loot_ready(itemObj, lootPosition:Vector2 = Vector2.ZERO):
 		itemObj.set_global_position(lootPosition)
 
 
+func _on_loud_noise_made(pos):
+	var noiseScene = $ResourcePreloader.get_resource("LoudNoise").instance()
+	noiseScene.set_global_position(pos)
+	$Noises.add_child(noiseScene)
+
 func _on_projectile_ready(projectile):
 
 	$Outdoor/Projectiles.add_child(projectile)
