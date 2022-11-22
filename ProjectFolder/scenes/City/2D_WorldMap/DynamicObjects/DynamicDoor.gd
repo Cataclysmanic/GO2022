@@ -94,6 +94,7 @@ func open():
 	#var collisionNode = find_node("ObstacleCollisionShape")
 #	if collisionNode != null and is_instance_valid(collisionNode):
 #		collisionNode.call_deferred("set_disabled", true)
+	$OpenSound.play()
 	State = States.OPEN
 	
 func close():
@@ -102,6 +103,7 @@ func close():
 	else:
 		$DoorSprite.position.x += width * $DoorSprite.scale.x
 	#$ObstacleCollisionShape2D.call_deferred("set_disabled", false)
+	$OpenSound.play()
 	State = States.CLOSED
 	
  
