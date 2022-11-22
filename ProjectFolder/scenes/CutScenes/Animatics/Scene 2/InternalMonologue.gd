@@ -11,7 +11,7 @@ func _ready():
 	$AnimationPlayer.play("ReadDocument")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	var scroll = find_node("ScrollContainer")
 	scroll.update()
 	$DebugInfo.text = str(scroll.scroll_vertical)

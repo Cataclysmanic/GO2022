@@ -204,11 +204,12 @@ func begin_dying():
 	
 	dying_warning_label.visible = true
 	$Timers/DyingWarningUpdateTimer.start()
+	hud.show_blood_vignette()
 
 func recover_from_near_death():
 	# player found a bandage after dying process started.
 	# Celebrate and give max_health
-		
+	hud.hide_blood_vignette()
 	dying_warning_label.hide()
 	set_state(States.READY)
 	health = max_health

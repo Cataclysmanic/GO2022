@@ -23,7 +23,7 @@ signal reloaded(count)
 func _ready():
 	time_elapsed = 0.0
 	last_polling_time = 0.0
-
+	hide_blood_vignette()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,6 +52,10 @@ func toggle_inventory_display():
 	else:
 		hide_inventory()
 
+func show_blood_vignette():
+	$BloodSpatterVignette.show()
+func hide_blood_vignette():
+	$BloodSpatterVignette.hide()
 
 func show_inventory():
 	Global.pause()
