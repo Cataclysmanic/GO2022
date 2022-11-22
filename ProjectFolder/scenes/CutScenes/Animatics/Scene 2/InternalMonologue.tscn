@@ -1,0 +1,253 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/_common/Music/TenseLoop.mp3" type="AudioStream" id=2]
+[ext_resource path="res://scenes/CutScenes/Animatics/Scene 2/FingerCursor.png" type="Texture" id=3]
+[ext_resource path="res://scenes/CutScenes/Animatics/Scene 2/InternalMonologue.gd" type="Script" id=4]
+[ext_resource path="res://scenes/CutScenes/TopDownAnimatedSequences/OfficeAnimatedSequence_01.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/_common/GUI/Theme/screenplay_theme.tres" type="Theme" id=6]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("CursorSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 114, -98 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CursorSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 26.2105 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "ReadDocument"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer:scroll_vertical")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1, 4.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 1500 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CursorSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1, 4.1, 4.9, 5.4, 5.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 114, -98 ), Vector2( 978, 109 ), Vector2( 976, 452 ), Vector2( 388, 488 ), Vector2( 489, 491 ), Vector2( 385, 509 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CursorSprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1, 4.1, 4.9, 5.4, 5.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 26.2105, -24.8231, 41.042, 58.5031, 58.5031 ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
+theme = ExtResource( 6 )
+script = ExtResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 40
+custom_constants/margin_top = 20
+custom_constants/margin_left = 40
+custom_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 984.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 944.0
+margin_bottom = 19.0
+text = "Untitiled Screenplay"
+align = 1
+clip_text = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 23.0
+margin_right = 944.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 944.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="RichTextLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
+margin_right = 932.0
+margin_bottom = 1977.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "FF = Her
+AW = Protagonist
+IM: Protagonist’s Inner Monologue (Displayed separately from the detective) Basically the narrator
+
+
+After the animatic, but before the in game cutscene, display this IM as white text on a black screen.
+
+IM: I remember it like it was yesterday. No amount of booze could let me forget.
+
+Begin cutscene proper
+
+The femme-fatale enters quietly. Stopping directly next to the detective’s desk. The detective is snoring. Sleeping on the job no less.
+
+IM:The red dressed dame. Eyes like diamond, but a heart like stone. I should’ve called off that night. Should’ve walked away.
+FF: She waits a few moments. “Mr.Worth?”
+AW: *snore*
+
+
+He continues to rest
+
+FF: “Mister Worth?!”
+AW: “Guh! Fu- wha-... oh. Uh… evening, miss.”
+FF: “To you as well, sir.”
+IM: A rude awakening to compliment a foggy minded hangover. She was good on the eyes though and a great distraction. I humored her.
+
+AW: “Didja need something, miss…?”
+FF: “Veronica. Mrs.Veronica to you.”
+
+She steps away from the desk
+
+IM: Gazing out to the city, she witnessed a thousand fluorescent stars. Carefully calculating her words, or perhaps…?
+FF: “My brother, Mister Worth.”
+
+Pause for dramatic effect
+
+FF: “He’s dead.”
+IM: It was only then had I realized; her motivation, her beauty, her grace. All a façade. What I admired was nothing more than a swan without a song to sing. She was desperate. But for what?
+
+
+
+AW: “I’m… sorry to hear that. I hope whoever’s working the case gets ahold of the bastard who did it.”
+FF: “That’s just it Mr. Worth, they won’t.”
+
+She approaches his desk once more.
+
+FF: “They’ll never learn who killed my dearest Benjamin. You and I both know that your department is simply incapable. I doubt they could get a cat from a tree if they wanted to.”
+AW: “To be fair, that is more of a fire rescue thing.”
+
+FF: “...regardless, I would not have come to you if I felt there were any other options. You’re better than the rest of them, detective. Simply superior.”
+AW: “Mmmm…”
+FF: “Please, Mr.Worth?”
+
+IM: I didn’t remember carrying that much renown… but…
+
+AW: “Alright, fine. I’ll get with my boss tomorrow and see about getting the case transferred.”
+FF: “No, Mr.Worth please! I cannot wait another night, I simply can’t!”
+
+IM: Teary-eyed, broken. Half an inch from losing what little hope still remained. I knew the age old phrase, “Every second counts.” She was right. Something like this can’t wait.
+
+AW: *sigh* “Okay. Where did it happen? Tell me everything.”
+FF: “He was shot twice in the back. A warehouse down the road, 172 West Avenue.”
+AW: “Do you have any idea who might’ve wanted Ben to kick the bucket?”
+FF: “No, not at all! He was a lovely man. Wouldn’t hurt a fly.”
+AW: “Ugh… great.”
+IM: A half assed description for a half assed case. It was best I didn’t push her. She was fragile, and I was inventive enough.
+IM: So I thought anyway
+
+
+He starts to walk toward the door, she follows closely.
+
+
+AW: “I’ll figure this out, Mrs.Veronica.”
+FF: “Thank you, Andrew.”
+
+She walks out and he starts to follow, but pauses as she walks out of view.
+
+IM: How did she know my name?
+End Scene"
+autowrap = true
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 512.0
+margin_right = 944.0
+margin_bottom = 537.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="NextSceneButton" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 346.0
+margin_right = 494.0
+margin_bottom = 25.0
+size_flags_horizontal = 4
+text = "Accept Premise"
+SceneToLaunch = ExtResource( 5 )
+
+[node name="MainMenuButton" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 544.0
+margin_right = 598.0
+margin_bottom = 25.0
+size_flags_horizontal = 4
+text = "Quit"
+return_to_main = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
+anims/ReadDocument = SubResource( 1 )
+
+[node name="CursorSprite" type="Sprite" parent="."]
+position = Vector2( 114, -98 )
+rotation = 0.45746
+texture = ExtResource( 3 )
+offset = Vector2( -62.9711, -4.71338 )
+flip_h = true
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="DebugInfo" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
