@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/door.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_close_3.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/_common/GUI/sfx/WheresTheKey.ogg" type="AudioStream" id=4]
 
 [sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( -32, -8, 31, -8, 31, 9, -32, 9 )
@@ -80,6 +81,10 @@ valign = 1
 [node name="OpenSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
 volume_db = 15.0
+
+[node name="LockedSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
 
 [connection signal="body_entered" from="OpeningZone" to="." method="_on_OpeningZone_body_entered"]
 [connection signal="body_exited" from="OpeningZone" to="." method="_on_OpeningZone_body_exited"]

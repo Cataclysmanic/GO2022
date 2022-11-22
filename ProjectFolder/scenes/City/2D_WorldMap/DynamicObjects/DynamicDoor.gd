@@ -12,8 +12,13 @@ extends Node2D
 # enable and disable its navpolygoninstance depending on open/close status
 # enable and disable its static-body collision shape to allow player to pass when open
 
+
+export var required_item : String
+
 enum States { INITIALIZING, OPEN, CLOSED }
 var State = States.INITIALIZING
+
+var locked : bool
 
 enum Types { SLIDING, ROTATING }
 export (Types) var Type = Types.SLIDING
@@ -27,6 +32,11 @@ func _ready():
 	State = States.CLOSED
 	$LabelContainer.scale = Vector2(1.0/scale.x, 1.0/scale.y)
 	$LabelContainer.hide()
+	if required_item != null or required_item != "":
+		locked = true
+	else:
+		locked = false
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -111,16 +121,25 @@ func close():
 
 func _on_OpeningZone_body_entered(body):
 	if body.has_method("is_player") and body.is_player() == true:
-		$LabelContainer.show()
-	
-
-func _unhandled_input(event):
-	if $OpeningZone.get_overlapping_bodies().has(Global.player):
-		if event.is_action_pressed("interact"):
-			if State == States.CLOSED:
+#		$LabelContainer.show()
+		if State == States.CLOSED:
+			if required_item != null and required_item != "":
+				if body.has_item(required_item) == true or locked == false:
+					open()
+				else:
+					$LockedSound.play()
+					# locked and you don't have the key
+			else: # no item required
 				open()
-			else:
-				close()
+		
+
+#func _unhandled_input(event):
+#	if $OpeningZone.get_overlapping_bodies().has(Global.player):
+#		if event.is_action_pressed("interact"):
+#			if State == States.CLOSED:
+#				open()
+#			else:
+#				close()
 
 
 func _on_InitDelayTimer_timeout():
@@ -133,5 +152,6 @@ func _on_InitDelayTimer_timeout():
 
 func _on_OpeningZone_body_exited(body):
 	if body.has_method("is_player") and body.is_player() == true:
-		$LabelContainer.hide()
-	
+#		$LabelContainer.hide()
+		if State == States.OPEN:
+			close()

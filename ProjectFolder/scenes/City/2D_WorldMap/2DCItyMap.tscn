@@ -272,4 +272,13 @@ position = Vector2( 1987, -1803 )
 scale = Vector2( 0.870445, 0.870445 )
 Type = 1
 
+[node name="DynamicDoor" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1662, 1608 )
+required_item = "Pizza Coupon"
+
+[node name="DynamicDoor2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1884, 1611 )
+scale = Vector2( 1.60282, 1.06143 )
+required_item = "Forged Books"
+
 [node name="NPCs" type="Node2D" parent="."]
