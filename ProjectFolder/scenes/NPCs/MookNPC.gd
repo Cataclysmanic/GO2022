@@ -74,6 +74,9 @@ func set_state(newState):
 	store_old_state()
 	State = newState
 
+	if newState == States.CHASING:
+		spawn_alert_sprite()
+		
 
 func get_state():
 	return State
@@ -84,6 +87,12 @@ func store_old_state():
 	previous_states.push_back(State)
 	if previous_states.size() > numberToStore:
 		var _discard = previous_states.pop_front()
+
+
+func spawn_alert_sprite():
+	var alertedSprite = $ResourcePreloader.get_resource("AlertedSprite").instance()
+	alertedSprite.position = Vector2.ZERO
+	add_child(alertedSprite)
 
 
 func patrol(pathFollowObj):
@@ -356,4 +365,12 @@ func _on_VisionCone_saw_detective(location):
 		set_state(States.CHASING)
 		last_known_target_position = location
 		# TODO: once we're in a fight, is it safe to disable the vision cone?
+
+func _on_noise_nearby(location):
+	if State == States.PATROLLING: # must not be dead then
+		set_state(States.CHASING)
+		last_known_target_position = location
+	
+
+
 
