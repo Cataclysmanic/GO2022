@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Assets/Test Assets/sprGUIHealthText.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Test Assets/sprGUIStaminaText.png" type="Texture" id=18]
 [ext_resource path="res://scenes/_common/GUI/HUD/bloodSpatterVignette.png" type="Texture" id=19]
+[ext_resource path="res://scenes/_common/GUI/fonts/AbrilFatface-Regular.ttf" type="DynamicFontData" id=20]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -27,6 +28,12 @@ action = "open_inventory"
 
 [sub_resource type="ShortCut" id=3]
 shortcut = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 256
+outline_size = 5
+outline_color = Color( 0.592157, 0, 0, 1 )
+font_data = ExtResource( 20 )
 
 [node name="HUD" type="Control"]
 pause_mode = 2
@@ -226,7 +233,6 @@ editable = false
 resources = [ PoolStringArray( "Bullet", "InventoryIconButton" ), [ ExtResource( 2 ), ExtResource( 11 ) ] ]
 
 [node name="BloodSpatterVignette" type="TextureRect" parent="."]
-visible = false
 self_modulate = Color( 1, 1, 1, 0.533333 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -234,5 +240,18 @@ mouse_filter = 2
 texture = ExtResource( 19 )
 expand = true
 stretch_mode = 7
+
+[node name="ImminentDeathWarningLabel" type="Label" parent="BloodSpatterVignette"]
+self_modulate = Color( 1, 1, 1, 0.498039 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -73.5
+margin_top = -173.0
+margin_right = 73.5
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 4 )
+text = "3"
 
 [connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]

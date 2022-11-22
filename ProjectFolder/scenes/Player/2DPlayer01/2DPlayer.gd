@@ -72,7 +72,10 @@ func update_bars():
 	stamina_bar.value = stamina
 	if State == States.DYING:
 		dying_warning_label.visible = true
-		dying_warning_label.text = "You're dying, find bandages: " + str(int($Timers/DeathTimer.get_time_left()))
+		var time_left = $Timers/DeathTimer.get_time_left()
+		if time_left < 4.0:
+			hud.show_dire_countdown(int(time_left))
+		dying_warning_label.text = "You're dying, find bandages: " + str(int(time_left))
 	else:
 		dying_warning_label.visible = false
 		
@@ -218,6 +221,7 @@ func recover_from_near_death():
 	$RecoveryFireworks.emitting = true
 	$BloodDripParticles.emitting = false
 	update_bars()
+	hud._on_player_recovered()
 
 func die_for_real_this_time():
 	dead = true
