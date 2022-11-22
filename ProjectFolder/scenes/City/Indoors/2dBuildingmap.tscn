@@ -159,8 +159,8 @@ flip_v = true
 curve = SubResource( 49 )
 
 [node name="PathFollow2D" parent="Roads/Cars/BottomRoad" instance=ExtResource( 4 )]
-position = Vector2( -854.532, -678.539 )
-rotation = 0.00599023
+position = Vector2( -854.531, -678.539 )
+rotation = 0.00599014
 offset = 243.813
 
 [node name="Path2D" type="Path2D" parent="Roads/Cars"]

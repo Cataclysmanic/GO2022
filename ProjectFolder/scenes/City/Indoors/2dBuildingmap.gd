@@ -15,4 +15,11 @@ func spawn_player():
 	playerScene.init(self)
 	$Player.add_child(playerScene)
 	player = playerScene
+	var camera = playerScene.get_node("Camera2D")
+	camera.limit_bottom = 600
+	camera.limit_top = 0
+	camera.limit_left = -1024
+	camera.limit_right = 1024
+	camera.zoom = Vector2(1,1)
+	
 

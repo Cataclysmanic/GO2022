@@ -169,6 +169,7 @@ visible = false
 color = Color( 1, 1, 1, 0.12549 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
+smoothing_speed = 5.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
