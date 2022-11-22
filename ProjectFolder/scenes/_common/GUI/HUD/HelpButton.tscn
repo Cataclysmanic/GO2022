@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/HUD/QuestContainer.gd" type="Script" id=2]
-[ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/_common/GUI/HUD/journal_theme.tres" type="Theme" id=4]
 
 [node name="HelpButton" type="Button"]
@@ -12,7 +11,6 @@ anchor_right = 1.0
 margin_left = -61.0
 margin_bottom = 24.0
 focus_mode = 0
-theme = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 0
 text = "Journal [J]"
