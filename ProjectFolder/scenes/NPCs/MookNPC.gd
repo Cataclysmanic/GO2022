@@ -92,6 +92,7 @@ func store_old_state():
 func spawn_alert_sprite():
 	var alertedSprite = $ResourcePreloader.get_resource("AlertedSprite").instance()
 	alertedSprite.position = Vector2.ZERO
+	alertedSprite.name = "AlertedSprite"
 	add_child(alertedSprite)
 
 
@@ -222,6 +223,8 @@ func flash_hit():
 
 func die():
 	set_state(States.DEAD)
+	if has_node("AlertedSprite"):
+		get_node("AlertedSprite").queue_free()
 	$DieNoise.play()
 	$Corpse.rotation = rand_range(0, 2*PI)
 	if Global.user_preferences["gore"]:
