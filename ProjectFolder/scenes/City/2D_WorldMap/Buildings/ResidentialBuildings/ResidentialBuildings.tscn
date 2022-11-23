@@ -3,31 +3,17 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesRoofs.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BuildingTemplate.gd" type="Script" id=5]
-[ext_resource path="res://scenes/NPCs/TargetPracticeDummy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/_common/GUI/fonts/VolkornMediumFont.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
 
-[sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( -173, -84, -183, -83, -183, -101, -173, -100, -169, -96, -168, -88, -109, -75, -94, -77, -92, -42, -132, -42, -133, -75, -120, -75, -110, -81, -122, -81, -182, -131, -143, -132, -143, -104, -153, -106, -132, -136, -132, -148, -93, -147, -92, -97, -79, -85, -43, -85, -42, -43, -85, -43, -89, -83, -81, -88, -85, -131, -43, -130, -42, -93, -79, -92, -86, -98, -139, -42, -183, -42, -183, -77, -155, -80, -138, -81, -137, -105, -155, -86, -182, -106, -153, -103, -137, -132, -165, -100 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ), PoolIntArray( 6, 7, 8, 9 ), PoolIntArray( 9, 10, 11 ), PoolIntArray( 6, 9, 11, 12 ), PoolIntArray( 12, 11, 13 ), PoolIntArray( 14, 15, 16, 17 ), PoolIntArray( 18, 19, 20, 21 ), PoolIntArray( 22, 23, 24, 25, 26 ), PoolIntArray( 27, 22, 26 ), PoolIntArray( 28, 29, 30, 31, 32 ), PoolIntArray( 33, 34, 35, 36, 37 ), PoolIntArray( 38, 37, 36, 39, 16 ), PoolIntArray( 17, 40, 14 ), PoolIntArray( 41, 17, 16 ), PoolIntArray( 38, 42, 18, 21, 26, 12, 13 ), PoolIntArray( 32, 31, 27, 26, 21 ), PoolIntArray( 38, 13, 37 ), PoolIntArray( 43, 41, 16, 39, 5, 4 ) ]
-outlines = [ PoolVector2Array( -93, -147, -92, -97, -86, -98, -85, -131, -43, -130, -42, -93, -79, -92, -81, -88, -79, -85, -43, -85, -42, -43, -85, -43, -89, -83, -110, -81, -109, -75, -94, -77, -92, -42, -132, -42, -133, -75, -120, -75, -122, -81, -138, -81, -139, -42, -183, -42, -183, -77, -155, -80, -155, -86, -168, -88, -173, -84, -183, -83, -183, -101, -173, -100, -169, -96, -165, -100, -153, -103, -153, -106, -182, -106, -182, -131, -143, -132, -143, -104, -137, -105, -137, -132, -132, -136, -132, -148 ) ]
-
-[sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( 37, -125, 36, -166, 97, -165, 81, -124, 97, -121, 84, -123, 85, -102, 116, -90, 178, -117, 179, -90, 150, -117, 178, -82, 179, -41, 85, -41, 116, -82, 85, -87, 37, -41, 37, -118, 78, -117, 79, -104, 78, -88, 79, -41, 136, -117, 136, -124, 150, -123, 103, -126, 103, -166, 179, -166, 179, -124 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4, 5 ), PoolIntArray( 6, 5, 4, 7 ), PoolIntArray( 8, 9, 7, 10 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 14, 13, 15, 7 ), PoolIntArray( 16, 17, 18, 19, 20 ), PoolIntArray( 20, 21, 16 ), PoolIntArray( 15, 20, 19, 6, 7 ), PoolIntArray( 7, 4, 22 ), PoolIntArray( 10, 7, 22 ), PoolIntArray( 10, 22, 23, 24 ), PoolIntArray( 23, 25, 26, 27, 28 ), PoolIntArray( 24, 23, 28 ) ]
-outlines = [ PoolVector2Array( 97, -165, 97, -121, 136, -117, 136, -124, 103, -126, 103, -166, 179, -166, 179, -124, 150, -123, 150, -117, 178, -117, 179, -90, 116, -90, 116, -82, 178, -82, 179, -41, 85, -41, 85, -87, 78, -88, 79, -41, 37, -41, 37, -118, 78, -117, 79, -104, 85, -102, 84, -123, 81, -124, 37, -125, 36, -166 ) ]
-
-[sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 213, 196, 173, 196, 176, 183, 212, 137, 170, 148, 165, 137, 163, 148, 86, 163, 86, 155, 105, 159, 132, 179, 165, 198, 138, 195, 140, 182, 167, 176, 137, 149, 77, 190, 78, 212, 21, 213, 20, 137, 79, 151, 84, 137, 83, 146, 84, 130, 20, 131, 20, 88, 96, 88, 97, 120, 126, 116, 103, 114, 103, 88, 165, 88, 134, 113, 165, 113, 148, 114, 135, 119, 149, 120, 171, 116, 171, 88, 212, 88, 213, 129, 165, 131, 167, 119, 130, 196, 86, 196, 84, 181, 115, 156, 129, 150, 120, 152, 116, 147, 104, 151, 125, 124 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 3, 2, 4 ), PoolIntArray( 5, 3, 4, 6 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 14, 13, 15, 6 ), PoolIntArray( 16, 17, 18, 19 ), PoolIntArray( 20, 16, 19 ), PoolIntArray( 20, 19, 21, 22 ), PoolIntArray( 23, 24, 25, 26, 27 ), PoolIntArray( 28, 29, 30, 31, 32 ), PoolIntArray( 32, 31, 33, 34 ), PoolIntArray( 35, 32, 34, 36 ), PoolIntArray( 37, 38, 39, 40 ), PoolIntArray( 37, 40, 41, 42 ), PoolIntArray( 36, 42, 41, 15 ), PoolIntArray( 10, 43, 44, 45, 7 ), PoolIntArray( 10, 9, 46 ), PoolIntArray( 47, 10, 46, 48 ), PoolIntArray( 49, 50, 22, 21, 27, 51 ), PoolIntArray( 5, 6, 15, 41 ), PoolIntArray( 51, 35, 36, 15, 47 ), PoolIntArray( 51, 47, 48, 49 ), PoolIntArray( 23, 27, 21 ) ]
-outlines = [ PoolVector2Array( 96, 88, 97, 120, 125, 124, 135, 119, 134, 113, 126, 116, 103, 114, 103, 88, 165, 88, 165, 113, 148, 114, 149, 120, 167, 119, 171, 116, 171, 88, 212, 88, 213, 129, 165, 131, 165, 137, 212, 137, 213, 196, 173, 196, 176, 183, 170, 148, 163, 148, 167, 176, 165, 198, 138, 195, 140, 182, 137, 149, 129, 150, 132, 179, 130, 196, 86, 196, 84, 181, 86, 163, 86, 155, 105, 159, 115, 156, 120, 152, 116, 147, 104, 151, 83, 146, 79, 151, 77, 190, 78, 212, 21, 213, 20, 137, 84, 137, 84, 130, 20, 131, 20, 88 ) ]
-
-[sub_resource type="NavigationPolygon" id=5]
-vertices = PoolVector2Array( -72, 124, -60, 121, -59, 195, -84, 195, -83, 166, -92, 196, -117, 196, -114, 180, -91, 166, -90, 152, -118, 165, -118, 151, -91, 116, -84, 151, -84, 122, -149, 120, -125, 121, -127, 131, -148, 195, -123, 152, -124, 167, -148, 113, -149, 55, -108, 56, -108, 101, -121, 112, -117, 116, -99, 101, -86, 113, -100, 56, -60, 56, -59, 112, -72, 116, -122, 178, -124, 195, -120, 128 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 7, 8 ), PoolIntArray( 9, 8, 7, 10, 11, 12 ), PoolIntArray( 13, 14, 0, 4 ), PoolIntArray( 15, 16, 17, 18 ), PoolIntArray( 18, 17, 19, 20 ), PoolIntArray( 9, 13, 4, 8 ), PoolIntArray( 21, 22, 23, 24, 25 ), PoolIntArray( 12, 26, 25, 24, 27, 28 ), PoolIntArray( 27, 29, 30, 31, 32, 28 ), PoolIntArray( 33, 34, 18, 20 ), PoolIntArray( 10, 20, 19, 11 ), PoolIntArray( 12, 11, 35, 26 ) ]
-outlines = [ PoolVector2Array( -117, 196, -114, 180, -118, 165, -124, 167, -122, 178, -124, 195, -148, 195, -149, 120, -125, 121, -127, 131, -123, 152, -118, 151, -120, 128, -117, 116, -121, 112, -148, 113, -149, 55, -108, 56, -108, 101, -99, 101, -100, 56, -60, 56, -59, 112, -72, 116, -86, 113, -91, 116, -90, 152, -84, 151, -84, 122, -72, 124, -60, 121, -59, 195, -84, 195, -83, 166, -91, 166, -92, 196 ) ]
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
 
 [node name="ResidentialBuildings" type="Node2D"]
 script = ExtResource( 5 )
@@ -56,19 +42,8 @@ shape = SubResource( 1 )
 
 [node name="NPCs" type="Navigation2D" parent="."]
 
-[node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 2 )
-
-[node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 3 )
-
-[node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 4 )
-
-[node name="NavigationPolygonInstance8" type="NavigationPolygonInstance" parent="NPCs"]
-navpoly = SubResource( 5 )
-
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
+visible = false
 
 [node name="Position2D" type="Position2D" parent="PossibleSpawnPoints"]
 position = Vector2( 153.188, -144.307 )
@@ -113,21 +88,98 @@ position = Vector2( -134.872, 135.982 )
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
 
 [node name="Roof" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 
-[node name="NavPolygons" type="Node2D" parent="."]
+[node name="Addresses" type="Node2D" parent="."]
+position = Vector2( 16, 112 )
+scale = Vector2( 0.646722, 0.792029 )
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="NavPolygons"]
-navpoly = SubResource( 2 )
+[node name="107 Main St" type="Label" parent="Addresses"]
+material = SubResource( 6 )
+margin_left = -298.428
+margin_top = 194.437
+margin_right = -85.428
+margin_bottom = 253.437
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.141176, 0.145098, 0.141176, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "107 Main St"
+align = 1
 
-[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="NavPolygons"]
-navpoly = SubResource( 3 )
+[node name="95 Main St" type="Label" parent="Addresses"]
+material = SubResource( 6 )
+margin_left = 137.617
+margin_top = 191.912
+margin_right = 350.617
+margin_bottom = 250.912
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.141176, 0.145098, 0.141176, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "95 Main St"
+align = 1
 
-[node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="NavPolygons"]
-navpoly = SubResource( 4 )
+[node name="107 1st St" type="Label" parent="Addresses"]
+material = SubResource( 6 )
+margin_left = -318.529
+margin_top = -445.691
+margin_right = -105.529
+margin_bottom = -386.691
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.141176, 0.145098, 0.141176, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "107 1st St"
+align = 1
 
-[node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="NavPolygons"]
-navpoly = SubResource( 5 )
+[node name="95 1st St" type="Label" parent="Addresses"]
+material = SubResource( 6 )
+margin_left = 32.4715
+margin_top = -449.478
+margin_right = 245.471
+margin_bottom = -390.478
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 0.141176, 0.145098, 0.141176, 1 )
+custom_fonts/font = ExtResource( 4 )
+text = "95 1st St"
+align = 1
+
+[node name="DebugInfo" type="Label" parent="."]
+margin_left = -73.5
+margin_top = -7.0
+margin_right = 74.5
+margin_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 76.5, 13 )
+custom_colors/font_color = Color( 0.792157, 0.792157, 0.792157, 1 )
+custom_fonts/font = ExtResource( 7 )
+text = "Player Present: False"
+align = 1
+
+[node name="PossibleQuestTargetLocations" type="Node2D" parent="."]
+
+[node name="QuestTargetLocation" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+location_address = "95 1st St"
+location_details = "Big Square House."
+
+[node name="QuestTargetLocation2" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+position = Vector2( -60, -60 )
+location_address = "107 1st St"
+location_details = "The nice house on the NW corner of the residential district."
+
+[node name="QuestTargetLocation3" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+position = Vector2( -75, 69 )
+location_address = "107 Main St"
+location_details = "The crappy looking house down the road."
+
+[node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
+position = Vector2( 117, 100 )
+location_address = "95 Main St"
+location_details = "In the office inside the house on the corner."
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

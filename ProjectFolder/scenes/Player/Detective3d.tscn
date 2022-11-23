@@ -9,7 +9,7 @@
 [ext_resource path="res://Assets/Test Assets/_up idle.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Test Assets/_down walk.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Items/tools/Flashlight.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/Items/weapons/Gun.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/weapons/3DGun.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Player/Flashlight_On.wav" type="AudioStream" id=12]
 [ext_resource path="res://scenes/Player/Flashlight_Off.wav" type="AudioStream" id=13]

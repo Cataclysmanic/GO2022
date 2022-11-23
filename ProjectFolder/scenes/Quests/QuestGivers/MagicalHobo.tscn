@@ -1,0 +1,108 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=2]
+[ext_resource path="res://scenes/NPCs/hobo-to-down.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=4]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.7567
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 144.25, 134.5 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[node name="MagicalHobo" type="KinematicBody2D"]
+position = Vector2( 2, 2 )
+script = ExtResource( 1 )
+inventory_requirement = "note 01"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.49012e-08 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.813172, -0.119232 )
+rotation = 1.57079
+scale = Vector2( 0.352086, 0.352086 )
+texture = ExtResource( 3 )
+offset = Vector2( -2.88073, -15.1868 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2( 46.75, -4.5 )
+shape = SubResource( 2 )
+
+[node name="QuestTargetObjects" type="ResourcePreloader" parent="."]
+
+[node name="ThoughtBubble" type="Sprite" parent="."]
+position = Vector2( -35, -61 )
+texture = ExtResource( 4 )
+
+[node name="DialogLabel" type="Label" parent="."]
+material = SubResource( 3 )
+margin_left = 6.0
+margin_top = -135.0
+margin_right = 98.0
+margin_bottom = -43.0
+rect_min_size = Vector2( 150, 92 )
+custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
+custom_fonts/font = ExtResource( 5 )
+autowrap = true
+
+[node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+
+[node name="PotentialRequiredItems" type="Node2D" parent="."]
+
+[node name="Ex-Wifes Attorney Bills" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
+item_details = {
+"is_unique": true,
+"item_name": "ex-wife's attorney bills",
+"notes_for_journal": "A file clearly delineating the attorney fees paid out by one Margaret A Sawyer during the period of interest.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Photograph" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
+item_details = {
+"is_unique": true,
+"item_name": "photograph of ex-wife with another man",
+"notes_for_journal": "A grainy dark photograph taken through a window. It's not clear what's inside. From the shape of the blury patch, it could be two people.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="InsaneScribblings" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
+item_details = {
+"is_unique": true,
+"item_name": "insane scribblings",
+"notes_for_journal": "a torn page with a lot of nonsense scribbled onto it. Some of the worst mean-spirited, paranoid vitriol you'll ever read.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="InteractInstruction" type="Label" parent="."]
+margin_left = 58.0
+margin_top = -90.0
+margin_right = 152.0
+margin_bottom = -13.0
+custom_fonts/font = ExtResource( 7 )
+text = "[F]"
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

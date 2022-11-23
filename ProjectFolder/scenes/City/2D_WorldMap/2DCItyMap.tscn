@@ -1,28 +1,28 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/textures/BlockGroundTile.png" type="Texture" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/2DStreetlamp.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Items/collectables/2D/Flashlight2DPickup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/LoudNoise.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/Park.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/City/2D_WorldMap/2DCItyMap.gd" type="Script" id=6]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/Municipal Building 01.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/Items/collectables/2D/2DGunPickup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/_common/Music/MysteriousLoop.ogg" type="AudioStream" id=9]
 [ext_resource path="res://scenes/_common/Music/TenseLoop.mp3" type="AudioStream" id=10]
 [ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=11]
 [ext_resource path="res://scenes/_common/Music/CalmLoop.mp3" type="AudioStream" id=12]
-[ext_resource path="res://icon.png" type="Texture" id=13]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/Quests/QuestGivers/MagicalHobo.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Quests/QuestGivers/MobBoss.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Quests/QuestGivers/FemmeFatale.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=21]
 
 [sub_resource type="Environment" id=1]
+background_energy = 0.0
 ambient_light_energy = 0.0
-
-[sub_resource type="CanvasItemMaterial" id=18]
-light_mode = 2
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 20, 86.4 )
@@ -31,7 +31,7 @@ extents = Vector2( 20, 86.4 )
 script = ExtResource( 6 )
 
 [node name="PlayerSpawnPoint" type="Position2D" parent="."]
-position = Vector2( -1723, -506 )
+position = Vector2( -2013, 899 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
@@ -42,18 +42,7 @@ color = Color( 0.168627, 0.168627, 0.168627, 1 )
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="EnemySprite" type="Sprite" parent="."]
-material = SubResource( 18 )
-position = Vector2( 706, 126 )
-texture = ExtResource( 13 )
-
 [node name="Collectibles" type="Node2D" parent="."]
-
-[node name="Flashlight" parent="Collectibles" instance=ExtResource( 4 )]
-position = Vector2( 392, 504 )
-
-[node name="2DCollectiblePickup" parent="Collectibles" instance=ExtResource( 8 )]
-position = Vector2( -1595, -590 )
 
 [node name="Outdoor" type="Node2D" parent="."]
 
@@ -75,7 +64,7 @@ region_rect = Rect2( -129.075, -127.458, 1153.1, 1153.22 )
 position = Vector2( -422, -869 )
 
 [node name="Streetlamp2" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 3 )]
-position = Vector2( -419, -2097 )
+position = Vector2( -408, -2214 )
 
 [node name="Streetlamp3" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 3 )]
 position = Vector2( 430, -1583 )
@@ -124,7 +113,6 @@ position = Vector2( 430, -1583 )
 rotation = 3.14159
 
 [node name="Buildings" type="Node2D" parent="Outdoor"]
-scale = Vector2( 1.03418, 1 )
 
 [node name="MunicipalBuilding" parent="Outdoor/Buildings" instance=ExtResource( 7 )]
 position = Vector2( -1537, -1491 )
@@ -179,6 +167,8 @@ scale = Vector2( 2, 2 )
 scale = Vector2( 1, 40 )
 shape = SubResource( 19 )
 
+[node name="NPCPatrolRoutes" type="Node2D" parent="Outdoor"]
+
 [node name="Player" type="Node2D" parent="."]
 
 [node name="VehicularTraffic" type="Node2D" parent="."]
@@ -187,8 +177,19 @@ shape = SubResource( 19 )
 
 [node name="DrivingPath2" parent="VehicularTraffic" instance=ExtResource( 17 )]
 
+[node name="QuestGivers" type="Node2D" parent="."]
+
+[node name="MagicalHobo" parent="QuestGivers" instance=ExtResource( 18 )]
+position = Vector2( 1101, 1541 )
+
+[node name="MobBoss" parent="QuestGivers" instance=ExtResource( 19 )]
+position = Vector2( -1465, 1087 )
+
+[node name="FemmeFatale" parent="QuestGivers" instance=ExtResource( 20 )]
+position = Vector2( 1640, -1887 )
+
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Player" ), [ ExtResource( 1 ) ] ]
+resources = [ PoolStringArray( "LoudNoise", "Player" ), [ ExtResource( 4 ), ExtResource( 1 ) ] ]
 
 [node name="Audio" type="Node" parent="."]
 
@@ -208,3 +209,79 @@ volume_db = -7.0
 [node name="BGMusicMysterious" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 9 )
 volume_db = -7.0
+
+[node name="NavPolygons" type="Navigation2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="MunicipalEntrance" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1514, -1286 )
+scale = Vector2( 2.09672, 2.09672 )
+Type = 1
+
+[node name="CommercialUnitA" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1881, 678 )
+scale = Vector2( 2, 2 )
+
+[node name="CommercialUnitA2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -2161, 1347 )
+scale = Vector2( 1.67, 1.67 )
+
+[node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1588, 1349 )
+scale = Vector2( 1.55423, 1.28862 )
+
+[node name="CommercialUnitB" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1462, 678 )
+scale = Vector2( 2.6, 2.6 )
+
+[node name="CommercialUnitC" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -950, 678 )
+scale = Vector2( 2.19659, 2.19659 )
+
+[node name="CommercialUnitC2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -869, 1351 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="107MainDoor" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1022, -870 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95MainDoorFront" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 2052, -873 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95MainDoorBack" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1588, -1337 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="107First" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 989, -2270 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95FirstDoorFront" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1721, -2335 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="95FirstDoorBack" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( 1987, -1803 )
+scale = Vector2( 0.870445, 0.870445 )
+Type = 1
+
+[node name="DynamicDoor" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1662, 1608 )
+required_item = "Pizza Coupon"
+
+[node name="DynamicDoor2" parent="Doors" instance=ExtResource( 21 )]
+position = Vector2( -1884, 1611 )
+scale = Vector2( 1.60282, 1.06143 )
+required_item = "Forged Books"
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="Noises" type="Node2D" parent="."]

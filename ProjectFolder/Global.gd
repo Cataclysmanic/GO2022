@@ -2,9 +2,18 @@ extends Node
 
 
 var world_controller = null
-var current_scene = null
+var current_city_map = null
+var player
 var IO = null
 var Utils = null
+#var in_danger = "no" # moved to building is_player_present()
+
+var user_preferences = {
+	"difficulty": 1.0, #0.5 to 3.0
+	"gore": true,
+	"shake_and_flash":true,
+	"debug":false,
+}
 
 
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
@@ -19,13 +28,21 @@ var trigger_events = { # a few things we can test for, to see if the user alread
 	"missing_tutorial_key_reported":false,
 }
 
-
-
 func pause():
 	game_state = STATES.PAUSED
-	
+
+	# I don't normally like to use get_tree().paused,
+	# but for a quick game jam, it'll do.
+	get_tree().paused = true
+
+
 func resume():
 	game_state = STATES.ACTIVE
+
+	# I don't normally like to use get_tree().paused,
+	# but for a quick game jam, it'll do.
+	get_tree().paused = false
+
 
 func is_paused():
 	if game_state == STATES.ACTIVE:

@@ -28,9 +28,9 @@
      inkscape:deskcolor="#57594a"
      inkscape:document-units="px"
      showgrid="true"
-     inkscape:zoom="0.97792718"
-     inkscape:cx="318.53087"
-     inkscape:cy="263.82332"
+     inkscape:zoom="0.85310099"
+     inkscape:cx="216.26982"
+     inkscape:cy="253.19394"
      inkscape:window-width="1200"
      inkscape:window-height="736"
      inkscape:window-x="175"
@@ -46,7 +46,7 @@
      id="defs2"><color-profile
        name="sRGB-IEC61966-2.1"
        xlink:href="file:///System/Library/ColorSync/Profiles/sRGB%20Profile.icc"
-       id="color-profile3764" /></defs><g
+       id="color-profile1830" /></defs><g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Floors"
@@ -56,7 +56,10 @@
        width="169.33333"
        height="203.2"
        x="15.866665"
-       y="12.799999" /><rect
+       y="12.799999"
+       inkscape:export-filename="OfficeFlor.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" /><rect
        style="fill:#3e4846;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:round"
        id="rect2341"
        width="152.39999"
@@ -75,7 +78,10 @@
        height="203.2"
        x="-493.06717"
        y="-498.13373"
-       transform="scale(-1)" /><rect
+       transform="scale(-1)"
+       inkscape:export-filename="../../ProjectFolder/scenes/City/2D_WorldMap/Buildings/CommercialBuildings/PizzaParlourWalls.png"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" /><rect
        style="fill:#514228;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:round"
        id="rect2644"
        width="152.39999"
@@ -170,7 +176,7 @@
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Roof"
-     style="display:inline"><path
+     style="display:none"><path
        id="rect2906"
        style="fill:#999999;fill-opacity:1;stroke:#2b1100;stroke-width:4;stroke-linejoin:round;stroke-opacity:1"
        d="m 490.36434,10.783196 c -16.47151,0.04102 -32.94607,0.0059 -49.41875,0.01758 -141.24844,0 -282.49688,0 -423.74532,0 -0.87934,0.149937 -1.74741,0.517222 -2.47417,1.009769 -0.62708,0.55825 -1.13437,1.209534 -1.30408,2.049048 -0.45455,1.503176 -0.12434,3.089879 -0.22175,4.63298 0,66.502467 0,133.004947 0,199.507417 0.32883,1.44449 0.94534,3.12279 2.51523,3.59835 1.70802,0.70845 3.58225,0.2949 5.37227,0.40165 156.74844,0 313.49688,0 470.24532,0 1.44448,-0.32883 3.12278,-0.94534 3.59835,-2.51523 0.70845,-1.70802 0.2949,-3.58224 0.40165,-5.37227 0,-66.43724 0,-132.87448 0,-199.311714 -0.32884,-1.444487 -0.94535,-3.122788 -2.51523,-3.598352 -0.77723,-0.304903 -1.61795,-0.461164 -2.45352,-0.419226 z" /><path

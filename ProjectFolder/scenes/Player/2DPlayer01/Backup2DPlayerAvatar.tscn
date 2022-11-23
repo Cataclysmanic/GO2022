@@ -1,0 +1,151 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://scenes/_common/Materials/SpotlightLightConeBlurred.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Items/tools/CircleOmniLight.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Player/MerikAnimations/Aim_walking.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Player/2DPlayer01/2DPlayer.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Player/PaperDoll/PaperDoll.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Player/2DPlayer01/ZoomingCamera2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Items/weapons/Gun2D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Player/2DPlayer01/BloodDecal.png" type="Texture" id=10]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 13.0
+height = 6.0
+
+[sub_resource type="CanvasItemMaterial" id=19]
+light_mode = 1
+
+[sub_resource type="Animation" id=22]
+resource_name = "dying"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("BloodDripParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "hit"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BloodSpurtParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Gradient" id=21]
+offsets = PoolRealArray( 0.00787402, 0.348031, 0.637795, 0.856693, 0.993701 )
+colors = PoolColorArray( 0.987442, 0, 0, 1, 0.924413, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0.929375, 0.851251, 0, 1 )
+
+[node name="PlayerDetective" type="KinematicBody2D"]
+material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Flashlight" type="Light2D" parent="."]
+position = Vector2( -0.59202, -2.0036 )
+rotation = 4.71845
+scale = Vector2( 1.25965, 1.51146 )
+texture = ExtResource( 1 )
+offset = Vector2( 252.337, 0.993408 )
+mode = 2
+shadow_enabled = true
+
+[node name="GlowOmniLight" type="Light2D" parent="."]
+scale = Vector2( 1.00781, 0.997654 )
+texture = ExtResource( 2 )
+color = Color( 1, 0.980392, 0.901961, 1 )
+energy = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 19 )
+position = Vector2( -3, 0 )
+scale = Vector2( 0.262115, 0.283584 )
+texture = ExtResource( 3 )
+hframes = 9
+vframes = 3
+
+[node name="PaperDoll" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( -6, 0 )
+scale = Vector2( 0.207514, 0.207514 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 7 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 6 )]
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Gun2D" ), [ ExtResource( 8 ) ] ]
+
+[node name="HitNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = 20.0
+pitch_scale = 1.5
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="DeathTimer" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="InvulnerbailityTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/dying = SubResource( 22 )
+anims/hit = SubResource( 20 )
+
+[node name="BloodSpurtParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 75
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.75
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+angle = 45.0
+angle_random = 0.5
+scale_amount = 6.0
+scale_amount_random = 0.75
+color_ramp = SubResource( 21 )
+
+[node name="BloodDripParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 45.0
+explosiveness = 0.25
+lifetime_randomness = 0.5
+local_coords = false
+texture = ExtResource( 10 )
+emission_shape = 1
+emission_sphere_radius = 45.0
+gravity = Vector2( 0, 0 )
+
+[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]

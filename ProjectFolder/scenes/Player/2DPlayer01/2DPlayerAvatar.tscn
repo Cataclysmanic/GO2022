@@ -1,8 +1,8 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/_common/Materials/SpotlightLightConeBlurred.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Items/tools/CircleOmniLight.png" type="Texture" id=2]
-[ext_resource path="res://scenes/2dTest/testTopDownPlayerTex.png" type="Texture" id=3]
+[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayer.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Player/PaperDoll/PaperDoll.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=6]
@@ -10,16 +10,63 @@
 [ext_resource path="res://scenes/Items/weapons/Gun2D.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=9]
 [ext_resource path="res://scenes/Player/2DPlayer01/BloodDecal.png" type="Texture" id=10]
+[ext_resource path="res://scenes/_common/GUI/sfx/bang.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=12]
+[ext_resource path="res://scenes/_common/GUI/sfx/hooray.wav" type="AudioStream" id=13]
+[ext_resource path="res://scenes/_common/GUI/sfx/aaaahh.wav" type="AudioStream" id=14]
+[ext_resource path="res://scenes/_common/GUI/sfx/hah.wav" type="AudioStream" id=15]
+[ext_resource path="res://scenes/_common/GUI/sfx/oooh.wav" type="AudioStream" id=16]
+[ext_resource path="res://scenes/_common/GUI/sfx/huh.wav" type="AudioStream" id=17]
+[ext_resource path="res://scenes/_common/GUI/sfx/notEnoughEnergy.wav" type="AudioStream" id=18]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 57.8274, 159.989 )
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 13.0
 height = 6.0
 
-[sub_resource type="CanvasItemMaterial" id=19]
-light_mode = 1
+[sub_resource type="Animation" id=24]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("BloodDripParticles:angle_random")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaperDoll:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PaperDoll:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=22]
 resource_name = "dying"
@@ -51,14 +98,75 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true, false ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("PaperDoll:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Gradient" id=21]
 offsets = PoolRealArray( 0.00787402, 0.348031, 0.637795, 0.856693, 0.993701 )
 colors = PoolColorArray( 0.987442, 0, 0, 1, 0.924413, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0.929375, 0.851251, 0, 1 )
 
+[sub_resource type="Gradient" id=23]
+interpolation_mode = 2
+offsets = PoolRealArray( 0, 0.78719, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0 )
+
+[sub_resource type="CanvasItemMaterial" id=25]
+light_mode = 1
+
+[sub_resource type="DynamicFontData" id=27]
+font_path = "res://scenes/_common/GUI/fonts/SpecialElite-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=28]
+size = 24
+font_data = SubResource( 27 )
+
+[sub_resource type="CanvasItemMaterial" id=26]
+light_mode = 1
+
 [node name="PlayerDetective" type="KinematicBody2D"]
 material = SubResource( 3 )
+scale = Vector2( 1.25, 1.25 )
+collision_mask = 62
 script = ExtResource( 4 )
+
+[node name="DashAudio" type="Node" parent="."]
+
+[node name="InsufficientEnergySound" type="AudioStreamPlayer" parent="DashAudio"]
+stream = ExtResource( 18 )
+
+[node name="DashSound" type="AudioStreamPlayer" parent="DashAudio"]
+stream = ExtResource( 17 )
+
+[node name="MeleeAttackZone" type="Area2D" parent="."]
+position = Vector2( -1.90735e-06, 0 )
+scale = Vector2( 0.207514, 0.207514 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeAttackZone"]
+position = Vector2( 57.8274, 0 )
+shape = SubResource( 29 )
+
+[node name="MeleeAudio" type="Node" parent="MeleeAttackZone"]
+
+[node name="hah" type="AudioStreamPlayer" parent="MeleeAttackZone/MeleeAudio"]
+stream = ExtResource( 15 )
+
+[node name="huh" type="AudioStreamPlayer" parent="MeleeAttackZone/MeleeAudio"]
+stream = ExtResource( 17 )
+
+[node name="ooh" type="AudioStreamPlayer" parent="MeleeAttackZone/MeleeAudio"]
+stream = ExtResource( 16 )
 
 [node name="Flashlight" type="Light2D" parent="."]
 position = Vector2( -0.59202, -2.0036 )
@@ -66,7 +174,6 @@ rotation = 4.71845
 scale = Vector2( 1.25965, 1.51146 )
 texture = ExtResource( 1 )
 offset = Vector2( 252.337, 0.993408 )
-mode = 2
 shadow_enabled = true
 
 [node name="GlowOmniLight" type="Light2D" parent="."]
@@ -78,15 +185,17 @@ energy = 0.3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-material = SubResource( 19 )
-position = Vector2( -3, 0 )
-texture = ExtResource( 3 )
-
 [node name="PaperDoll" parent="." instance=ExtResource( 5 )]
 position = Vector2( -6, 0 )
 scale = Vector2( 0.207514, 0.207514 )
+
+[node name="TargetArea" type="Area2D" parent="PaperDoll"]
+position = Vector2( 28.9137, 0 )
+scale = Vector2( 4.81895, 4.81895 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PaperDoll/TargetArea"]
+
+[node name="Polygon2D" type="Polygon2D" parent="PaperDoll/TargetArea"]
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
 
@@ -102,17 +211,28 @@ stream = ExtResource( 9 )
 volume_db = 20.0
 pitch_scale = 1.5
 
+[node name="DeathScream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = 10.0
+
+[node name="RecoveryNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = 10.0
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="DeathTimer" type="Timer" parent="Timers"]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="InvulnerbailityTimer" type="Timer" parent="Timers"]
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
+[node name="DyingWarningUpdateTimer" type="Timer" parent="Timers"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 24 )
 anims/dying = SubResource( 22 )
 anims/hit = SubResource( 20 )
 
@@ -135,14 +255,76 @@ color_ramp = SubResource( 21 )
 [node name="BloodDripParticles" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 30
-lifetime = 45.0
+lifetime = 20.0
 explosiveness = 0.25
 lifetime_randomness = 0.5
 local_coords = false
 texture = ExtResource( 10 )
 emission_shape = 1
 emission_sphere_radius = 45.0
+spread = 180.0
 gravity = Vector2( 0, 0 )
+angle = 180.0
+angle_random = 0.8
+scale_amount = 1.1
+scale_amount_random = 0.5
+color_ramp = SubResource( 23 )
 
+[node name="RecoveryFireworks" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.6
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 1.0
+angle = 45.0
+angle_random = 0.52
+scale_amount = 6.0
+scale_amount_random = 0.5
+color = Color( 0.682353, 0, 1, 1 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[node name="deadPlaceholder" type="Sprite" parent="."]
+visible = false
+position = Vector2( -5.33334, 3.33331 )
+scale = Vector2( 0.124561, 0.106695 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="deadPlaceholder"]
+material = SubResource( 25 )
+margin_left = -867.042
+margin_top = -487.373
+margin_right = -359.042
+margin_bottom = -406.373
+rect_scale = Vector2( 4.10399, 3.94309 )
+custom_fonts/font = SubResource( 28 )
+text = "You failed cheif...
+The case will forever remain unsolved....
+If only you could QUIT and try again..."
+
+[node name="PlaceholderMeleeSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 1.2517e-06, -1.51992e-06 )
+stream = ExtResource( 11 )
+volume_db = 9.59
+pitch_scale = 0.68
+attenuation = 38.0546
+
+[node name="DebugInfo" type="Label" parent="."]
+material = SubResource( 26 )
+margin_left = -20.6667
+margin_top = -70.0
+margin_right = 19.3333
+margin_bottom = -56.0
+grow_horizontal = 2
+rect_pivot_offset = Vector2( 21.3333, 6 )
+custom_fonts/font = ExtResource( 12 )
+text = "State"
+align = 1
+
+[connection signal="body_entered" from="MeleeAttackZone" to="." method="_on_MeleeAttackZone_body_entered"]
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]
+[connection signal="timeout" from="Timers/DyingWarningUpdateTimer" to="." method="_on_DyingWarningUpdateTimer_timeout"]

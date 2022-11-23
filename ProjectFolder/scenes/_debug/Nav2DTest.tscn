@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/_debug/Nav2DTest.gd" type="Script" id=1]
+[ext_resource path="res://scenes/_common/Materials/SmallWhiteSquare.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+
+[sub_resource type="NavigationPolygon" id=2]
+vertices = PoolVector2Array( -5, 592, 513, 316, 603, 293, 635, 291, 721, 480, 747, 481, 1021, 599, 458, 172, 456, 145, 605, 75, 513, 290, 1012, 3, 746, 150, 636, 79, 720, 149, 182, 313, 4, 8, 182, 291, 282, 172, 284, 147 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 0, 4 ), PoolIntArray( 7, 8, 9, 2, 10 ), PoolIntArray( 11, 6, 5, 12 ), PoolIntArray( 13, 11, 12, 14 ), PoolIntArray( 3, 13, 14, 4 ), PoolIntArray( 15, 1, 0 ), PoolIntArray( 15, 0, 16, 17 ), PoolIntArray( 2, 1, 10 ), PoolIntArray( 7, 10, 17, 18 ), PoolIntArray( 18, 17, 16, 19 ), PoolIntArray( 8, 19, 16, 9 ), PoolIntArray( 9, 16, 11 ), PoolIntArray( 9, 11, 13 ) ]
+outlines = [ PoolVector2Array( 4, 8, 1012, 3, 1021, 599, -5, 592 ), PoolVector2Array( 182, 291, 513, 290, 513, 316, 182, 313 ), PoolVector2Array( 746, 150, 747, 481, 721, 480, 720, 149 ), PoolVector2Array( 284, 147, 456, 145, 458, 172, 282, 172 ), PoolVector2Array( 636, 79, 635, 291, 603, 293, 605, 75 ) ]
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 33.0151
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 164, 10 )
+
+[node name="NavTest" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 2 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 88, 85 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 3 )
+
+[node name="LightOccluders" type="Node2D" parent="."]
+
+[node name="StaticBodyWalls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBodyWalls"]
+position = Vector2( 348, 303 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyWalls/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticBodyWalls/StaticBody2D"]
+scale = Vector2( 20.44, 1.26 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="StaticBodyWalls"]
+position = Vector2( 369, 159 )
+scale = Vector2( 0.514402, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyWalls/StaticBody2D4"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticBodyWalls/StaticBody2D4"]
+scale = Vector2( 20.44, 1.26 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodyWalls"]
+position = Vector2( 734, 314 )
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyWalls/StaticBody2D2"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticBodyWalls/StaticBody2D2"]
+scale = Vector2( 20.44, 1.26 )
+texture = ExtResource( 2 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodyWalls"]
+position = Vector2( 622, 182 )
+rotation = 1.57079
+scale = Vector2( 0.619703, 1.02275 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodyWalls/StaticBody2D3"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="StaticBodyWalls/StaticBody2D3"]
+scale = Vector2( 20.44, 1.26 )
+texture = ExtResource( 2 )
+
+[node name="NavUpdateTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.811765, 0.85098, 0.113725, 1 )
+position = Vector2( 852, 300 )
+scale = Vector2( 2.09106, 2.25543 )
+texture = ExtResource( 2 )
+
+[node name="Line2D" type="Line2D" parent="."]
+
+[connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]

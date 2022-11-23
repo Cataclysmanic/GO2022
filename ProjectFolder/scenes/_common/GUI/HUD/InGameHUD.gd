@@ -2,6 +2,7 @@ extends Control
 
 onready var ammo_container = find_node("Ammo")
 onready var inventory_container = find_node("InventoryItems")
+
 var iconSize = Vector2(32,32)
 
 var stored_items = []
@@ -10,7 +11,12 @@ var time_elapsed : float
 var last_polling_time : float
 var polling_interval : float = 2.0 # seconds between checking with IO about inventory
 
+enum InventoryStates { CLOSED, OPEN }
+var InventoryState = InventoryStates.CLOSED
+var inventory_offset = 200
+var inventory_leave_showing = 25
 
+var death_time_remaining = 30.0
 
 signal reloaded(count)
 
@@ -19,7 +25,7 @@ signal reloaded(count)
 func _ready():
 	time_elapsed = 0.0
 	last_polling_time = 0.0
-
+	hide_blood_vignette()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -43,39 +49,51 @@ func _unhandled_key_input(_event):
 		
 
 func toggle_inventory_display():
-	if $PopupInventoryContainer.margin_top == -25:
+	if InventoryState == InventoryStates.CLOSED:
 		show_inventory()
 	else:
 		hide_inventory()
 
+func show_blood_vignette():
+	$BloodSpatterVignette.show()
+	$BloodSpatterVignette/ImminentDeathWarningLabel.hide()
+func hide_blood_vignette():
+	$BloodSpatterVignette.hide()
 
 func show_inventory():
+	Global.pause()
+	
 	$AudioEvents/BoxOpenNoise.play()
-	var hidden_bottom_margin = -25
-	var revealed_bottom_margin = -175
+	var hidden_bottom_margin = -inventory_leave_showing
+	var revealed_bottom_margin = -(inventory_offset-inventory_leave_showing)
 	var tween = get_node("Tween")
 	tween.interpolate_property($PopupInventoryContainer, "rect_position", Vector2(0, revealed_bottom_margin), Vector2(0,hidden_bottom_margin), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_bottom", revealed_bottom_margin, hidden_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_top", hidden_bottom_margin, revealed_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 
 	tween.start()
+	InventoryState = InventoryStates.OPEN
 	
 func hide_inventory():
+	Global.resume()
+	
 	$AudioEvents/BoxCloseNoise.play()
-	var hidden_bottom_margin = -25
-	var revealed_bottom_margin = -175
+	var hidden_bottom_margin = -inventory_leave_showing
+	var revealed_bottom_margin = -(inventory_offset-inventory_leave_showing)
 	var tween = get_node("Tween")
 	tween.interpolate_property($PopupInventoryContainer, "rect_position", Vector2(0,hidden_bottom_margin), Vector2(0,revealed_bottom_margin), 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_bottom",  hidden_bottom_margin, revealed_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.interpolate_property($PopupInventoryContainer, "margin_top", revealed_bottom_margin, hidden_bottom_margin, 0.25, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 	tween.start()
+	InventoryState = InventoryStates.CLOSED
 
 
-		
+func is_inventory_open():
+	if InventoryState == InventoryStates.CLOSED:
+		return false
+	else:
+		return true
 
-	
-
-	
 
 func clear_ammo_display():
 	for bullet in ammo_container.get_children():
@@ -96,7 +114,7 @@ func add_bullet_icon():
 
 func reload_if_possible():
 	
-	if Global.IO.has_item("magazine"):
+	if Global.IO.player_has_item("magazine"):
 		Global.IO._on_collectible_used("magazine")
 		for _i in range(6):
 			add_bullet_icon()
@@ -107,11 +125,14 @@ func clear_inventory():
 		item.queue_free()
 	
 func display_inventory_item(itemResource : Resource):
+	assert(itemResource != null)
 	$PopupItemViewer.init(itemResource)
 
 func inventory_add(itemResource : Resource):
 	var iconButton = $ResourcePreloader.get_resource("InventoryIconButton").instance()
+	
 	iconButton.init(itemResource, self)
+	iconButton.focus_mode = Control.FOCUS_NONE
 	inventory_container.add_child(iconButton)
 	
 	#display_inventory_item(itemResource)
@@ -134,7 +155,7 @@ func rebuild_inventory():
 #		Global.trigger_events["missing_gun_reported"] = true
 
 func _on_collectible_picked_up(pickupObj):
-	var itemResource = pickupObj.item_details
+	var itemResource = pickupObj.item_info
 	
 	#Global.pause() # why isn't this firing the second time we pick something up?
 
@@ -148,6 +169,9 @@ func _on_collectible_picked_up(pickupObj):
 	find_node("DebugInfo").text = debugText
 
 	play_specific_audio_events(itemResource.item_name)
+	if itemResource["display_immediately"] == true:
+
+		display_inventory_item(itemResource)
 
 
 func play_specific_audio_events(itemName:String):
@@ -196,3 +220,20 @@ func _on_inventory_icon_clicked(itemRes):
 
 func _on_InventoryButton_toggled(_button_pressed):
 	toggle_inventory_display()
+
+#func _on_player_dying(time):
+#	$BloodSpatterVignette/DeathCountdownTimer.start()
+
+func show_dire_countdown(time_left):
+	var bigCounter = $BloodSpatterVignette/ImminentDeathWarningLabel
+	if time_left < 3 and time_left > 0:
+		bigCounter.show()
+		bigCounter.text = str(time_left)
+	else:
+		bigCounter.hide()
+
+
+func _on_player_recovered():
+	$BloodSpatterVignette/ImminentDeathWarningLabel.hide()
+	$BloodSpatterVignette.hide()
+	

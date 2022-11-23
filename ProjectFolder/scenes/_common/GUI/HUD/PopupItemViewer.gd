@@ -11,6 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 func init(itemResource : InventoryItemResource):
+	assert(itemResource != null)
 	Global.pause()
 	find_node("ItemName").text = itemResource.item_name
 	find_node("ItemDescription").text = itemResource.notes_for_journal

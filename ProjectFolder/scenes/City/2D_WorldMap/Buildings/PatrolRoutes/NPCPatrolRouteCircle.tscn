@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/PatrolRoutePathFollowTarget2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteTemplate.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -120, 65, 0, 0, 0, 0, -120, -17, 0, 0, 0, 0, -3, -138, 0, 0, 0, 0, 130, -136, 0, 0, 0, 0, 265, -61, 0, 0, 0, 0, 267, 58, 0, 0, 0, 0, 159, 153, 0, 0, 0, 0, -17, 159, 0, 0, 0, 0, -120, 65 )
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31, 13 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 14, 12.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 14, 12.5 )
+
+[node name="NPCPatrolRoute" type="Node2D"]
+position = Vector2( -1, -1 )
+scale = Vector2( 5, 5 )
+script = ExtResource( 2 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( -1, -1 )
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -72, -14 )
+curve = SubResource( 1 )
+
+[node name="SpeedAffectZones" type="Node2D" parent="."]
+position = Vector2( -1, 0 )
+
+[node name="HustleZones" type="Area2D" parent="SpeedAffectZones"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpeedAffectZones/HustleZones"]
+position = Vector2( -17, -148 )
+scale = Vector2( 1.69622, 0.947812 )
+shape = SubResource( 2 )
+
+[node name="LingerZones" type="Area2D" parent="SpeedAffectZones"]
+position = Vector2( 0, 1 )
+
+[node name="MudShape01" type="CollisionShape2D" parent="SpeedAffectZones/LingerZones"]
+position = Vector2( 194, -18 )
+scale = Vector2( 0.997233, 3.86601 )
+shape = SubResource( 3 )
+
+[node name="MudShape02" type="CollisionShape2D" parent="SpeedAffectZones/LingerZones"]
+position = Vector2( -136, 92 )
+scale = Vector2( 4, 4 )
+shape = SubResource( 4 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "follower" ), [ ExtResource( 1 ) ] ]
