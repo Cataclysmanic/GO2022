@@ -103,15 +103,6 @@ margin_bottom = 20.0
 text = "New Game"
 SceneToLaunch = ExtResource( 9 )
 
-[node name="LoadGameButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 161.0
-margin_right = 307.0
-margin_bottom = 35.0
-text = "Load Game"
-
 [node name="DebugButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0

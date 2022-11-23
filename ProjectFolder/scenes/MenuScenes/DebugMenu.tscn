@@ -8,7 +8,8 @@
 [ext_resource path="res://scenes/_debug/Nav2DTest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Campaign.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/City/Indoors/2dBuildingmap.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/City/2D_WorldMap/2DCItyMap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/City/2D_WorldMap/2D_CItyMap.tscn" type="PackedScene" id=11]
+
 
 [node name="DebugMenu" type="Control"]
 anchor_right = 1.0
