@@ -115,11 +115,55 @@ eyewitness account (heard gunshots about 10 minutes before the police arrived)
 
 "
 
+[node name="Clues" type="Node2D" parent="Characters/MotherOfVictim"]
+
+[node name="VeronicaNotHerDaughter" parent="Characters/MotherOfVictim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Photo Album",
+"notes_for_journal": "Oh god, I can't bear to look at her extremely large photo album with her. Wait a minute, that photograph of her daughter, Tommy's sister, that's not the Veronica I saw.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MortgageOverdue" parent="Characters/MotherOfVictim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Overdue Payment Notice",
+"notes_for_journal": "Poor old Lauren. She's down on her luck and her mortgage is overdue. I don't even know what income source she has.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="EyewitnessAccountTwoGunshots" parent="Characters/MotherOfVictim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Eyewitness Account of Shooting",
+"notes_for_journal": "Lauren Valiant claims to have heard 2 shots that evening, a short time before the police arrived. If that's true, what accounts for the second shot?",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [node name="Dame" parent="Characters" instance=ExtResource( 5 )]
 position = Vector2( 301, 375 )
 scale = Vector2( 0.15, 0.15 )
 image = ExtResource( 6 )
 character_name = "Veronica Winter"
+description = "Red dress. Long legs.
+"
+relationships = "secret boyfriend of mob boss, Fusili Romano.
+leads on the weasel to get him to do stuff."
+corroboration = "she couldn't have done it, she asked the detective to protect Tommy. (Problem is, Tommy isn't actually her brother. They have no relationship.)"
+
+[node name="Clues" type="Node2D" parent="Characters/Dame"]
+
+[node name="Paper" parent="Characters/Dame/Clues" instance=ExtResource( 10 )]
 
 [node name="Weasel" parent="Characters" instance=ExtResource( 5 )]
 position = Vector2( 686, 385 )
@@ -218,9 +262,14 @@ position = Vector2( 399, 22 )
 scale = Vector2( 0.15, 0.15 )
 image = ExtResource( 4 )
 character_name = "Andrew Worth"
-description = "Victim"
-relationships = "\"brother\" of Moll"
-motives = "owed money to crime boss.\\n ex-partner of detective"
+description = "Protagonist"
+relationships = "ex-partner of victim
+former cop
+once worked under mayor Mick O'Donnell, who was Chief of Police at the time."
+corroboration = "The Corpse Stops here.
+First guy on the scene is always the prime suspect.
+Framed by Veronica Winter
+"
 
 [node name="MagnifyingGlass" parent="." instance=ExtResource( 9 )]
 position = Vector2( 391, 290 )
