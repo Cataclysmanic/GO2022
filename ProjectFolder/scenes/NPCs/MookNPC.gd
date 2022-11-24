@@ -278,6 +278,7 @@ func shoot(): # this ought to be in a separate gun object
 func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 	health -= damage
 	if health <= 0:
+		knock_back(incomingVector.normalized() * 3.0 * damage)
 		die()
 	else:
 		flash_hit()
@@ -296,7 +297,8 @@ func extreme_knock_back(impactVector):
 
 func knock_back(impactVector):
 	# ideally we'd tween / lerp to this, but I'll just teleport the NPC backwards for now.
-	position += impactVector
+	var _collision = move_and_collide(impactVector)
+	#position += impactVector
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):

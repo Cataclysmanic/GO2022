@@ -333,7 +333,8 @@ func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 			$Timers/InvulnerbailityTimer.start()
 		
 func knockback(impactVector):
-	position += impactVector
+	var _collision = move_and_collide(impactVector)
+	#position += impactVector
 		
 func _on_healed(amount):
 	if health < max_health:

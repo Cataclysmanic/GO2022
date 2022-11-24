@@ -106,6 +106,18 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
+[node name="EyewitnessAccountTwoGunshots" parent="PotentialRewards" instance=ExtResource( 6 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Eyewitness Account of Shooting",
+"notes_for_journal": "Lauren Valiant claims to have heard 2 shots that evening, a short time before the police arrived. If that's true, what accounts for the second shot?",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [node name="InteractInstruction" type="Label" parent="."]
 visible = false
 margin_left = 46.0

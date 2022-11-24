@@ -20,9 +20,12 @@ tool
 var city_map
 var quest_target_location
 var inventory_requirement : String # name of the thing that must be in inventory in order to unlock the quest reward
-
+export var no_key_spawn : bool # if true, don't spawn the quest requirement.. assume it's already present on the map or comes as a result of some other quest.
+export (String, MULTILINE) var key_spawn_instructions : String = "Set no_key_spawn to true if the quest-giver's requirement is furnished by another quest-giver as a reward. Otherwise the quest requirement will spawn randomly somewhere no the map."
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
+export (String, MULTILINE) var dialog_instructions : String = "Fill in the PoolStringArrays with dialog to be spoken to the player. First is if they don't have the quest objective in inventory, second is after retrieiving the quest objective."
+
 var currentQuest
 var alreadyCompleted = false
 var alreadyTaken = false
