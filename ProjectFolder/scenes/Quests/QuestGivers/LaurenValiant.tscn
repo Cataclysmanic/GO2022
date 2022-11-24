@@ -64,6 +64,7 @@ autowrap = true
 stream = ExtResource( 3 )
 
 [node name="PotentialRequiredItems" type="Node2D" parent="."]
+visible = false
 
 [node name="Evidence" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
 visible = false
@@ -77,8 +78,11 @@ item_details = {
 }
 
 [node name="PotentialRewards" type="Node2D" parent="."]
+visible = false
 
 [node name="TalkClue" parent="PotentialRewards" instance=ExtResource( 9 )]
+visible = false
+scale = Vector2( 0.550716, 0.550716 )
 item_details = {
 "display_immediately": true,
 "is_unique": false,
@@ -90,6 +94,8 @@ item_details = {
 }
 
 [node name="PhotoAlbum" parent="PotentialRewards" instance=ExtResource( 8 )]
+visible = false
+scale = Vector2( 0.551319, 0.551319 )
 item_details = {
 "display_immediately": true,
 "is_unique": false,

@@ -415,8 +415,8 @@ item_details = {
 }
 
 [node name="LaurenValiantMotherOfVictim" parent="House3_SW" instance=ExtResource( 23 )]
-position = Vector2( -105, 111 )
-scale = Vector2( 0.301066, 0.301066 )
+position = Vector2( -94, 126 )
+scale = Vector2( 0.213622, 0.213622 )
 
 [node name="House4_SE" type="Node2D" parent="."]
 

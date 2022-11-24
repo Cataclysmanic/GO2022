@@ -8,6 +8,8 @@ onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 #export var active : bool = false
 export var chance_to_have_gun = 0.75
+export var magazine_size = 6
+var ammo_remaining = magazine_size
 export var chance_to_spawn_loot = 0.25
 var health = rand_range(10.0,20.0) # should take 1 or 2 hits to kill them
 var map_scene
@@ -253,12 +255,13 @@ func shoot(): # this ought to be in a separate gun object
 			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
 
 	# this should all be in a separate gun object, but I'll move it later.
-	if has_gun and State == States.AIMING and !player.dead:
+	if has_gun and State == States.AIMING and !player.dead and ammo_remaining > 0:
 
 		var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 		var pos = gun.get_node("Muzzle").get_global_position()
 		var bulletSpeed = 600.0
 		bullet.init(self, pos, rotation, bulletSpeed)
+		ammo_remaining -= 1
 		emit_signal("projectile_ready", bullet)
 		var gunshotNoises = $Sprite/NPCGun/GunshotNoises.get_children()
 		var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
@@ -266,9 +269,11 @@ func shoot(): # this ought to be in a separate gun object
 		gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
 		gunshotNoise.play()
 		$AnimationPlayer.play("shoot")
-		$Sprite/NPCGun/ReloadTimer.start()
+		$Sprite/NPCGun/TriggerFingerTimer.start()
+		set_state(States.AIMING)
+	elif ammo_remaining == 0:
 		set_state(States.RELOADING)
-
+		$Sprite/NPCGun/ReloadTimer.start()
 
 func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 	health -= damage
@@ -354,6 +359,7 @@ func _on_NavUpdateTimer_timeout():
 func _on_ReloadTimer_timeout():
 	if not State in [States.DEAD]:
 		if State == States.RELOADING:
+			ammo_remaining = magazine_size
 			set_state(States.FIGHTING)
 
 

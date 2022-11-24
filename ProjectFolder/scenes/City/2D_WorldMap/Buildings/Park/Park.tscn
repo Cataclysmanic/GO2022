@@ -103,10 +103,28 @@ scale = Vector2( 0.553613, 0.553613 )
 [node name="Rewards" type="Node2D" parent="WillTheWeasel"]
 
 [node name="TalkClue" parent="WillTheWeasel/Rewards" instance=ExtResource( 11 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Will's Gratitude",
+"notes_for_journal": "Will the Rat Snitch promises to do what he can to get Romano off Mrs Valiant's case.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="Requirements" type="Node2D" parent="WillTheWeasel"]
 
 [node name="PaperClue" parent="WillTheWeasel/Requirements" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Job Offer from Fusili Romano",
+"notes_for_journal": "Will the Weasel doesn't get any respect. He wants to be a player in this city, but he doesn't have the steel. Anyways, you secured him a job offer with Fusili Romano. It's a start.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

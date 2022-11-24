@@ -19,8 +19,8 @@ light_mode = 1
 
 [node name="MobBoss" type="KinematicBody2D"]
 position = Vector2( 2, -3 )
+z_index = 1
 script = ExtResource( 2 )
-inventory_requirement = "note 01"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.49012e-08 )

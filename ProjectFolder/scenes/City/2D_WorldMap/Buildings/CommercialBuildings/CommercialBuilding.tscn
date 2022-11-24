@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://scenes/Items/collectables/2D/MiscClue2DPickup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskStatic.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Quests/QuestGivers/MobBoss.tscn" type="PackedScene" id=21]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -351,6 +352,10 @@ position = Vector2( -86, -181 )
 
 [node name="UnitB_RomanoPizza" type="Node2D" parent="Furniture"]
 
+[node name="MobBoss" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 21 )]
+position = Vector2( 4, -126 )
+scale = Vector2( 0.23103, 0.23103 )
+
 [node name="TableLamp9" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 17 )]
 position = Vector2( 72, -232 )
 
@@ -410,7 +415,7 @@ position = Vector2( 54, -78 )
 position = Vector2( 13, -56 )
 
 [node name="MiscClue" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 18 )]
-position = Vector2( 9, -240 )
+position = Vector2( -22, -253 )
 scale = Vector2( 0.16493, 0.159108 )
 item_details = {
 "display_immediately": true,

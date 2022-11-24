@@ -86,6 +86,12 @@ func get_random_quest_requirement_item():
 		
 
 func spawn_quest_reward():
+	# spawn a bandage and some other reward
+	var bandage = load("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn").instance()
+	bandage.enable_pickup()
+	bandage.show()
+	add_child(bandage)
+	
 	var reward
 	if has_node("Rewards"):
 		var potentialRewards = $Rewards.get_children()
@@ -93,11 +99,8 @@ func spawn_quest_reward():
 		reward = randReward.duplicate()
 	elif has_node("PotentialRewards"):
 		reward = $PotentialRewards.get_children()[randi()%$PotentialRewards.get_child_count()].duplicate()
-	else: # spawn a bandage or circumstantial clue
-		if randf() < 0.5: # Bandage
-			reward = load("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn").instance()
-		else: # Circumstantial Clue
-			reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
+	else: # spawn a circumstantial clue if there's no custom reward
+		reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
 	reward.enable_pickup()
 	reward.show()
 	add_child(reward)
@@ -118,7 +121,7 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	
 	var preposition = preposition_a_or_an(inventory_requirement)
 	
-	dialog_unmet_requirements.push_back("It's " + preposition + " " + inventory_requirement + ".")
+	dialog_unmet_requirements.push_back("I need " + preposition + " " + inventory_requirement + ".")
 	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
 	
 	currentQuest = str("Find " + inventory_requirement + " at " + targetLocation.get_address())
@@ -135,7 +138,7 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	
 	
 func preposition_a_or_an(nextWordString):
-	if nextWordString.left(1) in ["a", "e", "o", "i", "u"]:
+	if nextWordString.left(1).to_lower() in "aeiou":
 		return "an"
 	else:
 		return "a"
@@ -186,6 +189,7 @@ func requirements_met(body):
 		requirementsMet = true
 		if !alreadyCompleted and alreadyTaken:
 			body.complete_quest(currentQuest)
+			spawn_quest_reward()
 			alreadyCompleted = true
 		elif !alreadyCompleted and !alreadyTaken:
 			body.update_journal(currentQuest)
