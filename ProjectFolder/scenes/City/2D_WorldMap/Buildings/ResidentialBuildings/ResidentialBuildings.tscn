@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=22]
+[ext_resource path="res://scenes/Quests/QuestGivers/LaurenValiant.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Quests/QuestGivers/MayorOdonnell.tscn" type="PackedScene" id=24]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -284,11 +286,17 @@ scale = Vector2( 0.330533, 0.330533 )
 position = Vector2( 113, -145 )
 rotation = -1.57079
 
-[node name="Paper" parent="House2_NE/DeskSearchable2" instance=ExtResource( 12 )]
-visible = false
-
-[node name="Bandage" parent="House2_NE/DeskSearchable2" instance=ExtResource( 11 )]
-visible = false
+[node name="PaperClue" parent="House2_NE/DeskSearchable2" instance=ExtResource( 20 )]
+scale = Vector2( 0.367318, 0.367318 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Clue - Receipt from Mockingbird Nightclub",
+"notes_for_journal": "Physical Evidence - This receipt puts Mayor O'Donnell at a nightclub during the time of the murder. Of course, ticket stubs could be forged.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="TableLamp" parent="House2_NE" instance=ExtResource( 17 )]
 position = Vector2( 170, -110 )
@@ -299,6 +307,36 @@ position = Vector2( 50, -53 )
 [node name="Couch" parent="House2_NE" instance=ExtResource( 16 )]
 position = Vector2( 58, -110 )
 rotation = 3.14159
+
+[node name="MayorOdonnell" parent="House2_NE" instance=ExtResource( 24 )]
+position = Vector2( 45, -81 )
+scale = Vector2( 0.36343, 0.36343 )
+
+[node name="MemoryClue" parent="House2_NE" instance=ExtResource( 19 )]
+position = Vector2( 154, -24 )
+scale = Vector2( 0.190021, 0.190021 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Memory - O'Donnell back in the day.",
+"notes_for_journal": "I remember O'Donnell from the force. He was chief of police while I was a cop. Didn't like me. In fact, he seemed delighted the day he took my badge.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue2" parent="House2_NE" instance=ExtResource( 19 )]
+position = Vector2( 116, -75 )
+scale = Vector2( 0.164602, 0.164602 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Reflection Clue - Politics",
+"notes_for_journal": "I don't know much about politics, but I know Mayor O'Donnell is a rising star in that world. He's got deep pockets. Someone must be funding his campaigns.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="House3_SW" type="Node2D" parent="."]
 
@@ -375,6 +413,10 @@ item_details = {
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
+
+[node name="LaurenValiantMotherOfVictim" parent="House3_SW" instance=ExtResource( 23 )]
+position = Vector2( -105, 111 )
+scale = Vector2( 0.301066, 0.301066 )
 
 [node name="House4_SE" type="Node2D" parent="."]
 
