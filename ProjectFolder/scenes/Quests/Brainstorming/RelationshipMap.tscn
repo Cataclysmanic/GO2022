@@ -1,0 +1,174 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=1]
+[ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=3]
+[ext_resource path="res://scenes/2.5dTest/detective.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Quests/Brainstorming/CharacterInfo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Quests/QuestGivers/femme-fatale.png" type="Texture" id=6]
+[ext_resource path="res://scenes/NPCs/banker 02.png" type="Texture" id=7]
+[ext_resource path="res://scenes/NPCs/weasel-chibi.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Quests/Brainstorming/MagnifyingGlassMouseLook.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=10]
+
+[node name="Canvas" type="Node2D"]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CrimeBoss" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 107, 276 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 3 )
+character_name = "Fusili Romano"
+description = "The man who really runs this town.
+Power behind the throne.
+Al Capone / Kingpin type.
+Connected. Above the law.
+Wants respect. Power and money and love are tools to that end.
+"
+relationships = "Boyfriend of Moll.
+Puppeteer of Mayor
+Holds mortgage for Matronly mother of victim
+Was owed money by victim
+ "
+motives = "(Man Behind the Man Trope)
+Runs this town.
+Doesn't suffer fools or deadbeats.
+Was owed a large sum of money"
+corroboration = "Alibi: \"It couldn't have been me, I was dining with the mayor at the time.\"
+Posturing: \"Are you sure you want to go sticking your nose where it doesn't belong?\"
+"
+clues = "\"Matronly mother is behind on her mortgage, held by big boss.\"
+\"Maitre D at restaurant confirms that Boss was here with the Mayor at the time of the shooting.\"
+Witness saw Moll with big boss on numerous occassionos: \"They looked pretty friendly to me.\""
+
+[node name="Clues" type="Node2D" parent="Characters/CrimeBoss"]
+
+[node name="AlibiClue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Romano Alibi",
+"notes_for_journal": "The maître d' of the Steakhose claims that Fusili Romano was present along with Mayor O'Donnell at the time of the shooting.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="RelationshipClue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Romano Relationship Eyewitness Account",
+"notes_for_journal": "The Weasel reports that Romano is frequently seen with Veronica Winter. \"Everyone knows they're together.\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="PoliticalContributionClue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Romano PAC",
+"notes_for_journal": "After a little sweet-talking, the paralegal at the bank described a large transfer of money from Fusili Romano into a the campaign fund for Mayor Mick O'Donnell",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MotherOfVictim" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 690, 88 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 2 )
+description = "Matronly mother of victim.
+down on her luck"
+relationships = "mother of victim
+ex-lover of mayor
+
+"
+
+[node name="Dame" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 301, 375 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 6 )
+character_name = "Veronica Winter"
+
+[node name="Weasel" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 686, 385 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 8 )
+character_name = "Will the Weasel"
+description = "Obvious Rat character.
+No one likes him.
+Gets no respect."
+relationships = "sometimes works for the crime boss.
+usually in trouble.
+pines for the Moll.
+"
+motives = "might lash out because he's bottom of the pecking order. Wants to earn his way into the mob.
+"
+corroboration = "\""
+
+[node name="Mayor" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 153, 63 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 7 )
+character_name = "Mayor Mick O'Donnell"
+description = "High roller. Former police chief. Lives large. Seen at lavish events. Political figure on the rise.
+"
+relationships = "Buddy of Crime Boss
+Ex-boyfriend of Matronly Mother
+Mentor to Weasel.
+Ex-Boss of Detective and Victim."
+motives = "Doesn't like the detective.
+Corrupt.
+Likes to live large. Eat and drink well, even during prohibition."
+corroboration = "Crime Boss is in cahoots.
+Weasel wants his respect.
+Mother of victim once dated him. (small world)
+Doesn't like the Detective.
+"
+clues = "\"That's a Bentley. How does he afford this lifestyle on a government salary?\"
+\"He never did like me.\"
+\"Large Political campaign contribution from Crime Boss\"
+"
+
+[node name="Victim" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 476, 264 )
+scale = Vector2( 0.15, 0.15 )
+__meta__ = {
+"_editor_description_": ""
+}
+image = ExtResource( 1 )
+character_name = "Tommy Valiant"
+description = "Victim. ex-cop, former partner, was good, went bad.. got into gambling. owes money to crime boss.
+"
+relationships = "\"brother\" of Moll (but not really)
+ex-partner cop of Detective
+"
+motives = "owed money to crime boss.\\n ex-partner of detective"
+corroboration = "recently dead when detective arrives
+(The Corpse Stops Here trope)
+"
+clues = "\"My ex-partner!\",
+\"I didn't know he had a sister\",
+\"He wouldn't have killed himself\",
+\"He was a good cop\",
+\"I'll never forgive him for costing me my badge.\"
+"
+
+[node name="Detective" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 399, 22 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 4 )
+character_name = "Andrew Worth"
+description = "Victim"
+relationships = "\"brother\" of Moll"
+motives = "owed money to crime boss.\\n ex-partner of detective"
+
+[node name="MagnifyingGlass" parent="." instance=ExtResource( 9 )]
+position = Vector2( 391, 290 )
