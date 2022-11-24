@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteTemplate.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -49,46 +52,31 @@ shape = SubResource( 1 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
-visible = false
 
-[node name="Position2D" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 153.188, -144.307 )
+[node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( -160, -115 )
 
-[node name="Position2D2" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 150.968, -71.5987 )
+[node name="NPCPatrolRoute2" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( -143, 61 )
 
-[node name="Position2D3" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -121.551, -101.015 )
+[node name="NPCPatrolRoute3" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( -143, 133 )
 
-[node name="Position2D4" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -119.886, 77.1489 )
+[node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 106, -160 )
+scale = Vector2( 0.90424, 0.596022 )
 
-[node name="Position2D5" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 61.0531, 144.307 )
+[node name="NPCPatrolRoute5" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 91, -80 )
+scale = Vector2( 1.03708, 0.721461 )
 
-[node name="Position2D6" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 59.388, -81.0341 )
+[node name="NPCPatrolRoute6" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 42, -159 )
+scale = Vector2( 0.647072, 0.675333 )
 
-[node name="Position2D7" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -62.1632, -63.8283 )
-
-[node name="Position2D8" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 55.5028, -143.752 )
-
-[node name="Position2D9" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 187.045, 161.513 )
-
-[node name="Position2D10" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 195.925, 103.235 )
-
-[node name="Position2D11" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -72.7087, 91.5797 )
-
-[node name="Position2D12" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -72.1537, 158.738 )
-
-[node name="Position2D13" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -134.872, 135.982 )
+[node name="NPCPatrolRoute7" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 89, -115 )
+scale = Vector2( 1.06781, 0.409674 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
@@ -183,8 +171,8 @@ location_address = "107 Main St"
 location_details = "The crappy looking house down the road."
 
 [node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 117, 100 )
-location_address = "95 Main St"
+position = Vector2( 55, -52 )
+location_address = "95 1st St"
 location_details = "In the office inside the house on the corner."
 
 [node name="House1_NW" type="Node2D" parent="."]
@@ -200,10 +188,65 @@ position = Vector2( -65.6663, -51.156 )
 rotation = 3.14159
 
 [node name="Paper" parent="House1_NW/DeskSearchable" instance=ExtResource( 12 )]
+visible = false
 
 [node name="Bandage" parent="House1_NW/DeskSearchable" instance=ExtResource( 11 )]
+visible = false
+
+[node name="Couch" parent="House1_NW" instance=ExtResource( 16 )]
+position = Vector2( -63.532, -118.189 )
+rotation = -2.87979
+
+[node name="PottedPlant" parent="House1_NW" instance=ExtResource( 10 )]
+position = Vector2( -170.523, -116.82 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="PottedPlant2" parent="House1_NW" instance=ExtResource( 10 )]
+position = Vector2( -171.683, -51.7866 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="KickableChair2" parent="House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -67.2346, -95.1394 )
+scale = Vector2( 0.306544, 0.306544 )
+
+[node name="KickableChair3" parent="House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -109.372, -104.867 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="TableLamp" parent="House1_NW" instance=ExtResource( 17 )]
+position = Vector2( -144.892, -47.1245 )
+rotation = -0.0416951
+scale = Vector2( 0.126476, 0.126476 )
 
 [node name="House2_NE" type="Node2D" parent="."]
+
+[node name="KickableChair" parent="House2_NE" instance=ExtResource( 14 )]
+position = Vector2( 126, -143 )
+rotation = -1.57079
+scale = Vector2( 0.330533, 0.330533 )
+
+[node name="DeskSearchable2" parent="House2_NE" instance=ExtResource( 13 )]
+position = Vector2( 113, -145 )
+rotation = -1.57079
+
+[node name="Paper" parent="House2_NE/DeskSearchable2" instance=ExtResource( 12 )]
+visible = false
+
+[node name="Bandage" parent="House2_NE/DeskSearchable2" instance=ExtResource( 11 )]
+visible = false
+
+[node name="TableLamp" parent="House2_NE" instance=ExtResource( 17 )]
+position = Vector2( 170, -110 )
+
+[node name="PottedPlant" parent="House2_NE" instance=ExtResource( 10 )]
+position = Vector2( 50, -53 )
+
+[node name="Couch" parent="House2_NE" instance=ExtResource( 16 )]
+position = Vector2( 58, -110 )
+rotation = 3.14159
 
 [node name="House3_SW" type="Node2D" parent="."]
 
@@ -228,6 +271,19 @@ scale = Vector2( 0.221731, 0.232662 )
 [node name="PottedPlant5" parent="House3_SW" instance=ExtResource( 10 )]
 position = Vector2( -81, 70 )
 scale = Vector2( 0.221731, 0.232662 )
+
+[node name="Couch" parent="House3_SW" instance=ExtResource( 16 )]
+position = Vector2( -142, 84 )
+rotation = 1.57079
+
+[node name="TableLamp" parent="House3_SW" instance=ExtResource( 17 )]
+position = Vector2( -66, 104 )
+rotation = 1.57079
+
+[node name="DeskSearchable" parent="House3_SW" instance=ExtResource( 13 )]
+position = Vector2( -136, 188 )
+rotation = 3.14159
+scale = Vector2( 0.714495, 0.714495 )
 
 [node name="House4_SE" type="Node2D" parent="."]
 
