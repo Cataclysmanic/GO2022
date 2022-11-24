@@ -2,12 +2,12 @@
 
 [ext_resource path="res://scenes/Items/collectables/2D/2DCollectablePickup.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=2]
-[ext_resource path="res://scenes/_common/GUI/icons/paper-n.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/icons/MiscClue-n.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31, 31 )
 
-[node name="MemoryClue" type="Node2D"]
+[node name="MiscClue" type="Node2D"]
 script = ExtResource( 1 )
 item_details = {
 "display_immediately": true,
@@ -20,6 +20,7 @@ item_details = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.469347, 0.469347 )
 texture = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="."]
