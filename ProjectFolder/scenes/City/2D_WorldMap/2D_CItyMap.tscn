@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/LoudNoise.tscn" type="PackedScene" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/Quests/QuestGivers/MagicalHobo.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Quests/QuestGivers/FemmeFatale.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=19]
 
@@ -178,9 +177,6 @@ shape = SubResource( 19 )
 [node name="DrivingPath2" parent="VehicularTraffic" instance=ExtResource( 16 )]
 
 [node name="QuestGivers" type="Node2D" parent="."]
-
-[node name="MagicalHobo" parent="QuestGivers" instance=ExtResource( 17 )]
-position = Vector2( 1101, 1541 )
 
 [node name="MobBoss" parent="QuestGivers" instance=ExtResource( 12 )]
 position = Vector2( -1465, 1087 )

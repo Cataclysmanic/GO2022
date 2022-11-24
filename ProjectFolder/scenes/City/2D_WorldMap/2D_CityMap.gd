@@ -15,9 +15,6 @@ func _ready():
 	
 	Global.current_city_map = self
 
-	initialize_quest_givers()
-	
-
 
 
 func spawn_buildings():
@@ -126,9 +123,6 @@ func get_player():
 	return player
 
 
-func initialize_quest_givers():
-	for questGiver in $QuestGivers.get_children():
-		questGiver.init(self)
 
 
 func _on_loot_ready(itemObj, lootPosition:Vector2 = Vector2.ZERO):

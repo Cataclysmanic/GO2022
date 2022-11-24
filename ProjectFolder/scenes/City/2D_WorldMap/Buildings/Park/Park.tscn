@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkFloor.png" type="Texture" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteCircle.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Quests/QuestGivers/WillTheWeasel.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -92,6 +95,18 @@ location_details = "Hidden in the bushes"
 position = Vector2( -24, -28 )
 location_address = "Washington Park"
 location_details = "Under the big statue"
+
+[node name="WillTheWeasel" parent="." instance=ExtResource( 9 )]
+position = Vector2( -94, 26 )
+scale = Vector2( 0.553613, 0.553613 )
+
+[node name="Rewards" type="Node2D" parent="WillTheWeasel"]
+
+[node name="TalkClue" parent="WillTheWeasel/Rewards" instance=ExtResource( 11 )]
+
+[node name="Requirements" type="Node2D" parent="WillTheWeasel"]
+
+[node name="PaperClue" parent="WillTheWeasel/Requirements" instance=ExtResource( 10 )]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

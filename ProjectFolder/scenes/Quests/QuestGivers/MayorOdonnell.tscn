@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/NPCs/banker 02.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
@@ -20,7 +21,6 @@ light_mode = 1
 [node name="MayorOdonnell" type="KinematicBody2D"]
 position = Vector2( 2, -3 )
 script = ExtResource( 2 )
-inventory_requirement = "Evidence of Corruption"
 dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
 dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Looks like you got me, Worth. What do you need\?" )
 
@@ -82,6 +82,19 @@ margin_right = 136.0
 margin_bottom = -6.0
 custom_fonts/font = ExtResource( 7 )
 text = "[F]"
+
+[node name="PotentialRewards" type="Node2D" parent="."]
+
+[node name="TalkClue" parent="PotentialRewards" instance=ExtResource( 8 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Mayor's Take",
+"notes_for_journal": "O'Donnell never liked me, so he's not likely to help. But deep down inside he might still have a kernel of goodness. I know he didn't wish any harm on Tommy. On questioning, he suggested that Tommy was probably in deep with the Romano family. Gambling. Figures. ",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

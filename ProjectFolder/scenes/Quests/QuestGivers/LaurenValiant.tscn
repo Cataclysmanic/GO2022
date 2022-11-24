@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=1]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
@@ -20,7 +22,6 @@ light_mode = 1
 [node name="LaurenValiantMotherOfVictim" type="KinematicBody2D"]
 position = Vector2( 6, 0 )
 script = ExtResource( 2 )
-inventory_requirement = "Deferred Payment Accepted"
 dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
 dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!" )
 
@@ -72,6 +73,30 @@ item_details = {
 "notes_for_journal": "A transcript from an interview with an eyewitness. It describes the Mob Boss in cahoots with the corrupt mayor.",
 "path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
 "path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="PotentialRewards" type="Node2D" parent="."]
+
+[node name="TalkClue" parent="PotentialRewards" instance=ExtResource( 9 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Lead - Talk to Will, the snitch.",
+"notes_for_journal": "Lauren Valiant seems to think Will the Snitch might have some compelling information about the Mayor, which might be of interest to Fusili Romano, which might get him off her case. Of course, she's too timid to pursue the lead, but that's what I do.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="PhotoAlbum" parent="PotentialRewards" instance=ExtResource( 8 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Lauren Valiant's Photo Album",
+"notes_for_journal": "I almost couldn't bear to sit through her long family photos presentation. My heart nearly stopped when she showed me the photograph of her daughter. The woman in the photograph was definitely not the woman, Veronica, who turned up at my office earlier. Why was the Dame lying about her identity?",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
 

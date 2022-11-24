@@ -15,11 +15,11 @@
 
 
 extends KinematicBody2D
-
+tool
 
 var city_map
 var quest_target_location
-export var inventory_requirement : String # name of the thing that must be in inventory in order to trigger this quest giver
+var inventory_requirement : String # name of the thing that must be in inventory in order to unlock the quest reward
 
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
@@ -27,42 +27,84 @@ var currentQuest
 var alreadyCompleted = false
 var alreadyTaken = false
 
+var rewards = []
+
 #signal quest_objective_ready(objective, itemPosition)
 
 var clicks = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$DialogLabel.hide()
-	$InteractInstruction.hide()
-	for item in $PotentialRequiredItems.get_children():
-		item.hide()
-		item.disable_pickup()
-		
+	if Engine.is_editor_hint(): # running in inspector
+		return
+	else: # running in-game
+		$DialogLabel.hide()
+		$InteractInstruction.hide()
+		disable_collectible_pickups()
+
+		yield(get_tree().create_timer(0.75), "timeout") # give the city time to get ready
+		init( Global.current_city_map )
 	
+
+func disable_collectible_pickups():
+	var folders = [ "Requirements", "Rewards", "PotentialRequiredItems", "PotentialRewards"]
+	for folderName in folders:
+		if self.has_node(folderName):
+			for item in get_node(folderName).get_children():
+				item.hide()
+				item.disable_pickup()
+
+
 func init(cityMap):
 	city_map = cityMap
 	produce_quest_objective()
 
 
+func _get_configuration_warning():
+	if has_node("Rewards") and has_node("Requirements"):
+		if $Rewards.get_child_count > 0 and $Requirement.get_child_count > 0:
+			return ""
+	return "This node requires two node2d children: Requirements and Rewards. Add at least one 2DCollectablePickup.tscn instance as a child of each of those nodes."
+
+
+
+
 func talk_to_player():
 	$ThoughtBubble.hide()
 	$DialogLabel.show()
-	
-func give_quest():
-	pass
-	
+
+
 func get_random_quest_requirement_item():
-	var potentialItems = $PotentialRequiredItems.get_children()
-	var randomItem = potentialItems[randi()%len(potentialItems)]
-	
+	var randomItem
+	var potentialItems
+	if has_node("Requirements"):
+		potentialItems = $Requirements.get_children()
+	elif has_node("PotentialRequiredItems"):
+		potentialItems = $PotentialRequiredItems.get_children()	
+	randomItem = potentialItems[randi()%potentialItems.size()]
 	return randomItem
+		
 
 func spawn_quest_reward():
-	pass
+	var reward
+	if has_node("Rewards"):
+		var potentialRewards = $Rewards.get_children()
+		var randReward = potentialRewards[randi()%potentialRewards.size()]
+		reward = randReward.duplicate()
+	elif has_node("PotentialRewards"):
+		reward = $PotentialRewards.get_children()[randi()%$PotentialRewards.get_child_count()].duplicate()
+	else: # spawn a bandage or circumstantial clue
+		if randf() < 0.5: # Bandage
+			reward = load("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn").instance()
+		else: # Circumstantial Clue
+			reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
+	reward.enable_pickup()
+	reward.show()
+	add_child(reward)
+	
+		
 
 func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
-	
 	if targetLocation == null:
 		printerr("NPC Quest Giver needs a location to spawn their objective")
 
@@ -103,7 +145,8 @@ func produce_quest_objective():
 	# come up with some random item?
 	var location = get_random_location()
 	var itemTemplate = get_random_quest_requirement_item()
-	spawn_quest_objective(location, itemTemplate)
+	if itemTemplate != null:
+		spawn_quest_objective(location, itemTemplate)
 	
 	
 func get_random_location():
@@ -112,7 +155,9 @@ func get_random_location():
 
 		
 func _unhandled_input(event):
-	if $InteractionArea.get_overlapping_bodies().has(Global.player):
+	if Engine.is_editor_hint(): # running in inspector
+		return
+	elif $InteractionArea.get_overlapping_bodies().has(Global.player):
 		if event.is_action_pressed("interact"):
 			advance_dialog(Global.player)
 			clicks += 1
@@ -121,6 +166,9 @@ func _unhandled_input(event):
 				alreadyTaken = true
 
 func _on_InteractionArea_body_entered(body):
+	if Engine.is_editor_hint(): # running in inspector
+		return
+		
 	if body.has_method("is_player") and body.is_player():
 		$InteractInstruction.show()
 		talk_to_player()
@@ -159,6 +207,10 @@ func advance_dialog(body):
 
 
 func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
+	if Engine.is_editor_hint(): # running in inspector
+		return
+	
+
 	if city_map == null:
 		city_map = Global.current_city_map
 	if event.is_action_pressed("interact"):
@@ -171,5 +223,7 @@ func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
 
 
 func _on_InteractionArea_body_exited(body):
-	if body.has_method("is_player") and body.is_player() == true:
+	if Engine.is_editor_hint(): # running in inspector
+		return
+	elif body.has_method("is_player") and body.is_player() == true:
 		$InteractInstruction.hide()
