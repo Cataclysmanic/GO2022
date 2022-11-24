@@ -253,7 +253,7 @@ func shoot(): # this ought to be in a separate gun object
 			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
 
 	# this should all be in a separate gun object, but I'll move it later.
-	if has_gun and State == States.AIMING:
+	if has_gun and State == States.AIMING and !player.dead:
 
 		var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 		var pos = gun.get_node("Muzzle").get_global_position()
