@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://scenes/NPCs/weasel-chibi.png" type="Texture" id=8]
 [ext_resource path="res://scenes/Quests/Brainstorming/MagnifyingGlassMouseLook.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Quests/Brainstorming/CityMap.png" type="Texture" id=11]
 
 [node name="Canvas" type="Node2D"]
 
@@ -293,3 +294,7 @@ Framed by Veronica Winter
 
 [node name="MagnifyingGlass" parent="." instance=ExtResource( 9 )]
 position = Vector2( 391, 290 )
+
+[node name="CityMap" type="Sprite" parent="."]
+position = Vector2( 489, 1155 )
+texture = ExtResource( 11 )

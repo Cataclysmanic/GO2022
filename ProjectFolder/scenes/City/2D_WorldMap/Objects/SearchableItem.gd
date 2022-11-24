@@ -37,7 +37,14 @@ func build_collectibles_list_from_children():
 	
 
 func _get_configuration_warning():
-	return "Add 2DCollectablePickup.tscn instances as children"
+	var found = false
+	for child in get_children():
+		if child.has_method("enable_pickup") and child.has_method("disable_pickup"):
+			found = true
+	if found:
+		return ""
+	else:
+		return "Add 2DCollectablePickup.tscn instances as children"
 
 
 func _unhandled_input(event):
