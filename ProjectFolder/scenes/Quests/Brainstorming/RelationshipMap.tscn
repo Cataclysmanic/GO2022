@@ -80,14 +80,38 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
+[node name="MortgagePaymentOverdue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Mortgage Overdue",
+"notes_for_journal": "This statement of accounts shows that Lauren Valiant has a sizeable payment in arrears for her mortgage, owed to one Fusili Romano.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [node name="MotherOfVictim" parent="Characters" instance=ExtResource( 5 )]
 position = Vector2( 690, 88 )
 scale = Vector2( 0.15, 0.15 )
 image = ExtResource( 2 )
+character_name = "Lauren Valiant"
 description = "Matronly mother of victim.
 down on her luck"
 relationships = "mother of victim
-ex-lover of mayor
+ex-lover of mayor, from back in the day
+
+
+"
+motives = "\"Why would I kill my own son? Are you crazy?\"
+\"Yeah, I'm behind on my mortgage, so what?\"
+"
+corroboration = "No alibis at the time of the shooting.
+She claims to have heard two gunshots that evening.
+"
+clues = "mortgage overdue,
+eyewitness account (heard gunshots about 10 minutes before the police arrived)
 
 "
 
@@ -111,7 +135,11 @@ pines for the Moll.
 "
 motives = "might lash out because he's bottom of the pecking order. Wants to earn his way into the mob.
 "
-corroboration = "\""
+corroboration = "No alibis.
+\"I swear I didn't do it. I had no beef with Tommy. We understood each other.'
+"
+clues = "scripted event? At some point he should pull a gun on someone.
+"
 
 [node name="Mayor" parent="Characters" instance=ExtResource( 5 )]
 position = Vector2( 153, 63 )
@@ -160,6 +188,30 @@ clues = "\"My ex-partner!\",
 \"He was a good cop\",
 \"I'll never forgive him for costing me my badge.\"
 "
+
+[node name="Clues" type="Node2D" parent="Characters/Victim"]
+
+[node name="RecognitionClue1" parent="Characters/Victim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "I recognize my ex-partner",
+"notes_for_journal": "As soon as I arrived, I knew it was my ex-partner, Tommy Valiant. He was a good cop.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="RecognitionClue2" parent="Characters/Victim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "I Recognize the victim",
+"notes_for_journal": "As soon as I arrived, I knew it was my ex-partner, Tommy Valiant. He was a good cop.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="Detective" parent="Characters" instance=ExtResource( 5 )]
 position = Vector2( 399, 22 )
