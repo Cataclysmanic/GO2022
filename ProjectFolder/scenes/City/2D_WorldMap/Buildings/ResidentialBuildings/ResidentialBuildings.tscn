@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Test Assets/sprEasterEgg.png" type="Texture" id=9]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -183,27 +187,49 @@ position = Vector2( 117, 100 )
 location_address = "95 Main St"
 location_details = "In the office inside the house on the corner."
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="House1_NW" type="Node2D" parent="."]
+rotation = 0.0129179
+
+[node name="KickableChair" parent="House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -67.8341, -64.1291 )
+rotation = 3.14159
+scale = Vector2( 0.433173, 0.433173 )
+
+[node name="DeskSearchable" parent="House1_NW" instance=ExtResource( 13 )]
+position = Vector2( -65.6663, -51.156 )
+rotation = 3.14159
+
+[node name="Paper" parent="House1_NW/DeskSearchable" instance=ExtResource( 12 )]
+
+[node name="Bandage" parent="House1_NW/DeskSearchable" instance=ExtResource( 11 )]
+
+[node name="House2_NE" type="Node2D" parent="."]
+
+[node name="House3_SW" type="Node2D" parent="."]
+
+[node name="RickRollEasterEggSprite" type="Sprite" parent="House3_SW"]
 modulate = Color( 1, 1, 1, 0.431373 )
 position = Vector2( -89, 66 )
 scale = Vector2( 0.107927, 0.111537 )
 texture = ExtResource( 9 )
 
-[node name="PottedPlant" parent="." instance=ExtResource( 10 )]
+[node name="PottedPlant" parent="House3_SW" instance=ExtResource( 10 )]
 position = Vector2( -92, 74 )
 scale = Vector2( 0.221731, 0.232662 )
 
-[node name="PottedPlant2" parent="." instance=ExtResource( 10 )]
+[node name="PottedPlant2" parent="House3_SW" instance=ExtResource( 10 )]
 position = Vector2( -81, 60 )
 scale = Vector2( 0.221731, 0.232662 )
 
-[node name="PottedPlant3" parent="." instance=ExtResource( 10 )]
+[node name="PottedPlant3" parent="House3_SW" instance=ExtResource( 10 )]
 position = Vector2( -93, 60 )
 scale = Vector2( 0.221731, 0.232662 )
 
-[node name="PottedPlant5" parent="." instance=ExtResource( 10 )]
+[node name="PottedPlant5" parent="House3_SW" instance=ExtResource( 10 )]
 position = Vector2( -81, 70 )
 scale = Vector2( 0.221731, 0.232662 )
+
+[node name="House4_SE" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

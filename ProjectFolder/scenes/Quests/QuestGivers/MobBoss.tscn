@@ -66,7 +66,7 @@ stream = ExtResource( 3 )
 visible = false
 item_details = {
 "is_unique": true,
-"item_name": "Forged Books",
+"item_name": "Set of Forged Books",
 "notes_for_journal": "A number of phoney records pertaining to shipping, receiving, and invoicing. Some of it seems like code. Probably a money laundering scheme.",
 "path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
 "path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
