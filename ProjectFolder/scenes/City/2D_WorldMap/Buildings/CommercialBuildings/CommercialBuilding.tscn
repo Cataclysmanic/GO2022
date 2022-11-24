@@ -17,8 +17,8 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskStatic.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=20]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -283,7 +283,6 @@ position = Vector2( -225, -226 )
 [node name="Couch" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
 position = Vector2( -90, -215 )
 rotation = -1.78037
-scale = Vector2( 1, 1 )
 
 [node name="PottedPlant" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
 position = Vector2( -224, -157 )
@@ -293,6 +292,18 @@ position = Vector2( -228, -129 )
 
 [node name="DeskSearchable2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
 position = Vector2( -196, -127 )
+
+[node name="MemoryClue" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable2" instance=ExtResource( 20 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "I'm wracking my brain trying to remember her. How did she even know my name? Tommy never mentioned a sister.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="TableLamp2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 17 )]
 position = Vector2( -228, -53 )
@@ -307,13 +318,33 @@ position = Vector2( -226, -106 )
 position = Vector2( -151, -55 )
 rotation = 3.14159
 
+[node name="MemoryClue" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "No one's problem but my own. My rent is overdue. I lost my badge on the police force a few years back. Clients don't come through these doors everyday.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue2" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "Now that I think about it, it was Tommy's fault that I lost my badge. He was always the \"good cop\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [node name="Couch2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
 position = Vector2( -97, -59 )
 rotation = -0.404664
-
-[node name="Paper" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
-position = Vector2( -141, -126 )
-scale = Vector2( 0.204744, 0.204744 )
 
 [node name="TableLamp" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 17 )]
 position = Vector2( -86, -181 )
