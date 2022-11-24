@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Assets/Test Assets/sprGUIStaminaText.png" type="Texture" id=18]
 [ext_resource path="res://scenes/_common/GUI/HUD/bloodSpatterVignette.png" type="Texture" id=19]
 [ext_resource path="res://scenes/_common/GUI/fonts/AbrilFatface-Regular.ttf" type="DynamicFontData" id=20]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0156863, 0.921569, 0.788235, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -52,7 +55,7 @@ custom_constants/margin_left = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 48.0
+margin_bottom = 67.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,7 +65,7 @@ custom_constants/separation = 50
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 40.0
-margin_bottom = 28.0
+margin_bottom = 47.0
 focus_mode = 0
 size_flags_horizontal = 2
 enabled_focus_mode = 0
@@ -72,22 +75,41 @@ return_to_main = true
 [node name="VBoxContainer" type="VBoxContainer" parent="Top/Header"]
 margin_left = 407.0
 margin_right = 577.0
-margin_bottom = 28.0
+margin_bottom = 47.0
 custom_constants/separation = 5
 alignment = 1
 
-[node name="HealthBar" type="TextureProgress" parent="Top/Header/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/Header/VBoxContainer"]
 margin_right = 170.0
 margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Top/Header/VBoxContainer/HBoxContainer"]
+margin_right = 57.0
+margin_bottom = 14.0
+text = "Evidence"
+
+[node name="EvidenceBar" type="ProgressBar" parent="Top/Header/VBoxContainer/HBoxContainer"]
+margin_left = 61.0
+margin_right = 170.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 5 )
+step = 1.0
+value = 1.0
+
+[node name="HealthBar" type="TextureProgress" parent="Top/Header/VBoxContainer"]
+margin_top = 19.0
+margin_right = 170.0
+margin_bottom = 33.0
 texture_under = ExtResource( 15 )
 texture_over = ExtResource( 17 )
 texture_progress = ExtResource( 16 )
 
 [node name="StaminaBar" type="TextureProgress" parent="Top/Header/VBoxContainer"]
 margin_left = 28.0
-margin_top = 19.0
+margin_top = 38.0
 margin_right = 141.0
-margin_bottom = 28.0
+margin_bottom = 47.0
 size_flags_horizontal = 4
 value = 100.0
 texture_under = ExtResource( 13 )
@@ -106,7 +128,7 @@ anchor_left = 0.0
 anchor_right = 0.0
 margin_left = 914.0
 margin_right = 984.0
-margin_bottom = 28.0
+margin_bottom = 47.0
 size_flags_horizontal = 10
 align = 2
 

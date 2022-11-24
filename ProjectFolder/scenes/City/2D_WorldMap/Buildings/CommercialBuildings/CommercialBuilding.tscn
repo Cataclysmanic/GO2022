@@ -62,27 +62,26 @@ shape = SubResource( 10 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
-visible = false
 
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 80, 51 )
-scale = Vector2( 1.72782, 1.51989 )
+position = Vector2( -263, -262 )
+scale = Vector2( 6.72741, 5.16822 )
 
 [node name="NPCPatrolRoute8" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -226, 170 )
+position = Vector2( 97, -187 )
 scale = Vector2( 1.67118, 1.29556 )
 
 [node name="NPCPatrolRoute9" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -227, 55 )
-scale = Vector2( 1.65695, 1.84102 )
+position = Vector2( 126, -117 )
+scale = Vector2( 0.845935, 0.888935 )
 
 [node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -70, 53 )
+position = Vector2( 100, -182 )
 scale = Vector2( 1.57397, 1.62445 )
 
 [node name="NPCPatrolRoute10" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -70, 150 )
-scale = Vector2( 1.51859, 1.57429 )
+position = Vector2( 94, -223 )
+scale = Vector2( 1.67678, 3.55841 )
 
 [node name="NPCPatrolRoute5" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 95, -127 )
@@ -101,8 +100,8 @@ position = Vector2( -58, -139 )
 scale = Vector2( 1.53947, 1.61613 )
 
 [node name="NPCPatrolRoute2" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 84, 157 )
-scale = Vector2( 1.69815, 1.49158 )
+position = Vector2( -256, -6.00002 )
+scale = Vector2( 6.25723, 0.665623 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]

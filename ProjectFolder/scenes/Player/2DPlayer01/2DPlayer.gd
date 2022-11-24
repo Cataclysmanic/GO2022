@@ -8,6 +8,7 @@ export var stamina_recovery_rate = 25.0
 export var max_stamina = 100.0
 export var player_speed = 375.0
 export var max_health = 100.0
+
 onready var space_state = get_world_2d().direct_space_state
 var map_scene
 var camera
@@ -16,6 +17,10 @@ var health_bar
 
 var stamina_bar
 var dying_warning_label
+
+
+var evidence := 0 # just a number from 0 to 100 indicating how much loot player picked up. Simple in-game currency/reward system.
+var evidence_bar
 
 var last_movement_vector = Vector2.ZERO
 
@@ -51,6 +56,7 @@ func init(mapScene):
 	hud = find_node("HUD")
 	health_bar = hud.find_node("HealthBar")
 	stamina_bar = hud.find_node("StaminaBar")
+	evidence_bar = hud.find_node("EvidenceBar")
 	dying_warning_label = hud.find_node("DyingWarningLabel")
 	camera = find_node("Camera2D")
 	camera.init(self, hud)
@@ -70,6 +76,9 @@ func revert_state():
 func update_bars():
 	health_bar.value = health
 	stamina_bar.value = stamina
+	evidence_bar.value = min(evidence, 100)
+	#print("evidence: " + str(evidence))
+
 	if State == States.DYING:
 		dying_warning_label.visible = true
 		var time_left = $Timers/DeathTimer.get_time_left()
@@ -298,9 +307,12 @@ func play_animations(movement_vector):
 		else:
 			$PaperDoll.relax()
 	
-func _on_collectible_picked_up(_pickupObj):
-	pass # don't really care yet. Inventory and IO can hash this out between them.
-	
+func _on_collectible_picked_up(pickupObj):
+	print("pickupObj.item_info[item_name] == " + pickupObj.item_info["item_name"])
+	if "Clue" in pickupObj.item_info["item_name"]:
+		evidence += 1
+		print("evidence == "+str(evidence))
+		update_bars()
 
 func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 	# play a noise, flash the sprite or queue animation, launch particles, start invulnerability timer
