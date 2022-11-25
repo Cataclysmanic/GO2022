@@ -8,7 +8,7 @@
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/VolkornMediumFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/Test Assets/sprEasterEgg.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Test Assets/MalteseFalcon.png" type="Texture" id=9]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=12]
@@ -342,8 +342,8 @@ item_details = {
 
 [node name="RickRollEasterEggSprite" type="Sprite" parent="House3_SW"]
 modulate = Color( 1, 1, 1, 0.431373 )
-position = Vector2( -89, 66 )
-scale = Vector2( 0.107927, 0.111537 )
+position = Vector2( -88, 66 )
+scale = Vector2( 0.0201391, 0.0215304 )
 texture = ExtResource( 9 )
 
 [node name="PottedPlant" parent="House3_SW" instance=ExtResource( 10 )]
@@ -367,7 +367,7 @@ position = Vector2( -142, 84 )
 rotation = 1.57079
 
 [node name="TableLamp" parent="House3_SW" instance=ExtResource( 17 )]
-position = Vector2( -66, 104 )
+position = Vector2( -62, 99 )
 rotation = 1.57079
 
 [node name="DeskSearchable" parent="House3_SW" instance=ExtResource( 13 )]

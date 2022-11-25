@@ -26,7 +26,7 @@
 extents = Vector2( 274.775, 137.935 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 152.5, 101 )
+extents = Vector2( 235, 101 )
 
 [sub_resource type="CanvasItemMaterial" id=8]
 
