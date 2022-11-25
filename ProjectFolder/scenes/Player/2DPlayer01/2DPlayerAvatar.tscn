@@ -133,10 +133,10 @@ font_data = SubResource( 27 )
 [sub_resource type="CanvasItemMaterial" id=26]
 light_mode = 1
 
-[node name="PlayerDetective" type="KinematicBody2D"]
+[node name="PlayerDetective" type="KinematicBody2D" groups=["Player"]]
 material = SubResource( 3 )
 scale = Vector2( 1.25, 1.25 )
-collision_mask = 62
+collision_mask = 126
 script = ExtResource( 4 )
 
 [node name="DashAudio" type="Node" parent="."]

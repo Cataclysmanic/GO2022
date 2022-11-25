@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/CutScenes/Animatics/IntroCinematic.tscn" type="PackedScene" id=2]
@@ -8,8 +8,8 @@
 [ext_resource path="res://scenes/_debug/Nav2DTest.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Campaign.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/City/Indoors/2dBuildingmap.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/City/Indoors/BossRoom.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/City/2D_WorldMap/2D_CItyMap.tscn" type="PackedScene" id=11]
-
 
 [node name="DebugMenu" type="Control"]
 anchor_right = 1.0
@@ -149,8 +149,8 @@ anchor_bottom = 0.0
 margin_top = 200.0
 margin_right = 163.0
 margin_bottom = 220.0
-disabled = true
-text = "debug"
+text = "OldPartnerRoom"
+SceneToLaunch = ExtResource( 9 )
 
 [node name="DebugButton6" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
