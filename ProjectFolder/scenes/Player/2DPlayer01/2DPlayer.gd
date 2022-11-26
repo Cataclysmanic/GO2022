@@ -101,8 +101,11 @@ func complete_quest(currentQuest):
 	yield(get_tree().create_timer(1.0), "timeout")
 	quest_notification.hide()
 	
-func update_item(currentItem):
-	quest_log.quests.append({"type": "Item:", "quest": str(currentItem) , "status": " Picked Up"}) 
+func update_item(currentItem, descriptive):
+	if descriptive:
+		quest_log.quests.append({"type": "Clue:", "quest": str(currentItem) , "status": ""}) 
+	else:
+		quest_log.quests.append({"type": "Item:", "quest": str(currentItem) , "status": " Picked Up"}) 
 	quest_notification.show()
 	yield(get_tree().create_timer(1.0), "timeout")
 	quest_notification.hide()

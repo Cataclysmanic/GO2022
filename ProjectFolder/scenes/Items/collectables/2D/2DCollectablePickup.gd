@@ -86,7 +86,10 @@ func _on_Area_body_entered(body):
 			
 		emit_signal("picked_up", self)
 		if !("Magazine" in self.name):
-			body.update_item(self.name)
+			if ("Clue" in self.name):
+				body.update_item(item_details.notes_for_journal, true)
+			else:
+				body.update_item(item_details.item_name, false)
 		disappear()
 		$PickupNoise.pitch_scale *= rand_range(0.9, 1.5)
 		$PickupNoise.play()
