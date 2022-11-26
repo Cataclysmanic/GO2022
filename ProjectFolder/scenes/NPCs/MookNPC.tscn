@@ -216,12 +216,12 @@ position = Vector2( 35.1292, -14.4917 )
 position = Vector2( -41.1292, -0.508301 )
 rotation = -1.57079
 enabled = true
-cast_to = Vector2( 0, 1000 )
+cast_to = Vector2( 0, 750 )
 collision_mask = 45
 
 [node name="LaserScope" type="Line2D" parent="NPCGun/RayCast2D"]
 position = Vector2( -1.43051e-06, 0 )
-points = PoolVector2Array( 0, 0, 0, 1000 )
+points = PoolVector2Array( 0, 0, 0, 750 )
 width = 1.0
 default_color = Color( 1, 0, 0, 0.282353 )
 

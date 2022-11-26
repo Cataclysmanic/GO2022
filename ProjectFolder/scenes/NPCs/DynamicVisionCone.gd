@@ -10,7 +10,7 @@ func _ready():
 	if Global.user_preferences["debug"]:
 		$Polygon2D.set_color(Color(1.0,1.0,1.0,0.3))
 	else:
-		$Polygon2D.set_color(Color(0.5,0.5,0.5,0.05))
+		$Polygon2D.set_color(Color(1.0,1.0,0.5,0.15))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
