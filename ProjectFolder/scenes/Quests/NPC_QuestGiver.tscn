@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=3]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=5]

@@ -1,3 +1,4 @@
+tool
 extends CanvasLayer
 
 
@@ -10,6 +11,11 @@ func _ready():
 	$Dialogue.hide()
 
 
+func set_portrait(imageTex):
+	var portraitNode = $Dialogue/PanelContainer/VBoxContainer/Portrait
+	if portraitNode != null:
+		portraitNode.set_texture(imageTex)
+
 func popin():
 	$Dialogue.show()
 	Global.pause()
@@ -19,9 +25,10 @@ func popout():
 	$Dialogue.hide()
 	Global.resume()
 
-func set_dialogue_text(textArr):
+func set_text(textArr):
 	if textArr != null:
 		dialogue_text = textArr
+		$Dialogue/PanelContainer/VBoxContainer/DialogText.text = dialogue_text[0]
 
 func advance_dialogue():
 	current_line += 1

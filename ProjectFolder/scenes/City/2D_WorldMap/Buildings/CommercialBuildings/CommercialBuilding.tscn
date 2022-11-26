@@ -437,6 +437,15 @@ Portrait_Tex = ExtResource( 22 )
 visible = false
 
 [node name="MiscClue" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Requirements" instance=ExtResource( 18 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Diamond Necklace",
+"notes_for_journal": "Expensive Diamond Necklace",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="Rewards" type="Node2D" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver"]
 visible = false

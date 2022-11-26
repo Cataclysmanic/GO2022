@@ -17,9 +17,6 @@
 extends KinematicBody2D
 tool
 
-var city_map
-var quest_target_location
-var inventory_requirement : String # name of the thing that must be in inventory in order to unlock the quest reward
 export var no_key_spawn : bool # if true, don't spawn the quest requirement.. assume it's already present on the map or comes as a result of some other quest.
 export (String, MULTILINE) var key_spawn_instructions : String = "Set no_key_spawn to true if the quest-giver's requirement is furnished by another quest-giver as a reward. Otherwise the quest requirement will spawn randomly somewhere no the map."
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
@@ -27,6 +24,11 @@ export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for 
 export (String, MULTILINE) var dialog_instructions : String = "Fill in the PoolStringArrays with dialog to be spoken to the player. First is if they don't have the quest objective in inventory, second is after retrieiving the quest objective."
 export var Sprite_Tex : Texture
 export var Portrait_Tex : Texture
+
+var city_map
+var quest_target_location
+var inventory_requirement : String # name of the thing that must be in inventory in order to unlock the quest reward
+var popin_dialog
 
 var currentQuest
 var alreadyCompleted = false
@@ -44,16 +46,12 @@ var State = States.INITIALIZING
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	popin_dialog = find_node("PopInDialog")
 	if Engine.is_editor_hint(): # running in inspector
-		if Sprite_Tex != null:
-			$Sprite.set_texture(Sprite_Tex)
-		if Portrait_Tex != null and has_node("CanvasLayer"):
-			$CanvasLayer/Dialogue/PanelContainer/VBoxContainer/Portrait.set_texture(Portrait_Tex)
+		popin_dialog = find_node("PopInDialog")
+		init_textures()
 	else: # running in-game
-		if Sprite_Tex != null:
-			$Sprite.set_texture(Sprite_Tex)
-		if Portrait_Tex != null and has_node("CanvasLayer"):
-				$CanvasLayer/Dialogue/PanelContainer/VBoxContainer/Portrait.set_texture(Portrait_Tex)
+		init_textures()
 
 		$DialogLabel.hide()
 		$InteractInstruction.hide()
@@ -64,6 +62,14 @@ func _ready():
 		yield(get_tree().create_timer(0.75), "timeout") # give the city time to get ready
 		init( Global.current_city_map )
 		State = States.READY
+
+
+func init_textures():
+	if Sprite_Tex != null:
+		$Sprite.set_texture(Sprite_Tex)
+	if Portrait_Tex != null and has_node("PopInDialog"):
+		if popin_dialog != null:
+			popin_dialog.set_portrait(Portrait_Tex)
 	
 
 func disable_collectible_pickups():
@@ -82,15 +88,16 @@ func init(cityMap):
 
 func _process(_delta):
 	if Engine.is_editor_hint(): # running in inspector
-		if Sprite_Tex != null:
-			$Sprite.texture = Sprite_Tex
-		if Portrait_Tex != null:
-			$CanvasLayer/Dialogue/PanelContainer/VBoxContainer/Portrait.texture = Portrait_Tex
-
+		if $Sprite.get_texture().get_path() == "res://icon.png":
+			init_textures()
+		
+		
 func _get_configuration_warning():
 	if has_node("Rewards") and has_node("Requirements"):
-		if $Rewards.get_child_count > 0 and $Requirement.get_child_count > 0:
-			return ""
+		if $Rewards.get_child_count() > 0 and $Requirement.get_child_count() > 0:
+			return "all good"
+		else:
+			return "Rewards and Requirements nodes should be populated with Collectible Items as children."
 	return "This node requires TWO children: Requirements and Rewards, with at least one 2DCollectablePickup.tscn child each. You should also set the Sprite_Tex and Portrait_Tex"
 
 
@@ -98,7 +105,6 @@ func _get_configuration_warning():
 
 func talk_to_player():
 	$ThoughtBubble.hide()
-	#popup_dialogue_box()
 	$DialogLabel.show() # says "Hey", and that's about it.
 
 
@@ -193,7 +199,7 @@ func _unhandled_input(event):
 			if State == States.READY:
 				popup_dialogue_box()
 	if State == States.TALKING:
-		advance_dialogue(Global.player)
+		advance_dialogue()
 		clicks += 1
 		if !alreadyTaken:
 			Global.player.update_journal(currentQuest)
@@ -211,7 +217,12 @@ func _on_InteractionArea_body_entered(body):
 func popup_dialogue_box():
 	Global.pause()
 	if has_node("PopInDialog"):
-		$PopInDialog.popin()
+		
+		if requirements_met(Global.player):
+			popin_dialog.set_text(dialog_fulfilled_requirements)
+		else:
+			popin_dialog.set_text(dialog_unmet_requirements)
+		popin_dialog.popin()
 	
 
 func hide_dialogue_box():
@@ -241,16 +252,9 @@ func requirements_met(body):
 	return requirementsMet
 
 
-func advance_dialogue(body):
-	var dialog_lines
+func advance_dialogue():
 	$InteractInstruction.hide()
-	if requirements_met(body):
-		dialog_lines = dialog_fulfilled_requirements
-	else:
-		dialog_lines = dialog_unmet_requirements
-	$PopInDialog.set_dialogue_text(dialog_lines)
 	$PopInDialog.advance_dialogue()
-	#$PopInDialog.current_line = clicks%(len(dialog_lines))
 	
 
 func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
@@ -265,7 +269,7 @@ func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
 		var bodies_present = $InteractionArea.get_overlapping_bodies()
 		if bodies_present.has(player):
 			
-			advance_dialogue(player)
+			advance_dialogue()
 			clicks += 1
 
 

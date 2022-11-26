@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -22,8 +22,9 @@
 [ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=22]
-[ext_resource path="res://scenes/Quests/QuestGivers/LaurenValiant.tscn" type="PackedScene" id=23]
 [ext_resource path="res://scenes/Quests/QuestGivers/MayorOdonnell.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=25]
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -414,9 +415,66 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="LaurenValiantMotherOfVictim" parent="House3_SW" instance=ExtResource( 23 )]
-position = Vector2( -94, 126 )
-scale = Vector2( 0.213622, 0.213622 )
+[node name="QuestGiverLaurenValiant" parent="House3_SW" instance=ExtResource( 26 )]
+position = Vector2( -81, 128 )
+scale = Vector2( 0.0810477, 0.0810477 )
+dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
+dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!" )
+Sprite_Tex = ExtResource( 25 )
+Portrait_Tex = ExtResource( 25 )
+
+[node name="Requirements" type="Node2D" parent="House3_SW/QuestGiverLaurenValiant"]
+
+[node name="Evidence" parent="House3_SW/QuestGiverLaurenValiant/Requirements" instance=ExtResource( 12 )]
+visible = false
+item_details = {
+"is_unique": true,
+"item_name": "Eyewitness Account of Mob Boss paying off the Mayor",
+"notes_for_journal": "A transcript from an interview with an eyewitness. It describes the Mob Boss in cahoots with the corrupt mayor.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Rewards" type="Node2D" parent="House3_SW/QuestGiverLaurenValiant"]
+
+[node name="TalkClue" parent="House3_SW/QuestGiverLaurenValiant/Rewards" instance=ExtResource( 21 )]
+visible = false
+scale = Vector2( 0.550716, 0.550716 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Lead - Talk to Will, the snitch.",
+"notes_for_journal": "Lauren Valiant seems to think Will the Snitch might have some compelling information about the Mayor, which might be of interest to Fusili Romano, which might get him off her case. Of course, she's too timid to pursue the lead, but that's what I do.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="PhotoAlbum" parent="House3_SW/QuestGiverLaurenValiant/Rewards" instance=ExtResource( 20 )]
+visible = false
+scale = Vector2( 0.551319, 0.551319 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Lauren Valiant's Photo Album",
+"notes_for_journal": "I almost couldn't bear to sit through her long family photos presentation. My heart nearly stopped when she showed me the photograph of her daughter. The woman in the photograph was definitely not the woman, Veronica, who turned up at my office earlier. Why was the Dame lying about her identity?",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="EyewitnessAccountTwoGunshots" parent="House3_SW/QuestGiverLaurenValiant/Rewards" instance=ExtResource( 12 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Eyewitness Account of Shooting",
+"notes_for_journal": "Lauren Valiant claims to have heard 2 shots that evening, a short time before the police arrived. If that's true, what accounts for the second shot?",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="House4_SE" type="Node2D" parent="."]
 
