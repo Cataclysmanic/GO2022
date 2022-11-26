@@ -31,11 +31,13 @@ func update_polygon_shape():
 
 
 func is_near_player(distance):
-	if global_position.distance_squared_to(Global.player.position) < pow(distance, 2):
-		return true
+	if Global.player != null:
+		if global_position.distance_squared_to(Global.player.position) < pow(distance, 2):
+			return true
+		else:
+			return false
 	else:
 		return false
-
 
 func is_patrolling():
 	if NPC.State == NPC.States.PATROLLING:

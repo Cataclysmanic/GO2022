@@ -13,7 +13,9 @@ func _ready():
 func near_player():
 	var proximity_sq = 1000 * 1000
 	var npcPos = get_parent().global_position
-	var playerPos = Global.player.global_position
+	var playerPos = Vector2.ZERO
+	if Global.player != null:
+		playerPos = Global.player.global_position
 	if npcPos.distance_squared_to(playerPos) < proximity_sq:
 		return true
 	else:
