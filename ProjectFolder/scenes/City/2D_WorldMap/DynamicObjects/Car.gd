@@ -206,8 +206,8 @@ func wreck():
 	State = States.CRASHING
 	$CrashTimer.start()
 	$Sprite.set_z_index(-1)
-	$VroomNoise.stop()
 	$Headlight.hide()
+	$Audio/Horn/HornTimer.stop()
 	#path_follow_target.die()
 	
 
@@ -302,3 +302,10 @@ func _on_NPCSpawnTimer_timeout():
 		$NPCSpawnTimer.start()
 		
 
+
+
+func _on_HornTimer_timeout():
+	if State in [States.READY, States.MOVING]:
+		$Audio/Horn/RandomHornNoise.play()
+		$Audio/Horn/HornTimer.set_wait_time(rand_range(1.0, 5.0))
+		$Audio/Horn/HornTimer.start()
