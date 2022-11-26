@@ -9,9 +9,7 @@ signal hit(damage)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Global.rockets:
-		$AnimatedSprite.frame = 1
-		damage = 90
+	pass
 
 func init(source, pos : Vector2, rot : float, speed : float):
 	originator = source
@@ -24,6 +22,9 @@ func init(source, pos : Vector2, rot : float, speed : float):
 
 func _process(delta):
 	set_global_position(get_global_position()+velocity*delta)
+	if Global.rockets and "Gun2D" in str(originator):
+		$AnimatedSprite.frame = 1
+		damage = 90
 
 
 func die():
