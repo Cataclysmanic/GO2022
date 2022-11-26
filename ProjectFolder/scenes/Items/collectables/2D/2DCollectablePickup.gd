@@ -71,6 +71,7 @@ func enable_pickup():
 
 
 func _on_Area_body_entered(body):
+	
 	if State != States.READY:
 		return
 	
@@ -87,7 +88,11 @@ func _on_Area_body_entered(body):
 		emit_signal("picked_up", self)
 		if !("Magazine" in self.name):
 			if ("Clue" in self.name):
-				body.update_item(item_details.notes_for_journal, true)
+				if ("Circumstantial" in self.name and Global.repetition == false):
+					body.update_item(item_details.notes_for_journal, true)
+					Global.repetition = true
+				elif !("Circumstantial" in self.name):
+					body.update_item(item_details.notes_for_journal, true)
 			else:
 				body.update_item(item_details.item_name, false)
 		disappear()

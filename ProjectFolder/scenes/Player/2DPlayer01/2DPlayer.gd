@@ -137,7 +137,12 @@ func manual_spawn_gun():
 	loc.add_child(gunScene)
 	
 func upgrade_gun():
-	$PaperDoll/Upper/GunLocation.get_node("Gun2D").shot_num += 1
+	var gunScene = $PaperDoll/Upper/GunLocation.get_node("Gun2D")
+	if gunScene.shot_num < 4:
+		gunScene.shot_num += 1
+	else:
+		#After quadshot update bullet spped and decrease wait between shots
+		gunScene.upgrader += 1
 	
 func get_hud():
 	return hud

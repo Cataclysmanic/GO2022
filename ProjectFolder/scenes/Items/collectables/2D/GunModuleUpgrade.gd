@@ -20,7 +20,7 @@ func _on_Area_body_entered(body):
 	if body.has_method("is_player") and body.is_player() == true:
 		if body.has_method("upgrade_gun"):
 			body.upgrade_gun()
-			body.update_item("GUN UPGRADE", false)
+#			body.update_item("GUN UPGRADE", false)
 
 		emit_signal("picked_up", self)
 		disappear()
