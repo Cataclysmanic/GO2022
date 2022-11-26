@@ -370,7 +370,6 @@ region_rect = Rect2( 273.8, 196.994, 165, 190 )
 
 [node name="Head1" type="Sprite" parent="Body"]
 position = Vector2( 20, -130 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 324.649, 3.46533, 183.556, 188.444 )
@@ -378,28 +377,24 @@ region_rect = Rect2( 324.649, 3.46533, 183.556, 188.444 )
 [node name="Head2" type="Sprite" parent="Body"]
 visible = false
 position = Vector2( 20, -130 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 156.204, -1.868, 169.778, 204.889 )
 
 [node name="LegR" type="Sprite" parent="Body"]
 position = Vector2( -30, 110 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 278.974, 385.43, 77, 68 )
 
 [node name="LegL" type="Sprite" parent="Body"]
 position = Vector2( 30, 110 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 361.362, 385.43, 64, 68 )
 
 [node name="ArmL" type="Sprite" parent="Body"]
 position = Vector2( 75, 5 )
-scale = Vector2( 1, 1 )
 z_index = -1
 texture = ExtResource( 1 )
 region_enabled = true

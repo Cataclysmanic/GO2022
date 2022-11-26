@@ -1064,6 +1064,7 @@ color = Color( 0.611765, 0.611765, 0.611765, 1 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
+frame = 3
 playing = true
 offset = Vector2( 8, 0 )
 

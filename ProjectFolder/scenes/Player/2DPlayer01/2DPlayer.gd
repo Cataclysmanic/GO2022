@@ -136,7 +136,9 @@ func manual_spawn_gun():
 	gunScene.init(map_scene, self, self.get_hud())
 	loc.add_child(gunScene)
 	
-
+func upgrade_gun():
+	$PaperDoll/Upper/GunLocation.get_node("Gun2D").shot_num += 1
+	
 func get_hud():
 	return hud
 

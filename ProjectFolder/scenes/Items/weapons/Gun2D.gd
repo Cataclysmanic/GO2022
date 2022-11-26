@@ -6,7 +6,7 @@ var map_scene
 var player
 var camera
 var HUD
-
+var shot_num = 1
 enum States { INITIALIZING, READY, EMPTY, FIRING, COCKING, EMPTY }
 var State = States.INITIALIZING
 
@@ -19,6 +19,7 @@ signal loud_noise(location)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(str(self.get_parent().name))
 	State = States.READY
 
 func init(mapScene, myPlayer, hud):
@@ -55,7 +56,20 @@ func shoot():
 	var bulletSpeed = 1200.0
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
-	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+	if shot_num == 1:
+		spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+	if shot_num == 2:
+		spawn_bullet(myPos+2*jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
+	if shot_num == 3:
+		spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
+	if shot_num >= 4:
+		spawn_bullet(myPos+2*jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
 	eject_casing()
 	flash_muzzle()
 	knockback_shooter(Vector2.RIGHT.rotated(myRot))

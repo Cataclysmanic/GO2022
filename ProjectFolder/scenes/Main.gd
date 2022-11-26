@@ -1,7 +1,6 @@
 
 #Main should be kept alive so it can instantiate and remove scenes
 
-
 extends Control
 
 onready var scene_container = find_node("SceneContainer")

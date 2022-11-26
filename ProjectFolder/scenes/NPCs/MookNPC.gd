@@ -10,7 +10,7 @@ onready var sprite = $Sprite
 export var chance_to_have_gun = 0.75
 export var magazine_size = 6
 var ammo_remaining = magazine_size
-export var chance_to_spawn_loot = 0.25
+export var chance_to_spawn_loot = 0.33
 var health = rand_range(10.0,20.0) # should take 1 or 2 hits to kill them
 var map_scene
 var home_building
