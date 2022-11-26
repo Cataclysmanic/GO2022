@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Quests/QuestGivers/PopInDialogCanvas.gd" type="Script" id=2]
+
+[node name="DialogCanvas" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Dialogue" type="Control" parent="."]
+anchor_left = 0.7
+anchor_right = 0.7
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogue/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 243.0
+margin_bottom = 593.0
+alignment = 1
+
+[node name="Portrait" type="TextureRect" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 123.0
+margin_right = 236.0
+margin_bottom = 363.0
+texture = ExtResource( 1 )
+
+[node name="DialogText" type="Label" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 367.0
+margin_right = 236.0
+margin_bottom = 415.0
+text = "Lorem Ipsum Dolor
+Blah Blah Blah
+"
+
+[node name="NextButton" type="Button" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 419.0
+margin_right = 236.0
+margin_bottom = 439.0
+text = "Next"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 443.0
+margin_right = 236.0
+margin_bottom = 463.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Dialogue/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 73.0
+margin_right = 112.0
+margin_bottom = 20.0
+text = "Fine"
+
+[node name="NoButton" type="Button" parent="Dialogue/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 162.0
+margin_bottom = 20.0
+text = "No"
+
+[connection signal="pressed" from="Dialogue/PanelContainer/VBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="Dialogue/PanelContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="pressed" from="Dialogue/PanelContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_NoButton_pressed"]

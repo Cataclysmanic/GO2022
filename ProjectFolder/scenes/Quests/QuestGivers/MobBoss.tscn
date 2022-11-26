@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=3]
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=4]
-[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
 

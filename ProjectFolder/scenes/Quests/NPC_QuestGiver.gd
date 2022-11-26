@@ -25,6 +25,8 @@ export (String, MULTILINE) var key_spawn_instructions : String = "Set no_key_spa
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
 export (String, MULTILINE) var dialog_instructions : String = "Fill in the PoolStringArrays with dialog to be spoken to the player. First is if they don't have the quest objective in inventory, second is after retrieiving the quest objective."
+export var Sprite_Tex : Texture
+export var Portrait_Tex : Texture
 
 var currentQuest
 var alreadyCompleted = false
@@ -36,17 +38,32 @@ var rewards = []
 
 var clicks = 0
 
+enum States { INITIALIZING, READY, TALKING, MISSING, DEAD }
+var State = States.INITIALIZING
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Engine.is_editor_hint(): # running in inspector
-		return
+		if Sprite_Tex != null:
+			$Sprite.set_texture(Sprite_Tex)
+		if Portrait_Tex != null and has_node("CanvasLayer"):
+			$CanvasLayer/Dialogue/PanelContainer/VBoxContainer/Portrait.set_texture(Portrait_Tex)
 	else: # running in-game
+		if Sprite_Tex != null:
+			$Sprite.set_texture(Sprite_Tex)
+		if Portrait_Tex != null and has_node("CanvasLayer"):
+				$CanvasLayer/Dialogue/PanelContainer/VBoxContainer/Portrait.set_texture(Portrait_Tex)
+
 		$DialogLabel.hide()
 		$InteractInstruction.hide()
+		if has_node("CanvasLayer/Dialogue"):
+			$CanvasLayer/Dialogue.hide()
 		disable_collectible_pickups()
 
 		yield(get_tree().create_timer(0.75), "timeout") # give the city time to get ready
 		init( Global.current_city_map )
+		State = States.READY
 	
 
 func disable_collectible_pickups():
@@ -63,18 +80,26 @@ func init(cityMap):
 	produce_quest_objective()
 
 
+func _process(_delta):
+	if Engine.is_editor_hint(): # running in inspector
+		if Sprite_Tex != null:
+			$Sprite.texture = Sprite_Tex
+		if Portrait_Tex != null:
+			$CanvasLayer/Dialogue/PanelContainer/VBoxContainer/Portrait.texture = Portrait_Tex
+
 func _get_configuration_warning():
 	if has_node("Rewards") and has_node("Requirements"):
 		if $Rewards.get_child_count > 0 and $Requirement.get_child_count > 0:
 			return ""
-	return "This node requires two node2d children: Requirements and Rewards. Add at least one 2DCollectablePickup.tscn instance as a child of each of those nodes."
+	return "This node requires TWO children: Requirements and Rewards, with at least one 2DCollectablePickup.tscn child each. You should also set the Sprite_Tex and Portrait_Tex"
 
 
 
 
 func talk_to_player():
 	$ThoughtBubble.hide()
-	$DialogLabel.show()
+	#popup_dialogue_box()
+	$DialogLabel.show() # says "Hey", and that's about it.
 
 
 func get_random_quest_requirement_item():
@@ -165,11 +190,14 @@ func _unhandled_input(event):
 		return
 	elif $InteractionArea.get_overlapping_bodies().has(Global.player):
 		if event.is_action_pressed("interact"):
-			advance_dialog(Global.player)
-			clicks += 1
-			if !alreadyTaken:
-				Global.player.update_journal(currentQuest)
-				alreadyTaken = true
+			if State == States.READY:
+				popup_dialogue_box()
+	if State == States.TALKING:
+		advance_dialogue(Global.player)
+		clicks += 1
+		if !alreadyTaken:
+			Global.player.update_journal(currentQuest)
+			alreadyTaken = true
 
 func _on_InteractionArea_body_entered(body):
 	if Engine.is_editor_hint(): # running in inspector
@@ -179,6 +207,17 @@ func _on_InteractionArea_body_entered(body):
 		$InteractInstruction.show()
 		talk_to_player()
 		
+
+func popup_dialogue_box():
+	Global.pause()
+	if has_node("PopInDialog"):
+		$PopInDialog.popin()
+	
+
+func hide_dialogue_box():
+	Global.resume()
+	if has_node("PopInDialog"):
+		$PopInDialog/Dialogue.hide()
 
 
 func requirements_met(body): 
@@ -202,16 +241,17 @@ func requirements_met(body):
 	return requirementsMet
 
 
-func advance_dialog(body):
+func advance_dialogue(body):
 	var dialog_lines
 	$InteractInstruction.hide()
 	if requirements_met(body):
 		dialog_lines = dialog_fulfilled_requirements
 	else:
 		dialog_lines = dialog_unmet_requirements
-
-	$DialogLabel.text = dialog_lines[clicks%(len(dialog_lines))]
-
+	$PopInDialog.set_dialogue_text(dialog_lines)
+	$PopInDialog.advance_dialogue()
+	#$PopInDialog.current_line = clicks%(len(dialog_lines))
+	
 
 func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
 	if Engine.is_editor_hint(): # running in inspector
@@ -225,7 +265,7 @@ func _on_InteractionArea_input_event(_viewport, event, _shape_idx):
 		var bodies_present = $InteractionArea.get_overlapping_bodies()
 		if bodies_present.has(player):
 			
-			advance_dialog(player)
+			advance_dialogue(player)
 			clicks += 1
 
 
@@ -234,3 +274,15 @@ func _on_InteractionArea_body_exited(body):
 		return
 	elif body.has_method("is_player") and body.is_player() == true:
 		$InteractInstruction.hide()
+
+
+
+	
+
+
+func _on_YesButton_pressed():
+	hide_dialogue_box()
+
+func _on_NoButton_pressed():
+	hide_dialogue_box()
+	
