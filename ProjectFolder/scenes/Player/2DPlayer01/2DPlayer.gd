@@ -144,6 +144,10 @@ func upgrade_gun():
 		#After quadshot update bullet spped and decrease wait between shots
 		gunScene.upgrader += 1
 	
+func begin_rocketization():
+	var gunScene = $PaperDoll/Upper/GunLocation.get_node("Gun2D")
+	gunScene.rocketize()
+	
 func get_hud():
 	return hud
 

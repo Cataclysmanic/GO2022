@@ -9,7 +9,9 @@ signal hit(damage)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if Global.rockets:
+		$AnimatedSprite.frame = 1
+		damage = 90
 
 func init(source, pos : Vector2, rot : float, speed : float):
 	originator = source
@@ -42,7 +44,10 @@ func _on_Area2D_body_entered(body):
 		emit_signal("hit", damage, velocity)
 		die()
 	else: # probably hit a wall
-		$AnimatedSprite.play("impact")
+		if Global.rockets:
+			$AnimatedSprite.play("impact rockets")
+		else:
+			$AnimatedSprite.play("impact")
 		velocity = Vector2.ZERO
 		$CPUParticles2D.emitting = true
 

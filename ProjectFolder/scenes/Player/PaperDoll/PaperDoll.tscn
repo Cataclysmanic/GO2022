@@ -1064,7 +1064,7 @@ color = Color( 0.611765, 0.611765, 0.611765, 1 )
 [node name="Legs" type="AnimatedSprite" parent="Lower"]
 frames = SubResource( 82 )
 animation = "walk"
-frame = 3
+frame = 6
 playing = true
 offset = Vector2( 8, 0 )
 
@@ -1073,7 +1073,7 @@ offset = Vector2( 8, 0 )
 [node name="Torso" type="AnimatedSprite" parent="Upper"]
 position = Vector2( 4, 0 )
 frames = SubResource( 48 )
-animation = "dash"
+animation = "stationary aim gun"
 playing = true
 offset = Vector2( 24, 16 )
 

@@ -10,7 +10,7 @@ var shot_num = 1
 var upgrader = 2
 enum States { INITIALIZING, READY, EMPTY, FIRING, COCKING, EMPTY }
 var State = States.INITIALIZING
-
+var launcher = preload("res://scenes/Player/PaperDoll/rocketlauncher-topdown.png")
 
 signal projectile_ready(projectile)
 signal player_gun_shot(ammoRemaining)
@@ -21,8 +21,7 @@ signal loud_noise(location)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = States.READY
-	$CockTimer.wait_time = 0.2
-
+	
 func init(mapScene, myPlayer, hud):
 	player = myPlayer
 	map_scene = mapScene
@@ -36,6 +35,12 @@ func init(mapScene, myPlayer, hud):
 	_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
 	reload(magazine_capacity)
 	
+func rocketize():
+	Global.rockets = true
+	$Sprite.texture = launcher
+	$Sprite.visible = true
+	$Sprite.scale.x = 3
+	$Sprite.scale.y = 3
 	
 func reload(num):
 	if num == null or num == 0:
@@ -55,6 +60,8 @@ func shoot():
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
 	var bulletSpeed = 1000+100*upgrader
+	if Global.rockets:
+		bulletSpeed = 800
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	if shot_num == 1:
@@ -71,7 +78,8 @@ func shoot():
 		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
 		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
 		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
-	eject_casing()
+	if !Global.rockets:
+		eject_casing()
 	flash_muzzle()
 	knockback_shooter(Vector2.RIGHT.rotated(myRot))
 	cock_gun()
@@ -100,6 +108,8 @@ func make_gunshot_noise():
 
 	var gunshotNoise = $GunshotNoises.get_children()[randi()%$GunshotNoises.get_child_count()]
 	gunshotNoise.set_pitch_scale(rand_range(0.98, 1.02))
+	if Global.rockets:
+		gunshotNoise.set_pitch_scale(0.3)
 	#gunshotNoise.set_volume_db(rand_range(-4.0, -4.0))
 	gunshotNoise.set_volume_db(-2.0)
 	
@@ -115,6 +125,8 @@ func eject_casing():
 
 func knockback_shooter(impactVector):
 	var magnitude = 10.0
+	if Global.rockets:
+		magnitude += 10
 	player.position -= impactVector.normalized()*magnitude
 
 
