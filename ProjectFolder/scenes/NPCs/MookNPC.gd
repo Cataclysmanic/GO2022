@@ -7,7 +7,14 @@ onready var nav_agent = $NavigationAgent2D
 onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 #export var active : bool = false
-export var chance_to_have_gun = 0.75
+export var npc_type_odds = { 
+	"shooty":0.65,
+	"punchy":0.25,
+	"snakey":0.10,
+}
+
+#chance_to_have_gun = 0.75
+
 export var magazine_size = 6
 var ammo_remaining = magazine_size
 export var chance_to_spawn_loot = 0.33
@@ -66,10 +73,16 @@ func init(mapScene, homeBuilding, pathFollowObj):
 	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
 	player = mapScene.get_player()
 
-	if randf() < chance_to_have_gun:
-		spawn_sprite("shooty")
-	else:
-		spawn_sprite("punchy")
+	var cumulative_odds = 0.0
+	var diceRoll = randf()
+	var chosenType : String = ""
+	for npcTypeName in npc_type_odds.keys():
+		if chosenType == "":
+			cumulative_odds += npc_type_odds[npcTypeName]
+			if diceRoll < cumulative_odds:
+				chosenType = npcTypeName
+	assert(chosenType != "")
+	spawn_sprite(chosenType)
 
 	jump_out_of_walls()
 
@@ -80,16 +93,13 @@ func spawn_sprite(spriteName):
 	if has_node("Sprite/vizSpriteHiddenInCode"):
 		$Sprite/vizSpriteHiddenInCode.hide()
 	var spriteScene
+	spriteScene = $ResourcePreloader.get_resource(spriteName).instance()
+	rotate_sprite = false
+	flip_sprite = true
+	
 	if spriteName == "shooty":
-		spriteScene = load("res://scenes/NPCs/ShootyMookPaperDoll.tscn").instance()
-		rotate_sprite = false
-		flip_sprite = true
 		has_gun = true
-
-	elif spriteName == "punchy":
-		spriteScene = load("res://scenes/NPCs/MeleeMookPaperDoll.tscn").instance()
-		flip_sprite = true
-		rotate_sprite = false
+	else:
 		has_gun = false
 
 	if spriteScene.has_method("init"):
