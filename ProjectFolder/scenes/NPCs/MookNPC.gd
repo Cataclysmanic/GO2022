@@ -28,7 +28,7 @@ var flip_sprite : bool = true
 onready var gun
 
 
-enum States { INITIALIZING, READY, PATROLLING, CHASING, SEEKING, FIGHTING, AIMING, RELOADING, DEAD }
+enum States { INITIALIZING, READY, PATROLLING, CHASING, SEEKING, FIGHTING, AIMING, RELOADING, FLYING, DEAD }
 var State = States.INITIALIZING setget set_state, get_state
 var previous_states = [] # hax! technical_debt. push states onto the stack so you can recall them later? But really, gun states should be separated out from awareness states
 
@@ -173,7 +173,6 @@ func _physics_process(delta):
 	
 	if not State == States.AIMING: # NPCs should pause for a moment after pulling trigger
 		if has_gun:
-			#turn_toward_player(delta) # move_along_path() already does this?
 			if player_in_sights():
 				pull_trigger() # starts a short delay timer before bullet emerges
 		move_along_path(delta)
@@ -197,6 +196,11 @@ func pull_trigger():
 
 func move_along_path(delta):
 	if State == States.DEAD:
+		return
+	elif State == States.FLYING:
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			gib()
 		return
 		
 	var target_global_position = nav_agent.get_next_location()
@@ -275,6 +279,11 @@ func flash_hit():
 			doll.hit()
 	$HitNoise.play()
 
+
+func gib():
+	$Gibs.set_emitting(true)
+	
+
 func die():
 	set_state(States.DEAD)
 	if has_node("AlertedSprite"):
@@ -342,10 +351,22 @@ func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 
 
 func extreme_knock_back(impactVector):
+	# not sure these are working.. seems to collide with player still.
+	set_collision_layer_bit(1, false)
+	set_collision_mask_bit(0, false) # ignore player
+	set_collision_mask_bit(1, false) # ignore NPCs
+	set_collision_mask_bit(4, false) # ignore bullets
+
 	impactVector = impactVector.normalized()
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position+(impactVector*60.0), 0.2)
-	yield(tween, "finished")
+	
+	velocity = impactVector * rand_range(900.0, 2200.0)
+	velocity = velocity.rotated(rand_range(-PI/4.0, PI/4.0))
+	set_state(States.FLYING)
+	
+#	var tween = get_tree().create_tween()
+#	tween.tween_property(self, "position", position+(impactVector*60.0), 0.2)
+#	yield(tween, "finished")
+	yield(get_tree().create_timer(0.25), "timeout")
 	die()
 	
 

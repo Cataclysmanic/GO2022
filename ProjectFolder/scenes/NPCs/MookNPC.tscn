@@ -286,6 +286,18 @@ scale_amount = 4.0
 scale_amount_random = 0.5
 color = Color( 0.827451, 0.0901961, 0.0901961, 1 )
 
+[node name="Gibs" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.66
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 200 )
+initial_velocity = 200.0
+initial_velocity_random = 0.5
+scale_amount = 24.0
+color = Color( 0.32549, 0, 0, 0.878431 )
+
 [connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
