@@ -108,8 +108,8 @@ func translate_outline(polygon, translation : Vector2):
 ######
 	
 func play_bg_music():
-	$Audio/BGMusicCalm.play()
-
+	#$Audio/BGMusicCalm.play()
+	$Audio/BGCityNoise.play()
 
 func spawn_player():
 	var playerScene = $ResourcePreloader.get_resource("Player").instance()
@@ -142,14 +142,16 @@ func _on_projectile_ready(projectile):
 	$Outdoor/Projectiles.add_child(projectile)
 
 
-func _on_shit_got_real():
+func _on_shit_got_real(): # probably inside
+	$Audio/BGCityNoise.stop()
 	$Audio/BGMusicCalm.stop()
 	$Audio/BGMusicTense.play()
 	
 
-func _on_shit_calmed_down():
+func _on_shit_calmed_down(): # probably outside
 	$Audio/BGMusicCalm.play()
 	$Audio/BGMusicTense.stop()
+	$Audio/BGCityNoise.play()
 	
 func get_random_building():
 	var building
