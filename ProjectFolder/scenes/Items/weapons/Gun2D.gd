@@ -7,6 +7,7 @@ var player
 var camera
 var HUD
 var shot_num = 1
+var upgrader = 2
 enum States { INITIALIZING, READY, EMPTY, FIRING, COCKING, EMPTY }
 var State = States.INITIALIZING
 
@@ -19,8 +20,8 @@ signal loud_noise(location)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(str(self.get_parent().name))
 	State = States.READY
+	$CockTimer.wait_time = 0.2
 
 func init(mapScene, myPlayer, hud):
 	player = myPlayer
@@ -50,10 +51,10 @@ func empty_click():
 func shoot():
 	State = States.FIRING
 	make_gunshot_noise()
-	
+	$CockTimer.wait_time = 0.4 - 0.05 * upgrader
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
-	var bulletSpeed = 1200.0
+	var bulletSpeed = 1000+100*upgrader
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	if shot_num == 1:

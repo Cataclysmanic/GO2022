@@ -6,7 +6,8 @@ var current_city_map = null
 var player
 var IO = null
 var Utils = null
-#var in_danger = "no" # moved to building is_player_present()
+var repetition = false #I dislike abusing autoload but this function didn't work otherwise for some reason
+
 
 var user_preferences = {
 	"difficulty": 1.0, #0.5 to 3.0
