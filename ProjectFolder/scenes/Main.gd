@@ -38,7 +38,7 @@ func change_scene(scenePath : String):
 		var packedScene = load(scenePath)
 		spawn_new_scene(packedScene)
 	else:
-		printerr("configuration error, scene file does not exist: Main.change_scene_to("+scenePath+")")
+		printerr(str(self) + " " + self.name + " configuration error, scene file does not exist: Main.change_scene_to("+scenePath+")")
 
 
 func remove_old_scenes():

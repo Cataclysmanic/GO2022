@@ -1,6 +1,6 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://scenes/2.5dTest/detective.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Player/PaperDoll/DetectiveSideViewPaperDoll-SugarFather.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/2dTest/WindowLighting.png" type="Texture" id=2]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://scenes/Quests/QuestGivers/femme-fatale.png" type="Texture" id=4]
@@ -8,8 +8,17 @@
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=6]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/BrothersHouseFloors.png" type="Texture" id=7]
 [ext_resource path="res://scenes/_common/GUI/sfx/sirenBad.ogg" type="AudioStream" id=8]
-[ext_resource path="res://scenes/CutScenes/TopDownAnimatedSequences/OfficeAnimatedSequence_01.gd" type="Script" id=9]
+[ext_resource path="res://scenes/CutScenes/Animatics/Scene 3/OfficeAnimatedSequence_01.gd" type="Script" id=9]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=10]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=11]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Trashcan.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Sink.tscn" type="PackedScene" id=19]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.921569, 0.921569, 0.921569, 1 )
@@ -118,7 +127,7 @@ tracks/6/keys = {
 "values": [ "No...", "Fine.", "", "...Crap", "...Crap", "Damn!" ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("ColorRect:self_modulate")
+tracks/7/path = NodePath("BlackFog:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -225,6 +234,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
+tracks/16/type = "value"
+tracks/16/path = NodePath("2WeeksEarlierLabel/OfficeNameLabel:percent_visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -313,7 +334,7 @@ tracks/6/keys = {
 "values": [ "No..." ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("ColorRect:self_modulate")
+tracks/7/path = NodePath("BlackFog:self_modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -420,6 +441,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/16/type = "value"
+tracks/16/path = NodePath("2WeeksEarlierLabel/OfficeNameLabel:percent_visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
 
 [node name="OfficeAnimatedSequence" type="Node2D"]
 script = ExtResource( 9 )
@@ -463,6 +496,93 @@ position = Vector2( 518.5, 291.5 )
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 5 )
 
+[node name="UnitA_DetectiveOffice" type="Node2D" parent="OfficeFloor"]
+position = Vector2( 155.4, 141.4 )
+
+[node name="Sink" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 19 )]
+position = Vector2( -80, -125 )
+rotation = 1.57079
+scale = Vector2( 0.780171, 0.780171 )
+
+[node name="KickableChair" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 14 )]
+position = Vector2( -193, -107 )
+scale = Vector2( 0.503913, 0.503913 )
+
+[node name="Trashcan2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -161, -227 )
+
+[node name="PottedPlant2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -225, -226 )
+
+[node name="Couch" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 15 )]
+position = Vector2( -90, -215 )
+rotation = -1.78037
+
+[node name="PottedPlant" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -224, -157 )
+
+[node name="PottedPlant3" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -228, -129 )
+
+[node name="DeskSearchable2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
+position = Vector2( -196, -127 )
+
+[node name="MemoryClue" parent="OfficeFloor/UnitA_DetectiveOffice/DeskSearchable2" instance=ExtResource( 17 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "I'm wracking my brain trying to remember her. How did she even know my name? Tommy never mentioned a sister.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="TableLamp2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
+position = Vector2( -228, -53 )
+
+[node name="Trashcan" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -182, -57 )
+
+[node name="Trashcan3" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -226, -106 )
+
+[node name="DeskSearchable1" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
+position = Vector2( -151, -55 )
+rotation = 3.14159
+
+[node name="MemoryClue" parent="OfficeFloor/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 17 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "No one's problem but my own. My rent is overdue. I lost my badge on the police force a few years back. Clients don't come through these doors everyday.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue2" parent="OfficeFloor/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 17 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "Now that I think about it, it was Tommy's fault that I lost my badge. He was always the \"good cop\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Couch2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 15 )]
+position = Vector2( -97, -59 )
+rotation = -0.404664
+
+[node name="TableLamp" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
+position = Vector2( -86, -181 )
+
 [node name="FemmeFatale" type="Sprite" parent="."]
 position = Vector2( 626, -74 )
 scale = Vector2( 0.182952, 0.182952 )
@@ -479,9 +599,9 @@ custom_styles/panel = SubResource( 1 )
 
 [node name="FemmeDialogLabel" type="Label" parent="FemmeFatale/DialogFemme"]
 margin_left = 12.0
-margin_top = 80.0
+margin_top = 12.0
 margin_right = 412.0
-margin_bottom = 180.0
+margin_bottom = 249.0
 rect_min_size = Vector2( 400, 100 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )
@@ -495,10 +615,9 @@ scale = Vector2( 1, 1.2 )
 color = Color( 0.921569, 0.921569, 0.921569, 1 )
 polygon = PoolVector2Array( 98.3865, 338.887, 32.7954, 256.898, 114.784, 256.898 )
 
-[node name="HardBoiledDetective" type="Sprite" parent="."]
+[node name="HardBoiledDetective" type="Node2D" parent="."]
 position = Vector2( 398, 234 )
 scale = Vector2( 0.0764459, 0.0764459 )
-texture = ExtResource( 1 )
 
 [node name="DialogDetective" type="PanelContainer" parent="HardBoiledDetective"]
 visible = false
@@ -527,16 +646,14 @@ scale = Vector2( 1, 1.2 )
 color = Color( 0.921569, 0.921569, 0.921569, 1 )
 polygon = PoolVector2Array( 91.5684, 337.93, 78.4868, 250.722, 156.974, 250.722 )
 
+[node name="TommyPaperDoll" parent="HardBoiledDetective" instance=ExtResource( 1 )]
+position = Vector2( 2.37793, -30.9194 )
+scale = Vector2( 6.54057, 6.54057 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "DameWalksIn"
 anims/DameWalksIn = SubResource( 2 )
 anims/RESET = SubResource( 3 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_min_size = Vector2( 1024, 600 )
-color = Color( 0, 0, 0, 1 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -554,6 +671,14 @@ margin_bottom = 559.0
 custom_fonts/font = ExtResource( 10 )
 text = "[esc to skip]"
 
+[node name="BlackFog" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 1 )
+
 [node name="2WeeksEarlierLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -567,5 +692,13 @@ rect_scale = Vector2( 1.1025, 1.1025 )
 custom_fonts/font = ExtResource( 3 )
 text = "Two Weeks Earlier"
 align = 1
+
+[node name="OfficeNameLabel" type="Label" parent="2WeeksEarlierLabel"]
+margin_left = 127.891
+margin_top = 86.1678
+margin_right = 354.891
+margin_bottom = 100.168
+custom_fonts/font = ExtResource( 11 )
+text = "Andrew Worth's Detective Agency"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
