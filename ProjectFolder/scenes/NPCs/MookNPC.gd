@@ -354,10 +354,11 @@ func shoot(): # this ought to be in a separate gun object
 		var gunshotNoises = gun.get_node("GunshotNoises").get_children()
 		var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
 		gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
-		if currentNpc == "snakey":
-			gunshotNoise.set_pitch_scale(2)
 		gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
-		gunshotNoise.play()
+		if currentNpc == "snakey":
+			$NPCGun/GunshotNoises/Snake.play()
+		else:
+			gunshotNoise.play()
 		if $Sprite.find_node("AnimationPlayer") and $Sprite/AnimationPlayer.has_animation("shoot"):
 			$Sprite/AnimationPlayer.play("shoot")
 		gun.get_node("TriggerFingerTimer").start()
