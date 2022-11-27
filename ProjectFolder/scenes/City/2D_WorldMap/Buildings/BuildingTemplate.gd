@@ -18,15 +18,14 @@ func _ready():
 	$DebugInfo.set_visible(Global.user_preferences["debug"])
 
 func init(mapObj):
-
 	map_scene = mapObj
-	
 	spawn_npcs(int(num_npcs) * Global.user_preferences["difficulty"])
 
+
 func spawn_npcs(num):
-	
 	for _i in range(num):
 		spawn_npc()
+
 
 func spawn_npc():
 	var spawnJitter = 15

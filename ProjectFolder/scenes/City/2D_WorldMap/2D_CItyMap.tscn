@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/LoudNoise.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/NPCs/BossNPC.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Environment" id=1]
@@ -236,5 +237,8 @@ position = Vector2( 1987, -1803 )
 scale = Vector2( 0.870445, 0.870445 )
 
 [node name="NPCs" type="Node2D" parent="."]
+
+[node name="BossNPC" parent="NPCs" instance=ExtResource( 17 )]
+position = Vector2( -1001, 1922 )
 
 [node name="Noises" type="Node2D" parent="."]

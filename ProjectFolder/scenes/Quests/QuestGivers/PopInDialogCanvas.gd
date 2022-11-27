@@ -4,6 +4,7 @@ extends CanvasLayer
 
 var dialogue_text = ["foo", "bar"]
 var current_line = 0
+var quest_giver
 
 enum States { HIDDEN, TALKING }
 var State = States.HIDDEN
@@ -13,6 +14,7 @@ signal finished()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	quest_giver = get_parent()
 	$Dialogue.hide()
 
 
@@ -60,8 +62,12 @@ func _on_NextButton_pressed():
 
 
 func _on_YesButton_pressed():
+	if quest_giver.has_method("quest_accepted"):
+		quest_giver.quest_accepted()
 	popout()
 	
 
 func _on_NoButton_pressed():
+	if quest_giver.has_method("quest_rejected"):
+		quest_giver.quest_rejected()
 	popout()

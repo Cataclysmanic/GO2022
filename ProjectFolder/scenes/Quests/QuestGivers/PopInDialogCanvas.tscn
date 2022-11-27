@@ -63,7 +63,7 @@ autowrap = true
 margin_top = 438.0
 margin_right = 250.0
 margin_bottom = 458.0
-text = "Next"
+text = "Next [F]"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialogue/PanelContainer/VBoxContainer"]
 margin_top = 462.0

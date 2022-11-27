@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_3.wav" type="AudioStream" id=2]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_5.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=8]
+[ext_resource path="res://scenes/NPCs/NPCGuns/NPCGun.gd" type="Script" id=9]
+
+[sub_resource type="CanvasItemMaterial" id=13]
+blend_mode = 1
+
+[node name="NPCGun" type="Node2D"]
+position = Vector2( 35.1292, -14.4917 )
+script = ExtResource( 9 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( -41.1292, -0.508301 )
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 0, 750 )
+collision_mask = 45
+
+[node name="LaserScope" type="Line2D" parent="RayCast2D"]
+position = Vector2( -1.43051e-06, 0 )
+points = PoolVector2Array( 0, 0, 0, 750 )
+width = 1.0
+default_color = Color( 1, 0, 0, 0.282353 )
+
+[node name="GunSprite" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 20.8708, -0.5083 )
+
+[node name="MuzzleFlash" type="Sprite" parent="Muzzle"]
+visible = false
+material = SubResource( 13 )
+position = Vector2( 17.9484, -3.8147e-06 )
+texture = ExtResource( 8 )
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="TriggerFingerTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Ammo" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "bullet" ), [ ExtResource( 1 ) ] ]
+
+[node name="GunshotNoises" type="Node2D" parent="."]
+
+[node name="GunshotNoise1" type="AudioStreamPlayer2D" parent="GunshotNoises"]
+stream = ExtResource( 6 )
+bus = "Gunshots"
+
+[node name="GunshotNoise2" type="AudioStreamPlayer2D" parent="GunshotNoises"]
+stream = ExtResource( 4 )
+bus = "Gunshots"
+
+[node name="GunshotNoise3" type="AudioStreamPlayer2D" parent="GunshotNoises"]
+stream = ExtResource( 2 )
+bus = "Gunshots"
+
+[node name="GunshotNoise4" type="AudioStreamPlayer2D" parent="GunshotNoises"]
+stream = ExtResource( 3 )
+bus = "Gunshots"
+
+[node name="GunshotNoise5" type="AudioStreamPlayer2D" parent="GunshotNoises"]
+stream = ExtResource( 5 )
+bus = "Gunshots"

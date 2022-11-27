@@ -16,10 +16,6 @@ extends Node2D
 # note: multiple NPCs could be assigned to this path. 
 # each one should get their own PathFollow2D node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var home_building
 var city_map
 var Patrolling_NPCs = []

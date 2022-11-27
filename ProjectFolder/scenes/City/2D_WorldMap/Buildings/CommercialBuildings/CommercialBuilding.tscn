@@ -67,7 +67,6 @@ shape = SubResource( 10 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
-visible = false
 
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( -263, -262 )

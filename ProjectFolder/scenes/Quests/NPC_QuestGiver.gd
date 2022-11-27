@@ -191,19 +191,13 @@ func get_random_location():
 	return city_map.get_random_quest_target_location()
 
 		
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Engine.is_editor_hint(): # running in inspector
 		return
 	elif $InteractionArea.get_overlapping_bodies().has(Global.player): # this might not work while paused
 		if Input.is_action_just_pressed("interact") and State == States.READY:
 			popup_dialogue_box()
 
-	if State == States.TALKING and event.is_action_pressed("interact"): # popin box is already open
-		advance_dialogue()
-		clicks += 1
-		if !alreadyTaken:
-			Global.player.update_journal(currentQuest)
-			alreadyTaken = true
 
 func _on_InteractionArea_body_entered(body):
 	if Engine.is_editor_hint(): # running in inspector
@@ -215,6 +209,7 @@ func _on_InteractionArea_body_entered(body):
 		
 
 func popup_dialogue_box():
+
 	if has_node("PopInDialog"):
 		
 		if requirements_met(Global.player):
@@ -222,8 +217,21 @@ func popup_dialogue_box():
 		else:
 			popin_dialog.set_text(dialog_unmet_requirements)
 		popin_dialog.popin()
+
 		State = States.TALKING
 	
+
+func quest_accepted():
+	if !alreadyTaken:
+		Global.player.update_journal(currentQuest)
+		alreadyTaken = true
+
+func quest_rejected():
+	#disappear?
+	#aggro?
+	# make a timed demand, "or else"?
+	pass
+
 
 func hide_dialogue_box():
 	if has_node("PopInDialog"):
