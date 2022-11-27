@@ -6,8 +6,6 @@ var damage = 30.0
 var originator
 var snakeify = false 
 
-signal hit(damage)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -24,9 +22,17 @@ func init(source, pos : Vector2, rot : float, speed : float):
 func _process(delta):
 	if !(snakeify and !"Gun2D" in str(originator)):
 		set_global_position(get_global_position() + velocity * delta)
+	else:
+		var direction = get_parent().get_parent().get_player().self_position - global_position
+		var speed = 200
+		var rotation_speed = 3
+		direction = direction.normalized()
+		var rotateAmmount = direction.cross(transform.y)
+		rotate(rotateAmmount*rotation_speed*delta)
+		global_translate((-transform.y*speed*delta))
+		
 	if snakeify and !"Gun2D" in str(originator):
 		$AnimatedSprite.frame = 2
-		damage = 10
 	if Global.rockets and "Gun2D" in str(originator):
 		$AnimatedSprite.frame = 1
 		damage = 90
@@ -36,9 +42,6 @@ func die():
 	set_visible(false)
 	$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
 	call_deferred("queue_free")
-
-func _on_hit(hitDamage, impactVector):
-	die()
 
 func _on_Area2D_body_entered(body):
 	if body == originator:
@@ -72,4 +75,5 @@ func _on_Area2D_area_entered(area):
 			$CPUParticles2D.emitting = true
 
 func _on_LifetimeTimer_timeout():
+	if !snakeify:
 		die() # Replace with function body.

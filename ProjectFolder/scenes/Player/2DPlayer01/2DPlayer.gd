@@ -31,6 +31,7 @@ var previous_states = [] # stack of previous states, allows us to revert state a
 var health = 100
 var stamina = 100
 var dead = false
+var self_position
 
 var FOV_increment = 2 * PI / 60
 
@@ -171,6 +172,7 @@ func _physics_process(delta):
 	if State == States.INITIALIZING:
 		return
 	elif State != States.DEAD:
+		self_position = self.global_position
 		if delta != 0:
 			move(delta)
 			rotate_melee_attack_zone(delta)

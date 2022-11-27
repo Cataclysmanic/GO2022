@@ -279,6 +279,7 @@ bus = "Gunshots"
 
 [node name="Snake" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
 stream = ExtResource( 24 )
+volume_db = -3.0
 
 [node name="BloodSpurtParticles" type="CPUParticles2D" parent="."]
 emitting = false
