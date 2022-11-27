@@ -8,6 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer/NewGameButton.grab_focus()
 	pass # Replace with function body.
 
 

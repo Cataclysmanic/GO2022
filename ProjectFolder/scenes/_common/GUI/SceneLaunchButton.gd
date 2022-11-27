@@ -13,6 +13,9 @@ var main_scene = "res://scenes/MenuScenes/MainMenu.tscn"
 func _ready():
 	pass # Replace with function body.
 
+func _unhandled_input(event):
+	if event.is_action_pressed("ui_quit"):
+		switch_scene()
 
 func play_click_noise():
 	var audioPlayer = find_node("ClickSound")

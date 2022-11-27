@@ -25,6 +25,7 @@ func set_portrait(imageTex):
 
 func popin():
 	$Dialogue.show()
+	$Dialogue/PanelContainer/VBoxContainer/NextButton.grab_focus()
 	Global.pause()
 	State = States.TALKING
 

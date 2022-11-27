@@ -86,7 +86,6 @@ func _on_Area2D_area_entered(area):
 			velocity = Vector2.ZERO
 			$CPUParticles2D.emitting = true
 	else:
-		print(area.name)
 		if "Bullet" in area.name:
 			die()
 

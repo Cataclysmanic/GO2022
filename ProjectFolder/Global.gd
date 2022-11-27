@@ -15,8 +15,12 @@ var user_preferences = {
 	"shake_and_flash":true,
 	"debug":false,
 }
-
-
+func _unhandled_input(event):
+	if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion):
+		var mouse_pos = Vector2(512,300)
+		mouse_pos += Vector2(-Input.get_action_strength("joy left")*500 + Input.get_action_strength("joy right")*500, -Input.get_action_strength("joy up")*300 + Input.get_action_strength("joy down")*300)
+		Input.warp_mouse_position(mouse_pos)
+		
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
 var game_state = STATES.INITIALIZING
 
