@@ -6,7 +6,7 @@
 [ext_resource path="res://scenes/2.5dTest/detective.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Quests/Brainstorming/CharacterInfo.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/Quests/QuestGivers/femme-fatale.png" type="Texture" id=6]
-[ext_resource path="res://scenes/NPCs/banker 02.png" type="Texture" id=7]
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=7]
 [ext_resource path="res://scenes/NPCs/weasel-chibi.png" type="Texture" id=8]
 [ext_resource path="res://scenes/Quests/Brainstorming/MagnifyingGlassMouseLook.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=10]

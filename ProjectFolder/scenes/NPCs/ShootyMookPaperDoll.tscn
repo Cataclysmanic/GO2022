@@ -360,6 +360,7 @@ anims/walk = SubResource( 3 )
 
 [node name="corpse" type="Sprite" parent="."]
 scale = Vector2( 0.161159, 0.161159 )
+z_index = -1
 texture = ExtResource( 4 )
 
 [node name="Body" type="Sprite" parent="."]

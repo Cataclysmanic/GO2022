@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/LoudNoise.tscn" type="PackedScene" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/Quests/QuestGivers/FemmeFatale.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Environment" id=1]
@@ -178,9 +177,6 @@ shape = SubResource( 19 )
 
 [node name="QuestGivers" type="Node2D" parent="."]
 
-[node name="FemmeFatale" parent="QuestGivers" instance=ExtResource( 18 )]
-position = Vector2( 1640, -1887 )
-
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "LoudNoise", "Player" ), [ ExtResource( 2 ), ExtResource( 1 ) ] ]
 
@@ -214,7 +210,6 @@ volume_db = -7.0
 [node name="MunicipalEntrance" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( -1514, -1286 )
 scale = Vector2( 2.09672, 2.09672 )
-Type = 1
 
 [node name="CommercialUnitA" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( -1881, 678 )
@@ -243,41 +238,26 @@ scale = Vector2( 3.5, 3.5 )
 [node name="107MainDoor" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 1022, -870 )
 scale = Vector2( 0.870445, 0.870445 )
-Type = 1
 
 [node name="95MainDoorFront" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 2052, -873 )
 scale = Vector2( 0.870445, 0.870445 )
-Type = 1
 
 [node name="95MainDoorBack" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 1588, -1337 )
 scale = Vector2( 0.870445, 0.870445 )
-Type = 1
 
 [node name="107First" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 989, -2270 )
 scale = Vector2( 0.870445, 0.870445 )
-Type = 1
 
 [node name="95FirstDoorFront" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 1721, -2335 )
 scale = Vector2( 0.870445, 0.870445 )
-Type = 1
 
 [node name="95FirstDoorBack" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 1987, -1803 )
 scale = Vector2( 0.870445, 0.870445 )
-Type = 1
-
-[node name="DynamicDoor" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -1662, 1608 )
-required_item = "Pizza Coupon"
-
-[node name="DynamicDoor2" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -1884, 1611 )
-scale = Vector2( 1.60282, 1.06143 )
-required_item = "Forged Books"
 
 [node name="NPCs" type="Node2D" parent="."]
 

@@ -22,7 +22,7 @@
 [ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=22]
-[ext_resource path="res://scenes/Quests/QuestGivers/MayorOdonnell.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=23]
 [ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=25]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=26]
 
@@ -309,10 +309,6 @@ position = Vector2( 50, -53 )
 position = Vector2( 58, -110 )
 rotation = 3.14159
 
-[node name="MayorOdonnell" parent="House2_NE" instance=ExtResource( 24 )]
-position = Vector2( 45, -81 )
-scale = Vector2( 0.36343, 0.36343 )
-
 [node name="MemoryClue" parent="House2_NE" instance=ExtResource( 19 )]
 position = Vector2( 154, -24 )
 scale = Vector2( 0.190021, 0.190021 )
@@ -338,6 +334,14 @@ item_details = {
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
+
+[node name="MayorOdonnel" parent="House2_NE" instance=ExtResource( 26 )]
+position = Vector2( 155, -66 )
+scale = Vector2( 0.139352, 0.139352 )
+dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
+dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Looks like you got me, Worth. What do you need\?" )
+Sprite_Tex = ExtResource( 23 )
+Portrait_Tex = ExtResource( 23 )
 
 [node name="House3_SW" type="Node2D" parent="."]
 
@@ -429,7 +433,7 @@ Portrait_Tex = ExtResource( 25 )
 visible = false
 item_details = {
 "is_unique": true,
-"item_name": "Eyewitness Account of Mob Boss paying off the Mayor",
+"item_name": "Eyewitness Account of Fusili Romano paying off the Mayor",
 "notes_for_journal": "A transcript from an interview with an eyewitness. It describes the Mob Boss in cahoots with the corrupt mayor.",
 "path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
 "path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",

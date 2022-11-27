@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scenes/Quests/QuestGivers/PopInDialogCanvas.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -17,6 +16,13 @@ extents = Vector2( 144.25, 134.5 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://scenes/_common/GUI/fonts/SpecialElite-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 24
+font_data = SubResource( 4 )
 
 [node name="NPC_QuestGiver" type="KinematicBody2D"]
 pause_mode = 2
@@ -53,7 +59,6 @@ margin_bottom = -43.0
 rect_min_size = Vector2( 150, 92 )
 custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
 custom_fonts/font = ExtResource( 4 )
-text = "test"
 autowrap = true
 
 [node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
@@ -93,11 +98,11 @@ item_details = {
 }
 
 [node name="InteractInstruction" type="Label" parent="."]
-margin_left = 50.0
-margin_top = -45.0
-margin_right = 90.0
-margin_bottom = -31.0
-custom_fonts/font = ExtResource( 7 )
+margin_left = 4.0
+margin_top = -60.0
+margin_right = 44.0
+margin_bottom = -35.0
+custom_fonts/font = SubResource( 5 )
 text = "[F]"
 
 [node name="PopInDialog" parent="." instance=ExtResource( 8 )]

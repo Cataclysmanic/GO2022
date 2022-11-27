@@ -320,6 +320,7 @@ anims/walk = SubResource( 3 )
 [node name="corpse" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 0.142933, 0.142933 )
+z_index = -1
 texture = ExtResource( 3 )
 flip_h = true
 
@@ -331,7 +332,6 @@ region_rect = Rect2( 273.8, 196.994, 165, 190 )
 
 [node name="Head1" type="Sprite" parent="Body"]
 position = Vector2( 20, -130 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 324.649, 3.46533, 183.556, 188.444 )
@@ -339,21 +339,18 @@ region_rect = Rect2( 324.649, 3.46533, 183.556, 188.444 )
 [node name="Head2" type="Sprite" parent="Body"]
 visible = false
 position = Vector2( 20, -130 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 156.204, -1.868, 169.778, 204.889 )
 
 [node name="LegR" type="Sprite" parent="Body"]
 position = Vector2( -30, 110 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 278.974, 385.43, 77, 68 )
 
 [node name="LegL" type="Sprite" parent="Body"]
 position = Vector2( 30, 110 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 361.362, 385.43, 64, 68 )
@@ -361,7 +358,6 @@ region_rect = Rect2( 361.362, 385.43, 64, 68 )
 [node name="ArmL" type="Sprite" parent="Body"]
 position = Vector2( 64.5455, -52.4679 )
 rotation = -0.346563
-scale = Vector2( 1, 1 )
 z_index = -1
 texture = ExtResource( 4 )
 offset = Vector2( 9.12391, 64.3956 )
@@ -385,7 +381,6 @@ region_rect = Rect2( 197.634, 205.808, 65, 94 )
 [node name="Forearm" type="Sprite" parent="Body/PunchArm/Shoulder"]
 position = Vector2( -0.941408, 79.5289 )
 rotation = -0.817799
-scale = Vector2( 1, 1 )
 z_index = 1
 texture = ExtResource( 4 )
 offset = Vector2( -0.311405, 47.6404 )
