@@ -85,7 +85,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1.8, 7.1, 7.6, 8, 9.8, 10.3, 10.8, 12.6, 13.7, 14.4, 14.6, 14.9, 15.2 ),
+"times": PoolRealArray( 1.8, 7.1, 7.6, 8, 9.8, 10.3, 10.8, 12.6, 13.7, 14.4, 14.6, 15.3, 15.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0 ]
@@ -97,7 +97,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 1.8, 7.1, 8, 9.8, 11.2, 13.7, 14.2, 14.6, 14.9, 15.5, 15.8 ),
+"times": PoolRealArray( 1.8, 7.1, 8, 9.8, 11.2, 13.7, 14.2, 14.6, 15.3, 15.9, 16.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true, false, true, true, false, true, true, false ]
@@ -121,7 +121,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 7.1, 9.8, 12.6, 13.7, 14.6, 14.9 ),
+"times": PoolRealArray( 7.1, 9.8, 12.6, 13.7, 14.6, 15.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ "No...", "Fine.", "", "...Crap", "...Crap", "Damn!" ]
@@ -169,10 +169,10 @@ tracks/10/loop_wrap = true
 tracks/10/imported = false
 tracks/10/enabled = true
 tracks/10/keys = {
-"times": PoolRealArray( 1.2, 12.2, 13.1, 15.9, 16.7, 17.3, 18.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 1.2, 12.2, 13.1, 14.5, 15.1, 16, 17.3, 18.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 620, 385 ), Vector2( 620, 385 ), Vector2( 612, 256 ), Vector2( 481, 249 ), Vector2( 334, 134 ) ]
+"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 620, 385 ), Vector2( 620, 385 ), Vector2( 612, 256 ), Vector2( 612, 256 ), Vector2( 481, 249 ), Vector2( 334, 134 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("BrothersJouseFloor/PoliceLights:modulate")
@@ -181,7 +181,7 @@ tracks/11/loop_wrap = true
 tracks/11/imported = false
 tracks/11/enabled = true
 tracks/11/keys = {
-"times": PoolRealArray( 12.6, 14.8, 15.6, 16.2, 16.6, 17.2, 17.6, 18.2, 18.6, 19.2 ),
+"times": PoolRealArray( 12.6, 15.2, 15.6, 16.2, 16.6, 17.2, 17.6, 18.2, 18.6, 19.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ) ]
@@ -245,6 +245,18 @@ tracks/16/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 1.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("HardBoiledDetective:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0, 16.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0.0764459, 0.0764459 ), Vector2( -0.076, 0.076 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -453,6 +465,18 @@ tracks/16/keys = {
 "update": 0,
 "values": [ 1.0 ]
 }
+tracks/17/type = "value"
+tracks/17/path = NodePath("HardBoiledDetective:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.0764459, 0.0764459 ) ]
+}
 
 [node name="OfficeAnimatedSequence" type="Node2D"]
 script = ExtResource( 9 )
@@ -599,9 +623,9 @@ custom_styles/panel = SubResource( 1 )
 
 [node name="FemmeDialogLabel" type="Label" parent="FemmeFatale/DialogFemme"]
 margin_left = 12.0
-margin_top = 12.0
+margin_top = 80.0
 margin_right = 412.0
-margin_bottom = 249.0
+margin_bottom = 180.0
 rect_min_size = Vector2( 400, 100 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = ExtResource( 3 )

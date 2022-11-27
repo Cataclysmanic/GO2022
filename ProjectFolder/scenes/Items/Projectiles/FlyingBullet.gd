@@ -6,6 +6,8 @@ var damage = 30.0
 var originator
 var snakeify = false 
 
+signal hit()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -55,7 +57,7 @@ func _on_Area2D_body_entered(body):
 			body.hit()
 			die()
 		elif body.has_method("_on_hit"):
-			var _err = connect("_on_hit", body, "_on_hit")
+			var _err = connect("hit", body, "_on_hit")
 			body._on_hit()
 			die()
 		else: # probably hit a wall
