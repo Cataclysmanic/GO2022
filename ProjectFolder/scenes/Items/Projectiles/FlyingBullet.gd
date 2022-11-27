@@ -42,9 +42,9 @@ func _process(delta):
 
 func die():
 	set_visible(false)
-#	$Area2D/CollisionShape2D.call_deferred("set_disabled", true) didn't work for some reason
 	call_deferred("queue_free")
-	$CollisionShape2D.disabled=true
+	$BulletArea/CollisionShape2D.call_deferred("set_disabled", true) 
+	$CollisionShape2D.call_deferred("set_disabled", true) 
 
 func _on_Area2D_body_entered(body):
 	if !(snakeify and !"Gun2D" in str(originator)):
@@ -52,11 +52,11 @@ func _on_Area2D_body_entered(body):
 			return
 		elif body.has_method("hit"):
 			var _err = connect("hit", body, "_on_hit")
-			emit_signal("hit", damage, velocity)
+			body.hit()
 			die()
 		elif body.has_method("_on_hit"):
-			var _err = connect("hit", body, "_on_hit")
-			emit_signal("hit", damage, velocity)
+			var _err = connect("_on_hit", body, "_on_hit")
+			body._on_hit()
 			die()
 		else: # probably hit a wall
 			if Global.rockets:

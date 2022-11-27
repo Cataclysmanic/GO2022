@@ -8,9 +8,9 @@ onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 #export var active : bool = false
 export var npc_type_odds = { 
-	"shooty":0.33,
-	"punchy":0.33,
-	"snakey":0.33,
+	"shooty":0.6,
+	"punchy":0.3,
+	"snakey":0.1,
 }
 
 #chance_to_have_gun = 0.75
