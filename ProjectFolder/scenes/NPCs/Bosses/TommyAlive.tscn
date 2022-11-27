@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scenes/Player/PaperDoll/TopDownPlayerPaperDoll.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Player/PaperDoll/TommyAlive.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Player/PaperDoll/PaperDoll.gd" type="Script" id=1]
+[ext_resource path="res://scenes/NPCs/Bosses/TommyAlive.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=21]
 length = 0.001
