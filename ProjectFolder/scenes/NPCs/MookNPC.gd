@@ -31,6 +31,7 @@ var last_known_target_position: Vector2
 
 var rotate_sprite : bool = false
 var flip_sprite : bool = true
+var paper_doll
 
 onready var gun
 
@@ -87,6 +88,7 @@ func init(mapScene, homeBuilding, pathFollowObj):
 	jump_out_of_walls()
 
 	set_difficulty(Global.user_preferences["difficulty"])
+	
 
 
 func spawn_sprite(spriteName):
@@ -105,6 +107,7 @@ func spawn_sprite(spriteName):
 	if spriteScene.has_method("init"):
 		spriteScene.init(self)
 	spriteScene.name = "PaperDoll"
+	paper_doll = spriteScene
 	$Sprite.add_child(spriteScene)
 	
 
@@ -116,7 +119,8 @@ func set_state(newState):
 
 	if newState == States.CHASING:
 		spawn_alert_sprite()
-		
+
+
 
 func get_state():
 	return State
@@ -200,9 +204,15 @@ func player_in_sights():
 
 
 func pull_trigger():
+	
 	gun.get_node("TriggerFingerTimer").start() 
 	face_player()
+	if paper_doll != null and paper_doll.has_method("aim"):
+		paper_doll.aim($NPCGun/Muzzle)
 	set_state(States.AIMING)
+	
+	
+	
 
 func move_along_path(delta):
 	if State == States.DEAD:
@@ -284,9 +294,8 @@ func update_nav_path(destination):
 
 func flash_hit():
 	if Global.user_preferences["gore"]:
-		var doll = sprite.get_node("PaperDoll")
-		if doll.has_method("hit"):
-			doll.hit()
+		if paper_doll != null and paper_doll.has_method("hit"):
+			paper_doll.hit()
 	$HitNoise.play()
 
 
@@ -301,12 +310,11 @@ func die():
 	$DieNoise.play()
 	#$Corpse.rotation = rand_range(0, 2*PI)
 	if Global.user_preferences["gore"]:
-		var doll = sprite.get_node("PaperDoll")
-		if doll.has_method("die"):
-			doll.die()
-	else:
+		if paper_doll != null and paper_doll.has_method("die"):
+			paper_doll.die()
+	else: # no gore
 		set_visible(false)
-		call_deferred("queue_free")
+		call_deferred("queue_free") # disappear quietly
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	spawn_loot()
 	if patrol_route_target != null and is_instance_valid(patrol_route_target):
@@ -352,7 +360,9 @@ func shoot(): # this ought to be in a separate gun object
 func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 	health -= damage
 	if health <= 0:
+		flash_hit()
 		knock_back(incomingVector.normalized() * 3.0 * damage)
+		yield(get_tree().create_timer(0.3), "timeout")
 		die()
 	else:
 		flash_hit()
