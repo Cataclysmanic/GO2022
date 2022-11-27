@@ -138,8 +138,7 @@ func _on_loud_noise_made(pos):
 	$Noises.add_child(noiseScene)
 
 func _on_projectile_ready(projectile):
-
-	$Outdoor/Projectiles.add_child(projectile)
+	$Projectiles.add_child(projectile)
 
 
 func _on_shit_got_real(): # probably inside

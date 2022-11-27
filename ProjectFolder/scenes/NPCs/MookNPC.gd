@@ -32,6 +32,11 @@ var last_known_target_position: Vector2
 var rotate_sprite : bool = false
 var flip_sprite : bool = true
 
+var paper_doll
+var currentNpc
+var set_boss = 0
+
+
 onready var gun
 
 
@@ -46,6 +51,7 @@ signal projectile_ready(bulletObj)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(set_boss)
 	gun = find_node("NPCGun")
 	#nav_update_timer.connect("timeout", self, "update_nav_path")
 	nav_update_timer.start()
@@ -90,6 +96,7 @@ func init(mapScene, homeBuilding, pathFollowObj):
 
 
 func spawn_sprite(spriteName):
+	currentNpc = spriteName
 	if has_node("Sprite/vizSpriteHiddenInCode"):
 		$Sprite/vizSpriteHiddenInCode.hide()
 	var spriteScene
@@ -97,7 +104,7 @@ func spawn_sprite(spriteName):
 	rotate_sprite = false
 	flip_sprite = true
 	
-	if spriteName == "shooty":
+	if spriteName == "shooty" or "snakey":
 		has_gun = true
 	else:
 		has_gun = false
@@ -334,11 +341,21 @@ func shoot(): # this ought to be in a separate gun object
 		var pos = gun.get_node("Muzzle").get_global_position()
 		var bulletSpeed = 600.0
 		bullet.init(self, pos, rotation, bulletSpeed)
+		if currentNpc == "snakey":
+			bulletSpeed = 50
+			$NPCGun/TriggerFingerTimer.wait_time = 0.4
+			$NPCGun/ReloadTimer.wait_time = 0.3
+			bullet.snakeify = true
+		else:
+			$NPCGun/TriggerFingerTimer.wait_time = 1.5
+			$NPCGun/ReloadTimer.wait_time = 1.5
 		ammo_remaining -= 1
 		emit_signal("projectile_ready", bullet)
 		var gunshotNoises = gun.get_node("GunshotNoises").get_children()
 		var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
 		gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
+		if currentNpc == "snakey":
+			gunshotNoise.set_pitch_scale(2)
 		gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
 		gunshotNoise.play()
 		if $Sprite.find_node("AnimationPlayer") and $Sprite/AnimationPlayer.has_animation("shoot"):

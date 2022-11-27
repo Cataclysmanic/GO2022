@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Items/Projectiles/bullet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Items/Projectiles/BulletImpact.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Items/Projectiles/rocket.png" type="Texture" id=4]
 [ext_resource path="res://scenes/Items/Projectiles/RocketImpact.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Items/Projectiles/bulletsnake.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -58,7 +59,7 @@ region = Rect2( 720, 0, 144, 144 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 25.0
