@@ -77,7 +77,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.3268, 8.79886 )
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Node2D" groups=["Bullet"]]
 scale = Vector2( 0.795558, 0.795558 )
 script = ExtResource( 1 )
 

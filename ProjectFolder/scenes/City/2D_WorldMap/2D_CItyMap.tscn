@@ -127,8 +127,6 @@ scale = Vector2( 3.31117, 3.31117 )
 position = Vector2( 1488.14, 1539 )
 scale = Vector2( 3.25559, 3.25559 )
 
-[node name="Projectiles" type="Node2D" parent="Outdoor"]
-
 [node name="InvisibleWalls" type="Node2D" parent="Outdoor"]
 
 [node name="EastWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
@@ -262,3 +260,5 @@ scale = Vector2( 0.870445, 0.870445 )
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Noises" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]

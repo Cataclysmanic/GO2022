@@ -90,3 +90,5 @@ position = Vector2( 206, 479 )
 position = Vector2( 831, 481 )
 
 [node name="Player" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]

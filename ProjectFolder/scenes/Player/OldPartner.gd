@@ -35,3 +35,8 @@ func _physics_process(delta):
 
 func _on_ReloadTimer_timeout():
 	shoot = true
+
+
+func _on_HitZone_body_entered(body):
+	if body.is_in_group("Bullet"):
+		pass

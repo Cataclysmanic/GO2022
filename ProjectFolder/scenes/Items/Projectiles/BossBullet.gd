@@ -8,7 +8,7 @@ var dying = false
 
 
 func _ready():
-	pass
+	$Sprite2.visible = false
 
 
 func _physics_process(delta):
@@ -31,6 +31,8 @@ func _on_Area2D_body_entered(body):
 		queue_free()
 	else:
 		dying = true
+		$CollisionShape2D.disabled = true
+		$Sprite2.visible = true
 		$Sprite.visible = false
 		$Sprite2.play("default")
 
