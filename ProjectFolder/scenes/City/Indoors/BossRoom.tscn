@@ -1,16 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/BossRooms.gd" type="Script" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/bossroom.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Player/OldPartner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Test Assets/Building/firstTry.dae/floorTexWIP.png" type="Texture" id=5]
+
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 51, -359, 169, -358, 170, -252, 52, -251 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( 51, -359, 169, -358, 170, -252, 52, -251 )
+
+[sub_resource type="OccluderPolygon2D" id=3]
+polygon = PoolVector2Array( 51, -359, 169, -358, 170, -252, 52, -251 )
 
 [node name="BossRoom" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="floor" type="Sprite" parent="."]
 modulate = Color( 0.54902, 0.54902, 0.54902, 1 )
-position = Vector2( 512, 512 )
+position = Vector2( 512.5, 510.5 )
+scale = Vector2( 1.60156, 2.28348 )
+texture = ExtResource( 5 )
 
 [node name="Walls" type="Sprite" parent="."]
 position = Vector2( 512, 512 )
@@ -41,6 +53,9 @@ polygon = PoolVector2Array( 51, -358, 169, -358, 170, -252, 53, -251 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Barrier"]
 polygon = PoolVector2Array( 51, -358, 169, -358, 170, -252, 53, -251 )
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Barrier"]
+occluder = SubResource( 1 )
+
 [node name="Barrier2" type="StaticBody2D" parent="Walls"]
 position = Vector2( 8, 570 )
 
@@ -50,6 +65,9 @@ polygon = PoolVector2Array( 51, -358, 169, -358, 170, -252, 53, -251 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Barrier2"]
 polygon = PoolVector2Array( 51, -358, 169, -358, 170, -252, 53, -251 )
 
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Barrier2"]
+occluder = SubResource( 2 )
+
 [node name="Barrier3" type="StaticBody2D" parent="Walls"]
 position = Vector2( 7, 281 )
 
@@ -58,6 +76,9 @@ polygon = PoolVector2Array( 51, -358, 169, -358, 170, -252, 53, -251 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Barrier3"]
 polygon = PoolVector2Array( 51, -358, 169, -358, 170, -252, 53, -251 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Walls/Barrier3"]
+occluder = SubResource( 3 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 3 ) ] ]

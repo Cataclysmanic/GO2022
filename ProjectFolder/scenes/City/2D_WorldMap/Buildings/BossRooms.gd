@@ -15,3 +15,21 @@ func spawn_player():
 	playerScene.init(self)
 	$Player.add_child(playerScene)
 	player = playerScene
+
+
+
+
+
+
+############OLD PARTNER#############################################
+
+func _remove_pillar(pillar_number):
+	if pillar_number == 1:
+		$Walls/Barrier.visible = false
+		$Walls/Barrier/CollisionPolygon2D.disabled = true
+	if pillar_number == 2:
+		$Walls/Barrier3.visible = false
+		$Walls/Barrier3/CollisionPolygon2D.disabled = true
+	if pillar_number == 3:
+		$Walls/Barrier2.visible = false
+		$Walls/Barrier2/CollisionPolygon2D.disabled = true
