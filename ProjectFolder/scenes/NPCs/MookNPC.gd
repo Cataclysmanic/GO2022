@@ -218,7 +218,7 @@ func move_along_path(delta):
 	if State == States.DEAD:
 		return
 	elif State == States.FLYING:
-		var collision = move_and_collide(velocity * delta)
+		var collision = move_and_collide(velocity * delta * Global.game_speed)
 		if collision:
 			gib()
 		return
@@ -228,18 +228,18 @@ func move_along_path(delta):
 	var normalVectorToTarget = global_position.direction_to(target_global_position)
 
 	var desiredvelocity = normalVectorToTarget * nav_agent.max_speed
-	var acceleration = (desiredvelocity - velocity) * delta * 4.0
+	var acceleration = (desiredvelocity - velocity) * delta * Global.game_speed * 4.0
 	velocity += acceleration
 
 	if State in [States.FIGHTING, States.CHASING]:
 		turn_toward_vector(velocity, delta)
-		velocity = move_and_slide(velocity)
+		velocity = move_and_slide(velocity * Global.game_speed)
 	elif State == States.PATROLLING and not near_target(target_global_position, 5.0): # prevent needless spinning?
 		turn_toward_vector(velocity, delta)
-		velocity = move_and_slide(velocity)
+		velocity = move_and_slide(velocity * Global.game_speed)
 
 	else: # patrolling, but too close to the nav_target, slow down and don't spin
-		velocity = move_and_slide(velocity / 2.0)
+		velocity = move_and_slide(velocity / 2.0 * Global.game_speed)
 
 
 
@@ -263,7 +263,7 @@ func face_player():
 		$Sprite.scale.x = -abs($Sprite.scale.x)
 
 func turn_toward_vector(target_vector, delta):
-	rotation = lerp_angle(rotation, target_vector.angle(), 10.0 * delta)
+	rotation = lerp_angle(rotation, target_vector.angle(), 10.0 * delta * Global.game_speed)
 	rotate_and_flip_sprite(velocity)
 
 func rotate_and_flip_sprite(dirVector):

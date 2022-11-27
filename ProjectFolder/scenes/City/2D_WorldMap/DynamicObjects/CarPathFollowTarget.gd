@@ -17,18 +17,17 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if State in [States.READY, States.MOVING]:
-		set_offset(get_offset() + (speed * delta))
+		set_offset(get_offset() + (speed * delta * Global.game_speed))
 
 
 func die():
 	call_deferred("queue_free")
 
 func speed_up(_delta):
-	#speed = min( speed + (acceleration * delta), max_speed)
 	speed = max_speed
 	
-func slow_down(_delta):
-	speed = max(speed - (acceleration*_delta), min_speed )
+func slow_down(delta):
+	speed = max(speed - (acceleration * delta * Global.game_speed), min_speed )
 
 func stop():
 	State = States.STOPPED

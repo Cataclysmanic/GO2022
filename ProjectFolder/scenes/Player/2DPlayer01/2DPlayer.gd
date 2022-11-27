@@ -177,7 +177,7 @@ func _physics_process(delta):
 			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
 			$Flashlight.look_at(get_global_mouse_position())
 			if stamina < 100 :
-				stamina = min(stamina + stamina_recovery_rate * delta, max_stamina)
+				stamina = min(stamina + stamina_recovery_rate * delta * Global.game_speed, max_stamina)
 				update_bars()
 	if has_node("DebugInfo"):
 		$DebugInfo.text = States.keys()[State]
@@ -292,7 +292,7 @@ func move(_delta):
 		move_vector += Vector2.DOWN * speed
 	directional_vector = move_vector
 
-	var _collision = move_and_slide(directional_vector) # move and slide doesn't use delta.
+	var _collision = move_and_slide(directional_vector * Global.game_speed) # move and slide doesn't use delta.
 	play_animations(directional_vector)
 	last_movement_vector = directional_vector
 	

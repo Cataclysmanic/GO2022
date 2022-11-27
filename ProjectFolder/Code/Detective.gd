@@ -88,5 +88,5 @@ func _process(delta):
 				_:
 					print('Something went wrong with animation')
 	
-	var vel = dir * speed * delta # need delta for consistent speed across PCs with diverse framerates
+	var vel = dir * speed * delta * Global.game_speed # need delta for consistent speed across PCs with diverse framerates
 	move_and_collide(vel)

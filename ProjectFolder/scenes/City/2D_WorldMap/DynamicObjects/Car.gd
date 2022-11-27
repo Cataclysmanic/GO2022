@@ -69,7 +69,7 @@ func _process(delta):
 
 		
 		var movementVector = get_forward_vector() * speed
-		position += movementVector * delta
+		position += movementVector * delta * Global.game_speed
 
 		ask_path_follow_target_to_adjust_speed(delta)
 		update_debug_info(movementVector)
@@ -77,8 +77,8 @@ func _process(delta):
 	elif State == States.CRASHING:
 		var crashVelocity = crash_vector
 		var crashAngularVel = crash_angular_vel
-		position += crashVelocity * delta
-		rotation += crashAngularVel * delta
+		position += crashVelocity * delta * Global.game_speed
+		rotation += crashAngularVel * delta * Global.game_speed
 
 func ask_path_follow_target_to_adjust_speed(delta):
 	var targetPos = path_follow_target.get_global_position()
@@ -108,10 +108,10 @@ func get_path_follow_vector():
 func turn_toward_vector(vector, delta):
 	if get_forward_vector().rotated(PI/2).dot(vector) > 0:
 		# turn right
-		rotation += steering_speed * delta
+		rotation += steering_speed * delta * Global.game_speed
 	else:
 		# turn left
-		rotation -= steering_speed * delta
+		rotation -= steering_speed * delta * Global.game_speed
 	
 
 func get_collision_avoidance_vector():
@@ -213,12 +213,12 @@ func wreck():
 
 func accelerate(delta):
 	var throttleForce = acceleration
-	speed = min( speed + ( throttleForce * delta ) , max_speed )
+	speed = min( speed + ( throttleForce * delta * Global.game_speed ) , max_speed )
 
 	
 func brake(delta):
 	var brakeForce = braking
-	speed = max(speed - (brakeForce * delta), 0 )
+	speed = max(speed - (brakeForce * delta * Global.game_speed), 0 )
 	
 func spawn_patrol_route():
 	var routeNames = $AvailablePatrolRoutes.get_resource_list()

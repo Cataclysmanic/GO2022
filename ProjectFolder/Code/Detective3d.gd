@@ -217,7 +217,7 @@ func _process(delta):
 				_:
 					print('Something went wrong with animation')
 	
-	var vel = dir.normalized() * speed * delta
+	var vel = dir.normalized() * speed * delta * Global.game_speed
 	var _collision = move_and_collide(vel)
 
 func _on_collectible_picked_up(itemObj):

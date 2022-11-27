@@ -18,7 +18,7 @@ func _process(delta):
 
 
 func move_along_path(delta):
-	offset += speed * delta * get_speed_modifiers()
+	offset += speed * delta * get_speed_modifiers() * Global.game_speed
 	
 
 func set_speed(newSpeed):

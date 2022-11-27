@@ -33,7 +33,7 @@ func _process(delta):
 		sprint = 1.0
 
 	var total_movement = movement_vector * speed * sprint
-	var _collision = move_and_collide(total_movement * delta)
+	var _collision = move_and_collide(total_movement * delta * Global.game_speed)
 	play_movement_animations(total_movement)
 	last_movement_vector = total_movement
 

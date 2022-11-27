@@ -5,4 +5,4 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	unit_offset += speed * delta
+	unit_offset += speed * delta * Global.game_speed

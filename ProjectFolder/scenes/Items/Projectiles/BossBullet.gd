@@ -10,13 +10,13 @@ func _ready():
 
 func _physics_process(delta):
 	
-	position += transform.x * speed * delta
+	position += transform.x * speed * delta * Global.game_speed
 	
 	
 	
 	
 	velocity = velocity.normalized() * speed
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity * Global.game_speed)
 	
 	
 	
