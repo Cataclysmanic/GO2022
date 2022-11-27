@@ -22,9 +22,9 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
-		var nextScene = "res://scenes/CutScenes/TopDownAnimatedSequences/OfficeAnimatedSequence_01.tscn"
+		var nextScene = find_node("NextSceneButton").SceneToLaunch # packed scene
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		Global.world_controller.change_scene(nextScene)
+		Global.world_controller.change_scene_to(nextScene)
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
