@@ -56,12 +56,12 @@ func empty_click():
 func shoot():
 	State = States.FIRING
 	make_gunshot_noise()
-	$CockTimer.wait_time = 0.4 - 0.05 * upgrader
+	$CockTimer.wait_time = max(0.4 - 0.05 * upgrader, 0.01) # was throwing errors about 0 wait time
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
-	var bulletSpeed = 1000+100*upgrader
+	var bulletSpeed = 1000.0+100.0*upgrader
 	if Global.rockets:
-		bulletSpeed = 800
+		bulletSpeed = 800.0
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
 	if shot_num == 1:

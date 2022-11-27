@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=22]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=23]
 [ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -66,6 +67,7 @@ shape = SubResource( 10 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
+visible = false
 
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( -263, -262 )
@@ -522,6 +524,32 @@ rotation = -1.57079
 [node name="Bazooka" parent="." instance=ExtResource( 21 )]
 position = Vector2( -225, -187 )
 scale = Vector2( 0.349502, 0.344363 )
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="CommercialUnitA" parent="Doors" instance=ExtResource( 25 )]
+position = Vector2( -122, -244 )
+scale = Vector2( 0.66, 0.66 )
+
+[node name="CommercialUnitA2" parent="Doors" instance=ExtResource( 25 )]
+position = Vector2( -202, -39 )
+scale = Vector2( 0.66, 0.66 )
+
+[node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 25 )]
+position = Vector2( -23, -40 )
+scale = Vector2( 0.66, 0.66 )
+
+[node name="CommercialUnitB" parent="Doors" instance=ExtResource( 25 )]
+position = Vector2( 6, -243 )
+scale = Vector2( 0.66, 0.66 )
+
+[node name="CommercialUnitC" parent="Doors" instance=ExtResource( 25 )]
+position = Vector2( 161, -245 )
+scale = Vector2( 0.66, 0.66 )
+
+[node name="CommercialUnitC2" parent="Doors" instance=ExtResource( 25 )]
+position = Vector2( 187, -40 )
+scale = Vector2( 1, 0.66 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

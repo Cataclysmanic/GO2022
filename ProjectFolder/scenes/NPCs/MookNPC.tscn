@@ -112,7 +112,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 8.15421, 6.72645 )
+extents = Vector2( 8.15421, 8.74438 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 59.2805, 65.2127 )
@@ -171,7 +171,7 @@ resources = [ PoolStringArray( "Bandage2DPickup", "CircumstantialClue2DPickup", 
 [node name="damage_area" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damage_area"]
-position = Vector2( 2.5, 2.38419e-06 )
+position = Vector2( 2.49998, -7.5 )
 rotation = 3.14159
 scale = Vector2( 3.37249, -3.71667 )
 shape = SubResource( 15 )

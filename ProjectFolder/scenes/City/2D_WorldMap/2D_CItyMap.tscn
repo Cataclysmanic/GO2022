@@ -211,30 +211,6 @@ volume_db = -7.0
 position = Vector2( -1514, -1286 )
 scale = Vector2( 2.09672, 2.09672 )
 
-[node name="CommercialUnitA" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -1881, 678 )
-scale = Vector2( 2, 2 )
-
-[node name="CommercialUnitA2" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -2161, 1347 )
-scale = Vector2( 1.67, 1.67 )
-
-[node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -1588, 1349 )
-scale = Vector2( 1.55423, 1.28862 )
-
-[node name="CommercialUnitB" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -1462, 678 )
-scale = Vector2( 2.6, 2.6 )
-
-[node name="CommercialUnitC" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -950, 678 )
-scale = Vector2( 2.19659, 2.19659 )
-
-[node name="CommercialUnitC2" parent="Doors" instance=ExtResource( 19 )]
-position = Vector2( -869, 1351 )
-scale = Vector2( 3.5, 3.5 )
-
 [node name="107MainDoor" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( 1022, -870 )
 scale = Vector2( 0.870445, 0.870445 )
