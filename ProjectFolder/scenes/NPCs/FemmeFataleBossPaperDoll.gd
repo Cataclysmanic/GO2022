@@ -14,7 +14,7 @@ func init(myNPC):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if npc != null and npc.nav_agent != null:
-		if npc.get_state() == 3:
+		if npc.get_state() == 6:
 			$AnimationPlayer.play("shoot")
 
 

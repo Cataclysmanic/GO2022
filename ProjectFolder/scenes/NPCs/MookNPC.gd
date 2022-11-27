@@ -8,9 +8,9 @@ onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 #export var active : bool = false
 export var npc_type_odds = { 
-	"shooty":0.65,
-	"punchy":0.25,
-	"snakey":0.10,
+	"shooty":0.33,
+	"punchy":0.33,
+	"snakey":0.33,
 }
 
 #chance_to_have_gun = 0.75
@@ -340,15 +340,15 @@ func shoot(): # this ought to be in a separate gun object
 		var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 		var pos = gun.get_node("Muzzle").get_global_position()
 		var bulletSpeed = 600.0
-		bullet.init(self, pos, rotation, bulletSpeed)
+		
 		if currentNpc == "snakey":
-			bulletSpeed = 50
 			$NPCGun/TriggerFingerTimer.wait_time = 0.4
 			$NPCGun/ReloadTimer.wait_time = 0.3
 			bullet.snakeify = true
 		else:
 			$NPCGun/TriggerFingerTimer.wait_time = 1.5
 			$NPCGun/ReloadTimer.wait_time = 1.5
+		bullet.init(self, pos, rotation, bulletSpeed)
 		ammo_remaining -= 1
 		emit_signal("projectile_ready", bullet)
 		var gunshotNoises = gun.get_node("GunshotNoises").get_children()
