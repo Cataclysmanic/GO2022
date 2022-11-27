@@ -4,10 +4,17 @@ extends CanvasLayer
 
 var dialogue_text = ["foo", "bar"]
 var current_line = 0
+var quest_giver
+
+enum States { HIDDEN, TALKING }
+var State = States.HIDDEN
+
+signal finished()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	quest_giver = get_parent()
 	$Dialogue.hide()
 
 
@@ -19,11 +26,18 @@ func set_portrait(imageTex):
 func popin():
 	$Dialogue.show()
 	Global.pause()
+	State = States.TALKING
 
 
 func popout():
 	$Dialogue.hide()
 	Global.resume()
+	State = States.HIDDEN
+	if get_parent().has_method("_on_dialog_finished"):
+		if not is_connected("finished", get_parent(), "_on_dialog_finished"):
+			var _err = connect("finished", get_parent(), "_on_dialog_finished")
+		emit_signal("finished")
+
 
 func set_text(textArr):
 	if textArr != null:
@@ -38,14 +52,22 @@ func advance_dialogue():
 #func _process(delta):
 #	pass
 
+func _input(_event):
+	if Input.is_action_just_pressed("interact") and State == States.TALKING:
+		advance_dialogue()
+		
 
 func _on_NextButton_pressed():
 	advance_dialogue()
 
 
 func _on_YesButton_pressed():
+	if quest_giver.has_method("quest_accepted"):
+		quest_giver.quest_accepted()
 	popout()
 	
 
 func _on_NoButton_pressed():
+	if quest_giver.has_method("quest_rejected"):
+		quest_giver.quest_rejected()
 	popout()
