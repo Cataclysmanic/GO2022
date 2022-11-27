@@ -51,7 +51,7 @@ signal projectile_ready(bulletObj)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(set_boss)
+	#print(set_boss)
 	gun = find_node("NPCGun")
 	#nav_update_timer.connect("timeout", self, "update_nav_path")
 	nav_update_timer.start()
