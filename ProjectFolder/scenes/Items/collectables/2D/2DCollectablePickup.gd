@@ -20,6 +20,7 @@ export var item_details : Dictionary = {
 }
 
 var item_info : InventoryItemResource
+var line_to_player : Line2D # for debugging
 
 # export var item_info : Resource # removed this because objects were sharing resources
 
@@ -48,7 +49,27 @@ func _ready():
 	if not item_details["path_to_popup_display_image"]:
 		item_info.set("path_to_popup_display_image", spritePath)
 		
+	if visible == true and Global.user_preferences["debug"]:
+		# spawn a line and draw from position to player.
+		# useful for figuring out where quest items might be.
+		var myLine = Line2D.new()
+		myLine.name = "PointToPlayer"
+		myLine.default_color = Color.crimson
+
+		add_child(myLine)
+		myLine.set_global_position(Vector2.ZERO)
+		myLine.set_global_scale(Vector2(1,1))
+		self.set_global_scale(Vector2(1,1))
+		line_to_player = myLine
+		
 	State = States.READY
+
+func _process(_delta):
+	if line_to_player != null and Global.user_preferences["debug"]:
+		line_to_player.clear_points()
+		line_to_player.add_point(self.get_global_position())
+		line_to_player.add_point(Global.player.get_global_position())
+
 
 
 func disappear():
