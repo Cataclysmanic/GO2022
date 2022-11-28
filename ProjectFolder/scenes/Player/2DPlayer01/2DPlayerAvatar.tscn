@@ -286,7 +286,11 @@ custom_fonts/font = ExtResource( 12 )
 text = "State"
 align = 1
 
+[node name="QuestNotificationTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="MeleeAttackZone" to="." method="_on_MeleeAttackZone_body_entered"]
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]
 [connection signal="timeout" from="Timers/DyingWarningUpdateTimer" to="." method="_on_DyingWarningUpdateTimer_timeout"]
+[connection signal="timeout" from="QuestNotificationTimer" to="." method="_on_QuestNotificationTimer_timeout"]

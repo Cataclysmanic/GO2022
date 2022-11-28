@@ -171,12 +171,88 @@ item_details = {
 item_details = {
 "display_immediately": true,
 "is_unique": true,
-"item_name": "Happy Ending!",
+"item_name": "Happy Ending",
 "notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
 "path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
 "path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
+
+[node name="HappyEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( -376.309, -346.893 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Happy Ending",
+"notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/HappyEnding"]
+margin_left = -43.2923
+margin_top = -28.3064
+margin_right = 42.7077
+margin_bottom = -14.3064
+text = "Happy Ending"
+
+[node name="GoToJailEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( -295.83, -376.864 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "GoToJail Ending",
+"notes_for_journal": "Nope. It's jail for you.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/GoToJailEnding"]
+margin_left = -48.8425
+margin_top = -19.426
+margin_right = 56.1575
+margin_bottom = -5.42603
+text = "Go To Jail Ending"
+
+[node name="CollectedEvidenceEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( 285.285, -403.506 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "CollectedEvidence Ending",
+"notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/CollectedEvidenceEnding"]
+margin_left = -74.9288
+margin_top = -24.9762
+margin_right = 88.0712
+margin_bottom = -10.9762
+text = "CollectedEvidence Ending"
+
+[node name="BeatTheBossEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( 370.204, -365.209 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "BeatTheBoss Ending",
+"notes_for_journal": "Nope. It's jail for you.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/BeatTheBossEnding"]
+margin_left = -48.8425
+margin_top = -19.426
+margin_right = 56.1575
+margin_bottom = -5.42603
+text = "BeatTheBoss Ending"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

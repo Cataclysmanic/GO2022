@@ -34,6 +34,12 @@ func _ready():
 	city_map = Global.world_controller.current_scene
 	home_building = city_map.get_random_building()
 
+	start_random_engine()
+
+func start_random_engine():	
+	var engines = $Audio/Engine.get_children()
+	var myEngine = engines[randi()%engines.size()]
+	myEngine.play()
 
 func init(pathFollowNode):
 	path_follow_target = pathFollowNode
@@ -307,5 +313,5 @@ func _on_NPCSpawnTimer_timeout():
 func _on_HornTimer_timeout():
 	if State in [States.READY, States.MOVING]:
 		$Audio/Horn/RandomHornNoise.play()
-		$Audio/Horn/HornTimer.set_wait_time(rand_range(1.0, 5.0))
+		$Audio/Horn/HornTimer.set_wait_time(rand_range(2.0, 8.0))
 		$Audio/Horn/HornTimer.start()
