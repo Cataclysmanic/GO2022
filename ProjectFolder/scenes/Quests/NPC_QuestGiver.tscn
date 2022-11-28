@@ -12,8 +12,8 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 144.25, 134.5 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 54, 66.5 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -42,13 +42,14 @@ texture = ExtResource( 2 )
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2( 46.75, -4.5 )
-shape = SubResource( 2 )
+position = Vector2( -1, -6.5 )
+shape = SubResource( 6 )
 
 [node name="QuestTargetObjects" type="ResourcePreloader" parent="."]
 
 [node name="ThoughtBubble" type="Sprite" parent="."]
-position = Vector2( -35, -61 )
+position = Vector2( -26, -50 )
+scale = Vector2( 0.509941, 0.512818 )
 texture = ExtResource( 3 )
 
 [node name="DialogLabel" type="Label" parent="."]
@@ -99,6 +100,7 @@ item_details = {
 }
 
 [node name="PotentialRewards" type="Node2D" parent="."]
+visible = false
 
 [node name="CircumstantialClue" parent="PotentialRewards" instance=ExtResource( 7 )]
 

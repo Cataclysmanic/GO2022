@@ -288,6 +288,7 @@ position = Vector2( 113, -145 )
 rotation = -1.57079
 
 [node name="PaperClue" parent="House2_NE/DeskSearchable2" instance=ExtResource( 20 )]
+visible = false
 scale = Vector2( 0.367318, 0.367318 )
 item_details = {
 "display_immediately": true,

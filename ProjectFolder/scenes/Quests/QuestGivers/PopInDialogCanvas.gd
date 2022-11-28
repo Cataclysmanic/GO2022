@@ -47,8 +47,8 @@ func set_text(textArr):
 		$Dialogue/PanelContainer/VBoxContainer/DialogText.text = dialogue_text[0]
 
 func advance_dialogue():
-	current_line += 1
-	$Dialogue/PanelContainer/VBoxContainer/DialogText.text = dialogue_text[current_line%dialogue_text.size()]
+	current_line = min(current_line +1, dialogue_text.size()-1)
+	$Dialogue/PanelContainer/VBoxContainer/DialogText.text = dialogue_text[current_line]
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

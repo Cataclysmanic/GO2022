@@ -430,7 +430,7 @@ item_details = {
 
 [node name="NPC_QuestGiver" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 23 )]
 position = Vector2( -2, -117 )
-scale = Vector2( 0.626327, 0.662802 )
+scale = Vector2( 0.483979, 0.512165 )
 npc_name = "Fusili Romano"
 Sprite_Tex = ExtResource( 22 )
 Portrait_Tex = ExtResource( 22 )
@@ -439,6 +439,7 @@ Portrait_Tex = ExtResource( 22 )
 visible = false
 
 [node name="MiscClue" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Requirements" instance=ExtResource( 18 )]
+visible = false
 item_details = {
 "display_immediately": true,
 "is_unique": false,
@@ -453,6 +454,7 @@ item_details = {
 visible = false
 
 [node name="DinnerReservation" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Rewards" instance=ExtResource( 18 )]
+visible = false
 item_details = {
 "display_immediately": true,
 "is_unique": false,
