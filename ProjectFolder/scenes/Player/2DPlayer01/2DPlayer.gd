@@ -161,8 +161,7 @@ func upgrade_gun():
 		gunScene.upgrader += 1
 	
 func begin_rocketization():
-	var gunScene = $PaperDoll/Upper/GunLocation.get_node("Gun2D")
-	gunScene.rocketize()
+	weapon.rocketize()
 	
 func get_hud():
 	return hud

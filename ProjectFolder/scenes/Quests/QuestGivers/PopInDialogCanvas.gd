@@ -15,6 +15,7 @@ signal finished()
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	quest_giver = get_parent()
+	$Dialogue/PanelContainer/VBoxContainer/NameLabel.text = quest_giver.npc_name
 	$Dialogue.hide()
 
 
