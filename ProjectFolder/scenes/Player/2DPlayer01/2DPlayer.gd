@@ -243,7 +243,7 @@ func melee_attack():
 	$PaperDoll.melee_attack()
 	var targets = $MeleeAttackZone.get_overlapping_bodies()
 	for target in targets:
-		if target.has_method("extreme_knock_back"):
+		if target.has_method("extreme_knock_back") and !target.get('reward') == null:
 			var impactVector = target.global_position - self.global_position
 			target.extreme_knock_back(impactVector)
 			var meleeAudioFiles = $MeleeAttackZone/MeleeAudio.get_children()
