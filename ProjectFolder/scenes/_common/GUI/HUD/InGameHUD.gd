@@ -48,6 +48,10 @@ func _unhandled_key_input(_event):
 #		toggle_inventory_display()
 		
 
+
+func remove_boss_health(amount):
+	$ProgressBar.value -= amount
+
 func toggle_inventory_display():
 	if InventoryState == InventoryStates.CLOSED:
 		show_inventory()
@@ -210,6 +214,16 @@ func _on_missing_key():
 	if Global.trigger_events["missing_tutorial_key_reported"] == false:
 		$AudioEvents/MissingKey.play()
 		Global.trigger_events["missing_tutorial_key_reported"] = true
+
+
+
+
+func _on_boss_spawned(boss_health, boss_name):
+	$ProgressBar.visible = true
+	$ProgressBar.max_value = boss_health
+	$ProgressBar.value = boss_health
+	$ProgressBar/Label.text = boss_name
+
 
 
 	
