@@ -20,7 +20,6 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="Dialogue" type="Control" parent="."]
-visible = false
 anchor_left = 0.7
 anchor_right = 0.7
 anchor_bottom = 1.0
@@ -41,7 +40,14 @@ margin_bottom = 593.0
 size_flags_vertical = 3
 alignment = 1
 
+[node name="NameLabel" type="Label" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+align = 1
+
 [node name="Portrait" type="TextureRect" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 18.0
 margin_right = 250.0
 margin_bottom = 330.0
 size_flags_vertical = 3

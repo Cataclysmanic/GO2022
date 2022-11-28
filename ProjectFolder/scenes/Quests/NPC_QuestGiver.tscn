@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Quests/QuestGivers/PopInDialogCanvas.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.7567
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 144.25, 134.5 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 54, 66.5 )
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -41,13 +42,14 @@ texture = ExtResource( 2 )
 [node name="InteractionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2( 46.75, -4.5 )
-shape = SubResource( 2 )
+position = Vector2( -1, -6.5 )
+shape = SubResource( 6 )
 
 [node name="QuestTargetObjects" type="ResourcePreloader" parent="."]
 
 [node name="ThoughtBubble" type="Sprite" parent="."]
-position = Vector2( -35, -61 )
+position = Vector2( -26, -50 )
+scale = Vector2( 0.509941, 0.512818 )
 texture = ExtResource( 3 )
 
 [node name="DialogLabel" type="Label" parent="."]
@@ -96,6 +98,11 @@ item_details = {
 "path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
+
+[node name="PotentialRewards" type="Node2D" parent="."]
+visible = false
+
+[node name="CircumstantialClue" parent="PotentialRewards" instance=ExtResource( 7 )]
 
 [node name="InteractInstruction" type="Label" parent="."]
 margin_left = 4.0

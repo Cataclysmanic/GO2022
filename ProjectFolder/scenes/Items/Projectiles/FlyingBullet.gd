@@ -49,6 +49,15 @@ func die():
 	$CollisionShape2D.call_deferred("set_disabled", true) 
 
 func _on_Area2D_body_entered(body):
+	
+	if body.is_in_group("Boss"):
+		body.boss_hit(damage)
+		die()
+		print("Bossy")
+	
+	
+	
+	
 	if !(snakeify and !"Gun2D" in str(originator)):
 		if body == originator:
 			return
@@ -60,6 +69,8 @@ func _on_Area2D_body_entered(body):
 			var _err = connect("hit", body, "_on_hit")
 			body._on_hit()
 			die()
+			
+			
 		else: # probably hit a wall
 			if Global.rockets:
 				$AnimatedSprite.play("impact rockets")	
@@ -90,6 +101,11 @@ func _on_Area2D_area_entered(area):
 	else:
 		if "Bullet" in area.name:
 			die()
+
+func dummy_emit(): # just to shut up the inspector warnings
+	printerr("FlyingBullet.gd deprecated function dummy_emit should not be used")
+	if false:
+		emit_signal("hit")
 
 func _on_LifetimeTimer_timeout():
 	if !snakeify:

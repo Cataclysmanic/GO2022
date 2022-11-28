@@ -48,6 +48,10 @@ func _unhandled_key_input(_event):
 #		toggle_inventory_display()
 		
 
+
+func remove_boss_health(amount):
+	$ProgressBar.value -= amount
+
 func toggle_inventory_display():
 	if InventoryState == InventoryStates.CLOSED:
 		show_inventory()
@@ -113,11 +117,12 @@ func add_bullet_icon():
 
 
 func reload_if_possible():
-	
-	if Global.IO.player_has_item("magazine"):
-		Global.IO._on_collectible_used("magazine")
-		for _i in range(6):
-			add_bullet_icon()
+	pass
+
+	#if Global.IO.player_has_item("magazine"):
+	#	Global.IO._on_collectible_used("magazine")
+	#	for _i in range(6):
+	#		add_bullet_icon()
 
 
 func clear_inventory():
@@ -210,6 +215,16 @@ func _on_missing_key():
 	if Global.trigger_events["missing_tutorial_key_reported"] == false:
 		$AudioEvents/MissingKey.play()
 		Global.trigger_events["missing_tutorial_key_reported"] = true
+
+
+
+
+func _on_boss_spawned(boss_health, boss_name):
+	$ProgressBar.visible = true
+	$ProgressBar.max_value = boss_health
+	$ProgressBar.value = boss_health
+	$ProgressBar/Label.text = boss_name
+
 
 
 	

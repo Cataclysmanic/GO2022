@@ -18,6 +18,7 @@ var health_bar
 var stamina_bar
 var dying_warning_label
 
+var weapon
 
 var evidence := 0 # just a number from 0 to 100 indicating how much loot player picked up. Simple in-game currency/reward system.
 var evidence_bar
@@ -43,14 +44,26 @@ onready var quest_notification = find_node("UpdateNotice")
 func _ready():
 	update_bars()
 	$PaperDoll.relax()
-	if Global.IO.player_has_item("gun2D"):
-		spawn_item(Global.IO.get_item("Gun2D"))
+	
+	#if Global.IO.player.has_item("gun2D"): # <-- legacy from version 0.1 on Nov 1. We originally thought the player might not always have a weapon
+	#spawn_item(Global.IO.get_item("Gun2D"))
 
 	manual_spawn_gun() # temporary
-	set_state(States.READY)
 	$DebugInfo.visible = Global.user_preferences["debug"]
 #	set_primary_target_area(get_FOV_circle(Vector2(0,0),500))
-
+	
+	if get_tree().get_nodes_in_group("Boss").size() != 0:
+		var boss = get_tree().get_nodes_in_group("Boss")[0]
+		$CanvasLayer/HUD._on_boss_spawned(boss.health, boss.boss_name)
+	
+	# fallback safety protocol
+	yield(get_tree().create_timer(0.25), "timeout") # give the city time to get ready
+	if Global.player == null: # no scene called our init() method
+		init(null)
+		update_bars()
+		
+	set_state(States.READY)
+	
 	
 func init(mapScene):
 	map_scene = mapScene
@@ -75,19 +88,20 @@ func revert_state():
 	
 
 func update_bars():
-	health_bar.value = health
-	stamina_bar.value = stamina
-	evidence_bar.value = min(evidence, 100)
-	#print("evidence: " + str(evidence))
+	if not State in [States.INITIALIZING, States.DEAD]:
+		health_bar.value = health
+		stamina_bar.value = stamina
+		evidence_bar.value = min(evidence, 100)
+		#print("evidence: " + str(evidence))
 
-	if State == States.DYING:
-		dying_warning_label.visible = true
-		var time_left = $Timers/DeathTimer.get_time_left()
-		if time_left < 4.0:
-			hud.show_dire_countdown(int(time_left))
-		dying_warning_label.text = "You're dying, find bandages: " + str(int(time_left))
-	else:
-		dying_warning_label.visible = false
+		if State == States.DYING:
+			dying_warning_label.visible = true
+			var time_left = $Timers/DeathTimer.get_time_left()
+			if time_left < 4.0:
+				hud.show_dire_countdown(int(time_left))
+			dying_warning_label.text = "You're dying, find bandages: " + str(int(time_left))
+		else:
+			dying_warning_label.visible = false
 		
 func update_journal(currentQuest):
 	quest_log.quests.append({"type": "Quest:", "quest": str(currentQuest), "status": ""}) 
@@ -135,10 +149,11 @@ func manual_spawn_gun():
 	var loc = find_node("GunLocation")
 	
 	gunScene.init(map_scene, self, self.get_hud())
+	weapon = gunScene
 	loc.add_child(gunScene)
 	
 func upgrade_gun():
-	var gunScene = $PaperDoll/Upper/GunLocation.get_node("Gun2D")
+	var gunScene = weapon
 	if gunScene.shot_num < 4:
 		gunScene.shot_num += 1
 	else:
@@ -146,8 +161,7 @@ func upgrade_gun():
 		gunScene.upgrader += 1
 	
 func begin_rocketization():
-	var gunScene = $PaperDoll/Upper/GunLocation.get_node("Gun2D")
-	gunScene.rocketize()
+	weapon.rocketize()
 	
 func get_hud():
 	return hud
@@ -178,6 +192,7 @@ func _physics_process(delta):
 			rotate_melee_attack_zone(delta)
 			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
 			$Flashlight.look_at(get_global_mouse_position())
+			point_gun()
 			if stamina < 100 :
 				stamina = min(stamina + stamina_recovery_rate * delta, max_stamina)
 				update_bars()
@@ -198,6 +213,14 @@ func _unhandled_input(event):
 	if event.is_action_pressed("melee_attack") and !dead:
 		melee_attack()
 		
+
+
+
+func change_health_bar(amount):
+	$CanvasLayer/HUD.remove_boss_health(amount)
+
+
+
 
 func toggle_flashlight():
 	var is_enabled = !$Flashlight.enabled
@@ -259,6 +282,9 @@ func die_for_real_this_time():
 func rotate_melee_attack_zone(_delta):
 	$MeleeAttackZone.look_at(get_global_mouse_position())
 
+func point_gun():
+	if $PaperDoll.has_method("aim_toward"):
+		$PaperDoll.aim_toward(get_global_mouse_position() - self.global_position)
 
 func move(_delta):
 	# delta not required for move_and_slide
@@ -281,16 +307,18 @@ func move(_delta):
 	var directional_vector = Vector2.ZERO
 	
 	if Input.is_action_pressed("ui_up"):
-		$PaperDoll/Lower.rotation_degrees = -90
+		#$PaperDoll/Lower.rotation_degrees = -90
 		move_vector += Vector2.UP * speed
 	if Input.is_action_pressed("ui_left"):
-		$PaperDoll/Lower.rotation_degrees = 180
+		#$PaperDoll.scale.x = -abs($PaperDoll.scale.x)
+		#$PaperDoll/Lower.rotation_degrees = 180
 		move_vector += Vector2.LEFT * speed
 	if Input.is_action_pressed("ui_right"):
-		$PaperDoll/Lower.rotation_degrees = 0
+		#$PaperDoll.scale.x = abs($PaperDoll.scale.x)
+		#$PaperDoll/Lower.rotation_degrees = 0
 		move_vector += Vector2.RIGHT * speed
 	if Input.is_action_pressed("ui_down"):
-		$PaperDoll/Lower.rotation_degrees = 90
+		#$PaperDoll/Lower.rotation_degrees = 90
 		move_vector += Vector2.DOWN * speed
 	directional_vector = move_vector
 

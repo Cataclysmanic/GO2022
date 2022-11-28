@@ -288,6 +288,7 @@ position = Vector2( 113, -145 )
 rotation = -1.57079
 
 [node name="PaperClue" parent="House2_NE/DeskSearchable2" instance=ExtResource( 20 )]
+visible = false
 scale = Vector2( 0.367318, 0.367318 )
 item_details = {
 "display_immediately": true,
@@ -338,10 +339,41 @@ item_details = {
 [node name="MayorOdonnel" parent="House2_NE" instance=ExtResource( 26 )]
 position = Vector2( 155, -66 )
 scale = Vector2( 0.139352, 0.139352 )
+spawn_random_quest_objective = false
+npc_name = "Mayor Mick O'Donnell"
 dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
 dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Looks like you got me, Worth. What do you need\?" )
 Sprite_Tex = ExtResource( 23 )
 Portrait_Tex = ExtResource( 23 )
+
+[node name="Requirements" type="Node2D" parent="House2_NE/MayorOdonnel"]
+visible = false
+
+[node name="DinnerReservation" parent="House2_NE/MayorOdonnel/Requirements" instance=ExtResource( 18 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Dinner Reservation for Romanos Pizzeria",
+"notes_for_journal": "Strangely, this pizzeria is exceedingly hard to get into. Even the mayor can't get a table. Luckily, you secured this reservation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Rewards" type="Node2D" parent="House2_NE/MayorOdonnel"]
+visible = false
+
+[node name="GetOutOfJailCard" parent="House2_NE/MayorOdonnel/Rewards" instance=ExtResource( 20 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Get out of Jail card",
+"notes_for_journal": "It's surprising that with a mature, well-entrenched justice system, one mayor could furnish you with a get out of jail free card. Yet, here it is. Just show it to the judge.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="House3_SW" type="Node2D" parent="."]
 
@@ -419,17 +451,18 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="QuestGiverLaurenValiant" parent="House3_SW" instance=ExtResource( 26 )]
+[node name="NPCLaurenWinter" parent="House3_SW" instance=ExtResource( 26 )]
 position = Vector2( -81, 128 )
 scale = Vector2( 0.0810477, 0.0810477 )
+npc_name = "Lauren Winter"
 dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
 dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!" )
 Sprite_Tex = ExtResource( 25 )
 Portrait_Tex = ExtResource( 25 )
 
-[node name="Requirements" type="Node2D" parent="House3_SW/QuestGiverLaurenValiant"]
+[node name="Requirements" type="Node2D" parent="House3_SW/NPCLaurenWinter"]
 
-[node name="Evidence" parent="House3_SW/QuestGiverLaurenValiant/Requirements" instance=ExtResource( 12 )]
+[node name="Evidence" parent="House3_SW/NPCLaurenWinter/Requirements" instance=ExtResource( 12 )]
 visible = false
 item_details = {
 "is_unique": true,
@@ -440,9 +473,9 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="Rewards" type="Node2D" parent="House3_SW/QuestGiverLaurenValiant"]
+[node name="Rewards" type="Node2D" parent="House3_SW/NPCLaurenWinter"]
 
-[node name="TalkClue" parent="House3_SW/QuestGiverLaurenValiant/Rewards" instance=ExtResource( 21 )]
+[node name="TalkClue" parent="House3_SW/NPCLaurenWinter/Rewards" instance=ExtResource( 21 )]
 visible = false
 scale = Vector2( 0.550716, 0.550716 )
 item_details = {
@@ -455,7 +488,7 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="PhotoAlbum" parent="House3_SW/QuestGiverLaurenValiant/Rewards" instance=ExtResource( 20 )]
+[node name="PhotoAlbum" parent="House3_SW/NPCLaurenWinter/Rewards" instance=ExtResource( 20 )]
 visible = false
 scale = Vector2( 0.551319, 0.551319 )
 item_details = {
@@ -468,7 +501,7 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="EyewitnessAccountTwoGunshots" parent="House3_SW/QuestGiverLaurenValiant/Rewards" instance=ExtResource( 12 )]
+[node name="EyewitnessAccountTwoGunshots" parent="House3_SW/NPCLaurenWinter/Rewards" instance=ExtResource( 12 )]
 visible = false
 item_details = {
 "display_immediately": true,

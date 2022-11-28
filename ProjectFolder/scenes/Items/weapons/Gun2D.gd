@@ -32,7 +32,9 @@ func init(mapScene, myPlayer, hud):
 	_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
 	_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
 	_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
-	_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
+	
+	if map_scene != null and is_instance_valid(map_scene) and map_scene.has_method("_on_loud_noise_made"):
+		_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
 	reload(magazine_capacity)
 	
 func rocketize():
@@ -56,7 +58,7 @@ func empty_click():
 func shoot():
 	State = States.FIRING
 	make_gunshot_noise()
-	$CockTimer.wait_time = 0.4 - 0.05 * upgrader
+	$CockTimer.wait_time = max(0.4 - 0.05 * upgrader, 0.001)
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
 	var bulletSpeed = 1000+100*upgrader

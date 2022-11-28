@@ -23,7 +23,7 @@
 [ext_resource path="res://scenes/Items/collectables/2D/RocketLauncherPickup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=22]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=23]
-[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -430,7 +430,8 @@ item_details = {
 
 [node name="NPC_QuestGiver" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 23 )]
 position = Vector2( -2, -117 )
-scale = Vector2( 0.626327, 0.662802 )
+scale = Vector2( 0.483979, 0.512165 )
+npc_name = "Fusili Romano"
 Sprite_Tex = ExtResource( 22 )
 Portrait_Tex = ExtResource( 22 )
 
@@ -438,6 +439,7 @@ Portrait_Tex = ExtResource( 22 )
 visible = false
 
 [node name="MiscClue" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Requirements" instance=ExtResource( 18 )]
+visible = false
 item_details = {
 "display_immediately": true,
 "is_unique": false,
@@ -451,7 +453,17 @@ item_details = {
 [node name="Rewards" type="Node2D" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver"]
 visible = false
 
-[node name="TalkClue" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Rewards" instance=ExtResource( 24 )]
+[node name="DinnerReservation" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Rewards" instance=ExtResource( 18 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Dinner Reservation for Romanos Pizzeria",
+"notes_for_journal": "Strangely, this pizzeria is exceedingly hard to get into. Even the mayor can't get a table. Luckily, you secured this reservation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="UnitC_LabourUnion" type="Node2D" parent="Furniture"]
 
@@ -518,6 +530,19 @@ position = Vector2( 197, -218 )
 rotation = -1.57079
 
 [node name="collectibles" type="Node2D" parent="."]
+
+[node name="Map" parent="collectibles" instance=ExtResource( 25 )]
+position = Vector2( -112, -84 )
+scale = Vector2( 0.278169, 0.278169 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Map of the city",
+"notes_for_journal": "The Noir District isn't much, but it's home. My detective agency is in the Commercial District.",
+"path_to_icon": "res://scenes/_common/GUI/icons/book-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/map_parchment.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="Bazooka" parent="." instance=ExtResource( 21 )]
 position = Vector2( -225, -187 )

@@ -49,16 +49,17 @@ func point_legs_at(targetPos:Vector2):
 
 
 func _process(_delta):
-	aim_toward(get_global_mouse_position() - global_position)
+	if Global.player != null and is_instance_valid(Global.player):
+		aim_toward(Global.player.global_position - global_position)
 	
 func aim_toward(dirVector):
 	# Just point the gun at the player.
 	# should be easy
 	
 	if dirVector.x > 0:
-		$Body/Torso/GunArmHolder.rotation = dirVector.angle()
+		$Torso/Torso/GunArmHolder.rotation = - dirVector.angle()
 	else:
-		$Body/Torso/GunArmHolder.rotation = PI - dirVector.angle()
+		$Torso/Torso/GunArmHolder.rotation = PI + dirVector.angle()
 		
 	
 

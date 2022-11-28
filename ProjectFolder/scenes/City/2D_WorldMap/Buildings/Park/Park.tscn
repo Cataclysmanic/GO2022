@@ -10,8 +10,8 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteCircle.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/NPCs/weasel-chibi.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Items/collectables/2D/MiscClue2DPickup.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -100,6 +100,7 @@ location_details = "Under the big statue"
 [node name="WillTheWeasel" parent="." instance=ExtResource( 12 )]
 position = Vector2( -81, -22 )
 scale = Vector2( 0.351359, 0.351359 )
+npc_name = "William the Weasel"
 dialog_unmet_requirements = PoolStringArray( "Hey Worth, why are you always hassling me\?", "I\'m no rat snitch. I\'m a professional. Just bring me the thing I want first." )
 dialog_fulfilled_requirements = PoolStringArray( "Ok. Here\'s the scoop.", "The mayor\'s pockets are lined alright. Fusili Romano is the man behind the man. He pays for everything." )
 Sprite_Tex = ExtResource( 9 )
@@ -109,14 +110,14 @@ Portrait_Tex = ExtResource( 9 )
 position = Vector2( -94, 26 )
 scale = Vector2( 0.553613, 0.553613 )
 
-[node name="TalkClue" parent="WillTheWeasel/Rewards" instance=ExtResource( 11 )]
+[node name="DinnerReservation" parent="WillTheWeasel/Rewards" instance=ExtResource( 13 )]
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "Will's Gratitude",
-"notes_for_journal": "Will the Rat Snitch promises to do what he can to get Romano off Mrs Valiant's case.",
-"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
-"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"item_name": "Dinner Reservation for Romanos Pizzeria",
+"notes_for_journal": "Strangely, this pizzeria is exceedingly hard to get into. Even the mayor can't get a table. Luckily, you secured this reservation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
 
@@ -124,7 +125,7 @@ item_details = {
 position = Vector2( -94, 26 )
 scale = Vector2( 0.553613, 0.553613 )
 
-[node name="PaperClue" parent="WillTheWeasel/Requirements" instance=ExtResource( 10 )]
+[node name="JobOffer" parent="WillTheWeasel/Requirements" instance=ExtResource( 10 )]
 item_details = {
 "display_immediately": true,
 "is_unique": false,

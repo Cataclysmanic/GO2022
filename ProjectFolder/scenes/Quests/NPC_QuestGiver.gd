@@ -17,7 +17,9 @@
 extends KinematicBody2D
 tool
 
-export var no_key_spawn : bool # if true, don't spawn the quest requirement.. assume it's already present on the map or comes as a result of some other quest.
+#export var no_key_spawn : bool # if true, don't spawn the quest requirement.. assume it's already present on the map or comes as a result of some other quest.
+export var spawn_random_quest_objective : bool = true  # inverse of "no_key_spawn"
+export var npc_name : String
 export (String, MULTILINE) var key_spawn_instructions : String = "Set no_key_spawn to true if the quest-giver's requirement is furnished by another quest-giver as a reward. Otherwise the quest requirement will spawn randomly somewhere no the map."
 export var dialog_unmet_requirements : PoolStringArray = ["Hey", "You need to get the thing I'm looking for."]
 export var dialog_fulfilled_requirements: PoolStringArray = ["Hey", "Thanks for getting me that thing."]
@@ -111,23 +113,30 @@ func talk_to_player():
 func get_random_quest_requirement_item():
 	var randomItem
 	var potentialItems
-	if has_node("Requirements"):
+	if has_node("Requirements") and $Requirements.get_child_count() > 0:
 		potentialItems = $Requirements.get_children()
 	elif has_node("PotentialRequiredItems"):
 		potentialItems = $PotentialRequiredItems.get_children()	
-	randomItem = potentialItems[randi()%potentialItems.size()]
-	return randomItem
+	
+	if potentialItems.size() > 0:
+		randomItem = potentialItems[randi()%potentialItems.size()]
+		return randomItem
 		
 
 func spawn_quest_reward():
 	# spawn a bandage and some other reward
+	
 	var bandage = load("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn").instance()
 	bandage.enable_pickup()
 	bandage.show()
+	# this may be breaking quest rewards if it sits on top and player can't grab it.
+	bandage.position += Vector2(rand_range(30.0, 50.0), 0).rotated(randf()*2*PI)
 	add_child(bandage)
-	
+	bandage.set_global_scale(Vector2(0.5,0.5))
+
 	var reward
-	if has_node("Rewards"):
+	print("NPC_QuestGiver.gd spawn_quest_reward() spawning reward...")
+	if has_node("Rewards") and $Rewards.get_child_count() > 0:
 		var potentialRewards = $Rewards.get_children()
 		var randReward = potentialRewards[randi()%potentialRewards.size()]
 		reward = randReward.duplicate()
@@ -135,42 +144,47 @@ func spawn_quest_reward():
 		reward = $PotentialRewards.get_children()[randi()%$PotentialRewards.get_child_count()].duplicate()
 	else: # spawn a circumstantial clue if there's no custom reward
 		reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
+	add_child(reward)
+	reward.set_global_scale(Vector2.ONE)
+	reward.set_global_position(self.global_position)
+	reward.position += Vector2(rand_range(30.0, 50.0), 0).rotated(randf()*2*PI)
+	print("reward spawned : " + reward.item_details["item_name"] + " at " + str(reward.get_global_position()))
+	print("meanwhile, player is at " + str(Global.player.get_global_position()))
+	print("and player scale is " + str(Global.player.get_global_scale()))
 	reward.enable_pickup()
 	reward.show()
-	add_child(reward)
-	
 		
 
 func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
-	if targetLocation == null:
-		printerr("NPC Quest Giver needs a location to spawn their objective")
+	# targetLocation may be null, in the case of no_key_spawn
 
-	var questObjective = itemTemplate.duplicate()
-	questObjective.set_global_position(targetLocation.get_global_position())
-	questObjective.visible = true
-
-	
-	
+	var questObjective
+	if spawn_random_quest_objective and targetLocation != null:
+		questObjective = itemTemplate.duplicate()
+		#questObjective.set_global_position(targetLocation.get_global_position())
+		questObjective.show()
+		questObjective.enable_pickup()
+		add_child(questObjective)
+		#does order of setting position before/after add_child() matter?
+		questObjective.set_global_position(targetLocation.get_global_position())
+		
+	else: # don't spawn a copy, just read the info
+		questObjective = itemTemplate
+		
 	inventory_requirement = questObjective.item_details["item_name"]
-	
+		
 	var preposition = preposition_a_or_an(inventory_requirement)
-	
 	dialog_unmet_requirements.push_back("I need " + preposition + " " + inventory_requirement + ".")
-	dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
 	
-	currentQuest = str("Find " + inventory_requirement + " at " + targetLocation.get_address())
-	
-	dialog_unmet_requirements.push_back(targetLocation.get_details())
-#	if city_map.has_method("_on_loot_ready"):
-#		if not is_connected("quest_objective_ready", city_map, "_on_loot_ready"):
-#			var _err = connect("quest_objective_ready", city_map, "_on_loot_ready")
-#			emit_signal("quest_objective_ready", questObjective, targetLocation.get_global_position())
-	add_child(questObjective)
-	questObjective.set_global_position(targetLocation.get_global_position())
-	questObjective.show()
-	questObjective.enable_pickup()
-	
-	
+	if spawn_random_quest_objective:
+		dialog_unmet_requirements.push_back("Look in " + targetLocation.get_address())
+		dialog_unmet_requirements.push_back(targetLocation.get_details())
+		currentQuest = str("Find " + inventory_requirement + " at " + targetLocation.get_address() + " for " + npc_name + ".")
+	else: # don't spawn a quest requirement in a random location.. it must exist in-world already
+		currentQuest = str("Find " + inventory_requirement + " for " + npc_name + ".")
+		
+
+
 func preposition_a_or_an(nextWordString):
 	if nextWordString.left(1).to_lower() in "aeiou":
 		return "an"
@@ -179,18 +193,21 @@ func preposition_a_or_an(nextWordString):
 
 
 func produce_quest_objective():
+	
 	# come up with some random item?
-	var location = get_random_location()
+	var location : Position2D
+	if spawn_random_quest_objective:
+		location = get_random_location()
 	var itemTemplate = get_random_quest_requirement_item()
 	if itemTemplate != null:
 		spawn_quest_objective(location, itemTemplate)
 	
 	
-func get_random_location():
 	
+func get_random_location() -> Position2D :
 	return city_map.get_random_quest_target_location()
 
-		
+
 func _unhandled_input(_event):
 	if Engine.is_editor_hint(): # running in inspector
 		return
