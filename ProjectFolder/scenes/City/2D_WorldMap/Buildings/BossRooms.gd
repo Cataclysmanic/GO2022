@@ -20,7 +20,6 @@ func spawn_player():
 
 
 func _on_projectile_ready(projectile):
-
 	$Projectiles.add_child(projectile)
 
 

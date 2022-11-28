@@ -27,7 +27,7 @@ func _process(delta):
 		if "Gun2D" in str(originator):
 			$CollisionShape2D.disabled=false
 	else:
-		var direction = get_parent().get_parent().get_player().self_position - global_position
+		var direction = get_parent().get_parent().player.self_position - global_position
 		var speed = randi()%100+100
 		var rotation_speed = randi()%4
 		direction = direction.normalized()
@@ -76,15 +76,11 @@ func _on_Area2D_body_entered(body):
 				$AnimatedSprite.play("impact rockets")	
 			elif !snakeify:
 				$AnimatedSprite.play("impact")
-			else:
-				die()
 			velocity = Vector2.ZERO
 			$CPUParticles2D.emitting = true
 	else: 
 		if "Player" in body.name:
-			body._on_hit()
-		elif !"Target" in body.name:
-			die()
+			body._on_hit(15)
 			
 
 func _on_AnimatedSprite_animation_finished():

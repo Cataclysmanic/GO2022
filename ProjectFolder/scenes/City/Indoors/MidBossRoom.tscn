@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/City/Indoors/MidBossRoom.gd" type="Script" id=1]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/bossroom.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Test Assets/Building/firstTry.dae/floorTexWIP.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Items/ladder sprite.png" type="Texture" id=6]
+
+[node name="MidBossRoom" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="floor" type="Sprite" parent="."]
+modulate = Color( 0.54902, 0.54902, 0.54902, 1 )
+position = Vector2( 265, 605 )
+scale = Vector2( 1.71519, 2.52802 )
+texture = ExtResource( 5 )
+
+[node name="Walls" type="Sprite" parent="."]
+position = Vector2( 261, 597 )
+scale = Vector2( 1.07518, 1.1072 )
+texture = ExtResource( 2 )
+
+[node name="Polygon" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Polygon"]
+position = Vector2( 0.0999756, 0 )
+scale = Vector2( 0.999878, 1 )
+polygon = PoolVector2Array( -502, -502, -512, -502, -512, -512, 512, -512, 512, -502 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls/Polygon"]
+polygon = PoolVector2Array( -512, -512, -502, -512, -502, 512, -512, 512 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls/Polygon"]
+polygon = PoolVector2Array( -512, 512, -512, 502, 512, 502, 512, 512 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Walls/Polygon"]
+polygon = PoolVector2Array( 512, -512, 502, -512, 502, 512, 512, 512 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "Player" ), [ ExtResource( 3 ) ] ]
+
+[node name="PlayerSpawn" type="Position2D" parent="."]
+position = Vector2( 783, 563 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 637, 24 )
+scale = Vector2( 0.352197, 0.0533125 )
+texture = ExtResource( 6 )
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="MookNPC" parent="." instance=ExtResource( 4 )]
+position = Vector2( 9, 611 )

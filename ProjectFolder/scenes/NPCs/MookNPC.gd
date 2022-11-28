@@ -9,8 +9,7 @@ onready var sprite = $Sprite
 #export var active : bool = false
 export var npc_type_odds = { 
 	"shooty":0.6,
-	"punchy":0.3,
-	"snakey":0.1,
+	"punchy":0.4,
 }
 
 #chance_to_have_gun = 0.75
@@ -348,8 +347,8 @@ func shoot(): # this ought to be in a separate gun object
 		else:
 			$NPCGun/TriggerFingerTimer.wait_time = 1.5
 			$NPCGun/ReloadTimer.wait_time = 1.5
+			ammo_remaining -= 1
 		bullet.init(self, pos, rotation, bulletSpeed)
-		ammo_remaining -= 1
 		emit_signal("projectile_ready", bullet)
 		var gunshotNoises = gun.get_node("GunshotNoises").get_children()
 		var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
@@ -374,8 +373,9 @@ func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 		die()
 	else:
 		flash_hit()
-		if incomingVector != Vector2.ZERO:
-			knock_back(incomingVector.normalized() * damage)
+		if currentNpc != "snakey":
+			if incomingVector != Vector2.ZERO:
+				knock_back(incomingVector.normalized() * damage)
 
 
 func extreme_knock_back(impactVector):

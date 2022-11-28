@@ -3,6 +3,8 @@ extends Node2D
 
 var npc
 var nav_agent
+var reward = preload("res://scenes/Items/collectables/2D/RocketLauncherPickup.tscn")
+var reward2 = preload("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn")
 
 func _ready():
 	pass
@@ -23,12 +25,6 @@ func hit():
 	
 func die():
 	$AnimationPlayer.play("die")
-
-func aim_toward(dirVector):
-	# Just point the gun at the player.
-	# should be easy
+	self.add_child(reward2.instance())
+	self.add_child(reward.instance())
 	
-	if dirVector.x > 0:
-		$Body/GunArm.rotation = dirVector.angle()
-	else:
-		$Body/GunArm.rotation = PI - dirVector.angle()
