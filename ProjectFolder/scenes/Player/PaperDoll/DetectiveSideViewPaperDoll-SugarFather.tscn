@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Player/PaperDoll/SideViewDetectivePaperDoll.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Player/PaperDoll/SugarFathersDetectiveSideView.png" type="Texture" id=2]
+[ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=3]
 [ext_resource path="res://scenes/NPCs/Bosses/TommyAlive.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=21]
@@ -162,6 +163,102 @@ tracks/12/keys = {
 "update": 0,
 "values": [ -75.4 ]
 }
+tracks/13/type = "value"
+tracks/13/path = NodePath("Body/Torso/GunArmHolder/GunArm/BigFist:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("Body/Torso/GunArmHolder/GunArm/BigFist:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -25.1547, 82.7179 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("Body/Torso/ArmL:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 47.887, -181.423 ) ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("Body/Torso/ArmL:rotation_degrees")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("Body/Torso/ArmL:flip_h")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("Body/Torso/ArmL/BigFist2:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("Body:position")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=24]
 resource_name = "Relax"
@@ -299,10 +396,82 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.935532, 0.489868 ), Vector2( 0.935532, 0.489868 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Body/Torso/ArmL:rotation_degrees")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 30.0, -30.0 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Body/Torso/ArmL:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0.935532, 0.489868 ) ]
+"values": [ Vector2( 40.6301, -211.826 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Body/Torso/ArmL/BigFist2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("Body/Torso/GunArmHolder/GunArm/BigFist:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("Body/Torso/GunArmHolder/GunArm:rotation_degrees")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -75.4 ]
 }
 
 [sub_resource type="Animation" id=136]
@@ -364,10 +533,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -47.3217, -197.174 ), Vector2( -47.3217, -197.174 ), Vector2( -47.3217, -197.174 ), Vector2( -47.3217, -197.174 ) ]
+"values": [ Vector2( -32.6046, 14.3152 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Body/Torso:position")
@@ -429,6 +598,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [ -41.3436, -0.204622, -41.3436 ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=135]
 resource_name = "dash"
@@ -449,72 +630,181 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=126]
 resource_name = "melee attack 1"
-length = 0.2
+length = 0.5
+loop = true
 step = 0.02
 tracks/0/type = "value"
-tracks/0/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun/GunLocation:position")
+tracks/0/path = NodePath("Body/Torso/GunArmHolder/GunArm:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.02, 0.1, 0.16, 0.2 ),
+"times": PoolRealArray( 0, 0.02, 0.04, 0.08, 0.44 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 96, -80 ), Vector2( 76, -80 ), Vector2( 144, 12 ), Vector2( 96, -72 ), Vector2( 156, -8 ) ]
+"values": [ -75.4, -14.1623, 43.0627, -83.5156, -14.1623 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun/GunLocation:rotation_degrees")
+tracks/1/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.02, 0.1, 0.16, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 49.8288, 0.0, 0.0 ]
-}
-
-[sub_resource type="Animation" id=134]
-resource_name = "melee attack 2"
-length = 0.2
-step = 0.02
-tracks/0/type = "value"
-tracks/0/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun/GunLocation:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ true, true ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun/GunLocation:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.16, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 124, 112 ), Vector2( 148, -4 ), Vector2( 116, 100 ), Vector2( 156, -4 ) ]
+"values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body/Torso/GunArmHolder/GunArm/Gun/GunLocation:rotation_degrees")
+tracks/2/path = NodePath("Body/Torso/GunArmHolder/GunArm/BigFist:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.16, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.04, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/Torso/GunArmHolder/GunArm/BigFist:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0, -48.8917, 0.0, 0.0 ]
+"values": [ Vector2( -25.1547, 82.7179 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Torso/ArmL:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.28, 0.36, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 30.0, 30.0, -61.5716, -91.9547, 33.5812 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Torso/ArmL:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.28, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body/Torso/ArmL/BigFist2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.32, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[sub_resource type="Animation" id=134]
+resource_name = "melee attack 2"
+length = 0.3
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body/LegR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 31.5478, 78.8694 ), Vector2( 39.6902, 7.82513 ), Vector2( 31.5478, 78.8694 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Body/LegR:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -18.4366, -73.6473, -18.4366 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Body/LegL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -70.9826, 78.8695 ), Vector2( 140.875, -40.7188 ), Vector2( -70.9826, 78.8695 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body/LegL:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 30.0993, -82.9692, 30.0993 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body/Torso/GunArmHolder/GunArm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.935532, 0.489868 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Body/Torso/GunArmHolder/GunArm:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -75.4, 59.4256, -75.4 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Body:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 36, -48 ), Vector2( 0, 0 ) ]
 }
 
 [node name="DetectivePaperDoll" type="Node2D"]
@@ -604,3 +894,29 @@ region_rect = Rect2( 277.51, 101.012, 215, 129 )
 position = Vector2( 164, -84 )
 rotation = 0.869677
 scale = Vector2( 1.97174, 1.97174 )
+
+[node name="BigFist" type="Sprite" parent="Body/Torso/GunArmHolder/GunArm"]
+visible = false
+position = Vector2( -25.1547, 82.7179 )
+rotation = 1.04487
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+offset = Vector2( 23.1218, -0.214087 )
+flip_v = true
+
+[node name="ArmL" type="Sprite" parent="Body/Torso"]
+show_behind_parent = true
+position = Vector2( 47.887, -181.423 )
+texture = ExtResource( 2 )
+offset = Vector2( 16, 63.1164 )
+region_enabled = true
+region_rect = Rect2( 437.72, 233.82, 65, 180 )
+
+[node name="BigFist2" type="Sprite" parent="Body/Torso/ArmL"]
+visible = false
+position = Vector2( 6.19345, 74.9799 )
+rotation = 1.16071
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+offset = Vector2( 23.1218, -0.214087 )
+flip_v = true

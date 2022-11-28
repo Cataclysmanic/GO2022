@@ -26,7 +26,7 @@ func start_idling():
 func melee_attack():
 	if randf() < 0.5:
 		$AnimationPlayer.play("melee attack 1")
-	elif randf() < 0.95:
+	else:
 		$AnimationPlayer.play("melee attack 2")
 
 
