@@ -38,7 +38,7 @@ tracks/1/keys = {
 "values": [ 0, 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText:percent_visible")
+tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -73,6 +73,42 @@ tracks/4/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 5.8, 7.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 5.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 5.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=12]
 resource_name = "GetOutOfJailCard"
@@ -91,7 +127,7 @@ tracks/0/keys = {
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText:percent_visible")
+tracks/1/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -130,7 +166,7 @@ tracks/1/keys = {
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText:percent_visible")
+tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -152,6 +188,42 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [sub_resource type="AtlasTexture" id=1]
@@ -240,7 +312,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 80
 custom_constants/margin_bottom = 20
 
-[node name="EndingScriptText" type="Label" parent="VBoxContainer/MarginContainer"]
+[node name="EndingScriptText1" type="Label" parent="VBoxContainer/MarginContainer"]
 margin_left = 80.0
 margin_top = 20.0
 margin_right = 944.0
@@ -248,7 +320,21 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 450, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
-text = "Ending Text...	"
+text = "I never expected Tommy to be so damn corrupt. He's alive, after staging his death."
+align = 1
+autowrap = true
+percent_visible = 0.0
+
+[node name="EndingScriptText2" type="Label" parent="VBoxContainer/MarginContainer"]
+visible = false
+margin_left = 80.0
+margin_top = 20.0
+margin_right = 944.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 450, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
+text = "With the help of his Moll, Veronica, they framed me for murder. A murder I didn't commit. A murder that didn't even happen. Diabolical! Still, I got the last word."
 align = 1
 autowrap = true
 percent_visible = 0.0
@@ -268,7 +354,6 @@ show_behind_parent = true
 position = Vector2( 509, 211 )
 frames = SubResource( 9 )
 animation = "Beatboss"
-frame = 1
 
 [node name="Audio" type="Node" parent="."]
 

@@ -23,7 +23,9 @@ var current_line : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	populate_scripts()
+	pass
+	#moved scripts directly into the Label nodes in the inspector
+	#populate_scripts()
 
 #	if Global.chosen_ending != null:
 #		play_ending(Global.chosen_ending)

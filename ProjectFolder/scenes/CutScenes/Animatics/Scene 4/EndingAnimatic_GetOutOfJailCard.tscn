@@ -11,8 +11,7 @@
 
 [sub_resource type="Animation" id=10]
 resource_name = "BrokenGetOutOfJailCard"
-length = 12.0
-loop = true
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("VBoxContainer/FadeTex/AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -32,22 +31,22 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 5.8 ),
+"times": PoolRealArray( 0.1, 4.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText:percent_visible")
+tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2.4, 10.7 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 2.4, 4.8, 5.2, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0, 1.0 ]
+"values": [ 0.0, 1.0, 1.0, 0.0, 0.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("VBoxContainer/FadeTex:self_modulate")
@@ -56,7 +55,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.8, 5.6, 5.9, 6.2, 10.7, 11 ),
+"times": PoolRealArray( 0.1, 0.8, 4.5, 4.8, 5.1, 8.7, 9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
@@ -68,10 +67,46 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.6 ),
+"times": PoolRealArray( -1.4 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 4.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 4.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 4.8, 5.8, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0 ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -91,7 +126,7 @@ tracks/0/keys = {
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText:percent_visible")
+tracks/1/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -130,12 +165,48 @@ tracks/1/keys = {
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText:percent_visible")
+tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -205,7 +276,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Endings" type="CanvasLayer"]
+[node name="GetOutOfJailCard_ending" type="CanvasLayer"]
 pause_mode = 2
 script = ExtResource( 2 )
 
@@ -228,7 +299,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 80
 custom_constants/margin_bottom = 20
 
-[node name="EndingScriptText" type="Label" parent="VBoxContainer/MarginContainer"]
+[node name="EndingScriptText1" type="Label" parent="VBoxContainer/MarginContainer"]
 margin_left = 80.0
 margin_top = 20.0
 margin_right = 944.0
@@ -236,7 +307,21 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 450, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
-text = "Ending Text...	"
+text = "I didn't expect it to be this easy: do a couple of favours, scratch a few backs. "
+align = 1
+autowrap = true
+percent_visible = 0.0
+
+[node name="EndingScriptText2" type="Label" parent="VBoxContainer/MarginContainer"]
+visible = false
+margin_left = 80.0
+margin_top = 20.0
+margin_right = 944.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 450, 100 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 8 )
+text = "This city seethes with corruption. Now I'm part of it. Or maybe, I always have been."
 align = 1
 autowrap = true
 percent_visible = 0.0
