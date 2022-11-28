@@ -9,6 +9,9 @@ var reward2 = preload("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn")
 func _ready():
 	pass
 
+func anti_knockback():
+	pass
+
 func init(myNPC):
 	npc = myNPC
 	$corpse.hide()
