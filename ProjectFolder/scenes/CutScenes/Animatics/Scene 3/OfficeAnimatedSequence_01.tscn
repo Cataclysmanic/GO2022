@@ -258,6 +258,30 @@ tracks/17/keys = {
 "update": 1,
 "values": [ Vector2( 0.0764459, 0.0764459 ), Vector2( -0.076, 0.076 ) ]
 }
+tracks/18/type = "value"
+tracks/18/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 16.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 15, 16.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 31.8196, 31.8196, 0.0 ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -477,6 +501,30 @@ tracks/17/keys = {
 "update": 0,
 "values": [ Vector2( 0.0764459, 0.0764459 ) ]
 }
+tracks/18/type = "value"
+tracks/18/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [node name="OfficeAnimatedSequence" type="Node2D"]
 script = ExtResource( 9 )
@@ -674,6 +722,9 @@ polygon = PoolVector2Array( 91.5684, 337.93, 78.4868, 250.722, 156.974, 250.722 
 position = Vector2( 2.37793, -30.9194 )
 scale = Vector2( 6.54057, 6.54057 )
 
+[node name="Gun" parent="HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm" index="0"]
+visible = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "DameWalksIn"
 anims/DameWalksIn = SubResource( 2 )
@@ -726,3 +777,5 @@ custom_fonts/font = ExtResource( 11 )
 text = "Andrew Worth's Detective Agency"
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="HardBoiledDetective/TommyPaperDoll"]
