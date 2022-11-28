@@ -93,7 +93,6 @@ func _process(_delta):
 		if $Sprite.get_texture().get_path() == "res://icon.png":
 			init_textures()
 		
-		
 func _get_configuration_warning():
 	if has_node("Rewards") and has_node("Requirements"):
 		if $Rewards.get_child_count() > 0 and $Requirement.get_child_count() > 0:

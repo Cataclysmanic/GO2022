@@ -26,6 +26,7 @@ func _ready():
 	time_elapsed = 0.0
 	last_polling_time = 0.0
 	hide_blood_vignette()
+	$ProgressBar.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -39,7 +40,14 @@ func _process(delta):
 		if len(stored_items) != len(Global.IO.stored_items):
 			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
 			rebuild_inventory()
-
+	if Global.controller:
+		$Top/Header/HelpButton.text = "Journal[ R2 ]"
+		$Top/Header/QuitButton.text = "Quit[ L2 ]"
+		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[ D-Pad Up ]"
+	else:
+		$Top/Header/HelpButton.text = "Journal[ J ]"
+		$Top/Header/QuitButton.text = "Quit[ Q ]"
+		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[ I ]"
 
 func _unhandled_key_input(_event):
 	pass # moved to shortcut key on button

@@ -73,16 +73,13 @@ size_flags_vertical = 7
 text = "Controls:
 Arrows/WASD/LeftJoy: Move
 Mouse/RightJoy: Look Around
-Spacebar/LeftMouseClick Shoot
-Enter/RightMouseClick Melee Attack
-Shift: Sprint
+Spacebar/LeftMouseClick/R1: Shoot
+Shift/L1: Sprint
 Mouse Wheel (+/-)-: zoom camera
-F: Interact
-L: Toggle Flashlight
-J: open/close Journal
-I: open/close Inventory
-Click items in Inventory to get
-item details"
+F/Dualshock Triangle/Xbox Y/ Nintendo X: Interact
+L/Dualshock Square/Xbox X/ Nintendo Y: Toggle Flashlight
+Navigate Menus: Arrows/WASD/LeftJoy
+"
 autowrap = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox"]

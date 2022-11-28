@@ -8,6 +8,8 @@ var IO = null
 var Utils = null
 var repetition = false #I dislike abusing autoload but this function didn't work otherwise for some reason
 var rockets = false
+var controller = true
+
 
 var user_preferences = {
 	"difficulty": 1.0, #0.5 to 3.0
