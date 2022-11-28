@@ -199,7 +199,7 @@ volume_db = -7.0
 
 [node name="BGCityNoise" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 12 )
-volume_db = -7.0
+volume_db = -12.0
 
 [node name="NavPolygons" type="Navigation2D" parent="."]
 

@@ -56,7 +56,7 @@ func empty_click():
 func shoot():
 	State = States.FIRING
 	make_gunshot_noise()
-	$CockTimer.wait_time = 0.4 - 0.05 * upgrader
+	$CockTimer.wait_time = max(0.4 - 0.05 * upgrader, 0.001)
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
 	var bulletSpeed = 1000+100*upgrader

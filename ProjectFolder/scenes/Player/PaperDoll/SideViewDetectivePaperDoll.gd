@@ -7,8 +7,9 @@ var player
 func _ready():
 	player = get_parent()
 	
-func start_running():
-	$AnimationPlayer.play("Run")
+func start_running(): # why?
+	pass
+	#$AnimationPlayer.play("Run")
 
 
 func start_walking():
@@ -21,8 +22,6 @@ func relax():
 func start_idling():
 	$AnimationPlayer.play("Relax")
 	
-func point_gun():
-	$AnimationPlayer.play("PointGun")
 
 func melee_attack():
 	if randf() < 0.5:
@@ -40,15 +39,15 @@ func get_animation():
 	if len(anim_queue) > 0:
 		return anim_queue[0]
 
-func point_torso_at(_targetPos:Vector2):
-	pass
-	
-func point_legs_at(_targetPos:Vector2):
-	pass
 
-
-func _process(_delta):
-	pass	
+func aim_toward(dirVector):
+	if dirVector.x > 0:
+		self.scale.x = abs(self.scale.x)
+		$Body/Torso/GunArmHolder.rotation = dirVector.angle()
+	else:
+		self.scale.x = -abs(self.scale.x)
+		$Body/Torso/GunArmHolder.rotation = PI - dirVector.angle()
+		
 
 
 func _on_DamageArea_body_entered(body):

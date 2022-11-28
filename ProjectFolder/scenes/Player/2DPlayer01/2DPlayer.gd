@@ -18,6 +18,7 @@ var health_bar
 var stamina_bar
 var dying_warning_label
 
+var weapon
 
 var evidence := 0 # just a number from 0 to 100 indicating how much loot player picked up. Simple in-game currency/reward system.
 var evidence_bar
@@ -139,10 +140,11 @@ func manual_spawn_gun():
 	var loc = find_node("GunLocation")
 	
 	gunScene.init(map_scene, self, self.get_hud())
+	weapon = gunScene
 	loc.add_child(gunScene)
 	
 func upgrade_gun():
-	var gunScene = $PaperDoll/Upper/GunLocation.get_node("Gun2D")
+	var gunScene = weapon
 	if gunScene.shot_num < 4:
 		gunScene.shot_num += 1
 	else:
@@ -182,6 +184,7 @@ func _physics_process(delta):
 			rotate_melee_attack_zone(delta)
 			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
 			$Flashlight.look_at(get_global_mouse_position())
+			point_gun()
 			if stamina < 100 :
 				stamina = min(stamina + stamina_recovery_rate * delta, max_stamina)
 				update_bars()
@@ -271,6 +274,9 @@ func die_for_real_this_time():
 func rotate_melee_attack_zone(_delta):
 	$MeleeAttackZone.look_at(get_global_mouse_position())
 
+func point_gun():
+	if $PaperDoll.has_method("aim_toward"):
+		$PaperDoll.aim_toward(get_global_mouse_position() - self.global_position)
 
 func move(_delta):
 	# delta not required for move_and_slide
@@ -293,16 +299,18 @@ func move(_delta):
 	var directional_vector = Vector2.ZERO
 	
 	if Input.is_action_pressed("ui_up"):
-		$PaperDoll/Lower.rotation_degrees = -90
+		#$PaperDoll/Lower.rotation_degrees = -90
 		move_vector += Vector2.UP * speed
 	if Input.is_action_pressed("ui_left"):
-		$PaperDoll/Lower.rotation_degrees = 180
+		#$PaperDoll.scale.x = -abs($PaperDoll.scale.x)
+		#$PaperDoll/Lower.rotation_degrees = 180
 		move_vector += Vector2.LEFT * speed
 	if Input.is_action_pressed("ui_right"):
-		$PaperDoll/Lower.rotation_degrees = 0
+		#$PaperDoll.scale.x = abs($PaperDoll.scale.x)
+		#$PaperDoll/Lower.rotation_degrees = 0
 		move_vector += Vector2.RIGHT * speed
 	if Input.is_action_pressed("ui_down"):
-		$PaperDoll/Lower.rotation_degrees = 90
+		#$PaperDoll/Lower.rotation_degrees = 90
 		move_vector += Vector2.DOWN * speed
 	directional_vector = move_vector
 
