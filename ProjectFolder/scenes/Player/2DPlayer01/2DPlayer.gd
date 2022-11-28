@@ -208,13 +208,14 @@ func set_primary_target_area(points:PoolVector2Array):
 	#$PaperDoll/TargetArea/Polygon2D.polygon = points
 
 func _unhandled_input(event):
+	if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion):
+		var mouse_pos = Vector2(512,300)
+		mouse_pos += Vector2(-Input.get_action_strength("joy left")*150 + Input.get_action_strength("joy right")*150, -Input.get_action_strength("joy up")*150 + Input.get_action_strength("joy down")*150)
+		Input.warp_mouse_position(mouse_pos)
 	if event.is_action_pressed("flashlight") and !dead:
 		toggle_flashlight()
 	if event.is_action_pressed("melee_attack") and !dead:
 		melee_attack()
-		
-
-
 
 func change_health_bar(amount):
 	$CanvasLayer/HUD.remove_boss_health(amount)
