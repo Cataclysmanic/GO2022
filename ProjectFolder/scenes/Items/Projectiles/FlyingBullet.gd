@@ -49,6 +49,15 @@ func die():
 	$CollisionShape2D.call_deferred("set_disabled", true) 
 
 func _on_Area2D_body_entered(body):
+	
+	if body.is_in_group("Boss"):
+		body.boss_hit(damage)
+		die()
+		print("Bossy")
+	
+	
+	
+	
 	if !(snakeify and !"Gun2D" in str(originator)):
 		if body == originator:
 			return
@@ -60,6 +69,8 @@ func _on_Area2D_body_entered(body):
 			var _err = connect("hit", body, "_on_hit")
 			body._on_hit()
 			die()
+			
+			
 		else: # probably hit a wall
 			if Global.rockets:
 				$AnimatedSprite.play("impact rockets")	

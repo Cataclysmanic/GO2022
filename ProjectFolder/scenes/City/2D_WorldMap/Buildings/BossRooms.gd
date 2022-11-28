@@ -17,7 +17,6 @@ func spawn_player():
 	playerScene.init(self)
 	$Player.add_child(playerScene)
 	player = playerScene
-	player.manual_spawn_gun()
 
 
 func _on_projectile_ready(projectile):

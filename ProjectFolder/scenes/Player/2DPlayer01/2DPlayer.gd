@@ -51,7 +51,11 @@ func _ready():
 	set_state(States.READY)
 	$DebugInfo.visible = Global.user_preferences["debug"]
 #	set_primary_target_area(get_FOV_circle(Vector2(0,0),500))
-
+	
+	if get_tree().get_nodes_in_group("Boss").size() != 0:
+		var boss = get_tree().get_nodes_in_group("Boss")[0]
+		$CanvasLayer/HUD._on_boss_spawned(boss.health, boss.boss_name)
+	
 	
 func init(mapScene):
 	map_scene = mapScene
@@ -201,6 +205,14 @@ func _unhandled_input(event):
 	if event.is_action_pressed("melee_attack") and !dead:
 		melee_attack()
 		
+
+
+
+func change_health_bar(amount):
+	$CanvasLayer/HUD.remove_boss_health(amount)
+
+
+
 
 func toggle_flashlight():
 	var is_enabled = !$Flashlight.enabled
