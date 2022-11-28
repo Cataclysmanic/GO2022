@@ -125,11 +125,15 @@ func get_random_quest_requirement_item():
 
 func spawn_quest_reward():
 	# spawn a bandage and some other reward
+	
 	var bandage = load("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn").instance()
 	bandage.enable_pickup()
 	bandage.show()
+	# this may be breaking quest rewards if it sits on top and player can't grab it.
+	bandage.position += Vector2(rand_range(30.0, 50.0), 0).rotated(randf()*2*PI)
 	add_child(bandage)
-	
+	bandage.set_global_scale(Vector2(0.5,0.5))
+
 	var reward
 	print("NPC_QuestGiver.gd spawn_quest_reward() spawning reward...")
 	if has_node("Rewards") and $Rewards.get_child_count() > 0:
@@ -140,11 +144,15 @@ func spawn_quest_reward():
 		reward = $PotentialRewards.get_children()[randi()%$PotentialRewards.get_child_count()].duplicate()
 	else: # spawn a circumstantial clue if there's no custom reward
 		reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
+	add_child(reward)
+	reward.set_global_scale(Vector2.ONE)
 	reward.set_global_position(self.global_position)
+	reward.position += Vector2(rand_range(30.0, 50.0), 0).rotated(randf()*2*PI)
+	print("reward spawned : " + reward.item_details["item_name"] + " at " + str(reward.get_global_position()))
+	print("meanwhile, player is at " + str(Global.player.get_global_position()))
+	print("and player scale is " + str(Global.player.get_global_scale()))
 	reward.enable_pickup()
 	reward.show()
-	add_child(reward)
-	
 		
 
 func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):

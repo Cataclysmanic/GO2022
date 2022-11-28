@@ -48,24 +48,35 @@ func _ready():
 	
 	if not item_details["path_to_popup_display_image"]:
 		item_info.set("path_to_popup_display_image", spritePath)
-		
+	
+	spawn_debug_conspiracy_yarn()
+	
+	State = States.READY
+
+
+func spawn_debug_conspiracy_yarn():
 	if visible == true and Global.user_preferences["debug"]:
 		# spawn a line and draw from position to player.
 		# useful for figuring out where quest items might be.
 		var myLine = Line2D.new()
 		myLine.name = "PointToPlayer"
-		myLine.default_color = Color.crimson
+		myLine.default_color = Color(1.0, 0.0, 0.0, 0.25)
 
 		add_child(myLine)
 		myLine.set_global_position(Vector2.ZERO)
 		myLine.set_global_scale(Vector2(1,1))
+		myLine.width = 1.0
 		self.set_global_scale(Vector2(1,1))
 		line_to_player = myLine
-		
-	State = States.READY
+	
 
 func _process(_delta):
-	if line_to_player != null and Global.user_preferences["debug"]:
+	if State != States.READY:
+		return
+	elif line_to_player != null and Global.user_preferences["debug"]:
+		line_to_player.set_global_position(Vector2.ZERO)
+		#self.set_global_scale(Vector2(1.0, 1.0))
+		line_to_player.set_global_scale(Vector2(1.0,1.0))
 		line_to_player.clear_points()
 		line_to_player.add_point(self.get_global_position())
 		line_to_player.add_point(Global.player.get_global_position())
