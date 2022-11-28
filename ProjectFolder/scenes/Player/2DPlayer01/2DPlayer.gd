@@ -49,13 +49,20 @@ func _ready():
 	#spawn_item(Global.IO.get_item("Gun2D"))
 
 	manual_spawn_gun() # temporary
-	set_state(States.READY)
 	$DebugInfo.visible = Global.user_preferences["debug"]
 #	set_primary_target_area(get_FOV_circle(Vector2(0,0),500))
 	
 	if get_tree().get_nodes_in_group("Boss").size() != 0:
 		var boss = get_tree().get_nodes_in_group("Boss")[0]
 		$CanvasLayer/HUD._on_boss_spawned(boss.health, boss.boss_name)
+	
+	# fallback safety protocol
+	yield(get_tree().create_timer(0.25), "timeout") # give the city time to get ready
+	if Global.player == null: # no scene called our init() method
+		init(null)
+		update_bars()
+		
+	set_state(States.READY)
 	
 	
 func init(mapScene):
@@ -81,19 +88,20 @@ func revert_state():
 	
 
 func update_bars():
-	health_bar.value = health
-	stamina_bar.value = stamina
-	evidence_bar.value = min(evidence, 100)
-	#print("evidence: " + str(evidence))
+	if not State in [States.INITIALIZING, States.DEAD]:
+		health_bar.value = health
+		stamina_bar.value = stamina
+		evidence_bar.value = min(evidence, 100)
+		#print("evidence: " + str(evidence))
 
-	if State == States.DYING:
-		dying_warning_label.visible = true
-		var time_left = $Timers/DeathTimer.get_time_left()
-		if time_left < 4.0:
-			hud.show_dire_countdown(int(time_left))
-		dying_warning_label.text = "You're dying, find bandages: " + str(int(time_left))
-	else:
-		dying_warning_label.visible = false
+		if State == States.DYING:
+			dying_warning_label.visible = true
+			var time_left = $Timers/DeathTimer.get_time_left()
+			if time_left < 4.0:
+				hud.show_dire_countdown(int(time_left))
+			dying_warning_label.text = "You're dying, find bandages: " + str(int(time_left))
+		else:
+			dying_warning_label.visible = false
 		
 func update_journal(currentQuest):
 	quest_log.quests.append({"type": "Quest:", "quest": str(currentQuest), "status": ""}) 

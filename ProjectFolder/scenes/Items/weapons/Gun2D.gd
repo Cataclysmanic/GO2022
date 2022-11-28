@@ -33,7 +33,7 @@ func init(mapScene, myPlayer, hud):
 	_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
 	_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
 	
-	if map_scene.has_method("_on_loud_noise_made"):
+	if map_scene != null and is_instance_valid(map_scene) and map_scene.has_method("_on_loud_noise_made"):
 		_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
 	reload(magazine_capacity)
 	

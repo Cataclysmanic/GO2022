@@ -22,7 +22,7 @@ func remove_health(amount):
 func SHOOTING():
 	var target = get_tree().get_nodes_in_group("Player")[0] as KinematicBody2D
 	var b = bullet.instance()
-	look_at(target.position)
+	$Gun.look_at(target.position) # changed to side-sprite with gun arm that follows the player
 	if shoot == true:
 		owner.add_child(b)
 		b.transform = $Gun/Position2D.global_transform

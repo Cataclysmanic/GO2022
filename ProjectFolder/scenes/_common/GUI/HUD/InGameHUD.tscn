@@ -106,6 +106,7 @@ value = 1.0
 margin_top = 19.0
 margin_right = 170.0
 margin_bottom = 33.0
+value = 100.0
 texture_under = ExtResource( 15 )
 texture_over = ExtResource( 17 )
 texture_progress = ExtResource( 16 )

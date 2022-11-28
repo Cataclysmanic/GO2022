@@ -7,7 +7,13 @@ var hud
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	# give the player a chance to get ready
+	yield(get_tree().create_timer(1.0), "timeout") # give the city time to get ready
+		
+	#fallback safety protocol in case no scene called our init() function
+	if player == null:
+		player = Global.player
+		hud = player.get_hud()
 
 func init(myPlayer, myHud):
 	player = myPlayer
@@ -48,5 +54,6 @@ func look_ahead(delta):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player.State != player.States.DEAD:
+	
+	if player != null and is_instance_valid(player) and player.State != player.States.DEAD:
 		look_ahead(delta)
