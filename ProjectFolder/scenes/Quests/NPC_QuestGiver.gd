@@ -140,6 +140,7 @@ func spawn_quest_reward():
 		reward = $PotentialRewards.get_children()[randi()%$PotentialRewards.get_child_count()].duplicate()
 	else: # spawn a circumstantial clue if there's no custom reward
 		reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
+	reward.set_global_position(self.global_position)
 	reward.enable_pickup()
 	reward.show()
 	add_child(reward)
@@ -152,10 +153,13 @@ func spawn_quest_objective(targetLocation : Position2D, itemTemplate : Node2D):
 	var questObjective
 	if spawn_random_quest_objective and targetLocation != null:
 		questObjective = itemTemplate.duplicate()
-		questObjective.set_global_position(targetLocation.get_global_position())
+		#questObjective.set_global_position(targetLocation.get_global_position())
 		questObjective.show()
 		questObjective.enable_pickup()
 		add_child(questObjective)
+		#does order of setting position before/after add_child() matter?
+		questObjective.set_global_position(targetLocation.get_global_position())
+		
 	else: # don't spawn a copy, just read the info
 		questObjective = itemTemplate
 		
@@ -183,7 +187,7 @@ func preposition_a_or_an(nextWordString):
 func produce_quest_objective():
 	
 	# come up with some random item?
-	var location = null
+	var location : Position2D
 	if spawn_random_quest_objective:
 		location = get_random_location()
 	var itemTemplate = get_random_quest_requirement_item()
@@ -192,11 +196,10 @@ func produce_quest_objective():
 	
 	
 	
-func get_random_location():
-	
+func get_random_location() -> Position2D :
 	return city_map.get_random_quest_target_location()
 
-		
+
 func _unhandled_input(_event):
 	if Engine.is_editor_hint(): # running in inspector
 		return

@@ -159,13 +159,13 @@ func get_random_building():
 	return building
 	
 	
-func get_random_quest_target_location():
-	var quest_target_location
+func get_random_quest_target_location() -> Position2D:
+	var quest_target_location : Position2D
 	var building = get_random_building()
 
 	if building.has_method("get_random_quest_target_location"):
 		quest_target_location = building.get_random_quest_target_location()
 	else:
 		printerr("building doesn't have method: get_random_quest_target_location")
-	return quest_target_location	
+	return quest_target_location	 # Position2D node
 	
