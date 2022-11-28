@@ -75,6 +75,8 @@ func _on_cutscene_finished(cutsceneName):
 
 func _on_ending_requested():
 	# next scene will get the ending name from Global.chosen_ending
+	Global.resume() # When the player collects an item, it pops up and the game pauses... paused game means animations won't play. So resume!!!
+
 	var basePath = "res://scenes/CutScenes/Animatics/Scene 4/EndingAnimatic_"
 	if Global.chosen_ending == "GetOutOfJailCard":
 		change_scene(basePath+"GetOutOfJailCard.tscn")
@@ -84,5 +86,4 @@ func _on_ending_requested():
 		change_scene(basePath+"CollectedEvidence.tscn")
 	elif Global.chosen_ending == "BeatTheBoss":
 		change_scene(basePath+"BeatTheBoss.tscn")
-	Global.resume() # When the player collects an item, it pops up and the game pauses... paused game means animations won't play. So resume!!!
 	

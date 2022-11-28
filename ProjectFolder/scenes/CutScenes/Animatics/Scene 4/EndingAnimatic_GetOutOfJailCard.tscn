@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 4/ending_sequences.png" type="Texture" id=1]
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 4/EndingsAnimatics.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/_common/Music/CalmStandaloneSong.mp3" type="AudioStream" id=6]
 [ext_resource path="res://scenes/_common/Music/2022_11_25_Fight_v1.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=8]
+[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Animation" id=10]
 resource_name = "BrokenGetOutOfJailCard"
@@ -330,7 +331,7 @@ percent_visible = 0.0
 self_modulate = Color( 0.101961, 0.0941176, 0.0941176, 1 )
 margin_top = 144.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource( 3 )
@@ -342,6 +343,15 @@ position = Vector2( 509, 211 )
 frames = SubResource( 9 )
 animation = "GetOutOfJailCard"
 frame = 1
+
+[node name="ReturnToMainMenuButton" parent="VBoxContainer" instance=ExtResource( 9 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 580.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "Return to Main"
+return_to_main = true
 
 [node name="Audio" type="Node" parent="."]
 
