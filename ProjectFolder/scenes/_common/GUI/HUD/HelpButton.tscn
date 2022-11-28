@@ -71,14 +71,13 @@ margin_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
 text = "Controls:
-Arrows/WASD/LeftJoy: Move
+Arrows/WASD/LeftJoy: Move/Navigate Menus
 Mouse/RightJoy: Look Around
 Spacebar/LeftMouseClick/R1: Shoot
 Shift/L1: Sprint
 Mouse Wheel (+/-)-: zoom camera
 F/Dualshock Triangle/Xbox Y/ Nintendo X: Interact
 L/Dualshock Square/Xbox X/ Nintendo Y: Toggle Flashlight
-Navigate Menus: Arrows/WASD/LeftJoy
 "
 autowrap = true
 

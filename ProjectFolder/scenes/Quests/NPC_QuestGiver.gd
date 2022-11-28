@@ -46,6 +46,7 @@ enum States { INITIALIZING, READY, TALKING, MISSING, DEAD }
 var State = States.INITIALIZING
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	popin_dialog = find_node("PopInDialog")
@@ -213,6 +214,10 @@ func _unhandled_input(_event):
 	elif $InteractionArea.get_overlapping_bodies().has(Global.player): # this might not work while paused
 		if Input.is_action_just_pressed("interact") and State == States.READY:
 			popup_dialogue_box()
+	if Global.controller:
+		$InteractInstruction.text = "[Triangle/Y/X]"
+	else:
+		$InteractInstruction.text = "[F]"
 
 
 func _on_InteractionArea_body_entered(body):

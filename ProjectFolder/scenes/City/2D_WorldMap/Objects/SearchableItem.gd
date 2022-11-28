@@ -50,6 +50,10 @@ func _get_configuration_warning():
 func _unhandled_input(event):
 	if Engine.is_editor_hint(): # running in inspector
 		return
+	if Global.controller:
+		$InteractionLabel/PressF.text = "[Triangle/Y/X]"
+	else:
+		$InteractionLabel/PressF.text = "[F]"
 
 	if player_present and State != States.EMPTY:
 		if event.is_action_pressed("interact"):

@@ -25,6 +25,10 @@ func set_portrait(imageTex):
 		portraitNode.set_texture(imageTex)
 
 func popin():
+	if Global.controller:
+		$Dialogue/PanelContainer/VBoxContainer/NextButton.text = "Next"
+	else:
+		$Dialogue/PanelContainer/VBoxContainer/NextButton.text = "Next [F]"
 	$Dialogue.show()
 	$Dialogue/PanelContainer/VBoxContainer/NextButton.grab_focus()
 	Global.pause()

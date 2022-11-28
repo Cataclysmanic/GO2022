@@ -41,13 +41,13 @@ func _process(delta):
 			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
 			rebuild_inventory()
 	if Global.controller:
-		$Top/Header/HelpButton.text = "Journal[ R2 ]"
-		$Top/Header/QuitButton.text = "Quit[ L2 ]"
-		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[ D-Pad Up ]"
+		$Top/Header/HelpButton.text = "Journal[R2]"
+		$Top/Header/QuitButton.text = "Quit[L2]"
+		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[D-Pad Up]"
 	else:
-		$Top/Header/HelpButton.text = "Journal[ J ]"
-		$Top/Header/QuitButton.text = "Quit[ Q ]"
-		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[ I ]"
+		$Top/Header/HelpButton.text = "Journal[J]"
+		$Top/Header/QuitButton.text = "Quit[Q]"
+		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[I]"
 
 func _unhandled_key_input(_event):
 	pass # moved to shortcut key on button
