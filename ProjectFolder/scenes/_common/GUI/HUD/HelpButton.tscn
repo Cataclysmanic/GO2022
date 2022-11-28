@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/HUD/QuestContainer.gd" type="Script" id=2]
+[ext_resource path="res://scenes/_common/GUI/icons/book-n.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/icons/gun-u.png" type="Texture" id=4]
+[ext_resource path="res://scenes/_common/GUI/icons/bandage.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=6]
+[ext_resource path="res://scenes/_common/GUI/icons/TalkClue-h.png" type="Texture" id=7]
+[ext_resource path="res://scenes/_common/GUI/icons/PaperClue-h.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Quests/quest_icon_exclamation.png" type="Texture" id=9]
+[ext_resource path="res://scenes/_common/GUI/icons/MemoryClue-h.png" type="Texture" id=10]
+[ext_resource path="res://scenes/_common/GUI/icons/MiscClue-h.png" type="Texture" id=11]
 
 [node name="HelpButton" type="Button"]
 pause_mode = 2
@@ -66,7 +75,7 @@ size_flags_vertical = 3
 custom_constants/separation = 50
 
 [node name="HelpInstructions" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox"]
-margin_right = 351.0
+margin_right = 326.0
 margin_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -82,14 +91,14 @@ L/Dualshock Square/Xbox X/ Nintendo Y: Toggle Flashlight
 autowrap = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox"]
-margin_left = 401.0
-margin_right = 752.0
+margin_left = 376.0
+margin_right = 702.0
 margin_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="QuestLog" type="VBoxContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/ScrollContainer"]
-margin_right = 351.0
+margin_right = 326.0
 margin_bottom = 408.0
 mouse_filter = 2
 size_flags_horizontal = 3
@@ -97,11 +106,82 @@ size_flags_vertical = 3
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/ScrollContainer/QuestLog"]
-margin_right = 351.0
+margin_right = 326.0
 margin_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quests"
+
+[node name="Icons" type="Control" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox"]
+margin_left = 752.0
+margin_right = 752.0
+margin_bottom = 408.0
+
+[node name="QuestIconExclamation" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons"]
+position = Vector2( -636.5, 203 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
+[node name="Bandage" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons/QuestIconExclamation"]
+position = Vector2( 70, 244 )
+scale = Vector2( 0.96875, 0.875 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons/QuestIconExclamation"]
+margin_left = -162.0
+margin_top = -64.0
+margin_right = -63.0
+margin_bottom = -50.0
+rect_scale = Vector2( 2.14262, 1.852 )
+text = "Icons:"
+
+[node name="Label2" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons/QuestIconExclamation"]
+margin_left = 106.0
+margin_top = -16.0
+margin_right = 205.0
+margin_bottom = 134.0
+rect_scale = Vector2( 2.14262, 1.852 )
+text = "Quest
+
+Item
+
+Gun Upgrade
+
+Clue
+
+Healing"
+
+[node name="QuestIconQuestion" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons"]
+position = Vector2( -604.5, 202 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="Book-n" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons"]
+position = Vector2( -603.5, 233 )
+scale = Vector2( 0.46875, 0.4375 )
+texture = ExtResource( 3 )
+
+[node name="Gun-u" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons"]
+position = Vector2( -603.5, 264 )
+scale = Vector2( 0.246094, 0.214844 )
+texture = ExtResource( 4 )
+
+[node name="TalkClue-h" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons"]
+position = Vector2( -698.5, 294 )
+scale = Vector2( 0.234375, 0.214844 )
+texture = ExtResource( 7 )
+
+[node name="PaperClue-h" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons/TalkClue-h"]
+position = Vector2( 136.533, -9.53674e-06 )
+texture = ExtResource( 8 )
+
+[node name="MiscClue-h" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons/TalkClue-h/PaperClue-h"]
+position = Vector2( 136.533, -9.53674e-06 )
+texture = ExtResource( 11 )
+
+[node name="MemoryClue-h" type="Sprite" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/Icons/TalkClue-h/PaperClue-h/MiscClue-h"]
+position = Vector2( 136.533, -5.72205e-06 )
+texture = ExtResource( 10 )
 
 [connection signal="toggled" from="." to="." method="_on_HelpButton_toggled"]
 [connection signal="about_to_show" from="PlayerInstructions" to="." method="_on_PlayerInstructions_about_to_show"]

@@ -11,7 +11,6 @@ var main_scene = "res://scenes/MenuScenes/MainMenu.tscn"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.grab_focus()
 	pass # Replace with function body.
 
 func _unhandled_input(event):
