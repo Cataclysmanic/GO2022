@@ -44,8 +44,9 @@ onready var quest_notification = find_node("UpdateNotice")
 func _ready():
 	update_bars()
 	$PaperDoll.relax()
-	if Global.IO.player_has_item("gun2D"):
-		spawn_item(Global.IO.get_item("Gun2D"))
+	
+	#if Global.IO.player.has_item("gun2D"): # <-- legacy from version 0.1 on Nov 1. We originally thought the player might not always have a weapon
+	#spawn_item(Global.IO.get_item("Gun2D"))
 
 	manual_spawn_gun() # temporary
 	set_state(States.READY)

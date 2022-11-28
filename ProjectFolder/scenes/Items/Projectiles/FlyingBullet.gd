@@ -102,6 +102,11 @@ func _on_Area2D_area_entered(area):
 		if "Bullet" in area.name:
 			die()
 
+func dummy_emit(): # just to shut up the inspector warnings
+	printerr("FlyingBullet.gd deprecated function dummy_emit should not be used")
+	if false:
+		emit_signal("hit")
+
 func _on_LifetimeTimer_timeout():
 	if !snakeify:
 		die() # Replace with function body.
