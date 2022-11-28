@@ -171,7 +171,19 @@ item_details = {
 item_details = {
 "display_immediately": true,
 "is_unique": true,
-"item_name": "Happy Ending!",
+"item_name": "Happy Ending",
+"notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="HappyEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( 16.0958, 260.863 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Happy Ending",
 "notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
 "path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
 "path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",

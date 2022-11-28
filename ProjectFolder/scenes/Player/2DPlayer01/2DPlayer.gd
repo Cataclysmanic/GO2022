@@ -122,8 +122,11 @@ func update_item(currentItem, descriptive):
 	else:
 		quest_log.quests.append({"type": "Item: ", "quest": str(currentItem) , "status": " Picked Up"}) 
 	quest_notification.show()
-	yield(get_tree().create_timer(1.0), "timeout")
-	quest_notification.hide()
+	$QuestNotificationTimer.start()
+	
+	# moved to timer to avoid errors during scene-switching (eg: switching to endgame outro animatics)
+	#yield(get_tree().create_timer(1.0), "timeout") # cuased problems during scene switching
+	#quest_notification.hide()
 	
 func has_item(itemName):
 	return Global.IO.player_has_item(itemName)
@@ -428,3 +431,7 @@ func _on_TargetArea_body_exited(body):
 func _on_MeleeAttackZone_body_entered(body):
 	if body.has_method("extreme_knock_back"):
 		melee_attack()
+
+
+func _on_QuestNotificationTimer_timeout():
+	quest_notification.hide()

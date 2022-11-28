@@ -24,6 +24,11 @@ func _on_collectible_picked_up(itemObj): # stored in Collectible as item_info. (
 	else:
 		stored_items.push_back(itemResource)
 
+	if itemResource.item_name == "Happy Ending":
+		var endingName = "GetOutOfJailCard"
+		print("Congratulations, you won the game! " + endingName)
+		Global.chosen_ending = endingName
+		Global.world_controller._on_ending_requested()
 
 func get_inventory():
 	return stored_items
