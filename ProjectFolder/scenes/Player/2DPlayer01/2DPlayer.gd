@@ -205,7 +205,7 @@ func _physics_process(delta):
 	
 	
 	
-func set_primary_target_area(points:PoolVector2Array):
+func set_primary_target_area(_points:PoolVector2Array):
 	pass
 	#$PaperDoll/TargetArea/CollisionPolygon2D.polygon = points
 	#$PaperDoll/TargetArea/Polygon2D.polygon = points
@@ -359,10 +359,10 @@ func play_animations(movement_vector):
 			$PaperDoll.relax()
 	
 func _on_collectible_picked_up(pickupObj):
-	print("pickupObj.item_info[item_name] == " + pickupObj.item_info["item_name"])
+	#print("pickupObj.item_info[item_name] == " + pickupObj.item_info["item_name"])
 	if "Clue" in pickupObj.item_info["item_name"]:
 		evidence += 1
-		print("evidence == "+str(evidence))
+		#print("evidence == "+str(evidence))
 		update_bars()
 
 func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):

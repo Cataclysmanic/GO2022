@@ -42,11 +42,14 @@ func _ready():
 	for propertyName in item_details.keys():
 		if item_details[propertyName]:
 			item_info.set(propertyName, item_details[propertyName])
+	#print("2DCollectablePickup.gd item_info[path_to_popup_display_image] == " + item_info["path_to_popup_display_image"])
 
 	if not item_details["path_to_icon"]:
 		item_info.set("path_to_icon", spritePath)
 	
-	if not item_details["path_to_popup_display_image"]:
+	if item_details["path_to_popup_display_image"] != "":
+		item_info.set("path_to_popup_display_image", item_details["path_to_popup_display_image"])
+	else:
 		item_info.set("path_to_popup_display_image", spritePath)
 	
 	spawn_debug_conspiracy_yarn()

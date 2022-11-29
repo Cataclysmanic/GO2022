@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/City/Indoors/MidBossRoom.gd" type="Script" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/bossroom.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Test Assets/Building/firstTry.dae/floorTexWIP.png" type="Texture" id=5]
 [ext_resource path="res://scenes/Items/ladder sprite.png" type="Texture" id=6]
+[ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 209.77, 520.205 )
@@ -64,6 +66,37 @@ disabled = true
 
 [node name="MookNPC" parent="." instance=ExtResource( 4 )]
 position = Vector2( 9, 611 )
+
+[node name="MemoryClueVeronica" parent="." instance=ExtResource( 7 )]
+position = Vector2( 582, 167 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Room full of Crazy, Femme Fatale",
+"notes_for_journal": "This scene I just walked into is straight out of a nightmare. Walls are covered in red yarn, linking photographs and newspaper clippings. Apparently I've done Ms Winter some great disservice in the past. It's astonishing to imagine the lengths she would go to discredit me. Even framing me for murder! All because of what, I once dated her boyfriends mother?",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-h.png",
+"path_to_popup_display_image": "res://scenes/City/Indoors/CrazyRoom2.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="BeatTheBossEnding" parent="." instance=ExtResource( 8 )]
+position = Vector2( -163, 611 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "BeatTheBoss Ending",
+"notes_for_journal": "Nope. It's jail for you.",
+"path_to_icon": "res://scenes/Quests/quest_icon_exclamation.png",
+"path_to_popup_display_image": "res://scenes/City/Indoors/CrazyRoom.jpg",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="BeatTheBossEnding"]
+margin_left = -48.8425
+margin_top = -19.426
+margin_right = 56.1575
+margin_bottom = -5.42603
+text = "BeatTheBoss Ending"
 
 [connection signal="body_entered" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_exited"]

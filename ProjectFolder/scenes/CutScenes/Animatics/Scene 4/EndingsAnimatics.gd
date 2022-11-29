@@ -64,3 +64,7 @@ func play_ending(_endingName):
 func advance_script():
 	current_line = int(min(current_line +1, current_script.size()-1))
 	$VBoxContainer/EndingScriptText.text = current_script[current_line]
+
+
+func _on_RebootButton_pressed():
+	get_tree().change_scene("res://scenes/Main.tscn")

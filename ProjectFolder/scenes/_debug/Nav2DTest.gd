@@ -24,7 +24,7 @@ func update_nav():
 	var optimize = true
 	current_path = Navigation2DServer.map_get_path(level_navigation_map, actor.get_global_position(), $Sprite.get_global_position(), optimize)
 	#nav_agent.set_target_location($Sprite.get_global_position())
-	print(current_path)
+	#print(current_path)
 
 func _on_NavUpdateTimer_timeout():
 	update_nav()

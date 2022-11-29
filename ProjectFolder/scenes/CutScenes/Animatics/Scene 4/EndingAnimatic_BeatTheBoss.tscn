@@ -1,20 +1,21 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 4/ending_sequences.png" type="Texture" id=1]
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 4/EndingsAnimatics.gd" type="Script" id=2]
-[ext_resource path="res://scenes/_common/Materials/SmallWhiteSquare.png" type="Texture" id=3]
+[ext_resource path="res://scenes/_common/GUI/Theme/black_styleboxflat.tres" type="StyleBox" id=3]
 [ext_resource path="res://scenes/_common/Music/2022_11_01_v3_sax_mix_4.mp3" type="AudioStream" id=4]
 [ext_resource path="res://scenes/_common/Music/2022_11_02_2_PI_Shuffle_v2.mp3" type="AudioStream" id=5]
 [ext_resource path="res://scenes/_common/Music/CalmStandaloneSong.mp3" type="AudioStream" id=6]
 [ext_resource path="res://scenes/_common/Music/2022_11_25_Fight_v1.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=8]
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/_common/Materials/SmallBlackSquare.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=10]
 resource_name = "BeatTheBoss"
 length = 12.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/FadeTex/AnimatedSprite:animation")
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/FadeTex/AnimatedSprite:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -26,7 +27,7 @@ tracks/0/keys = {
 "values": [ "Beatboss" ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/FadeTex/AnimatedSprite:frame")
+tracks/1/path = NodePath("PanelContainer/VBoxContainer/FadeTex/AnimatedSprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -38,7 +39,7 @@ tracks/1/keys = {
 "values": [ 0, 1 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
+tracks/2/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -50,16 +51,16 @@ tracks/2/keys = {
 "values": [ 0.0, 1.0, 1.0, 0.0, 0.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("VBoxContainer/FadeTex:self_modulate")
+tracks/3/path = NodePath("PanelContainer/VBoxContainer/FadeTex:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.8, 5.6, 5.9, 6.2, 10.7, 11 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.8, 5.6, 5.9, 6.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
+"values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Audio/TenseEndingMusic:playing")
@@ -74,7 +75,7 @@ tracks/4/keys = {
 "values": [ true ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
+tracks/5/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -86,7 +87,7 @@ tracks/5/keys = {
 "values": [ 0.0, 0.0, 1.0, 1.0 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:visible")
+tracks/6/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText2:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -98,7 +99,7 @@ tracks/6/keys = {
 "values": [ false, true ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:visible")
+tracks/7/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText1:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -115,7 +116,7 @@ resource_name = "GetOutOfJailCard"
 length = 20.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("VBoxContainer/FadeTex:self_modulate")
+tracks/0/path = NodePath("PanelContainer/VBoxContainer/FadeTex:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -127,7 +128,7 @@ tracks/0/keys = {
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
+tracks/1/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -154,7 +155,7 @@ tracks/0/keys = {
 "values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("VBoxContainer/FadeTex:self_modulate")
+tracks/1/path = NodePath("PanelContainer/VBoxContainer/FadeTex:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -166,7 +167,7 @@ tracks/1/keys = {
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
+tracks/2/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText1:percent_visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -190,7 +191,7 @@ tracks/3/keys = {
 "values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
+tracks/4/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText2:percent_visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -202,7 +203,7 @@ tracks/4/keys = {
 "values": [ 0.0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText2:visible")
+tracks/5/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText2:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -214,7 +215,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("VBoxContainer/MarginContainer/EndingScriptText1:visible")
+tracks/6/path = NodePath("PanelContainer/VBoxContainer/MarginContainer/EndingScriptText1:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -225,6 +226,9 @@ tracks/6/keys = {
 "update": 0,
 "values": [ true ]
 }
+
+[sub_resource type="Theme" id=14]
+VBoxContainer/constants/separation = 4
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -299,12 +303,18 @@ anims/BeatTheBoss = SubResource( 10 )
 anims/GetOutOfJailCard = SubResource( 12 )
 anims/RESET = SubResource( 11 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 3 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+theme = SubResource( 14 )
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 margin_right = 1024.0
 margin_bottom = 140.0
 custom_constants/margin_right = 80
@@ -312,7 +322,7 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 80
 custom_constants/margin_bottom = 20
 
-[node name="EndingScriptText1" type="Label" parent="VBoxContainer/MarginContainer"]
+[node name="EndingScriptText1" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer"]
 margin_left = 80.0
 margin_top = 20.0
 margin_right = 944.0
@@ -325,7 +335,7 @@ align = 1
 autowrap = true
 percent_visible = 0.0
 
-[node name="EndingScriptText2" type="Label" parent="VBoxContainer/MarginContainer"]
+[node name="EndingScriptText2" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer"]
 visible = false
 margin_left = 80.0
 margin_top = 20.0
@@ -339,30 +349,40 @@ align = 1
 autowrap = true
 percent_visible = 0.0
 
-[node name="FadeTex" type="TextureRect" parent="VBoxContainer"]
+[node name="FadeTex" type="TextureRect" parent="PanelContainer/VBoxContainer"]
 self_modulate = Color( 0.101961, 0.0941176, 0.0941176, 1 )
 margin_top = 144.0
 margin_right = 1024.0
 margin_bottom = 576.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 3 )
+texture = ExtResource( 10 )
 expand = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="VBoxContainer/FadeTex"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PanelContainer/VBoxContainer/FadeTex"]
 show_behind_parent = true
 position = Vector2( 509, 211 )
 frames = SubResource( 9 )
 animation = "Beatboss"
+frame = 1
 
-[node name="ReturnToMainMenuButton" parent="VBoxContainer" instance=ExtResource( 9 )]
+[node name="ReturnToMainMenuButton" parent="PanelContainer/VBoxContainer" instance=ExtResource( 9 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 580.0
+margin_top = 556.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 576.0
 text = "Return to Main"
 return_to_main = true
+
+[node name="RebootButton" type="Button" parent="PanelContainer/VBoxContainer"]
+margin_left = 483.0
+margin_top = 580.0
+margin_right = 540.0
+margin_bottom = 600.0
+size_flags_horizontal = 4
+text = "Restart"
 
 [node name="Audio" type="Node" parent="."]
 
@@ -377,3 +397,5 @@ stream = ExtResource( 7 )
 
 [node name="MysteriousEndingMusic" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 5 )
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/RebootButton" to="." method="_on_RebootButton_pressed"]

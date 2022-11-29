@@ -7,7 +7,7 @@ var MidBossScene = preload("res://scenes/City/Indoors/MidBossRoom.tscn")
 func _ready():
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	if in_area and Input.is_action_just_pressed("interact"):
 		#get_tree().change_scene('res://scenes/City/Indoors/MidBossRoom.tscn')
 		Global.world_controller.change_scene("res://scenes/City/Indoors/MidBossRoom.tscn")

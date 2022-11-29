@@ -169,6 +169,7 @@ func rebuild_inventory():
 #		Global.trigger_events["missing_gun_reported"] = true
 
 func _on_collectible_picked_up(pickupObj):
+
 	var itemResource = pickupObj.item_info
 	
 	#Global.pause() # why isn't this firing the second time we pick something up?
