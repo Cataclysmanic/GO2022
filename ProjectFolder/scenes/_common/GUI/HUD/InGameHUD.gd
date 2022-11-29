@@ -34,12 +34,13 @@ func _process(delta):
 		return
 		
 	time_elapsed += delta
-	if time_elapsed > last_polling_time + polling_interval:
-		
-		
-		if len(stored_items) != len(Global.IO.stored_items):
-			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
-			rebuild_inventory()
+#	This breaks scene changes as inventory is not totally global, needs work
+#	if time_elapsed > last_polling_time + polling_interval:
+#
+#
+#		if len(stored_items) != len(Global.IO.stored_items):
+#			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
+#			rebuild_inventory()
 	if Global.controller:
 		$Top/Header/HelpButton.text = "Journal[R2]"
 		$Top/Header/QuitButton.text = "Quit[L2]"

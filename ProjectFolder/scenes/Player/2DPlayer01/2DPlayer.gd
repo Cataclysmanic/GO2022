@@ -243,7 +243,6 @@ func melee_attack():
 	$PaperDoll.melee_attack()
 	var targets = $MeleeAttackZone.get_overlapping_bodies()
 	for target in targets:
-		print(target.get_child(0).get_child(1))
 		if target.has_method("extreme_knock_back") and !target.get_child(0).get_child(1).has_method('anti_knockback'):
 			var impactVector = target.global_position - self.global_position
 			target.extreme_knock_back(impactVector)
