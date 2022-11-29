@@ -52,8 +52,11 @@ func die():
 	$AnimationPlayer.play("die")
 
 func _process(_delta):
+	if npc.get_state() == npc.States.DEAD:
+		return
+	
 	if Global.player != null and is_instance_valid(Global.player):
-		if npc.get_state() == npc.States.AIMING:
+		if npc.get_state() != npc.States.AIMING:
 			aim_toward(Global.player.global_position - global_position)
 	
 func aim_toward(dirVector):

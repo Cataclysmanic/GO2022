@@ -347,8 +347,8 @@ func shoot(): # this ought to be in a separate gun object
 			$NPCGun/TriggerFingerTimer.wait_time = 0.4
 			$NPCGun/ReloadTimer.wait_time = 0.3
 			bulletSpeed = 500
-		else:
-			$NPCGun/TriggerFingerTimer.wait_time = 1.5
+		else: # basic mook teamster thug with a gun
+			$NPCGun/TriggerFingerTimer.wait_time = 0.2
 			$NPCGun/ReloadTimer.wait_time = 1.5
 			ammo_remaining -= 1
 		bullet.init(self, pos, rotation, bulletSpeed)

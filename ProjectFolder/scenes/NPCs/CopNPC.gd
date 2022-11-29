@@ -62,12 +62,13 @@ func _ready():
 		nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
 	home_position = get_global_position()
 
-	#$DebugInfo.set_visible(Global.user_preferences["debug"])
-	$DebugInfo.set_visible(true)
+	$DebugInfo.set_visible(Global.user_preferences["debug"])
+	#$DebugInfo.set_visible(true)
 	
 	var laser = find_node("LaserScope")
 	if laser != null:
 		laser.set_visible(Global.user_preferences["debug"])
+		#laser.set_visible(true)
 
 	if map_scene == null: # the map should have initialized you, but didn't. NP, Do it yourself.
 		printerr("CopNPC.gd: NPC spawned, but map didn't initialize it. Doing it manually")
