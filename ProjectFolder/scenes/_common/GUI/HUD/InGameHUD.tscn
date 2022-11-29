@@ -307,4 +307,43 @@ text = "BossName"
 align = 1
 valign = 1
 
+[node name="PopupPanel" type="Panel" parent="."]
+visible = false
+margin_left = 240.0
+margin_top = 211.0
+margin_right = 775.0
+margin_bottom = 405.0
+
+[node name="Label" type="Label" parent="PopupPanel"]
+margin_left = 24.0
+margin_top = 59.0
+margin_right = 218.0
+margin_bottom = 73.0
+rect_scale = Vector2( 2.50898, 2.30828 )
+text = "Are you sure you want to quit?"
+
+[node name="Button" type="Button" parent="PopupPanel"]
+margin_left = 168.0
+margin_top = 115.0
+margin_right = 202.0
+margin_bottom = 135.0
+text = "Yes"
+
+[node name="Button2" type="Button" parent="PopupPanel"]
+margin_left = 328.0
+margin_top = 115.0
+margin_right = 358.0
+margin_bottom = 135.0
+text = "No"
+
+[node name="Label2" type="Label" parent="PopupPanel"]
+margin_left = 177.0
+margin_top = 171.0
+margin_right = 348.0
+margin_bottom = 185.0
+text = "You will lose your progress"
+
+[connection signal="pressed" from="Top/Header/QuitButton" to="Top/Header/QuitButton" method="_on_QuitButton_pressed"]
 [connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]
+[connection signal="pressed" from="PopupPanel/Button" to="Top/Header/QuitButton" method="_on_QuitYesButton_pressed"]
+[connection signal="pressed" from="PopupPanel/Button2" to="Top/Header/QuitButton" method="_on_QuitNoButton2_pressed"]

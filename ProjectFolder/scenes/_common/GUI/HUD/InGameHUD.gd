@@ -57,7 +57,6 @@ func _unhandled_key_input(_event):
 #		toggle_inventory_display()
 		
 
-
 func remove_boss_health(amount):
 	$ProgressBar.value -= amount
 

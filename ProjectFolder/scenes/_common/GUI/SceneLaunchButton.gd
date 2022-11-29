@@ -15,7 +15,11 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_quit"):
-		switch_scene()
+		if $"../../../PopupPanel" != null:
+			Global.pause()
+			$"../../../PopupPanel".show()
+			$"../../../PopupPanel/Button".grab_focus()
+#		switch_scene()
 
 func play_click_noise():
 	var audioPlayer = find_node("ClickSound")
@@ -57,3 +61,9 @@ func _on_SceneLaunchButton_mouse_entered():
 	else:
 		$DisabledSound.play()
 		
+func _on_QuitYesButton_pressed():
+	get_tree().change_scene("res://scenes/Main.tscn")
+
+func _on_QuitNoButton2_pressed():
+	Global.resume()
+	$"../../../PopupPanel".hide()
