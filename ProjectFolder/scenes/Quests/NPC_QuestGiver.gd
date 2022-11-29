@@ -235,6 +235,7 @@ func popup_dialogue_box():
 		
 		if requirements_met(Global.player):
 			popin_dialog.set_text(dialog_fulfilled_requirements)
+			popin_dialog.find_node("NoButton").hide()
 		else:
 			popin_dialog.set_text(dialog_unmet_requirements)
 		popin_dialog.popin()
