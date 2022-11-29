@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scenes/Player/PaperDoll/DetectiveSideViewPaperDoll-SugarFather.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/2dTest/WindowLighting.png" type="Texture" id=2]
@@ -19,6 +19,8 @@
 [ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Trashcan.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Sink.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=21]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.921569, 0.921569, 0.921569, 1 )
@@ -172,7 +174,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 1.2, 12.2, 13.1, 14.5, 15.1, 16, 17.3, 18.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 620, 385 ), Vector2( 620, 385 ), Vector2( 612, 256 ), Vector2( 612, 256 ), Vector2( 481, 249 ), Vector2( 334, 134 ) ]
+"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 513, 124 ), Vector2( 431, 295 ), Vector2( 438, 308 ), Vector2( 617, 297 ), Vector2( 697, 392 ), Vector2( 708, 533 ) ]
 }
 tracks/11/type = "value"
 tracks/11/path = NodePath("BrothersJouseFloor/PoliceLights:modulate")
@@ -253,10 +255,10 @@ tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 0, 16.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ Vector2( 0.0764459, 0.0764459 ), Vector2( -0.076, 0.076 ) ]
+"values": [ Vector2( 0.0764459, 0.0764459 ) ]
 }
 tracks/18/type = "value"
 tracks/18/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm/Gun:visible")
@@ -532,11 +534,11 @@ script = ExtResource( 9 )
 [node name="BrothersJouseFloor" type="Sprite" parent="."]
 visible = false
 position = Vector2( 518.5, 291.5 )
-scale = Vector2( 2.5, 2.5 )
+scale = Vector2( 3.78261, 3.78261 )
 texture = ExtResource( 7 )
 
 [node name="Corpse" type="Sprite" parent="BrothersJouseFloor"]
-position = Vector2( 34.2, -13.8 )
+position = Vector2( -0.199707, -6.2 )
 rotation = 0.4541
 scale = Vector2( 0.0576801, 0.0576801 )
 texture = ExtResource( 6 )
@@ -546,22 +548,76 @@ position = Vector2( -207.4, -116.6 )
 scale = Vector2( 0.4, 0.4 )
 
 [node name="Window1" type="Sprite" parent="BrothersJouseFloor/PoliceLights"]
-position = Vector2( 356, 416 )
+position = Vector2( 382.696, 240.249 )
+rotation = 3.14159
 scale = Vector2( 0.29959, 0.29959 )
+z_index = 1
 texture = ExtResource( 2 )
 flip_v = true
 
 [node name="Window2" type="Sprite" parent="BrothersJouseFloor/PoliceLights"]
-position = Vector2( 505, 373 )
+position = Vector2( 504.951, 188.727 )
+rotation = 3.14159
 scale = Vector2( 0.29959, 0.29959 )
+z_index = 1
 texture = ExtResource( 2 )
 flip_v = true
 
 [node name="Window3" type="Sprite" parent="BrothersJouseFloor/PoliceLights"]
-position = Vector2( 714, 373 )
+position = Vector2( 635.696, 236.249 )
+rotation = 3.14159
 scale = Vector2( 0.29959, 0.29959 )
+z_index = 1
 texture = ExtResource( 2 )
 flip_v = true
+
+[node name="House1_NW" type="Node2D" parent="BrothersJouseFloor"]
+position = Vector2( 111.166, 94.5114 )
+rotation = 0.0129179
+scale = Vector2( 0.983141, 0.983141 )
+
+[node name="KickableChair" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -163.826, -62.889 )
+rotation = 3.14159
+scale = Vector2( 0.433173, 0.433173 )
+
+[node name="DeskSearchable" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 13 )]
+position = Vector2( -160.658, -49.9289 )
+rotation = 3.14159
+
+[node name="Paper" parent="BrothersJouseFloor/House1_NW/DeskSearchable" instance=ExtResource( 21 )]
+visible = false
+
+[node name="Bandage" parent="BrothersJouseFloor/House1_NW/DeskSearchable" instance=ExtResource( 20 )]
+visible = false
+
+[node name="Couch" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 15 )]
+position = Vector2( -63.532, -118.189 )
+rotation = -2.87979
+
+[node name="PottedPlant" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 12 )]
+position = Vector2( -170.523, -116.82 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="PottedPlant2" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 12 )]
+position = Vector2( -50.0164, -78.3605 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="KickableChair2" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -67.2346, -95.1394 )
+scale = Vector2( 0.306544, 0.306544 )
+
+[node name="KickableChair3" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -123.649, -49.4069 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="TableLamp" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 16 )]
+position = Vector2( -150.628, -125.065 )
+rotation = -0.0416951
+scale = Vector2( 0.126476, 0.126476 )
 
 [node name="OfficeFloor" type="Sprite" parent="."]
 position = Vector2( 518.5, 291.5 )

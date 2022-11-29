@@ -194,12 +194,12 @@ location_details = "In the office inside the house on the corner."
 rotation = 0.0129179
 
 [node name="KickableChair" parent="House1_NW" instance=ExtResource( 14 )]
-position = Vector2( -67.8341, -64.1291 )
+position = Vector2( -163.826, -62.889 )
 rotation = 3.14159
 scale = Vector2( 0.433173, 0.433173 )
 
 [node name="DeskSearchable" parent="House1_NW" instance=ExtResource( 13 )]
-position = Vector2( -65.6663, -51.156 )
+position = Vector2( -160.658, -49.9289 )
 rotation = 3.14159
 
 [node name="Paper" parent="House1_NW/DeskSearchable" instance=ExtResource( 12 )]
@@ -218,7 +218,7 @@ rotation = -0.0416951
 scale = Vector2( 0.27154, 0.27154 )
 
 [node name="PottedPlant2" parent="House1_NW" instance=ExtResource( 10 )]
-position = Vector2( -171.683, -51.7866 )
+position = Vector2( -50.0164, -78.3605 )
 rotation = -0.0416951
 scale = Vector2( 0.27154, 0.27154 )
 
@@ -232,7 +232,7 @@ rotation = -0.0416951
 scale = Vector2( 0.27154, 0.27154 )
 
 [node name="TableLamp" parent="House1_NW" instance=ExtResource( 17 )]
-position = Vector2( -144.892, -47.1245 )
+position = Vector2( -150.628, -125.065 )
 rotation = -0.0416951
 scale = Vector2( 0.126476, 0.126476 )
 
@@ -278,6 +278,19 @@ item_details = {
 "notes_for_journal": "Tommy was too good for this city. If he hadn't turned me in for that thing, back in the day, I would still be a cop. Would never have lost my badge.",
 "path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MiscClue-DoorBrickedIn" parent="House1_NW" instance=ExtResource( 18 )]
+position = Vector2( -54.6285, -48.2984 )
+scale = Vector2( 0.211977, 0.211977 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Door Bricked In Hastily",
+"notes_for_journal": "Last time I was here, this was a back door. Looks like someone has bricked it up since then. I better check with the labourers union.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
 
