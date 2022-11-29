@@ -5,7 +5,7 @@ onready var playerScene = $ResourcePreloader.get_resource("Player").instance()
 var in_area = false
 
 func _ready():
-	$AnimationPlayer.play()
+	$AnimationPlayer.play("rotatommy")
 	Global.current_city_map = self
 	var startPos = find_node("PlayerSpawn").get_global_position()
 	playerScene.set_global_position(startPos)
