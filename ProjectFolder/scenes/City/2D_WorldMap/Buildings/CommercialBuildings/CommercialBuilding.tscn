@@ -237,33 +237,33 @@ align = 1
 [node name="PossibleQuestTargetLocations" type="Node2D" parent="."]
 
 [node name="QuestTargetLocation" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 101, -121 )
+position = Vector2( 112, -119 )
 location_address = "128 Main St, Unit C"
-location_details = "The Butcher"
+location_details = "The Teamsters Labour Union Hall"
 
 [node name="QuestTargetLocation2" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 position = Vector2( 65, -61 )
 location_address = "128 Main St, Unit B"
-location_details = "The Baker"
+location_details = "Romanos Pizzeria"
 
 [node name="QuestTargetLocation3" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( -91, -127 )
-location_address = "128 Main St, Unit A"
-location_details = "The Candlestick Maker"
+position = Vector2( -114, 181 )
+location_address = "128 Main St, Unit F"
+location_details = "In the Marketplace, south end of Commercial District"
 
 [node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 position = Vector2( -211, 131 )
 location_address = "128 Main St, Unit F"
-location_details = "The Cobbler"
+location_details = "The Cobbler in the marketplace at the south end of the commercial district."
 
 [node name="QuestTargetLocation5" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 position = Vector2( -10, 127 )
 location_address = "128 Main St, Unit E"
-location_details = "The Haberdasher"
+location_details = "The Haberdasher in the marketplace at the south end of the commercial district"
 
 [node name="QuestTargetLocation6" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 206, 110 )
-location_address = "128 Main St, Unit D"
+position = Vector2( 173, -159 )
+location_address = "128 Main St, Unit C"
 location_details = "The Local Union Office"
 
 [node name="Furniture" type="Node2D" parent="."]
