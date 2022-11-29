@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/NPCs/Thug-paper-doll-spritesheet3.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NPCs/Bosses/TommyAlive.png" type="Texture" id=2]
-[ext_resource path="res://scenes/NPCs/ShootyMookPaperDoll.gd" type="Script" id=3]
+[ext_resource path="res://scenes/NPCs/OldPalPaperDoll.gd" type="Script" id=3]
 [ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]

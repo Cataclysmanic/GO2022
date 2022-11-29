@@ -8,6 +8,9 @@ var nav_agent
 func _ready():
 	pass
 
+func anti_knockback():
+	pass
+
 func init(myNPC):
 	npc = myNPC
 	$corpse.hide()
