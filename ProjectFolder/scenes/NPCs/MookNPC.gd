@@ -344,7 +344,7 @@ func shoot(): # this ought to be in a separate gun object
 			$NPCGun/ReloadTimer.wait_time = 0.3
 			bullet.snakeify = true
 		elif currentNpc == "ressurected?":
-			$NPCGun/TriggerFingerTimer.wait_time = 0.4
+			$NPCGun/TriggerFingerTimer.wait_time = 0.2
 			$NPCGun/ReloadTimer.wait_time = 0.3
 			bulletSpeed = 500
 		else: # basic mook teamster thug with a gun
