@@ -262,7 +262,7 @@ location_address = "128 Main St, Unit E"
 location_details = "The Haberdasher"
 
 [node name="QuestTargetLocation6" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 93, 84 )
+position = Vector2( 206, 110 )
 location_address = "128 Main St, Unit D"
 location_details = "The Local Union Office"
 
@@ -571,7 +571,7 @@ item_details = {
 }
 
 [node name="Bazooka" parent="." instance=ExtResource( 21 )]
-position = Vector2( -225, -187 )
+position = Vector2( 94, 74 )
 scale = Vector2( 0.349502, 0.344363 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

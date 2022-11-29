@@ -217,6 +217,11 @@ scale = Vector2( 2, 2 )
 position = Vector2( -2161, 1347 )
 scale = Vector2( 1.67, 1.67 )
 
+[node name="CommercialUnitA3" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1087, 1780 )
+rotation = 1.57182
+scale = Vector2( 1.16118, 0.982576 )
+
 [node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 19 )]
 position = Vector2( -1588, 1349 )
 scale = Vector2( 1.55423, 1.28862 )

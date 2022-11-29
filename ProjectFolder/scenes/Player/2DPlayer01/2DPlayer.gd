@@ -233,10 +233,10 @@ func change_health_bar(amount):
 func toggle_flashlight():
 	var is_enabled = !$Flashlight.enabled
 	$Flashlight.enabled = is_enabled
-	if is_enabled:
-		$PaperDoll.point_gun()
-	else:
-		$PaperDoll.relax()
+#	if is_enabled:
+#		$PaperDoll.point_gun()
+#	else:
+#		$PaperDoll.relax()
 
 
 func melee_attack():

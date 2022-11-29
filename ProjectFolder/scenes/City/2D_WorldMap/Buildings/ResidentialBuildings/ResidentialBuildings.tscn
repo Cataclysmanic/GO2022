@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -28,6 +28,8 @@
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/Trapdoor.gd" type="Script" id=27]
 [ext_resource path="res://scenes/_common/Materials/SmallWhiteSquare.png" type="Texture" id=28]
+[ext_resource path="res://scenes/Items/collectables/2D/RustyKey2DPickup.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/Items/collectables/2D/BronzeKey2DPickup.tscn" type="PackedScene" id=30]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -331,6 +333,14 @@ item_details = {
 "path_to_scene_for_PlayerController_Items": ""
 }
 
+[node name="DeskSearchable3" parent="House2_NE" instance=ExtResource( 13 )]
+position = Vector2( 48, -145 )
+rotation = -1.57079
+
+[node name="PaperClue" parent="House2_NE/DeskSearchable3" instance=ExtResource( 29 )]
+position = Vector2( -2.90399, 3.09921 )
+scale = Vector2( 0.129406, 0.125265 )
+
 [node name="TableLamp" parent="House2_NE" instance=ExtResource( 17 )]
 position = Vector2( 170, -110 )
 
@@ -477,6 +487,13 @@ item_details = {
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
+
+[node name="DeskSearchable2" parent="House3_SW" instance=ExtResource( 13 )]
+position = Vector2( -143, 134 )
+rotation = 4.70679
+scale = Vector2( 0.714495, 0.714495 )
+
+[node name="PaperClue" parent="House3_SW/DeskSearchable2" instance=ExtResource( 30 )]
 
 [node name="SonClue" parent="House3_SW" instance=ExtResource( 21 )]
 position = Vector2( -120, 94 )
