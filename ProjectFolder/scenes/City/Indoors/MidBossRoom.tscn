@@ -71,7 +71,7 @@ position = Vector2( 770, 147 )
 scale = Vector2( -0.915184, 0.801148 )
 
 [node name="MookNPC2" parent="." instance=ExtResource( 9 )]
-position = Vector2( -234, 147 )
+position = Vector2( -265, 147 )
 
 [node name="MemoryClueVeronica" parent="." instance=ExtResource( 7 )]
 position = Vector2( 766, 143 )
@@ -103,6 +103,8 @@ margin_top = -19.426
 margin_right = 56.1575
 margin_bottom = -5.42603
 text = "BeatTheBoss Ending"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="body_entered" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_exited"]

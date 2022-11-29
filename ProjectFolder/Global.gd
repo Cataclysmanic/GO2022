@@ -11,6 +11,8 @@ var rockets = false
 var controller = false
 var minibossdead = false
 var chosen_ending : String
+var shot_num = 1
+var upgrader = 2
 
 var user_preferences = {
 	"difficulty": 1.0, #0.5 to 3.0

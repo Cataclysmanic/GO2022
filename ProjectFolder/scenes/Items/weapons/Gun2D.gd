@@ -6,8 +6,7 @@ var map_scene
 var player
 var camera
 var HUD
-var shot_num = 1
-var upgrader = 2
+
 enum States { INITIALIZING, READY, EMPTY, FIRING, COCKING, EMPTY }
 var State = States.INITIALIZING
 var launcher = preload("res://scenes/Player/PaperDoll/rocketlauncher-topdown.png")
@@ -21,6 +20,8 @@ signal loud_noise(location)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = States.READY
+	if Global.rockets:
+		rocketize()
 	
 func init(mapScene, myPlayer, hud):
 	player = myPlayer
@@ -58,24 +59,24 @@ func empty_click():
 func shoot():
 	State = States.FIRING
 	make_gunshot_noise()
-	$CockTimer.wait_time = max(0.4 - 0.05 * upgrader, 0.001)
+	$CockTimer.wait_time = max(0.4 - 0.05 * Global.upgrader, 0.001)
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
-	var bulletSpeed = 1000+100*upgrader
+	var bulletSpeed = 1000+100*Global.upgrader
 	if Global.rockets:
 		bulletSpeed = 800
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
-	if shot_num == 1:
+	if Global.shot_num == 1:
 		spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
-	if shot_num == 2:
+	if Global.shot_num == 2:
 		spawn_bullet(myPos+2*jitterVec, myRot, bulletSpeed)
 		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
-	if shot_num == 3:
+	if Global.shot_num == 3:
 		spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
 		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
 		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
-	if shot_num >= 4:
+	if Global.shot_num >= 4:
 		spawn_bullet(myPos+2*jitterVec, myRot, bulletSpeed)
 		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
 		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)

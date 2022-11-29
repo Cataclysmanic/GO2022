@@ -3,8 +3,8 @@ extends Node2D
 
 var npc
 var nav_agent
-var reward = preload("res://scenes/Items/collectables/2D/RocketLauncherPickup.tscn")
-var reward2 = preload("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn")
+#var reward = preload("res://scenes/Items/collectables/2D/RocketLauncherPickup.tscn")
+#var reward2 = preload("res://scenes/Items/collectables/2D/Bandage2DPickup.tscn")
 
 func _ready():
 	pass
@@ -28,6 +28,6 @@ func hit():
 	
 func die():
 	$AnimationPlayer.play("die")
-	self.call_deferred("add_child", reward2.instance())
-	self.call_deferred("add_child", reward.instance())
+#	self.call_deferred("add_child", reward2.instance())
+#	self.call_deferred("add_child", reward.instance())
 	

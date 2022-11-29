@@ -158,11 +158,11 @@ func manual_spawn_gun():
 	
 func upgrade_gun():
 	var gunScene = weapon
-	if gunScene.shot_num < 4:
-		gunScene.shot_num += 1
+	if Global.shot_num < 4:
+		Global.shot_num += 1
 	else:
 		#After quadshot update bullet spped and decrease wait between shots
-		gunScene.upgrader += 1
+		Global.upgrader += 1
 	
 func begin_rocketization():
 	weapon.rocketize()
