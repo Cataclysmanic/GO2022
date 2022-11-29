@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -24,9 +24,10 @@
 [ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=22]
 [ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=23]
 [ext_resource path="res://scenes/Items/trapdoor.png" type="Texture" id=24]
-[ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=25]
+[ext_resource path="res://scenes/NPCs/lauren bacall.png" type="Texture" id=25]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/Trapdoor.gd" type="Script" id=27]
+[ext_resource path="res://scenes/_common/Materials/SmallWhiteSquare.png" type="Texture" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -407,8 +408,14 @@ item_details = {
 
 [node name="House3_SW" type="Node2D" parent="."]
 
-[node name="RickRollEasterEggSprite" type="Sprite" parent="House3_SW"]
-modulate = Color( 1, 1, 1, 0.431373 )
+[node name="whiteSprite" type="Sprite" parent="House3_SW"]
+self_modulate = Color( 1, 1, 1, 0.537255 )
+position = Vector2( -88, 66 )
+scale = Vector2( 1.31251, 1.31251 )
+texture = ExtResource( 28 )
+
+[node name="FalconEasterEggSprite" type="Sprite" parent="House3_SW"]
+modulate = Color( 1, 1, 1, 0.654902 )
 position = Vector2( -88, 66 )
 scale = Vector2( 0.0201391, 0.0215304 )
 texture = ExtResource( 9 )
@@ -498,13 +505,17 @@ item_details = {
 }
 
 [node name="NPCLaurenWinter" parent="House3_SW" instance=ExtResource( 26 )]
-position = Vector2( -81, 128 )
-scale = Vector2( 0.0810477, 0.0810477 )
+position = Vector2( -73, 136 )
+scale = Vector2( 0.272274, 0.272274 )
 npc_name = "Lauren Winter"
 dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
 dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!" )
 Sprite_Tex = ExtResource( 25 )
 Portrait_Tex = ExtResource( 25 )
+
+[node name="Sprite" parent="House3_SW/NPCLaurenWinter" index="1"]
+scale = Vector2( 0.144877, 0.144877 )
+texture = ExtResource( 25 )
 
 [node name="Requirements" type="Node2D" parent="House3_SW/NPCLaurenWinter"]
 
@@ -565,3 +576,5 @@ item_details = {
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Trapdoor/Area2D" to="Trapdoor" method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Trapdoor/Area2D" to="Trapdoor" method="_on_Area2D_body_exited"]
+
+[editable path="House3_SW/NPCLaurenWinter"]

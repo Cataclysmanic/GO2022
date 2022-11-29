@@ -355,7 +355,7 @@ func shoot(): # this ought to be in a separate gun object
 		gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
 		gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
 		if currentNpc == "snakey":
-			$NPCGun/GunshotNoises/Snake.play()
+			$NPCGun/SnakeNoise/Snake.play()
 		else:
 			gunshotNoise.play()
 		if $Sprite.find_node("AnimationPlayer") and $Sprite/AnimationPlayer.has_animation("shoot"):

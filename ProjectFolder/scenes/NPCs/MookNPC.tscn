@@ -277,7 +277,9 @@ bus = "Gunshots"
 stream = ExtResource( 15 )
 bus = "Gunshots"
 
-[node name="Snake" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
+[node name="SnakeNoise" type="Node2D" parent="NPCGun"]
+
+[node name="Snake" type="AudioStreamPlayer2D" parent="NPCGun/SnakeNoise"]
 stream = ExtResource( 24 )
 volume_db = -7.0
 

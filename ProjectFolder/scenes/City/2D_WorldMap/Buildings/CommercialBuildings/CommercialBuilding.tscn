@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://scenes/Items/collectables/2D/RocketLauncherPickup.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=22]
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=24]
 [ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=9]
@@ -510,10 +511,6 @@ position = Vector2( 157, -201 )
 rotation = -3.14159
 scale = Vector2( 0.450545, 0.450545 )
 
-[node name="DeskStatic3" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 19 )]
-position = Vector2( 156, -182 )
-rotation = -3.14159
-
 [node name="PottedPlant11" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 12 )]
 position = Vector2( 113, -59 )
 
@@ -528,6 +525,35 @@ scale = Vector2( 0.450545, 0.450545 )
 [node name="DeskStatic4" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 19 )]
 position = Vector2( 197, -218 )
 rotation = -1.57079
+
+[node name="VeronicaClue" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 24 )]
+position = Vector2( 191, -61 )
+scale = Vector2( 0.20835, 0.20835 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Redhead Description",
+"notes_for_journal": "After \"Talking\" to some of the labourers, I learned that Veronica Winter may not be who she says. These guys claim to have seen her around with Tommy, but not in a brotherly way. It took a little convincing to get them to stop saying, \"If you know what we mean.\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/NPCs/femme fatale 04.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="DeskSearchable" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 13 )]
+position = Vector2( 157, -185 )
+scale = Vector2( 0.872817, 0.872817 )
+
+[node name="BasementsClue" parent="Furniture/UnitC_LabourUnion/DeskSearchable" instance=ExtResource( 18 )]
+scale = Vector2( 0.447608, 0.447608 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Construction Notes",
+"notes_for_journal": "There's permits, and fake permits, and payments to obtain fake permits. Of special note, a few homes may have unauthorized basements.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="collectibles" type="Node2D" parent="."]
 
