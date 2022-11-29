@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/car.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/Car.gd" type="Script" id=2]
+[ext_resource path="res://scenes/NPCs/CopNPC.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/2dTest/flashlightl_LghtCone2.png" type="Texture" id=4]
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteCircle.tscn" type="PackedScene" id=6]
@@ -102,7 +103,7 @@ wait_time = 0.75
 one_shot = true
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "MookNPC" ), [ ExtResource( 5 ) ] ]
+resources = [ PoolStringArray( "CopNPC", "MookNPC" ), [ ExtResource( 3 ), ExtResource( 5 ) ] ]
 
 [node name="AvailablePatrolRoutes" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPatrolRouteCircle" ), [ ExtResource( 6 ) ] ]

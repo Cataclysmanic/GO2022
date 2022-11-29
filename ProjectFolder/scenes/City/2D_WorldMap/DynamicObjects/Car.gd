@@ -16,7 +16,7 @@ var max_npcs = 5
 var npcs_spawned = 0
 var chance_to_spawn_NPCs = 0.1
 var npc_patrol_route # PathFollow object for pedestrian cops to walk around, once spawned
-
+var npc_to_spawn
 
 var city_map
 var home_building
@@ -33,8 +33,15 @@ func _ready():
 	State = States.READY
 	city_map = Global.world_controller.current_scene
 	home_building = city_map.get_random_building()
+	choose_npc_type()
 
 	start_random_engine()
+
+func choose_npc_type():
+	var npcResourceName = "CopNPC"
+	if randf() < 0.2:
+		npcResourceName = "MookNPC"
+	npc_to_spawn = $AvailableNPCs.get_resource(npcResourceName)
 
 func start_random_engine():	
 	var engines = $Audio/Engine.get_children()
@@ -241,9 +248,7 @@ func spawn_path_follower(routeScene):
 
 func spawn_npc():
 	# Generate cops that roam around on a simple path
-	var npcs = $AvailableNPCs.get_resource_list()
-	var randomNPCName = npcs[randi()%npcs.size()]
-	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
+	var npcScene = npc_to_spawn.instance()
 	npcScene.set_global_position($NPCSpawnPosition.get_global_position())
 	var pathFollower = spawn_path_follower(npc_patrol_route)
 	npcScene.init(city_map, home_building, pathFollower)
