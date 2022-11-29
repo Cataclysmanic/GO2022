@@ -25,14 +25,18 @@ func _ready():
 	
 func init(mapScene, myPlayer, hud):
 	player = myPlayer
+	
 	map_scene = mapScene
 	HUD = hud
 	camera = player.camera
 
-	var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
-	_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
-	_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
-	_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
+	var _err
+	if map_scene != null and is_instance_valid(map_scene):
+		_err = connect("projectile_ready", map_scene, "_on_projectile_ready")
+	if hud != null and is_instance_valid(hud):
+		_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
+		_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
+		_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
 	
 	if map_scene != null and is_instance_valid(map_scene) and map_scene.has_method("_on_loud_noise_made"):
 		_err = connect("loud_noise", map_scene, "_on_loud_noise_made")

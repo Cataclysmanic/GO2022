@@ -18,7 +18,7 @@ var ammo_remaining = magazine_size
 export var chance_to_spawn_loot = 0.33
 var health = rand_range(10.0,20.0) # should take 1 or 2 hits to kill them
 var map_scene
-var home_building
+var home_building # deprecated. should be safe to remove, so long as init's get changed elsewhere
 var home_position
 var patrol_route_target
 var current_path = []
@@ -62,11 +62,19 @@ func _ready():
 		nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
 	home_position = get_global_position()
 
-	$DebugInfo.set_visible(Global.user_preferences["debug"])
+	#$DebugInfo.set_visible(Global.user_preferences["debug"])
+	$DebugInfo.set_visible(true)
 	
 	var laser = find_node("LaserScope")
 	if laser != null:
 		laser.set_visible(Global.user_preferences["debug"])
+
+	if map_scene == null: # the map should have initialized you, but didn't. NP, Do it yourself.
+		printerr("CopNPC.gd: NPC spawned, but map didn't initialize it. Doing it manually")
+		yield(get_tree().create_timer(0.75), "timeout") # give the city time to get ready
+		init( Global.current_city_map, null, null )
+		#set_state(States.PATROLLING)
+
 
 func init(mapScene, homeBuilding, pathFollowObj):
 	gun = find_node("NPCGun")
@@ -74,8 +82,12 @@ func init(mapScene, homeBuilding, pathFollowObj):
 	home_building = homeBuilding
 	if pathFollowObj != null:
 		patrol(pathFollowObj)
-	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
-	player = mapScene.get_player()
+	else: # spawn your own
+		pathFollowObj = spawn_patrol_route()
+		patrol(pathFollowObj)
+	if mapScene != null and is_instance_valid(mapScene) and mapScene.has_method("_on_loot_ready"):
+		var _err = connect("loot_ready", mapScene, "_on_loot_ready")
+	player = Global.player
 
 	var cumulative_odds = 0.0
 	var diceRoll = randf()
@@ -92,6 +104,12 @@ func init(mapScene, homeBuilding, pathFollowObj):
 
 	set_difficulty(Global.user_preferences["difficulty"])
 
+
+func spawn_patrol_route():
+	var patrolScene = $ResourcePreloader.get_resource("TinyPatrolRoute").instance()
+	get_parent().add_child(patrolScene) # not usually how I'd do this, but time crunch.
+	patrol_route_target = patrolScene.spawn_path_follower()
+	return patrol_route_target
 
 func spawn_sprite(spriteName):
 	currentNpc = spriteName
@@ -262,7 +280,9 @@ func turn_toward_vector(target_vector, delta):
 func rotate_and_flip_sprite(dirVector):
 	if rotate_sprite == false:
 		$Sprite.set_global_rotation(0.0)
-	if flip_sprite == true and State != States.AIMING:
+	#if flip_sprite == true and State != States.AIMING:
+	if flip_sprite == true:
+		
 		if dirVector.x > 0:
 			$Sprite.scale.x = abs($Sprite.scale.x)
 		else:
@@ -326,8 +346,8 @@ func spawn_loot():
 
 
 func shoot(): # this ought to be in a separate gun object
-	if not is_connected("projectile_ready", map_scene, "_on_projectile_ready"):
-		if map_scene.has_method("_on_projectile_ready"):
+	if map_scene != null and is_instance_valid(map_scene) and map_scene.has_method("_on_projectile_ready"):
+		if not is_connected("projectile_ready", map_scene, "_on_projectile_ready"):
 			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
 
 	# this should all be in a separate gun object, but I'll move it later.
@@ -337,11 +357,16 @@ func shoot(): # this ought to be in a separate gun object
 		var pos = gun.get_node("Muzzle").get_global_position()
 		var bulletSpeed = 600.0
 		
-		$NPCGun/TriggerFingerTimer.wait_time = 1.5
-		$NPCGun/ReloadTimer.wait_time = 1.5
+		#$NPCGun/TriggerFingerTimer.wait_time = 1.5
+		#$NPCGun/ReloadTimer.wait_time = 1.5
 		ammo_remaining -= 1
 		bullet.init(self, pos, rotation, bulletSpeed)
-		emit_signal("projectile_ready", bullet)
+		
+		if map_scene != null and is_instance_valid(map_scene):
+			emit_signal("projectile_ready", bullet)
+		else:
+			get_parent().add_child(bullet)
+		
 		var gunshotNoises = gun.get_node("GunshotNoises").get_children()
 		var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
 		gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
@@ -434,7 +459,8 @@ func _on_NavUpdateTimer_timeout():
 
 	if can_seek():
 		if State == States.PATROLLING:
-			update_nav_path(patrol_route_target.get_global_position())
+			if patrol_route_target != null and is_instance_valid(patrol_route_target):
+				update_nav_path(patrol_route_target.get_global_position())
 		elif State in [ States.CHASING, States.FIGHTING ]:
 			update_nav_path(player.get_global_position())
 		else: # for cops, because they don't have a patrol route yet?

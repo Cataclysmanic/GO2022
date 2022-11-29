@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/CopNPC.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://scenes/NPCs/DynamicVisionCone.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/NPCs/AlertedSprite.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/NPCs/CopPaperDoll.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteSmallCircle.tscn" type="PackedScene" id=22]
 [ext_resource path="res://scenes/Items/weapons/GunshotNoises/placeholder snake.wav" type="AudioStream" id=24]
 
 [sub_resource type="RectangleShape2D" id=16]
@@ -210,7 +211,7 @@ joint_mode = 2
 script = ExtResource( 1 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "AlertedSprite", "GunCop" ), [ ExtResource( 20 ), ExtResource( 21 ) ] ]
+resources = [ PoolStringArray( "AlertedSprite", "GunCop", "TinyPatrolRoute" ), [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ] ]
 
 [node name="NPCGun" type="Node2D" parent="."]
 position = Vector2( 35.1292, -14.4917 )
