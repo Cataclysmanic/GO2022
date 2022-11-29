@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/City/Indoors/MidBossRoom.gd" type="Script" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/bossroom.png" type="Texture" id=2]
@@ -12,6 +12,23 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 209.77, 520.205 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "rotatommy"
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MookNPC2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -15.684, -0.000114814, 14.2384 ]
+}
 
 [node name="MidBossRoom" type="Node2D"]
 script = ExtResource( 1 )
@@ -104,7 +121,8 @@ margin_right = 56.1575
 margin_bottom = -5.42603
 text = "BeatTheBoss Ending"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/rotatommy = SubResource( 2 )
 
 [connection signal="body_entered" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_exited"]
