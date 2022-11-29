@@ -16,7 +16,7 @@ export var npc_type_odds = {
 export var magazine_size = 6
 var ammo_remaining = magazine_size
 export var chance_to_spawn_loot = 0.33
-var health = rand_range(10.0,20.0) # should take 1 or 2 hits to kill them
+var health = rand_range(30.0,50.0) # should take 3 or more shots to kill a cop
 var map_scene
 var home_building # deprecated. should be safe to remove, so long as init's get changed elsewhere
 var home_position
@@ -311,6 +311,7 @@ func flash_hit():
 		var doll = sprite.get_node("PaperDoll")
 		if doll.has_method("hit"):
 			doll.hit()
+			$BloodSpurtParticles.emitting = true
 	$HitNoise.play()
 
 
