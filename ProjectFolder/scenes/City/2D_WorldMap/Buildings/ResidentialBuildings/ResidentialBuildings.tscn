@@ -589,6 +589,19 @@ item_details = {
 
 [node name="House4_SE" type="Node2D" parent="."]
 
+[node name="LockedHouseClue" parent="House4_SE" instance=ExtResource( 18 )]
+position = Vector2( 173, 216 )
+scale = Vector2( 0.302193, 0.302193 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Locked House",
+"notes_for_journal": "The Door is locked. Place seems kind of boarded up. I wonder if the neighbours know anything about it.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="body_entered" from="Trapdoor/Area2D" to="Trapdoor" method="_on_Area2D_body_entered"]
