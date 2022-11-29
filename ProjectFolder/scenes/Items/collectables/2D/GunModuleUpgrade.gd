@@ -10,6 +10,7 @@ func disappear():
 	$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
 
 func die():
+	disappear()
 	State = States.DISABLED
 	call_deferred("queue_free")
 
@@ -38,4 +39,9 @@ func enable_pickup():
 
 
 func _on_PickupNoise_finished():
+	die()
+
+
+func _on_PickupExpiryTimer_timeout():
+	# player failed to obtain the pickup within the timed duration
 	die()
