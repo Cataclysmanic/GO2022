@@ -8,12 +8,12 @@
 [ext_resource path="res://scenes/_common/Music/CalmStandaloneSong.mp3" type="AudioStream" id=6]
 [ext_resource path="res://scenes/_common/Music/2022_11_25_Fight_v1.wav" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=8]
-[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/CutScenes/Credits2.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/_common/Materials/SmallBlackSquare.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=10]
 resource_name = "BrokenGetOutOfJailCard"
-length = 10.0
+length = 20.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("PanelContainer/VBoxContainer/FadeTex/AnimatedSprite:animation")
 tracks/0/interp = 1
@@ -57,10 +57,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3, 0.8, 4.5, 4.8, 5.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.8, 4.5, 4.8, 5.1, 14.8, 15.1, 15.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ) ]
+"values": [ Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Audio/HappyEndingMusic:playing")
@@ -109,6 +109,18 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0, 1.0, 1.0 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("PanelContainer/VBoxContainer/FadeTex/Credits:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 15, 15.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -213,6 +225,18 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PanelContainer/VBoxContainer/FadeTex/Credits:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="AtlasTexture" id=1]
@@ -350,21 +374,33 @@ frames = SubResource( 9 )
 animation = "GetOutOfJailCard"
 frame = 1
 
-[node name="ReturnToMainMenuButton" parent="PanelContainer/VBoxContainer" instance=ExtResource( 9 )]
+[node name="Credits" parent="PanelContainer/VBoxContainer/FadeTex" instance=ExtResource( 9 )]
 visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 556.0
-margin_right = 1024.0
-margin_bottom = 576.0
-text = "Return to Main"
-return_to_main = true
+show_behind_parent = true
 
-[node name="RebootButton" type="Button" parent="PanelContainer/VBoxContainer"]
-margin_left = 483.0
+[node name="Footer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 margin_top = 580.0
-margin_right = 540.0
+margin_right = 1024.0
 margin_bottom = 600.0
+alignment = 1
+
+[node name="ReplayAnimaticButton" type="Button" parent="PanelContainer/VBoxContainer/Footer"]
+margin_left = 180.0
+margin_right = 315.0
+margin_bottom = 20.0
+text = "<< Replay Animatic"
+
+[node name="EndingLabel" type="Label" parent="PanelContainer/VBoxContainer/Footer"]
+margin_left = 319.0
+margin_top = 3.0
+margin_right = 783.0
+margin_bottom = 17.0
+text = "You Completed the quest chain and landed on ending 3/4 (Clever Ending)"
+
+[node name="RebootButton" type="Button" parent="PanelContainer/VBoxContainer/Footer"]
+margin_left = 787.0
+margin_right = 844.0
+margin_bottom = 20.0
 size_flags_horizontal = 4
 text = "Restart"
 
@@ -381,3 +417,6 @@ stream = ExtResource( 7 )
 
 [node name="MysteriousEndingMusic" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 5 )
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Footer/ReplayAnimaticButton" to="." method="_on_ReplayAnimaticButton_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Footer/RebootButton" to="." method="_on_RebootButton_pressed"]

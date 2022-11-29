@@ -68,3 +68,9 @@ func advance_script():
 
 func _on_RebootButton_pressed():
 	get_tree().change_scene("res://scenes/Main.tscn")
+
+
+func _on_ReplayAnimaticButton_pressed():
+	var animName = $AnimationPlayer.get_assigned_animation() 
+	$AnimationPlayer.seek(0)
+	$AnimationPlayer.play(animName)

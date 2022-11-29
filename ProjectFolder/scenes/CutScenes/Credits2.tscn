@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/_common/GUI/Theme/black_styleboxflat.tres" type="StyleBox" id=3]
 
 [node name="Credits" type="Control"]
 anchor_right = 1.0
@@ -12,6 +13,7 @@ size_flags_vertical = 3
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_styles/panel = ExtResource( 3 )
 
 [node name="MarginContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -20,16 +22,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-margin_left = 317.0
-margin_top = 175.0
-margin_right = 707.0
-margin_bottom = 424.0
+margin_left = 324.0
+margin_top = 163.0
+margin_right = 700.0
+margin_bottom = 437.0
+custom_styles/panel = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 383.0
-margin_bottom = 242.0
+margin_right = 376.0
+margin_bottom = 274.0
 custom_constants/separation = 20
 alignment = 1
 
@@ -61,14 +62,15 @@ margin_bottom = 161.0
 text = "SFX & Music: Glodara, Terpsik, elmanana"
 align = 1
 
-[node name="CoreGameplay" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
+[node name="Code" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 181.0
 margin_right = 376.0
 margin_bottom = 195.0
-text = "Code:  VolcanoTheGreat, Capybara_Man, Plexsoup"
+text = "Code:  VolcanoTheGreat, Capybara_Man, Plexsoup, Das"
 align = 1
 
 [node name="BackToMainButton" parent="MarginContainer/PanelContainer/VBoxContainer" instance=ExtResource( 2 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 215.0
@@ -76,3 +78,11 @@ margin_right = 376.0
 margin_bottom = 235.0
 text = "Back to Main Menu"
 return_to_main = true
+
+[node name="Thanks" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
+margin_top = 215.0
+margin_right = 376.0
+margin_bottom = 274.0
+custom_fonts/font = ExtResource( 1 )
+text = "Thanks for Playing!"
+align = 1
