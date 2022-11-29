@@ -22,6 +22,7 @@ var weapon
 
 var evidence := 0 # just a number from 0 to 100 indicating how much loot player picked up. Simple in-game currency/reward system.
 var evidence_bar
+var evidence_needed_for_ending = 20
 
 var last_movement_vector = Vector2.ZERO
 
@@ -284,6 +285,7 @@ func die_for_real_this_time():
 	$DeathScream.play()
 	$PaperDoll.hide()
 	$deadPlaceholder.show()
+	Global.world_controller.change_scene("res://scenes/CutScenes/Animatics/Scene 4/EndingAnimatic_GoToJail.tscn")
 
 
 func rotate_melee_attack_zone(_delta):
@@ -364,6 +366,8 @@ func _on_collectible_picked_up(pickupObj):
 		evidence += 1
 		#print("evidence == "+str(evidence))
 		update_bars()
+		if evidence > evidence_needed_for_ending:
+			Global.world_controller.change_scene("res://scenes/CutScenes/Animatics/Scene 4/EndingAnimatic_CollectedEvidence.tscn")
 
 func _on_hit(damage : float = 10.0, impactVector : Vector2 = Vector2.ZERO):
 	# play a noise, flash the sprite or queue animation, launch particles, start invulnerability timer
