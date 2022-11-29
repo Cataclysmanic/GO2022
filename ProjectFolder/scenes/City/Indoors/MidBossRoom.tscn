@@ -49,17 +49,17 @@ texture = ExtResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls/Polygon"]
 position = Vector2( 0.0999756, 0 )
 scale = Vector2( 0.999878, 1 )
-polygon = PoolVector2Array( -502, -502, -512, -502, -512, -512, 512, -512, 512, -502 )
+polygon = PoolVector2Array( -502, -502, -512, -502, -520.48, -781.511, 518.441, -785.752, 512, -502 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls/Polygon"]
-polygon = PoolVector2Array( -512, -512, -502, -512, -502, 512, -512, 512 )
+polygon = PoolVector2Array( -571.796, -501.603, -502, -512, -502, 512, -578.231, 507.761 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls/Polygon"]
 position = Vector2( 34.0136, -0.790466 )
-polygon = PoolVector2Array( -512, 512, -512, 502, -50.8012, 502, 57.1586, 502, 512, 502, 512, 512, 19.7358, 512 )
+polygon = PoolVector2Array( -546.976, 767.254, -533.186, 504.31, -50.8012, 502, 19.8331, 502, 57.1586, 502, 512, 502, 525.832, 856.316, 24.8207, 796.941 )
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Walls/Polygon"]
-polygon = PoolVector2Array( 512, -512, 502, -512, 502, 512, 512, 512 )
+polygon = PoolVector2Array( 573.635, -535.531, 502, -512, 502, 512, 568.119, 507.761 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 3 ) ] ]

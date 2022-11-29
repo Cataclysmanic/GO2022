@@ -38,6 +38,7 @@ func _process(_delta):
 	$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.value = $MookNPC.health + $MookNPC2.health
 	if $MookNPC.health <= 0 and $MookNPC2.health <= 0:
 		if Global.minibossdead == false: # only do this once
+			$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.hide()
 			$BeatTheBossEnding.enable_pickup() # this will take the player to an end-game animatic.
 			$BeatTheBossEnding.show()
 			$MemoryClueVeronica.enable_pickup() 
