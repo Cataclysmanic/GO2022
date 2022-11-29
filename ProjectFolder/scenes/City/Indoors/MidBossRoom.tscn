@@ -46,14 +46,14 @@ resources = [ PoolStringArray( "Player" ), [ ExtResource( 3 ) ] ]
 [node name="PlayerSpawn" type="Position2D" parent="."]
 position = Vector2( 719, 176 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="LadderSprite" type="Sprite" parent="."]
 position = Vector2( 637, 24 )
 scale = Vector2( 0.352197, 0.0533125 )
 texture = ExtResource( 6 )
 
-[node name="Area2D" type="Area2D" parent="Sprite"]
+[node name="LadderArea" type="Area2D" parent="LadderSprite"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderSprite/LadderArea"]
 position = Vector2( 176.377, 262.602 )
 shape = SubResource( 1 )
 disabled = true
@@ -65,5 +65,5 @@ disabled = true
 [node name="MookNPC" parent="." instance=ExtResource( 4 )]
 position = Vector2( 9, 611 )
 
-[connection signal="body_entered" from="Sprite/Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Sprite/Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_exited"]

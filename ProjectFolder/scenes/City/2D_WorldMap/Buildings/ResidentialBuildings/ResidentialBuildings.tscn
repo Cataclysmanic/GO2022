@@ -417,7 +417,7 @@ position = Vector2( -81, 70 )
 scale = Vector2( 0.221731, 0.232662 )
 
 [node name="PottedPlant4" parent="House3_SW" instance=ExtResource( 10 )]
-position = Vector2( 111, 109 )
+position = Vector2( 138, 107 )
 scale = Vector2( 0.221731, 0.232662 )
 
 [node name="PottedPlant6" parent="House3_SW" instance=ExtResource( 10 )]
@@ -429,7 +429,7 @@ position = Vector2( 110, 95 )
 scale = Vector2( 0.221731, 0.232662 )
 
 [node name="PottedPlant8" parent="House3_SW" instance=ExtResource( 10 )]
-position = Vector2( 122, 105 )
+position = Vector2( 151, 103 )
 scale = Vector2( 0.221731, 0.232662 )
 
 [node name="Couch" parent="House3_SW" instance=ExtResource( 16 )]

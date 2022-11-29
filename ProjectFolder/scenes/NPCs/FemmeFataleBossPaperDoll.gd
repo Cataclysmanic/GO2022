@@ -28,6 +28,6 @@ func hit():
 	
 func die():
 	$AnimationPlayer.play("die")
-	self.add_child(reward2.instance())
-	self.add_child(reward.instance())
+	self.call_deferred("add_child", reward2.instance())
+	self.call_deferred("add_child", reward.instance())
 	

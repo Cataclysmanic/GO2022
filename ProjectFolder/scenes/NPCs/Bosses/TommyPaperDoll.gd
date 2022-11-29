@@ -1,11 +1,12 @@
 extends Node2D
 
 var melee_damage = 15
-var player
+# var player
 
 
 func _ready():
-	player = get_parent()
+	pass
+	#player = get_parent()
 	
 func start_running():
 	$AnimationPlayer.play("Run")

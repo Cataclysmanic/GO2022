@@ -9,7 +9,8 @@ func _ready():
 	
 func _process(delta):
 	if in_area and Input.is_action_just_pressed("interact"):
-		get_tree().change_scene('res://scenes/City/Indoors/MidBossRoom.tscn')
+		#get_tree().change_scene('res://scenes/City/Indoors/MidBossRoom.tscn')
+		Global.world_controller.change_scene("res://scenes/City/Indoors/MidBossRoom.tscn")
 	
 func _on_Area2D_body_entered(body):
 	if "Detective" in body.name:

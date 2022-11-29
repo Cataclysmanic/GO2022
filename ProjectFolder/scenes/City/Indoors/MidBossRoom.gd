@@ -26,10 +26,15 @@ func _ready():
 func _process(delta):
 	$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.value = $MookNPC.health
 	if $MookNPC.health <= 0:
-		$Sprite/Area2D/CollisionShape2D.disabled = false
+		
+		$LadderSprite/LadderArea/CollisionShape2D.set_deferred("disabled", false)
 		Global.minibossdead = true
 	if in_area and Input.is_action_just_pressed("interact"):
-		get_tree().change_scene("res://scenes/City/2D_WorldMap/2D_CItyMap.tscn")
+		#get_tree().change_scene("res://scenes/City/2D_WorldMap/2D_CItyMap.tscn")
+		Global.world_controller.call_deferred("change_scene", "res://scenes/City/2D_WorldMap/2D_CItyMap.tscn")
+		# Note, since this is a new instance of the city map, all the quest_givers will be reset to zero.
+		# It would be better if we could keep the old city map on ice until we return to it, or at least save the state of the quest givers.
+		# but, that's not likely to get fixed for the game jam.
 	
 func _on_projectile_ready(projectile):
 	$Projectiles.add_child(projectile)
