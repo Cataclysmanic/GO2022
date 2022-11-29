@@ -1,12 +1,15 @@
 extends Node2D
 
 var melee_damage = 15
-# var player
-
+var npc
 
 func _ready():
 	pass
 	#player = get_parent()
+	
+func init(myNPC):
+	npc = myNPC
+	$corpse.hide()
 	
 func start_running():
 	$AnimationPlayer.play("Run")
@@ -23,7 +26,8 @@ func start_idling():
 	$AnimationPlayer.play("Relax")
 	
 func point_gun():
-	$AnimationPlayer.play("PointGun")
+	pass
+	#$AnimationPlayer.play("PointGun")
 
 func melee_attack():
 	if randf() < 0.5:
@@ -49,7 +53,8 @@ func die():
 
 func _process(_delta):
 	if Global.player != null and is_instance_valid(Global.player):
-		aim_toward(Global.player.global_position - global_position)
+		if npc.get_state() == npc.States.AIMING:
+			aim_toward(Global.player.global_position - global_position)
 	
 func aim_toward(dirVector):
 	# Just point the gun at the player.

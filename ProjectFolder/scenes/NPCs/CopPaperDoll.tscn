@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/NPCs/CopPaperDoll.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/copPaperDoll2.png" type="Texture" id=2]
+[ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=21]
 length = 0.001
@@ -809,3 +810,9 @@ texture = ExtResource( 2 )
 offset = Vector2( -1.71585, 70.649 )
 region_enabled = true
 region_rect = Rect2( 283.188, 257.376, 104, 227 )
+
+[node name="corpse" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.161159, 0.161159 )
+z_index = -1
+texture = ExtResource( 3 )
