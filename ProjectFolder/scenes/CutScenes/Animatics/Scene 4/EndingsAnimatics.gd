@@ -67,6 +67,7 @@ func advance_script():
 
 
 func _on_RebootButton_pressed():
+	Global.reset()
 	get_tree().change_scene("res://scenes/Main.tscn")
 
 

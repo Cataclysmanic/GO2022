@@ -1,13 +1,14 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/_common/GUI/HUD/PopupItemViewer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/_common/GUI/sfx/Flick_switch_click.wav" type="AudioStream" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/GunFound.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scenes/_common/GUI/sfx/MissingGun.ogg" type="AudioStream" id=6]
 [ext_resource path="res://scenes/_common/GUI/sfx/WheresTheKey.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/_common/GUI/sfx/hover.wav" type="AudioStream" id=9]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InventoryIconButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_close_3.wav" type="AudioStream" id=12]
@@ -19,6 +20,8 @@
 [ext_resource path="res://Assets/Test Assets/sprGUIStaminaText.png" type="Texture" id=18]
 [ext_resource path="res://scenes/_common/GUI/HUD/bloodSpatterVignette.png" type="Texture" id=19]
 [ext_resource path="res://scenes/_common/GUI/fonts/AbrilFatface-Regular.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://scenes/_common/GUI/sfx/DisabledSound.wav" type="AudioStream" id=21]
+[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.0156863, 0.921569, 0.788235, 1 )
@@ -66,16 +69,26 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="QuitButton" parent="Top/Header" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="QuitButton" type="Button" parent="Top/Header"]
 margin_right = 40.0
 margin_bottom = 47.0
 focus_mode = 0
 size_flags_horizontal = 2
 enabled_focus_mode = 0
 text = "Quit"
+script = ExtResource( 22 )
 return_to_main = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="Top/Header/QuitButton"]
+stream = ExtResource( 4 )
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="Top/Header/QuitButton"]
+stream = ExtResource( 9 )
+volume_db = -16.0
+
+[node name="DisabledSound" type="AudioStreamPlayer" parent="Top/Header/QuitButton"]
+stream = ExtResource( 21 )
+volume_db = -15.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Top/Header"]
 margin_left = 407.0
@@ -343,7 +356,9 @@ margin_right = 348.0
 margin_bottom = 185.0
 text = "You will lose your progress"
 
+[connection signal="mouse_entered" from="Top/Header/QuitButton" to="Top/Header/QuitButton" method="_on_SceneLaunchButton_mouse_entered"]
 [connection signal="pressed" from="Top/Header/QuitButton" to="Top/Header/QuitButton" method="_on_QuitButton_pressed"]
+[connection signal="finished" from="Top/Header/QuitButton/ClickSound" to="Top/Header/QuitButton" method="_on_ClickSound_finished"]
 [connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]
 [connection signal="pressed" from="PopupPanel/Button" to="Top/Header/QuitButton" method="_on_QuitYesButton_pressed"]
 [connection signal="pressed" from="PopupPanel/Button2" to="Top/Header/QuitButton" method="_on_QuitNoButton2_pressed"]

@@ -20,6 +20,9 @@ var user_preferences = {
 	"shake_and_flash":true,
 	"debug":false,
 }
+
+
+
 		
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
 var game_state = STATES.INITIALIZING
@@ -40,6 +43,13 @@ func pause():
 	# but for a quick game jam, it'll do.
 	get_tree().paused = true
 
+func reset():
+	repetition = false
+	rockets = false
+	controller = false
+	minibossdead = false
+	shot_num = 1
+	upgrader = 2
 
 func resume():
 	game_state = STATES.ACTIVE
