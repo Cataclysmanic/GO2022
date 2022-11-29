@@ -377,7 +377,7 @@ margin_left = 314.0
 margin_top = 3.0
 margin_right = 788.0
 margin_bottom = 17.0
-text = "You ran out of grit / helath, and landed on ending 4/4  (Unfortunate Ending)"
+text = "You ran out of grit / health, and landed on ending 4/4  (Unfortunate Ending)"
 
 [node name="RebootButton" type="Button" parent="PanelContainer/VBoxContainer/Footer"]
 margin_left = 792.0
