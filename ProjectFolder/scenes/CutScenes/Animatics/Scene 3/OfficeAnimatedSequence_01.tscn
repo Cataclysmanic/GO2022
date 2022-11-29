@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/Player/PaperDoll/DetectiveSideViewPaperDoll-SugarFather.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/2dTest/WindowLighting.png" type="Texture" id=2]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://scenes/Quests/QuestGivers/femme-fatale.png" type="Texture" id=4]
+[ext_resource path="res://scenes/NPCs/VeronicaIntactFullBody.png" type="Texture" id=4]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/OfficeFlor.png" type="Texture" id=5]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=6]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/BrothersHouseFloors.png" type="Texture" id=7]
@@ -713,16 +713,17 @@ position = Vector2( -86, -181 )
 
 [node name="FemmeFatale" type="Sprite" parent="."]
 position = Vector2( 626, -74 )
-scale = Vector2( 0.182952, 0.182952 )
+scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 4 )
 flip_h = true
 
 [node name="DialogFemme" type="PanelContainer" parent="FemmeFatale"]
 visible = false
-margin_left = -185.841
-margin_top = -530.194
-margin_right = 238.159
-margin_bottom = -269.194
+margin_left = -390.0
+margin_top = -1060.0
+margin_right = 33.9998
+margin_bottom = -799.0
+rect_scale = Vector2( 2, 2 )
 custom_styles/panel = SubResource( 1 )
 
 [node name="FemmeDialogLabel" type="Label" parent="FemmeFatale/DialogFemme"]
