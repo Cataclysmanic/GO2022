@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/City/Indoors/MidBossRoom.gd" type="Script" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/bossroom.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/Items/ladder sprite.png" type="Texture" id=6]
 [ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://MookNPC2.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 209.77, 520.205 )
@@ -17,13 +18,13 @@ script = ExtResource( 1 )
 
 [node name="floor" type="Sprite" parent="."]
 modulate = Color( 0.54902, 0.54902, 0.54902, 1 )
-position = Vector2( 265, 605 )
-scale = Vector2( 1.71519, 2.52802 )
+position = Vector2( 258, 428 )
+scale = Vector2( 1.71725, -1.75335 )
 texture = ExtResource( 5 )
 
 [node name="Walls" type="Sprite" parent="."]
-position = Vector2( 261, 597 )
-scale = Vector2( 1.07518, 1.1072 )
+position = Vector2( 256, 442 )
+scale = Vector2( 1.0878, 0.8251 )
 texture = ExtResource( 2 )
 
 [node name="Polygon" type="StaticBody2D" parent="Walls"]
@@ -65,7 +66,10 @@ disabled = true
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="MookNPC" parent="." instance=ExtResource( 4 )]
-position = Vector2( 9, 611 )
+position = Vector2( -58, 526 )
+
+[node name="MookNPC2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 41, 348 )
 
 [node name="MemoryClueVeronica" parent="." instance=ExtResource( 7 )]
 position = Vector2( 582, 167 )

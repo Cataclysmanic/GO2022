@@ -15,11 +15,16 @@ func _ready():
 		$MookNPC.map_scene = self
 		$MookNPC.player = player
 		$MookNPC.spawn_sprite('snakey')
-		$MookNPC.set_state(8)
+		$MookNPC.set_state(3)
 		$MookNPC.health = 250
+		$MookNPC2.map_scene = self
+		$MookNPC2.player = player
+		$MookNPC2.spawn_sprite('ressurected?')
+		$MookNPC2.set_state(3)
+		$MookNPC2.health = 250
 		$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.visible = true
-		$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.max_value = 250
-		$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar/Label.text = "Veronica"
+		$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.max_value = 500
+		$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar/Label.text = "Crime Couple"
 	else:
 		$Sprite/Area2D/CollisionShape2D.disabled = false
 
@@ -27,7 +32,7 @@ func _ready():
 	$BeatTheBossEnding.hide()
 	
 func _process(_delta):
-	$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.value = $MookNPC.health
+	$Player/PlayerDetective/CanvasLayer/HUD/ProgressBar.value = $MookNPC.health + $MookNPC2.health
 	if $MookNPC.health <= 0:
 		if Global.minibossdead == false: # only do this once
 			$BeatTheBossEnding.enable_pickup() # this will take the player to an end-game animatic.

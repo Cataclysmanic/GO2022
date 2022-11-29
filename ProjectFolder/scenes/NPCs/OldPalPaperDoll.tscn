@@ -1,0 +1,169 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/NPCs/Thug-paper-doll-spritesheet3.png" type="Texture" id=1]
+[ext_resource path="res://scenes/NPCs/Bosses/TommyAlive.png" type="Texture" id=2]
+[ext_resource path="res://scenes/NPCs/ShootyMookPaperDoll.gd" type="Script" id=3]
+[ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("corpse:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "REST"
+
+[sub_resource type="Animation" id=5]
+resource_name = "aim"
+length = 0.25
+step = 0.05
+
+[sub_resource type="Animation" id=6]
+resource_name = "die"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("corpse:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "punch"
+loop = true
+step = 0.05
+
+[sub_resource type="Animation" id=3]
+resource_name = "walk"
+loop = true
+step = 0.05
+
+[node name="ShootyThugPaperDoll" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 1 )
+anims/REST = SubResource( 2 )
+anims/aim = SubResource( 5 )
+anims/die = SubResource( 6 )
+anims/hit = SubResource( 7 )
+anims/punch = SubResource( 4 )
+anims/walk = SubResource( 3 )
+
+[node name="corpse" type="Sprite" parent="."]
+scale = Vector2( 0.161159, 0.161159 )
+z_index = -1
+texture = ExtResource( 4 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 16
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.66
+direction = Vector2( -0.5, -1 )
+spread = 90.0
+initial_velocity = 100.0
+initial_velocity_random = 0.33
+angle = 45.0
+scale_amount = 8.0
+scale_amount_random = 0.2
+color = Color( 0.486275, 0, 0, 1 )
+
+[node name="Body" type="Sprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 273.8, 196.994, 165, 190 )
+
+[node name="Head1" type="Sprite" parent="Body"]
+position = Vector2( 20, -185 )
+scale = Vector2( -0.958327, 1.03118 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( -2.98432, -0.807811, 265.78, 307.022 )
+
+[node name="Head2" type="Sprite" parent="Body"]
+visible = false
+position = Vector2( 20, -130 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 295.641, 20.2336, 159.796, 66.5818 )
+
+[node name="LegR" type="Sprite" parent="Body"]
+position = Vector2( -30, 110 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 116.177, 509.17, 56.5603, 114.149 )
+
+[node name="LegL" type="Sprite" parent="Body"]
+position = Vector2( 30, 110 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 175.823, 503, 67.8723, 127.518 )
+
+[node name="ArmL" type="Sprite" parent="Body"]
+position = Vector2( 75, 5 )
+z_index = -1
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 440.546, 224.272, 63.5556, 168.444 )
+
+[node name="GunArm" type="Node2D" parent="Body"]
+position = Vector2( -65, -55 )
+scale = Vector2( 5, 5 )
+
+[node name="GunSprite" type="Sprite" parent="Body/GunArm"]
+position = Vector2( 0, 1 )
+rotation = -1.48581
+scale = Vector2( 0.2, 0.2 )
+z_index = 1
+texture = ExtResource( 1 )
+offset = Vector2( -22.1732, 121.715 )
+region_enabled = true
+region_rect = Rect2( 9.79999, 20.994, 144, 294 )

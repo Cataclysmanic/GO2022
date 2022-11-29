@@ -18,6 +18,9 @@ func _process(_delta):
 		if npc.get_state() == npc.States.AIMING:
 			aim_toward(Global.player.get_global_position() - npc.get_global_position())
 
+func anti_knockback():
+	pass
+
 func hit():
 	$AnimationPlayer.play("hit")
 

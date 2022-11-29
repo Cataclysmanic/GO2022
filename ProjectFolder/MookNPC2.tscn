@@ -1,30 +1,31 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
-[ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
-[ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=2]
-[ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=3]
-[ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=5]
-[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_3.wav" type="AudioStream" id=6]
-[ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=7]
-[ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=8]
-[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=9]
-[ext_resource path="res://scenes/Items/collectables/2D/GunModuleUpgrade.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=12]
-[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=13]
-[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=14]
-[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_5.wav" type="AudioStream" id=15]
-[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=16]
-[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=18]
-[ext_resource path="res://scenes/NPCs/DynamicVisionCone.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/NPCs/AlertedSprite.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/NPCs/FemmeFataleBossPaperDoll.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scenes/NPCs/ShootyMookPaperDoll.tscn" type="PackedScene" id=22]
-[ext_resource path="res://scenes/NPCs/MeleeMookPaperDoll.tscn" type="PackedScene" id=23]
-[ext_resource path="res://scenes/Items/weapons/GunshotNoises/placeholder snake.wav" type="AudioStream" id=24]
-[ext_resource path="res://scenes/NPCs/OldPalPaperDoll.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=1]
+[ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=2]
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=3]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_3.wav" type="AudioStream" id=4]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_5.wav" type="AudioStream" id=6]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/placeholder snake.wav" type="AudioStream" id=7]
+[ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Player/PaperDoll/gun-topdown.png" type="Texture" id=10]
+[ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=12]
+[ext_resource path="res://scenes/NPCs/ShootyMookPaperDoll.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/NPCs/AlertedSprite.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/NPCs/DynamicVisionCone.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/NPCs/FemmeFataleBossPaperDoll.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/NPCs/MeleeMookPaperDoll.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Items/collectables/2D/GunModuleUpgrade.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=22]
+[ext_resource path="res://scenes/NPCs/DynamicVisionCone.gd" type="Script" id=23]
+[ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=24]
+[ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=25]
+[ext_resource path="res://scenes/NPCs/OldPalPaperDoll.tscn" type="PackedScene" id=26]
 
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 27.5, 25 )
@@ -125,17 +126,18 @@ blend_mode = 1
 [sub_resource type="CanvasItemMaterial" id=13]
 blend_mode = 1
 
-[node name="MookNPC" type="KinematicBody2D" groups=["NPCs"]]
+[node name="MookNPC2" type="KinematicBody2D" groups=["NPCs"]]
+position = Vector2( 13, 657 )
 collision_layer = 2
 collision_mask = 59
-script = ExtResource( 2 )
+script = ExtResource( 24 )
 
 [node name="Sprite" type="Node2D" parent="."]
 
 [node name="vizSpriteHiddenInCode" type="Sprite" parent="Sprite"]
 position = Vector2( -9, -10 )
 scale = Vector2( 0.0929116, 0.0929116 )
-texture = ExtResource( 9 )
+texture = ExtResource( 3 )
 offset = Vector2( -10.7629, -53.8146 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -160,15 +162,15 @@ anims/relax = SubResource( 10 )
 anims/shoot = SubResource( 14 )
 
 [node name="DieNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 2 )
 volume_db = 10.0
 
 [node name="HitNoise" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 8 )
+stream = ExtResource( 11 )
 volume_db = 10.0
 
 [node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Bandage2DPickup", "CircumstantialClue2DPickup", "GunModuleUpgrade" ), [ ExtResource( 17 ), ExtResource( 11 ), ExtResource( 10 ) ] ]
+resources = [ PoolStringArray( "Bandage2DPickup", "CircumstantialClue2DPickup", "GunModuleUpgrade" ), [ ExtResource( 20 ), ExtResource( 15 ), ExtResource( 19 ) ] ]
 
 [node name="damage_area" type="Area2D" parent="."]
 
@@ -184,12 +186,14 @@ shape = SubResource( 15 )
 position = Vector2( -2.19558, 2.41529 )
 shape = SubResource( 8 )
 
-[node name="VisionCone" parent="." instance=ExtResource( 19 )]
+[node name="VisionCone" type="Area2D" parent="." instance=ExtResource( 16 )]
+collision_layer = 0
+script = ExtResource( 23 )
 
 [node name="Corpse" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 0.232537, 0.231516 )
-texture = ExtResource( 12 )
+texture = ExtResource( 9 )
 
 [node name="DebugInfo" type="Node2D" parent="."]
 
@@ -201,7 +205,7 @@ margin_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 27.5, 7 )
-custom_fonts/font = ExtResource( 18 )
+custom_fonts/font = ExtResource( 22 )
 text = "Bad Guy"
 align = 1
 
@@ -210,10 +214,10 @@ material = SubResource( 12 )
 width = 3.0
 default_color = Color( 0.435294, 0.721569, 0.823529, 0.207843 )
 joint_mode = 2
-script = ExtResource( 1 )
+script = ExtResource( 25 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "AlertedSprite", "DynamicVisionCone", "punchy", "ressurected\?", "shooty", "snakey" ), [ ExtResource( 20 ), ExtResource( 19 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 22 ), ExtResource( 21 ) ] ]
+resources = [ PoolStringArray( "AlertedSprite", "DynamicVisionCone", "punchy", "ressurected\?", "shooty", "snakey" ), [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 26 ), ExtResource( 13 ), ExtResource( 17 ) ] ]
 
 [node name="NPCGun" type="Node2D" parent="."]
 position = Vector2( 35.1292, -14.4917 )
@@ -234,7 +238,7 @@ default_color = Color( 1, 0, 0, 0.282353 )
 [node name="GunSprite" type="Sprite" parent="NPCGun"]
 visible = false
 scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
+texture = ExtResource( 10 )
 
 [node name="Muzzle" type="Position2D" parent="NPCGun"]
 position = Vector2( 20.8708, -0.5083 )
@@ -243,7 +247,7 @@ position = Vector2( 20.8708, -0.5083 )
 visible = false
 material = SubResource( 13 )
 position = Vector2( 17.9484, -3.8147e-06 )
-texture = ExtResource( 7 )
+texture = ExtResource( 12 )
 
 [node name="ReloadTimer" type="Timer" parent="NPCGun"]
 wait_time = 1.5
@@ -254,34 +258,34 @@ wait_time = 0.2
 one_shot = true
 
 [node name="Ammo" type="ResourcePreloader" parent="NPCGun"]
-resources = [ PoolStringArray( "bullet" ), [ ExtResource( 4 ) ] ]
+resources = [ PoolStringArray( "bullet" ), [ ExtResource( 21 ) ] ]
 
 [node name="GunshotNoises" type="Node2D" parent="NPCGun"]
 
 [node name="GunshotNoise1" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
-stream = ExtResource( 16 )
+stream = ExtResource( 1 )
 bus = "Gunshots"
 
 [node name="GunshotNoise2" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
-stream = ExtResource( 14 )
+stream = ExtResource( 8 )
 bus = "Gunshots"
 
 [node name="GunshotNoise3" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
-stream = ExtResource( 6 )
+stream = ExtResource( 4 )
 bus = "Gunshots"
 
 [node name="GunshotNoise4" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
-stream = ExtResource( 13 )
+stream = ExtResource( 5 )
 bus = "Gunshots"
 
 [node name="GunshotNoise5" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
-stream = ExtResource( 15 )
+stream = ExtResource( 6 )
 bus = "Gunshots"
 
 [node name="SnakeNoise" type="Node2D" parent="NPCGun"]
 
 [node name="Snake" type="AudioStreamPlayer2D" parent="NPCGun/SnakeNoise"]
-stream = ExtResource( 24 )
+stream = ExtResource( 7 )
 volume_db = -7.0
 
 [node name="BloodSpurtParticles" type="CPUParticles2D" parent="."]
@@ -299,6 +303,7 @@ scale_amount_random = 0.5
 color = Color( 0.827451, 0.0901961, 0.0901961, 1 )
 
 [node name="Gibs" type="CPUParticles2D" parent="."]
+position = Vector2( 80, -230 )
 emitting = false
 lifetime = 1.5
 one_shot = true
@@ -315,5 +320,6 @@ color = Color( 0.32549, 0, 0, 0.878431 )
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="PunchingArea" to="." method="_on_PunchingArea_body_entered"]
 [connection signal="body_exited" from="PunchingArea" to="." method="_on_PunchingArea_body_exited"]
+[connection signal="body_entered" from="VisionCone" to="VisionCone" method="_on_VisionCone_body_entered"]
 [connection signal="timeout" from="NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 [connection signal="timeout" from="NPCGun/TriggerFingerTimer" to="." method="_on_TriggerFingerTimer_timeout"]

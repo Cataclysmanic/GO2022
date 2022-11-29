@@ -346,7 +346,7 @@ resource_name = "walk"
 loop = true
 step = 0.05
 
-[node name="ShootyThugPaperDoll" type="Node2D"]
+[node name="ShootyThugPaperDoll2" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

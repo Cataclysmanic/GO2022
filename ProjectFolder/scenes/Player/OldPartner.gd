@@ -29,8 +29,6 @@ func SHOOTING():
 		reload_timer.start()
 		shoot = false
 	
-	
-	
 func _physics_process(_delta):
 	if state == 'SHOOTING':
 		SHOOTING()
