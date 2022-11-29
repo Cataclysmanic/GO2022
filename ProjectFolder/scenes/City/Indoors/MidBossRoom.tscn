@@ -18,13 +18,13 @@ script = ExtResource( 1 )
 
 [node name="floor" type="Sprite" parent="."]
 modulate = Color( 0.54902, 0.54902, 0.54902, 1 )
-position = Vector2( 258, 428 )
-scale = Vector2( 1.71725, -1.75335 )
+position = Vector2( 258, 142.5 )
+scale = Vector2( 1.71725, -0.537946 )
 texture = ExtResource( 5 )
 
 [node name="Walls" type="Sprite" parent="."]
-position = Vector2( 256, 442 )
-scale = Vector2( 1.0878, 0.8251 )
+position = Vector2( 256, 140.274 )
+scale = Vector2( 1.0878, 0.235792 )
 texture = ExtResource( 2 )
 
 [node name="Polygon" type="StaticBody2D" parent="Walls"]
@@ -38,7 +38,8 @@ polygon = PoolVector2Array( -502, -502, -512, -502, -512, -512, 512, -512, 512, 
 polygon = PoolVector2Array( -512, -512, -502, -512, -502, 512, -512, 512 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls/Polygon"]
-polygon = PoolVector2Array( -512, 512, -512, 502, 512, 502, 512, 512 )
+position = Vector2( 34.0136, -0.790466 )
+polygon = PoolVector2Array( -512, 512, -512, 502, -50.8012, 502, 57.1586, 502, 512, 502, 512, 512, 19.7358, 512 )
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Walls/Polygon"]
 polygon = PoolVector2Array( 512, -512, 502, -512, 502, 512, 512, 512 )
@@ -47,10 +48,10 @@ polygon = PoolVector2Array( 512, -512, 502, -512, 502, 512, 512, 512 )
 resources = [ PoolStringArray( "Player" ), [ ExtResource( 3 ) ] ]
 
 [node name="PlayerSpawn" type="Position2D" parent="."]
-position = Vector2( 719, 176 )
+position = Vector2( 259, 143 )
 
 [node name="LadderSprite" type="Sprite" parent="."]
-position = Vector2( 637, 24 )
+position = Vector2( 202, 13 )
 scale = Vector2( 0.352197, 0.0533125 )
 texture = ExtResource( 6 )
 
@@ -66,13 +67,14 @@ disabled = true
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="MookNPC" parent="." instance=ExtResource( 4 )]
-position = Vector2( -58, 526 )
+position = Vector2( 770, 147 )
+scale = Vector2( -0.915184, 0.801148 )
 
 [node name="MookNPC2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 41, 348 )
+position = Vector2( -234, 147 )
 
 [node name="MemoryClueVeronica" parent="." instance=ExtResource( 7 )]
-position = Vector2( 582, 167 )
+position = Vector2( 766, 143 )
 item_details = {
 "display_immediately": true,
 "is_unique": false,
@@ -84,7 +86,7 @@ item_details = {
 }
 
 [node name="BeatTheBossEnding" parent="." instance=ExtResource( 8 )]
-position = Vector2( -163, 611 )
+position = Vector2( -239, 149 )
 item_details = {
 "display_immediately": true,
 "is_unique": true,

@@ -22,7 +22,11 @@ func init(source, pos : Vector2, rot : float, speed : float):
 
 
 func _process(delta):
-	if !(snakeify and !"Gun2D" in str(originator)):
+	if "MookNPC2:" in str(originator):
+		set_global_position(get_global_position() + velocity * delta)
+		if "Gun2D" in str(originator):
+			$CollisionShape2D.disabled=false
+	elif !(snakeify and !"Gun2D" in str(originator)):
 		set_global_position(get_global_position() + velocity * delta)
 		if "Gun2D" in str(originator):
 			$CollisionShape2D.disabled=false

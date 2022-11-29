@@ -335,7 +335,6 @@ func shoot(): # this ought to be in a separate gun object
 
 	# this should all be in a separate gun object, but I'll move it later.
 	if has_gun and State == States.AIMING and !player.dead and ammo_remaining > 0:
-
 		var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 		var pos = gun.get_node("Muzzle").get_global_position()
 		var bulletSpeed = 600.0
@@ -347,7 +346,7 @@ func shoot(): # this ought to be in a separate gun object
 		elif currentNpc == "ressurected?":
 			$NPCGun/TriggerFingerTimer.wait_time = 0.4
 			$NPCGun/ReloadTimer.wait_time = 0.3
-			ammo_remaining -= 0.5
+			bulletSpeed = 500
 		else:
 			$NPCGun/TriggerFingerTimer.wait_time = 1.5
 			$NPCGun/ReloadTimer.wait_time = 1.5

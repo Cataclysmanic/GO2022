@@ -13,7 +13,6 @@ func anti_knockback():
 
 func init(myNPC):
 	npc = myNPC
-	$corpse.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -26,7 +25,8 @@ func hit():
 
 	
 func die():
-	$AnimationPlayer.play("die")
+	$Body.hide()
+	$corpse.show()
 
 func aim_toward(dirVector):
 	# Just point the gun at the player.

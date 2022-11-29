@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_1.wav" type="AudioStream" id=1]
 [ext_resource path="res://scenes/_common/GUI/sfx/no.wav" type="AudioStream" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=22]
-[ext_resource path="res://scenes/NPCs/DynamicVisionCone.gd" type="Script" id=23]
 [ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=24]
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=25]
 [ext_resource path="res://scenes/NPCs/OldPalPaperDoll.tscn" type="PackedScene" id=26]
@@ -186,9 +185,7 @@ shape = SubResource( 15 )
 position = Vector2( -2.19558, 2.41529 )
 shape = SubResource( 8 )
 
-[node name="VisionCone" type="Area2D" parent="." instance=ExtResource( 16 )]
-collision_layer = 0
-script = ExtResource( 23 )
+[node name="VisionCone" parent="." instance=ExtResource( 16 )]
 
 [node name="Corpse" type="Sprite" parent="."]
 visible = false
@@ -226,12 +223,12 @@ position = Vector2( 35.1292, -14.4917 )
 position = Vector2( -41.1292, -0.508301 )
 rotation = -1.57079
 enabled = true
-cast_to = Vector2( 0, 750 )
+cast_to = Vector2( -7.99489, 817 )
 collision_mask = 45
 
 [node name="LaserScope" type="Line2D" parent="NPCGun/RayCast2D"]
 position = Vector2( -1.43051e-06, 0 )
-points = PoolVector2Array( 0, 0, 0, 750 )
+points = PoolVector2Array( 0, 0, -12.997, 482 )
 width = 1.0
 default_color = Color( 1, 0, 0, 0.282353 )
 
@@ -320,6 +317,5 @@ color = Color( 0.32549, 0, 0, 0.878431 )
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="PunchingArea" to="." method="_on_PunchingArea_body_entered"]
 [connection signal="body_exited" from="PunchingArea" to="." method="_on_PunchingArea_body_exited"]
-[connection signal="body_entered" from="VisionCone" to="VisionCone" method="_on_VisionCone_body_entered"]
 [connection signal="timeout" from="NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 [connection signal="timeout" from="NPCGun/TriggerFingerTimer" to="." method="_on_TriggerFingerTimer_timeout"]
