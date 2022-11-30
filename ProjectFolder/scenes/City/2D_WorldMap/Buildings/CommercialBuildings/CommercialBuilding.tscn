@@ -465,7 +465,7 @@ item_details = {
 "display_immediately": true,
 "is_unique": false,
 "item_name": "Diamond Necklace",
-"notes_for_journal": "Expensive Diamond Necklace",
+"notes_for_journal": "Expensive Diamond Necklace. Romano is always trying to impress people. Maybe he'll be interested in this.",
 "path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
