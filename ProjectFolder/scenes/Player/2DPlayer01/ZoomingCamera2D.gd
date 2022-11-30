@@ -39,21 +39,22 @@ func shake():
 
 
 func look_ahead(delta):
-	var damping = 35.0 # higher numbers give snappier camera movement
-	var mousePos = get_global_mouse_position()
-	var playerPos = global_position
-	var window_height = OS.get_window_size().y
-	var inventory_offset = 0
-	if hud != null:
-		inventory_offset = hud.inventory_offset
-	var offset = Vector2(0,(window_height - inventory_offset) / 4)
-	if hud.is_inventory_open() == false:
-		offset = (mousePos - playerPos) / 2
-	position = lerp(position, offset, delta * damping)
+	if Global.user_preferences["shake_and_flash"] == true:
+		var damping = 35.0 # higher numbers give snappier camera movement
+		var mousePos = get_global_mouse_position()
+		var playerPos = global_position
+		var window_height = OS.get_window_size().y
+		var inventory_offset = 0
+		if hud != null:
+			inventory_offset = hud.inventory_offset
+		var offset = Vector2(0,(window_height - inventory_offset) / 4)
+		if hud.is_inventory_open() == false:
+			offset = (mousePos - playerPos) / 2
+		position = lerp(position, offset, delta * damping)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	
 	if player != null and is_instance_valid(player) and player.State != player.States.DEAD:
 		look_ahead(delta)

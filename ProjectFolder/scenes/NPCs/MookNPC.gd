@@ -289,7 +289,7 @@ func update_nav_path(destination):
 
 
 func flash_hit():
-	if Global.user_preferences["gore"]:
+	if Global.user_preferences["gore"] and Global.user_preferences["shake_and_flash"]:
 		var doll = sprite.get_node("PaperDoll")
 		if doll.has_method("hit"):
 			doll.hit()
@@ -297,7 +297,8 @@ func flash_hit():
 
 
 func gib():
-	$Gibs.set_emitting(true)
+	if Global.user_preferences["gore"] and Global.user_preferences["shake_and_flash"]:
+		$Gibs.set_emitting(true)
 	
 
 func die():

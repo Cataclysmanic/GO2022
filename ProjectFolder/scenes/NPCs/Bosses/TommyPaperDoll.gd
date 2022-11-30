@@ -33,7 +33,8 @@ func melee_attack():
 
 
 func dash():
-	$AnimationPlayer.play("dash")
+	if Global.user_preferences["shake_and_flash"]:
+		$AnimationPlayer.play("dash")
 
 
 func get_animation():

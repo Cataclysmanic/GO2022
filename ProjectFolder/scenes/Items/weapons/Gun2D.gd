@@ -86,9 +86,11 @@ func shoot():
 		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
 		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
 	if !Global.rockets:
-		eject_casing()
-	flash_muzzle()
-	knockback_shooter(Vector2.RIGHT.rotated(myRot))
+		if Global.user_preferences["shake_and_flash"] == true:
+			eject_casing()
+	if Global.user_preferences["shake_and_flash"] == true:
+		flash_muzzle()
+		knockback_shooter(Vector2.RIGHT.rotated(myRot))
 	cock_gun()
 	ammo_remaining -= 1
 	emit_signal("player_gun_shot", ammo_remaining)
@@ -139,16 +141,17 @@ func knockback_shooter(impactVector):
 
 
 func flash_muzzle():
-	var flash = $MuzzleFlash
-	flash.rotation = rand_range(-0.2, 0.2)
-	flash.visible = true
-	var tween = get_node("Tween")
-	tween.interpolate_property(flash, "modulate",
-		Color(1,1,1,1), Color(1,1,1,0), .2,
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	if camera != null and camera.has_method("shake"):
-		camera.shake()
+	if Global.user_preferences["shake_and_flash"]:
+		var flash = $MuzzleFlash
+		flash.rotation = rand_range(-0.2, 0.2)
+		flash.visible = true
+		var tween = get_node("Tween")
+		tween.interpolate_property(flash, "modulate",
+			Color(1,1,1,1), Color(1,1,1,0), .2,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		if camera != null and camera.has_method("shake"):
+			camera.shake()
 	
 	
 		
