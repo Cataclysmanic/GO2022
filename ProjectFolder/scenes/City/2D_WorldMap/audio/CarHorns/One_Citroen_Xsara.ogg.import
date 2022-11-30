@@ -11,5 +11,5 @@ dest_files=[ "res://.import/One_Citroen_Xsara.ogg-7efa245a4795b81ef79f583c1851d9
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
