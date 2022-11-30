@@ -75,8 +75,8 @@ size_flags_vertical = 3
 custom_constants/separation = 50
 
 [node name="QuitButton" type="Button" parent="Top/Header"]
-margin_right = 35.0
-margin_bottom = 24.0
+margin_right = 30.0
+margin_bottom = 16.0
 focus_mode = 0
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -157,8 +157,9 @@ text = "You're Dying! Find Bandages"
 [node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
 anchor_left = 0.0
 anchor_right = 0.0
-margin_left = 902.0
+margin_left = 924.0
 margin_right = 984.0
+margin_bottom = 16.0
 size_flags_horizontal = 10
 size_flags_vertical = 0
 align = 2
@@ -227,12 +228,12 @@ size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="PopupInventoryContainer/VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 24.0
+margin_bottom = 16.0
 
 [node name="InventoryButton" type="Button" parent="PopupInventoryContainer/VBoxContainer/CenterContainer"]
-margin_left = 464.0
-margin_right = 560.0
-margin_bottom = 24.0
+margin_left = 472.0
+margin_right = 552.0
+margin_bottom = 16.0
 hint_tooltip = ".. I wonder what's in my backpack"
 focus_mode = 0
 toggle_mode = true
@@ -240,7 +241,7 @@ shortcut = SubResource( 3 )
 text = "Inventory [I]"
 
 [node name="InventoryDisplay" type="PanelContainer" parent="PopupInventoryContainer/VBoxContainer"]
-margin_top = 28.0
+margin_top = 20.0
 margin_right = 1024.0
 margin_bottom = 200.0
 mouse_filter = 1
@@ -251,7 +252,7 @@ size_flags_vertical = 3
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 1020.0
-margin_bottom = 172.0
+margin_bottom = 180.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
 margin_right = 1016.0
