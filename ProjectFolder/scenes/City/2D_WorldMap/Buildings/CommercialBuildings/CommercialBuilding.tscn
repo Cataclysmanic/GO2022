@@ -300,8 +300,8 @@ script = ExtResource( 32 )
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "Thrown piece of paper",
-"notes_for_journal": "Found a note thrown under the fruit stand \"Note to self, the red haired lady owes me a bag, she had one with her but said she couln't put the oranges there but needed another one, remember to ask her to give it back next time she comes to buy fruits\"",
+"item_name": "Piece of paper",
+"notes_for_journal": "Found a note thrown under the fruit stand \"Note to self, the lady in the red dress owes me a bag, she had one with her but said she couln't put the oranges in that one for some reason, remember to ask her to give it back next time she comes to buy fruits\"",
 "path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
 "path_to_popup_display_image": "res://scenes/Indoor/note.png",
 "path_to_scene_for_PlayerController_Items": ""
@@ -623,7 +623,7 @@ scale = Vector2( 0.20835, 0.20835 )
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "Redhead Description",
+"item_name": "Brunette Description",
 "notes_for_journal": "After \"Talking\" to some of the labourers, I learned that Veronica Winter may not be who she says. These guys claim to have seen her around with Tommy, but not in a brotherly way. It took a little convincing to get them to stop saying, \"If you know what we mean.\"",
 "path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
 "path_to_popup_display_image": "res://scenes/NPCs/femme fatale 04.png",
@@ -808,7 +808,7 @@ position = Vector2( 193, 189 )
 position = Vector2( 112, 124 )
 
 [node name="MiscClue" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 18 )]
-position = Vector2( 132, 77 )
+position = Vector2( 132, 79 )
 scale = Vector2( 0.299611, 0.299611 )
 item_details = {
 "display_immediately": true,

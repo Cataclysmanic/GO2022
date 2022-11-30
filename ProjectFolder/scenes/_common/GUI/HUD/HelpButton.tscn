@@ -40,7 +40,7 @@ popup_exclusive = true
 [node name="MarginContainer" type="MarginContainer" parent="PlayerInstructions"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 796.0
+margin_right = 802.0
 margin_bottom = 496.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 5
