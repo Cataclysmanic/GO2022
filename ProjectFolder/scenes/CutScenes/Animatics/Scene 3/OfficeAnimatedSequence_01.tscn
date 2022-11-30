@@ -368,6 +368,18 @@ tracks/26/keys = {
 "update": 1,
 "values": [ false, true ]
 }
+tracks/27/type = "value"
+tracks/27/path = NodePath("FemmeFatale/FemmeFatalePaperDoll/Body/PunchArm/Shoulder:modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0, 11.6, 12.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 length = 0.001
