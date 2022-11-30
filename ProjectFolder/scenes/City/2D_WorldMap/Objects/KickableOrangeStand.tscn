@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableFruit.gd" type="Script" id=1]
+[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/OrangeStand.png" type="Texture" id=2]
+[ext_resource path="res://scenes/_common/Materials/OrangeFruitSingle.png" type="Texture" id=3]
+[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/EmptyMarketStand.png" type="Texture" id=4]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/SingleOrange.tscn" type="PackedScene" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "kick",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 56.0408, 35.5188 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 28.9997
+height = 42.0006
+
+[node name="KickableOrangeStand" type="RigidBody2D"]
+rotation = 1.5708
+collision_layer = 4
+script = ExtResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.56995, 1.56995 )
+frames = SubResource( 1 )
+animation = "kick"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -1.00001, 1.17263e-05 )
+scale = Vector2( 1.26693, 1.26693 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.57079
+shape = SubResource( 3 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 15.0
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.25
+local_coords = false
+texture = ExtResource( 3 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.5
+damping = 60.0
+damping_random = 0.5
+scale_amount_random = 0.25
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "SingleFruit" ), [ ExtResource( 5 ) ] ]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Body_entered"]

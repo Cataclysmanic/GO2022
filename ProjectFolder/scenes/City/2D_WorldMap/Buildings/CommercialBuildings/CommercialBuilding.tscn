@@ -27,9 +27,9 @@
 [ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=25]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Chair.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteSmallCircle.tscn" type="PackedScene" id=27]
-[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/OrangeStand.png" type="Texture" id=28]
-[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/AppleStand.png" type="Texture" id=29]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableAppleStand.tscn" type="PackedScene" id=28]
 [ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/FishStand.png" type="Texture" id=30]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableOrangeStand.tscn" type="PackedScene" id=31]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -289,6 +289,10 @@ location_details = "The Local Union Office"
 [node name="Furniture" type="Node2D" parent="."]
 
 [node name="UnitA_DetectiveOffice" type="Node2D" parent="Furniture"]
+
+[node name="KickableFruitStand2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 31 )]
+position = Vector2( -105, -166 )
+scale = Vector2( 0.364574, 0.364574 )
 
 [node name="Sink" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 14 )]
 position = Vector2( -80, -125 )
@@ -613,61 +617,36 @@ position = Vector2( -103, 92 )
 [node name="PottedPlant4" parent="Furniture/UnitF_laundromat" instance=ExtResource( 12 )]
 position = Vector2( -155, 55 )
 
-[node name="MarketShop3" type="StaticBody2D" parent="Furniture/UnitF_laundromat"]
-position = Vector2( -186, 88 )
-rotation = 1.5708
+[node name="KickableFruitStand" parent="Furniture/UnitF_laundromat" instance=ExtResource( 31 )]
+position = Vector2( -156, 88 )
+scale = Vector2( 0.264143, 0.264143 )
 
-[node name="Sprite" type="Sprite" parent="Furniture/UnitF_laundromat/MarketShop3"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitF_laundromat/MarketShop3"]
-shape = SubResource( 11 )
-
-[node name="MarketShop4" type="StaticBody2D" parent="Furniture/UnitF_laundromat"]
+[node name="KickableFruitStand5" parent="Furniture/UnitF_laundromat" instance=ExtResource( 28 )]
 position = Vector2( -103, 146 )
-rotation = 1.5708
+scale = Vector2( 0.335452, 0.335452 )
 
-[node name="Sprite" type="Sprite" parent="Furniture/UnitF_laundromat/MarketShop4"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
+[node name="KickableFruitStand6" parent="Furniture/UnitF_laundromat" instance=ExtResource( 28 )]
+position = Vector2( -104, 181 )
+scale = Vector2( 0.335452, 0.335452 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitF_laundromat/MarketShop4"]
-shape = SubResource( 11 )
+[node name="KickableFruitStand7" parent="Furniture/UnitF_laundromat" instance=ExtResource( 28 )]
+position = Vector2( -105, 214 )
+scale = Vector2( 0.335452, 0.335452 )
 
-[node name="MarketShop5" type="StaticBody2D" parent="Furniture/UnitF_laundromat"]
-position = Vector2( -103, 181 )
-rotation = 1.5708
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitF_laundromat/MarketShop5"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitF_laundromat/MarketShop5"]
-shape = SubResource( 11 )
-
-[node name="MarketShop6" type="StaticBody2D" parent="Furniture/UnitF_laundromat"]
-position = Vector2( -103, 216 )
-rotation = 1.5708
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitF_laundromat/MarketShop6"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitF_laundromat/MarketShop6"]
-shape = SubResource( 11 )
-
-[node name="MarketShop7" type="StaticBody2D" parent="Furniture/UnitF_laundromat"]
-position = Vector2( -190, 143 )
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitF_laundromat/MarketShop7"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitF_laundromat/MarketShop7"]
-shape = SubResource( 11 )
+[node name="KickableFruitStand2" parent="Furniture/UnitF_laundromat" instance=ExtResource( 31 )]
+position = Vector2( -189, 143 )
+rotation = 0.0
+scale = Vector2( 0.264143, 0.264143 )
 
 [node name="UnitE_Hideout" type="Node2D" parent="Furniture"]
+
+[node name="KickableFruitStand8" parent="Furniture/UnitE_Hideout" instance=ExtResource( 31 )]
+position = Vector2( 28, 143 )
+scale = Vector2( 0.264143, 0.264143 )
+
+[node name="KickableFruitStand3" parent="Furniture/UnitE_Hideout" instance=ExtResource( 31 )]
+position = Vector2( -50, 145 )
+scale = Vector2( 0.264143, 0.264143 )
 
 [node name="TableLamp" parent="Furniture/UnitE_Hideout" instance=ExtResource( 17 )]
 position = Vector2( -36, 99 )
@@ -694,31 +673,11 @@ rotation = -3.14159
 [node name="DeskStatic" parent="Furniture/UnitE_Hideout" instance=ExtResource( 19 )]
 position = Vector2( -10, 115 )
 
-[node name="MarketShop6" type="StaticBody2D" parent="Furniture/UnitE_Hideout"]
-position = Vector2( 30, 144 )
-rotation = -1.5708
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitE_Hideout/MarketShop6"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 28 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitE_Hideout/MarketShop6"]
-shape = SubResource( 11 )
-
-[node name="MarketShop7" type="StaticBody2D" parent="Furniture/UnitE_Hideout"]
-position = Vector2( -51, 142 )
-rotation = 1.5708
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitE_Hideout/MarketShop7"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 28 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitE_Hideout/MarketShop7"]
-shape = SubResource( 11 )
-
 [node name="UnitD_PlantStore" type="Node2D" parent="Furniture"]
+
+[node name="KickableFruitStand4" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 31 )]
+position = Vector2( 112, 162 )
+scale = Vector2( 0.264143, 0.264143 )
 
 [node name="PottedPlant" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
 position = Vector2( 88, 123 )
@@ -751,27 +710,6 @@ position = Vector2( 218, 217 )
 position = Vector2( 153, 188 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="MarketShop" type="StaticBody2D" parent="Furniture/UnitD_PlantStore"]
-position = Vector2( 142, 53 )
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitD_PlantStore/MarketShop"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitD_PlantStore/MarketShop"]
-shape = SubResource( 11 )
-
-[node name="MarketShop3" type="StaticBody2D" parent="Furniture/UnitD_PlantStore"]
-position = Vector2( 221, 92 )
-rotation = 1.5708
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitD_PlantStore/MarketShop3"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 29 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitD_PlantStore/MarketShop3"]
-shape = SubResource( 11 )
-
 [node name="MarketShop4" type="StaticBody2D" parent="Furniture/UnitD_PlantStore"]
 position = Vector2( 194, 162 )
 rotation = 1.5708
@@ -796,18 +734,6 @@ texture = ExtResource( 30 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitD_PlantStore/MarketShop5"]
 shape = SubResource( 11 )
 
-[node name="MarketShop6" type="StaticBody2D" parent="Furniture/UnitD_PlantStore"]
-position = Vector2( 112, 162 )
-rotation = -1.5708
-
-[node name="Sprite" type="Sprite" parent="Furniture/UnitD_PlantStore/MarketShop6"]
-position = Vector2( 7.62939e-06, 0 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 28 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitD_PlantStore/MarketShop6"]
-shape = SubResource( 11 )
-
 [node name="TableLamp" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 17 )]
 position = Vector2( 193, 189 )
 
@@ -826,6 +752,15 @@ item_details = {
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
+
+[node name="KickableAppleStand" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 28 )]
+position = Vector2( 219, 93 )
+scale = Vector2( 0.30272, 0.30272 )
+
+[node name="KickableAppleStand2" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 28 )]
+position = Vector2( 142, 58 )
+rotation = 0.0
+scale = Vector2( 0.30272, 0.30272 )
 
 [node name="collectibles" type="Node2D" parent="."]
 
