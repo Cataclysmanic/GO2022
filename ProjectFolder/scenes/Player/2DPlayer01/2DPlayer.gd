@@ -196,7 +196,7 @@ func _physics_process(delta):
 		if delta != 0:
 			move(delta)
 			rotate_melee_attack_zone(delta)
-			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
+#			set_primary_target_area(get_FOV_circle(Vector2(0,0),300))
 			$Flashlight.look_at(get_global_mouse_position())
 			point_gun()
 			if stamina < 100 :
