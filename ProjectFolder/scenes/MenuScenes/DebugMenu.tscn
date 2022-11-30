@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/CutScenes/Animatics/IntroCinematic.tscn" type="PackedScene" id=2]
@@ -11,12 +11,15 @@
 [ext_resource path="res://scenes/City/Indoors/BossRoom.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/MenuScenes/DebugMenu.gd" type="Script" id=10]
 [ext_resource path="res://scenes/City/2D_WorldMap/2D_CItyMap.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/_common/GUI/Theme/debug_menu_theme.tres" type="Theme" id=12]
+[ext_resource path="res://scenes/_debug/emptyTestWithCops.tscn" type="PackedScene" id=13]
 
 [node name="DebugMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 12 )
 script = ExtResource( 10 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -45,24 +48,24 @@ alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer2"]
 margin_right = 984.0
-margin_bottom = 14.0
+margin_bottom = 84.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "Debug Menu"
 align = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer2"]
-margin_top = 39.0
+margin_top = 109.0
 margin_right = 984.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ButtonGrid" type="GridContainer" parent="MarginContainer/VBoxContainer2/CenterContainer"]
-margin_left = 310.0
-margin_top = 100.0
-margin_right = 673.0
-margin_bottom = 420.0
+margin_left = 203.0
+margin_top = 34.0
+margin_right = 780.0
+margin_bottom = 417.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -74,130 +77,130 @@ columns = 2
 [node name="2D City" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 163.0
-margin_bottom = 20.0
+margin_right = 279.0
+margin_bottom = 29.0
 text = "2D City"
 SceneToLaunch = ExtResource( 11 )
 
 [node name="AnimaticButton" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_right = 363.0
-margin_bottom = 20.0
+margin_left = 329.0
+margin_right = 577.0
+margin_bottom = 29.0
 text = "watch an animatic"
 SceneToLaunch = ExtResource( 7 )
 
 [node name="AlternatingDialog" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 50.0
-margin_right = 163.0
-margin_bottom = 70.0
+margin_top = 59.0
+margin_right = 279.0
+margin_bottom = 88.0
 text = "Alternating Dialog Test"
 SceneToLaunch = ExtResource( 3 )
 
 [node name="faux 2d Topdown City" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_top = 50.0
-margin_right = 363.0
-margin_bottom = 70.0
+margin_left = 329.0
+margin_top = 59.0
+margin_right = 577.0
+margin_bottom = 88.0
 text = "Faux 2d Topdown City"
 SceneToLaunch = ExtResource( 4 )
 
 [node name="faux 2d Topdown Room" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 100.0
-margin_right = 163.0
-margin_bottom = 120.0
+margin_top = 118.0
+margin_right = 279.0
+margin_bottom = 147.0
 text = "Faux 2d Topdown Room"
 SceneToLaunch = ExtResource( 5 )
 
 [node name="CapysIntroCinematicButton" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_top = 100.0
-margin_right = 363.0
-margin_bottom = 120.0
+margin_left = 329.0
+margin_top = 118.0
+margin_right = 577.0
+margin_bottom = 147.0
 text = "Intro Cinematic"
 SceneToLaunch = ExtResource( 2 )
 
-[node name="DebugButton3" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
+[node name="Nav2DButton" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 150.0
-margin_right = 163.0
-margin_bottom = 170.0
+margin_top = 177.0
+margin_right = 279.0
+margin_bottom = 206.0
 text = "testing nav 2d server"
 SceneToLaunch = ExtResource( 6 )
 
-[node name="DebugButton4" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
+[node name="IndoorsButton" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_top = 150.0
-margin_right = 363.0
-margin_bottom = 170.0
+margin_left = 329.0
+margin_top = 177.0
+margin_right = 577.0
+margin_bottom = 206.0
 text = "Indoors"
 SceneToLaunch = ExtResource( 8 )
 
-[node name="DebugButton5" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
+[node name="OldPartnerRmBtn" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 200.0
-margin_right = 163.0
-margin_bottom = 220.0
+margin_top = 236.0
+margin_right = 279.0
+margin_bottom = 265.0
 text = "OldPartnerRoom"
 SceneToLaunch = ExtResource( 9 )
 
-[node name="DebugButton6" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
+[node name="CopsButton" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_top = 200.0
-margin_right = 363.0
-margin_bottom = 220.0
-disabled = true
-text = "debug"
+margin_left = 329.0
+margin_top = 236.0
+margin_right = 577.0
+margin_bottom = 265.0
+text = "coppers!"
+SceneToLaunch = ExtResource( 13 )
 
 [node name="DebugButton7" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 250.0
-margin_right = 163.0
-margin_bottom = 270.0
+margin_top = 295.0
+margin_right = 279.0
+margin_bottom = 324.0
 disabled = true
 text = "debug"
 
 [node name="DebugButton8" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_top = 250.0
-margin_right = 363.0
-margin_bottom = 270.0
+margin_left = 329.0
+margin_top = 295.0
+margin_right = 577.0
+margin_bottom = 324.0
 disabled = true
 text = "debug"
 
 [node name="DebugButton9" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 300.0
-margin_right = 163.0
-margin_bottom = 320.0
+margin_top = 354.0
+margin_right = 279.0
+margin_bottom = 383.0
 disabled = true
 text = "debug"
 
 [node name="ReturnToMainButton" parent="MarginContainer/VBoxContainer2/CenterContainer/ButtonGrid" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 213.0
-margin_top = 300.0
-margin_right = 363.0
-margin_bottom = 320.0
+margin_left = 329.0
+margin_top = 354.0
+margin_right = 577.0
+margin_bottom = 383.0
 text = "Return To Main"
 return_to_main = true

@@ -58,9 +58,10 @@ func _ready():
 		$CanvasLayer/HUD._on_boss_spawned(boss.health, boss.boss_name)
 	
 	# fallback safety protocol
-	yield(get_tree().create_timer(0.25), "timeout") # give the city time to get ready
+	yield(get_tree().create_timer(0.15), "timeout") # give the city time to get ready
 	if Global.player == null: # no scene called our init() method
-		init(null)
+		printerr("2DPlayer.gd: no one initialized player by calling init(). Doing it manually.")
+		init(get_parent())
 		update_bars()
 		
 	set_state(States.READY)

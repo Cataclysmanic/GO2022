@@ -262,12 +262,18 @@ func near_target(pos : Vector2, proximity : float):
 		return false	
 
 func turn_toward_player(delta):
-	var playerPos = player.get_global_position()
+	if Global.player == null or is_instance_valid(Global.player) == false:
+		return
+		
+	var playerPos = Global.player.get_global_position()
 	var myPos = self.get_global_position()
 	turn_toward_vector((playerPos - myPos), delta)
 
 func face_player():
-	var playerPos = player.get_global_position()
+	if Global.player == null or is_instance_valid(Global.player) == false:
+		return
+	
+	var playerPos = Global.player.get_global_position()
 	var myPos = self.get_global_position()
 	if playerPos.x > myPos.x:
 		$Sprite.scale.x = abs($Sprite.scale.x)
@@ -348,12 +354,16 @@ func spawn_loot():
 
 
 func shoot(): # this ought to be in a separate gun object
+	if Global.player == null or Global.player.dead:
+		return
+		
 	if map_scene != null and is_instance_valid(map_scene) and map_scene.has_method("_on_projectile_ready"):
 		if not is_connected("projectile_ready", map_scene, "_on_projectile_ready"):
 			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
 
 	# this should all be in a separate gun object, but I'll move it later.
-	if has_gun and State == States.AIMING and !player.dead and ammo_remaining > 0:
+	
+	if has_gun and State == States.AIMING and ammo_remaining > 0:
 
 		var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 		var pos = gun.get_node("Muzzle").get_global_position()
