@@ -50,6 +50,7 @@ func hit(): # receive damage
 
 func die():
 	$AnimationPlayer.play("die")
+	$corpse.rotation = rand_range(-PI, PI)
 
 func _process(_delta):
 	if npc.get_state() == npc.States.DEAD:

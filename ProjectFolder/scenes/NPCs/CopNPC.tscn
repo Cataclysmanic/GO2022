@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/CopNPC.gd" type="Script" id=2]
@@ -8,10 +8,10 @@
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_3.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=7]
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=8]
-[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=9]
+[ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Items/collectables/2D/GunModuleUpgrade.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Items/collectables/2D/PhotographOfSweetheart.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=12]
+[ext_resource path="res://scenes/NPCs/copPaperDoll2.png" type="Texture" id=12]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=13]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=14]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_5.wav" type="AudioStream" id=15]
@@ -55,22 +55,6 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "die"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("Corpse:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
 [sub_resource type="Animation" id=4]
 resource_name = "hit"
 length = 0.5
@@ -86,15 +70,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ true, false ]
 }
-
-[sub_resource type="Animation" id=7]
-resource_name = "punch"
-length = 0.5
-loop = true
-
-[sub_resource type="Animation" id=10]
-resource_name = "relax"
-length = 0.1
 
 [sub_resource type="Animation" id=14]
 resource_name = "shoot"
@@ -134,8 +109,10 @@ script = ExtResource( 2 )
 [node name="vizSpriteHiddenInCode" type="Sprite" parent="Sprite"]
 position = Vector2( -9, -10 )
 scale = Vector2( 0.0929116, 0.0929116 )
-texture = ExtResource( 9 )
+texture = ExtResource( 12 )
 offset = Vector2( -10.7629, -53.8146 )
+region_enabled = true
+region_rect = Rect2( 20.14, 0, 204, 241.982 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -152,10 +129,7 @@ shape = SubResource( 16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
-anims/die = SubResource( 3 )
 anims/hit = SubResource( 4 )
-anims/punch = SubResource( 7 )
-anims/relax = SubResource( 10 )
 anims/shoot = SubResource( 14 )
 
 [node name="DieNoise" type="AudioStreamPlayer2D" parent="."]
@@ -187,8 +161,9 @@ shape = SubResource( 8 )
 
 [node name="Corpse" type="Sprite" parent="."]
 visible = false
-scale = Vector2( 0.232537, 0.231516 )
-texture = ExtResource( 12 )
+self_modulate = Color( 0.105882, 0.207843, 0.670588, 1 )
+scale = Vector2( 0.181875, 0.179966 )
+texture = ExtResource( 9 )
 
 [node name="DebugInfo" type="Node2D" parent="."]
 
@@ -201,7 +176,7 @@ grow_horizontal = 2
 grow_vertical = 2
 rect_pivot_offset = Vector2( 27.5, 7 )
 custom_fonts/font = ExtResource( 18 )
-text = "Bad Guy"
+text = "Cop"
 align = 1
 
 [node name="Line2D" type="Line2D" parent="DebugInfo"]

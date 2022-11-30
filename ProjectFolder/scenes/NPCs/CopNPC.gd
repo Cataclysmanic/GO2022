@@ -421,10 +421,10 @@ func knock_back(impactVector):
 	#position += impactVector
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "die":
-		set_visible(false)
-		queue_free()
+#func _on_AnimationPlayer_animation_finished(anim_name):
+#	if anim_name == "die":
+#		set_visible(false)
+#		queue_free()
 
 
 func _on_damage_area_body_entered(body):
