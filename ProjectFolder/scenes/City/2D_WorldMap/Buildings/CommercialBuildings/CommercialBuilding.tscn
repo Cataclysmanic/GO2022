@@ -115,8 +115,18 @@ scale = Vector2( 1.53947, 1.61613 )
 position = Vector2( -256, -6.00002 )
 scale = Vector2( 6.25723, 0.665623 )
 
-[node name="NPCPatrolRoute11" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
+[node name="NPCPatrolRouteUnitE" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
 position = Vector2( -9, 144 )
+scale = Vector2( 0.321019, 0.519124 )
+
+[node name="NPCPatrolRouteUnitF" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
+position = Vector2( -169, 150 )
+rotation = 0.213313
+scale = Vector2( 0.0810366, 0.532447 )
+
+[node name="NPCPatrolRouteUnitD" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
+position = Vector2( 149, 141 )
+scale = Vector2( 0.245935, 0.397705 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]

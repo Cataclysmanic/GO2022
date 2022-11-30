@@ -423,6 +423,8 @@ expand = true
 stretch_mode = 6
 
 [node name="FadeColorPanel" type="Panel" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0 )
 margin_right = 1024.0
 margin_bottom = 600.0
 custom_styles/panel = SubResource( 9 )

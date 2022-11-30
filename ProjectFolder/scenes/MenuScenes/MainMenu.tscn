@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/Theme/LargeFont_Vollkorn.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scenes/MenuScenes/MainMenu.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/_common/GUI/RainShaderOverlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/_common/GUI/HeavyFogOverlay.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Animatic_01_Chicago_Office.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/_common/Music/FINAL_TRACKS_OGG/PI_SHUFFLE.ogg" type="AudioStream" id=10]
 [ext_resource path="res://scenes/CutScenes/DetectiveFramed.png" type="Texture" id=11]
 [ext_resource path="res://scenes/MenuScenes/Settings.tscn" type="PackedScene" id=12]
 
@@ -147,3 +148,8 @@ margin_right = 484.0
 margin_bottom = 409.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -7.0
+autoplay = true

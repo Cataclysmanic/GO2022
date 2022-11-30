@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/City/Indoors/MidBossRoom.gd" type="Script" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/bossroom.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=8]
 [ext_resource path="res://MookNPC2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/_common/Music/FINAL_TRACKS_OGG/GUN_FIGHT.ogg" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 209.77, 520.205 )
@@ -123,6 +124,11 @@ text = "BeatTheBoss Ending"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/rotatommy = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -7.0
+autoplay = true
 
 [connection signal="body_entered" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="LadderSprite/LadderArea" to="." method="_on_Area2D_body_exited"]
