@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Chair.tscn" type="PackedScene" id=26]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteSmallCircle.tscn" type="PackedScene" id=27]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableAppleStand.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/FishStand.png" type="Texture" id=30]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableOrangeStand.tscn" type="PackedScene" id=31]
 
@@ -290,6 +291,19 @@ location_details = "The Local Union Office"
 
 [node name="UnitA_DetectiveOffice" type="Node2D" parent="Furniture"]
 
+[node name="KeyToOfficeDoor" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -104, -165 )
+scale = Vector2( 0.26975, 0.26975 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Key to Worth Office",
+"notes_for_journal": "The spare key I keep under my fruit bowl. It's for my office.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [node name="KickableFruitStand2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 31 )]
 position = Vector2( -105, -166 )
 scale = Vector2( 0.364574, 0.364574 )
@@ -322,15 +336,15 @@ position = Vector2( -228, -129 )
 [node name="DeskSearchable2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
 position = Vector2( -196, -127 )
 
-[node name="MemoryClue" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable2" instance=ExtResource( 20 )]
+[node name="MemoryClueSister" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable2" instance=ExtResource( 20 )]
 visible = false
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "MemoryClue",
+"item_name": "Memory Clue - Sister?",
 "notes_for_journal": "I'm wracking my brain trying to remember her. How did she even know my name? Tommy never mentioned a sister.",
 "path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
-"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/NPCs/VeronicaIntactFullBody.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
 
@@ -347,27 +361,27 @@ position = Vector2( -226, -106 )
 position = Vector2( -151, -55 )
 rotation = 3.14159
 
-[node name="MemoryClue" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
+[node name="MemoryClue1Luck" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
 visible = false
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "MemoryClue",
-"notes_for_journal": "No one's problem but my own. My rent is overdue. I lost my badge on the police force a few years back. Clients don't come through these doors everyday.",
+"item_name": "Memory Clue - Just my luck.",
+"notes_for_journal": "No one's problem but my own. My rent is overdue. I lost my badge on the police force a few years back. Clients don't come through these doors everyday. Now I'm wanted for a murder I didn't commit.",
 "path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
-"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/photographs/bogart eastwood drunk at the bar.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
 
-[node name="MemoryClue2" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
+[node name="MemoryClue2Tommy" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
 visible = false
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "MemoryClue",
-"notes_for_journal": "Now that I think about it, it was Tommy's fault that I lost my badge. He was always the \"good cop\"",
+"item_name": "Memory Clue - Tommy",
+"notes_for_journal": "Now that I think about it, it was Tommy's fault that I lost my badge. He was always the \"good cop\".Now he's dead. And everyone thinks I killed him.",
 "path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
-"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/NPCs/TommyIntactPhoto.png",
 "path_to_scene_for_PlayerController_Items": ""
 }
 
@@ -377,6 +391,25 @@ rotation = -0.404664
 
 [node name="TableLamp" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 17 )]
 position = Vector2( -86, -181 )
+
+[node name="DynamicDoor" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 29 )]
+position = Vector2( -122, -93 )
+rotation = -1.57079
+scale = Vector2( 0.371579, 0.371579 )
+required_item = "Key to Worth Office"
+
+[node name="Map" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 25 )]
+position = Vector2( -97, -90 )
+scale = Vector2( 0.278169, 0.278169 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Map of the city",
+"notes_for_journal": "The Noir District isn't much, but it's home. My detective agency is in the Commercial District.",
+"path_to_icon": "res://scenes/_common/GUI/icons/book-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/map_parchment.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [node name="UnitB_RomanoPizza" type="Node2D" parent="Furniture"]
 position = Vector2( 0, -32 )
@@ -763,19 +796,6 @@ rotation = 0.0
 scale = Vector2( 0.30272, 0.30272 )
 
 [node name="collectibles" type="Node2D" parent="."]
-
-[node name="Map" parent="collectibles" instance=ExtResource( 25 )]
-position = Vector2( -112, -84 )
-scale = Vector2( 0.278169, 0.278169 )
-item_details = {
-"display_immediately": true,
-"is_unique": true,
-"item_name": "Map of the city",
-"notes_for_journal": "The Noir District isn't much, but it's home. My detective agency is in the Commercial District.",
-"path_to_icon": "res://scenes/_common/GUI/icons/book-h.png",
-"path_to_popup_display_image": "res://scenes/Items/collectables/map_parchment.png",
-"path_to_scene_for_PlayerController_Items": ""
-}
 
 [node name="Bazooka" parent="." instance=ExtResource( 21 )]
 position = Vector2( 94, 74 )

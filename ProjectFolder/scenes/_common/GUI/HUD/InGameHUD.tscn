@@ -50,6 +50,8 @@ ProgressBar/styles/bg = SubResource( 6 )
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
 mouse_filter = 2
 theme = ExtResource( 23 )
 script = ExtResource( 1 )
@@ -74,9 +76,10 @@ custom_constants/separation = 50
 
 [node name="QuitButton" type="Button" parent="Top/Header"]
 margin_right = 35.0
-margin_bottom = 47.0
+margin_bottom = 24.0
 focus_mode = 0
 size_flags_horizontal = 2
+size_flags_vertical = 0
 enabled_focus_mode = 0
 text = "Quit"
 script = ExtResource( 22 )
@@ -156,8 +159,8 @@ anchor_left = 0.0
 anchor_right = 0.0
 margin_left = 902.0
 margin_right = 984.0
-margin_bottom = 47.0
 size_flags_horizontal = 10
+size_flags_vertical = 0
 align = 2
 
 [node name="UpdateNotice" type="Label" parent="Top/Header/HelpButton"]
@@ -272,6 +275,7 @@ size_flags_vertical = 3
 columns = 6
 
 [node name="DebugInfo" type="TextEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+visible = false
 margin_top = 68.0
 margin_right = 1016.0
 margin_bottom = 153.0
