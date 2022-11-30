@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/HUD/QuestContainer.gd" type="Script" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://scenes/Quests/quest_icon_exclamation.png" type="Texture" id=9]
 [ext_resource path="res://scenes/_common/GUI/icons/MemoryClue-h.png" type="Texture" id=10]
 [ext_resource path="res://scenes/_common/GUI/icons/MiscClue-h.png" type="Texture" id=11]
-[ext_resource path="res://scenes/_common/GUI/Theme/Journal_theme.tres" type="Theme" id=12]
 
 [node name="HelpButton" type="Button"]
 pause_mode = 2
@@ -36,7 +35,6 @@ margin_top = 32.0
 margin_right = -116.5
 margin_bottom = 532.0
 mouse_filter = 2
-theme = ExtResource( 12 )
 popup_exclusive = true
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayerInstructions"]
@@ -101,9 +99,9 @@ margin_right = 387.0
 margin_bottom = 48.0
 
 [node name="QuestLabel" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer/Icons/QuestHBOX"]
-margin_top = 5.0
+margin_top = 17.0
 margin_right = 150.0
-margin_bottom = 42.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 150, 0 )
 text = "Quest"
 align = 2
@@ -131,9 +129,9 @@ margin_right = 387.0
 margin_bottom = 100.0
 
 [node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer/Icons/ItemsHBOX"]
-margin_top = 5.0
+margin_top = 17.0
 margin_right = 150.0
-margin_bottom = 42.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 150, 0 )
 text = "Items"
 align = 2
@@ -152,9 +150,9 @@ margin_right = 387.0
 margin_bottom = 152.0
 
 [node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer/Icons/Clues"]
-margin_top = 5.0
+margin_top = 17.0
 margin_right = 150.0
-margin_bottom = 42.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 150, 0 )
 text = "Clues"
 align = 2
@@ -201,9 +199,9 @@ margin_right = 387.0
 margin_bottom = 204.0
 
 [node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer/Icons/GunUpgrades"]
-margin_top = 5.0
+margin_top = 17.0
 margin_right = 150.0
-margin_bottom = 42.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 150, 0 )
 text = "Gun Upgrades"
 align = 2
@@ -223,9 +221,9 @@ margin_right = 387.0
 margin_bottom = 256.0
 
 [node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer/Icons/Healing"]
-margin_top = 5.0
+margin_top = 17.0
 margin_right = 150.0
-margin_bottom = 42.0
+margin_bottom = 31.0
 rect_min_size = Vector2( 150, 0 )
 text = "Healing"
 align = 2
@@ -246,15 +244,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CloseButton" type="Button" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer2"]
-margin_left = 269.0
+margin_left = 264.0
 margin_right = 311.0
-margin_bottom = 24.0
+margin_bottom = 20.0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Close"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer2"]
-margin_top = 28.0
+margin_top = 24.0
 margin_right = 311.0
 margin_bottom = 478.0
 size_flags_horizontal = 3
@@ -262,7 +260,7 @@ size_flags_vertical = 3
 
 [node name="QuestLog" type="VBoxContainer" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer2/ScrollContainer"]
 margin_right = 311.0
-margin_bottom = 450.0
+margin_bottom = 454.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -270,7 +268,7 @@ script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="PlayerInstructions/MarginContainer/VBoxContainer/HBox/VBoxContainer2/ScrollContainer/QuestLog"]
 margin_right = 311.0
-margin_bottom = 450.0
+margin_bottom = 454.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Quests"

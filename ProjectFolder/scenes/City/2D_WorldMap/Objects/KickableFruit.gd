@@ -23,8 +23,8 @@ func tip_the_cart():
 	State = States.KICKED
 	$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
 	$CPUParticles2D.emitting = true
-#	for _i in range(randi()%4):
-#		spawn_single_fruit()
+	for _i in range(randi()%8 + 3):
+		spawn_single_fruit()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite.visible = false
 

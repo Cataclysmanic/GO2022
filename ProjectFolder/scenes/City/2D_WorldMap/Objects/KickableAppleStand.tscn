@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableFruit.gd" type="Script" id=1]
 [ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/AppleStand.png" type="Texture" id=2]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/SingleApple.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/EmptyMarketStand.png" type="Texture" id=4]
+[ext_resource path="res://scenes/_common/Materials/AppleFruitSingle.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -48,11 +49,13 @@ shape = SubResource( 3 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-lifetime = 5.0
+amount = 32
+lifetime = 10.0
 one_shot = true
 explosiveness = 1.0
 lifetime_randomness = 0.25
 local_coords = false
+texture = ExtResource( 5 )
 spread = 180.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 75.0
@@ -61,9 +64,7 @@ damping = 60.0
 damping_random = 0.5
 angle = 45.0
 angle_random = 0.25
-scale_amount = 12.0
 scale_amount_random = 0.2
-color = Color( 0.423529, 0.0196078, 0.0196078, 1 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "SingleFruit" ), [ ExtResource( 3 ) ] ]
