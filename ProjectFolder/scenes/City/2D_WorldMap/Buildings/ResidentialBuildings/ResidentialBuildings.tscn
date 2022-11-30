@@ -380,8 +380,6 @@ item_details = {
 [node name="MayorOdonnel" parent="House2_NE" instance=ExtResource( 26 )]
 position = Vector2( 155, -66 )
 scale = Vector2( 0.139352, 0.139352 )
-spawn_random_quest_objective = false
-npc_name = "Mayor Mick O'Donnell"
 dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
 dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Looks like you got me, Worth. What do you need\?" )
 Sprite_Tex = ExtResource( 23 )
@@ -524,7 +522,6 @@ item_details = {
 [node name="NPCLaurenWinter" parent="House3_SW" instance=ExtResource( 26 )]
 position = Vector2( -73, 136 )
 scale = Vector2( 0.272274, 0.272274 )
-npc_name = "Lauren Winter"
 dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
 dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!" )
 Sprite_Tex = ExtResource( 25 )
