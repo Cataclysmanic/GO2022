@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -31,6 +31,9 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/FishStand.png" type="Texture" id=30]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableOrangeStand.tscn" type="PackedScene" id=31]
+[ext_resource path="res://scenes/Items/collectables/2D/2DCollectablePickup.gd" type="Script" id=32]
+[ext_resource path="res://scenes/_common/GUI/icons/PaperClue-h.png" type="Texture" id=33]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=34]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
@@ -39,6 +42,9 @@ extents = Vector2( 274.775, 137.935 )
 extents = Vector2( 235, 101 )
 
 [sub_resource type="CanvasItemMaterial" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31, 31 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 16, 10 )
@@ -273,7 +279,7 @@ location_address = "128 Main St, Unit F"
 location_details = "In the Marketplace, south end of Commercial District"
 
 [node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( -211, 131 )
+position = Vector2( -205, 103 )
 location_address = "128 Main St, Unit F"
 location_details = "The Cobbler in the marketplace at the south end of the commercial district."
 
@@ -286,6 +292,34 @@ location_details = "The Haberdasher in the marketplace at the south end of the c
 position = Vector2( 173, -159 )
 location_address = "128 Main St, Unit C"
 location_details = "The Local Union Office"
+
+[node name="TalkClue" type="Node2D" parent="."]
+position = Vector2( -190, 143 )
+scale = Vector2( 0.248307, 0.259949 )
+script = ExtResource( 32 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Thrown piece of paper",
+"notes_for_journal": "Found a note thrown under the fruit stand \"Note to self, the red haired lady owes me a bag, she had one with her but said she couln't put the oranges there but needed another one, remember to ask her to give it back next time she comes to buy fruits\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/Indoor/note.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Sprite" type="Sprite" parent="TalkClue"]
+scale = Vector2( 0.469241, 0.469241 )
+texture = ExtResource( 33 )
+
+[node name="Area2D" type="Area2D" parent="TalkClue"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkClue/Area2D"]
+position = Vector2( -1, -1 )
+shape = SubResource( 1 )
+
+[node name="PickupNoise" type="AudioStreamPlayer" parent="TalkClue"]
+stream = ExtResource( 34 )
+volume_db = -7.0
 
 [node name="Furniture" type="Node2D" parent="."]
 
@@ -803,3 +837,4 @@ scale = Vector2( 0.349502, 0.344363 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="TalkClue/Area2D" to="TalkClue" method="_on_Area_body_entered"]
