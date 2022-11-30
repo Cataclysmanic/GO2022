@@ -102,7 +102,7 @@ position = Vector2( -81, -22 )
 scale = Vector2( 0.351359, 0.351359 )
 npc_name = "William the Weasel"
 dialog_unmet_requirements = PoolStringArray( "Hey Worth, why are you always hassling me\?", "I\'m no rat snitch. I\'m a professional. Just bring me the thing I want first." )
-dialog_fulfilled_requirements = PoolStringArray( "Ok. Here\'s the scoop.", "The mayor\'s pockets are lined alright. Fusili Romano is the man behind the man. He pays for everything." )
+dialog_fulfilled_requirements = PoolStringArray( "Ok. Here\'s the scoop.", "The mayor\'s pockets are lined alright. Fusili Romano is the man behind the man. He pays for everything.", "Here. As a reward for your help, I managed to secure this dinner reservation at Romanos. Just for you. Take it." )
 Sprite_Tex = ExtResource( 9 )
 Portrait_Tex = ExtResource( 9 )
 

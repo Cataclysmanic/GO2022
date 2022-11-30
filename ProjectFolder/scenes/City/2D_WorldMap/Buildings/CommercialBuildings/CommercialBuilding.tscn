@@ -452,6 +452,7 @@ item_details = {
 [node name="NPC_QuestGiver" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 23 )]
 position = Vector2( -2, -117 )
 scale = Vector2( 0.483979, 0.512165 )
+dialog_fulfilled_requirements = PoolStringArray( "Hey", "Thanks for getting me that thing.", "Take this dinner reservation, my treat.", "Non-transferable; just for you." )
 Sprite_Tex = ExtResource( 22 )
 Portrait_Tex = ExtResource( 22 )
 

@@ -47,7 +47,7 @@ func _process(delta):
 		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[D-Pad Up]"
 	else:
 		$Top/Header/HelpButton.text = "Journal[J]"
-		$Top/Header/QuitButton.text = "Quit[Q]"
+		#$Top/Header/QuitButton.text = "Quit[Q]"
 		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[I]"
 
 func _unhandled_key_input(_event):

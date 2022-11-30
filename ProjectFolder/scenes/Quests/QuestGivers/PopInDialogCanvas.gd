@@ -25,6 +25,7 @@ func set_portrait(imageTex):
 		portraitNode.set_texture(imageTex)
 
 func popin():
+	reset_dialogue()
 	if Global.controller:
 		$Dialogue/PanelContainer/VBoxContainer/NextButton.text = "Next"
 	else:
@@ -35,7 +36,7 @@ func popin():
 	State = States.TALKING
 
 
-func popout():
+func popout(): # go away.. disappear
 	$Dialogue.hide()
 	Global.resume()
 	State = States.HIDDEN
@@ -49,6 +50,10 @@ func set_text(textArr):
 	if textArr != null:
 		dialogue_text = textArr
 		$Dialogue/PanelContainer/VBoxContainer/DialogText.text = dialogue_text[0]
+
+
+func reset_dialogue():
+	current_line = 0
 
 func advance_dialogue():
 	current_line = min(current_line +1, dialogue_text.size()-1)

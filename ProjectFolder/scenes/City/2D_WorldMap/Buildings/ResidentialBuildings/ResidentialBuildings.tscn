@@ -381,7 +381,7 @@ item_details = {
 position = Vector2( 155, -66 )
 scale = Vector2( 0.139352, 0.139352 )
 dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
-dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Looks like you got me, Worth. What do you need\?" )
+dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Dinner\? At Romano\'s Pizzeria\? Fantastic!", "Clearly I misjudged you, Worth. Take this special Get out of Jail Free Card.", "Perks of the Job. Just don\'t mention how you got it." )
 Sprite_Tex = ExtResource( 23 )
 Portrait_Tex = ExtResource( 23 )
 
@@ -523,7 +523,7 @@ item_details = {
 position = Vector2( -73, 136 )
 scale = Vector2( 0.272274, 0.272274 )
 dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
-dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!" )
+dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!", "Listen. If you\'re still interested in that old house next door,", "The previous owners asked me to check in on the place now and then. I might still have a key in my desk." )
 Sprite_Tex = ExtResource( 25 )
 Portrait_Tex = ExtResource( 25 )
 
