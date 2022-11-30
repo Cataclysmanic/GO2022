@@ -34,7 +34,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 5.8 ),
+"times": PoolRealArray( 0.1, 10.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
@@ -46,10 +46,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2.4, 5.8, 6.125, 11.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.9, 7.3, 10.2, 10.3, 15.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0, 1.0, 0.0, 0.0 ]
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0, 0.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("PanelContainer/VBoxContainer/FadeTex:self_modulate")
@@ -58,10 +58,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.8, 5.6, 5.9, 6.2, 15.1, 15.4, 15.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.8, 9.6, 9.9, 10.3, 10.6, 17.8, 18.1, 18.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ) ]
+"values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Audio/MysteriousEndingMusic:playing")
@@ -70,7 +70,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( -0.2 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -82,7 +82,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.1, 5.8, 12 ),
+"times": PoolRealArray( 0.1, 10.3, 16 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, false ]
@@ -94,7 +94,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0.1, 6.1 ),
+"times": PoolRealArray( 0.1, 10.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -106,7 +106,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0.1, 6.1, 8, 12 ),
+"times": PoolRealArray( 0.1, 11.4, 13.3, 16 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0, 1.0, 1.0 ]
@@ -118,7 +118,7 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 15.1, 15.4 ),
+"times": PoolRealArray( 0, 17.8, 18.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, false, true ]
@@ -365,7 +365,7 @@ margin_bottom = 120.0
 rect_min_size = Vector2( 450, 100 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 8 )
-text = "She obviously set you up for murder. The labour union now corroborates your story. Perhaps the judge will see it your way."
+text = "She framed you for murder. The labour union now corroborates your story and the judge saw through her ruse. You're a free man!"
 align = 1
 autowrap = true
 percent_visible = 0.0
@@ -385,7 +385,6 @@ show_behind_parent = true
 position = Vector2( 509, 211 )
 frames = SubResource( 9 )
 animation = "CollectEvidence"
-frame = 1
 
 [node name="Credits" parent="PanelContainer/VBoxContainer/FadeTex" instance=ExtResource( 11 )]
 visible = false

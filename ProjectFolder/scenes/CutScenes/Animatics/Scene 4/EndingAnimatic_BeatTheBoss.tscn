@@ -34,7 +34,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 5.8 ),
+"times": PoolRealArray( 0.1, 7.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
@@ -46,10 +46,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 2.4, 6.6, 6.8, 12 ),
+"times": PoolRealArray( 0, 1.4, 5.4, 7.1, 7.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ 0.0, 1.0, 1.0, 0.0, 0.0 ]
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("PanelContainer/VBoxContainer/FadeTex:self_modulate")
@@ -58,7 +58,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.1, 0.8, 5.6, 5.9, 6.2, 11.9, 12.2, 12.5 ),
+"times": PoolRealArray( 0.1, 0.8, 7, 7.3, 7.6, 13.3, 13.6, 13.9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ), Color( 0.101961, 0.0941176, 0.0941176, 1 ), Color( 0.101961, 0.0941176, 0.0941176, 0 ) ]
@@ -82,7 +82,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 5.8, 7.5, 12 ),
+"times": PoolRealArray( 0, 7.8, 10.4, 13.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0, 1.0, 1.0 ]
@@ -94,7 +94,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 5.8 ),
+"times": PoolRealArray( 0, 7.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -106,7 +106,7 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 5.8 ),
+"times": PoolRealArray( 0, 7.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -118,7 +118,7 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 0, 12, 12.3 ),
+"times": PoolRealArray( 0, 13.4, 13.7 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ false, false, true ]
@@ -389,7 +389,6 @@ show_behind_parent = true
 position = Vector2( 509, 211 )
 frames = SubResource( 9 )
 animation = "Beatboss"
-frame = 1
 
 [node name="Credits" parent="PanelContainer/VBoxContainer/FadeTex" instance=ExtResource( 11 )]
 visible = false
