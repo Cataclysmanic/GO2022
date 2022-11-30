@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/LoudNoise.tscn" type="PackedScene" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=16]
-[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/Items/collectables/2D/DebugKey2DPickup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=19]
 
@@ -166,6 +165,11 @@ scale = Vector2( 2, 2 )
 scale = Vector2( 1, 40 )
 shape = SubResource( 19 )
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outdoor/InvisibleWalls/StaticBody2D"]
+polygon = PoolVector2Array( -3545, -3206, -4466, -3195, -4466, -3470, -4664, -3462, -4669, -3093, -3565, -3079 )
+
 [node name="NPCPatrolRoutes" type="Node2D" parent="Outdoor"]
 
 [node name="Player" type="Node2D" parent="."]
@@ -295,7 +299,5 @@ scale = Vector2( 0.870445, 0.870445 )
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="DeskSearchable" parent="." instance=ExtResource( 17 )]
-position = Vector2( -4663, -3342 )
-
-[node name="PaperClue" parent="DeskSearchable" instance=ExtResource( 18 )]
+[node name="PaperClue" parent="." instance=ExtResource( 18 )]
+position = Vector2( -4249, -3349 )

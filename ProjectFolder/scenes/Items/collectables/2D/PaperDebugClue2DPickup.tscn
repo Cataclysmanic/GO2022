@@ -12,7 +12,7 @@ script = ExtResource( 1 )
 item_details = {
 "display_immediately": true,
 "is_unique": false,
-"item_name": "Complain Notice",
+"item_name": "Complaint Notice",
 "notes_for_journal": "Some freak wrote to the major that you can fall into the void at the left corner of the city, what does that even mean?",
 "path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
 "path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
