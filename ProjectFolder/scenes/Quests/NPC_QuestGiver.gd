@@ -145,7 +145,7 @@ func spawn_quest_reward():
 	else: # spawn a circumstantial clue if there's no custom reward
 		reward = load("res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn").instance()
 	add_child(reward)
-	reward.set_global_scale(Vector2.ONE)
+	reward.set_global_scale(Vector2.ONE*2.0)
 	reward.set_global_position(self.global_position)
 	reward.position += Vector2(rand_range(30.0, 50.0), 0).rotated(randf()*2*PI)
 	print("reward spawned : " + reward.item_details["item_name"] + " at " + str(reward.get_global_position()))
@@ -270,14 +270,15 @@ func requirements_met(body):
 		requirementsMet = true
 	elif body.has_method("has_item") and body.has_item(inventory_requirement):
 		requirementsMet = true
-		if !alreadyCompleted and alreadyTaken:
+		if !alreadyCompleted and alreadyTaken: # player accepted quest, but has not yet completed it
 			body.complete_quest(currentQuest)
 			spawn_quest_reward()
 			alreadyCompleted = true
-		elif !alreadyCompleted and !alreadyTaken:
+		elif !alreadyCompleted and !alreadyTaken: # player found the required objective before they knew about the quest
 			body.update_journal(currentQuest)
 			alreadyTaken = true
 			body.complete_quest(currentQuest)
+			spawn_quest_reward()
 			alreadyCompleted = true
 	return requirementsMet
 

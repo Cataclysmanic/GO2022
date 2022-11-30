@@ -379,7 +379,8 @@ item_details = {
 
 [node name="MayorOdonnel" parent="House2_NE" instance=ExtResource( 26 )]
 position = Vector2( 155, -66 )
-scale = Vector2( 0.139352, 0.139352 )
+scale = Vector2( 0.2, 0.2 )
+spawn_random_quest_objective = false
 dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
 dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Dinner\? At Romano\'s Pizzeria\? Fantastic!", "Clearly I misjudged you, Worth. Take this special Get out of Jail Free Card.", "Perks of the Job. Just don\'t mention how you got it." )
 Sprite_Tex = ExtResource( 23 )
