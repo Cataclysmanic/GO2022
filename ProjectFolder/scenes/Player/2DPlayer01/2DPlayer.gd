@@ -157,7 +157,7 @@ func manual_spawn_gun():
 	loc.add_child(gunScene)
 	
 func upgrade_gun():
-	var gunScene = weapon
+	#var gunScene = weapon
 	if Global.shot_num < 4:
 		Global.shot_num += 1
 	else:

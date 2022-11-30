@@ -60,7 +60,7 @@ func quit():
 	
 func _on_QuitYesButton_pressed():
 	Global.reset()
-	get_tree().change_scene("res://scenes/Main.tscn")
+	var _err = get_tree().change_scene("res://scenes/Main.tscn")
 
 func _on_QuitNoButton2_pressed():
 	Global.resume()
