@@ -300,4 +300,5 @@ scale = Vector2( 0.870445, 0.870445 )
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="PaperClue" parent="." instance=ExtResource( 18 )]
+modulate = Color( 1, 1, 1, 0.258824 )
 position = Vector2( -4249, -3349 )
