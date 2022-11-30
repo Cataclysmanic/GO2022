@@ -13,6 +13,7 @@ var minibossdead = false
 var chosen_ending : String
 var shot_num = 1
 var upgrader = 2
+var health = 100
 
 var user_preferences = {
 	"difficulty": 1.0, #0.5 to 3.0
@@ -44,6 +45,7 @@ func pause():
 	get_tree().paused = true
 
 func reset():
+	health = 100
 	repetition = false
 	rockets = false
 	controller = false

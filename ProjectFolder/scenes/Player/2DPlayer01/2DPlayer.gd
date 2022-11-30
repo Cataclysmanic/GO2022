@@ -43,6 +43,7 @@ onready var quest_notification = find_node("UpdateNotice")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	health = Global.health
 	update_bars()
 	$PaperDoll.relax()
 	
@@ -90,7 +91,7 @@ func revert_state():
 	
 
 func update_bars():
-	if not State in [States.INITIALIZING, States.DEAD]:
+	if not State in [States.DEAD]:
 		health_bar.value = health
 		stamina_bar.value = stamina
 		evidence_bar.value = min(evidence, 100)
