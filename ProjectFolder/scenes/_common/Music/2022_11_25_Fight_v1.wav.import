@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/2022_11_25_Fight_v1.wav-871a34c69e9f5a29346118f694b19de6.sample"
+
+[deps]
+
+source_file="res://scenes/_common/Music/2022_11_25_Fight_v1.wav"
+dest_files=[ "res://.import/2022_11_25_Fight_v1.wav-871a34c69e9f5a29346118f694b19de6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Long_Citroen_Xsara_Horn.ogg-96a1dd33bef6d2785c7784692a887451.oggstr"
+
+[deps]
+
+source_file="res://scenes/City/2D_WorldMap/audio/CarHorns/Long_Citroen_Xsara_Horn.ogg"
+dest_files=[ "res://.import/Long_Citroen_Xsara_Horn.ogg-96a1dd33bef6d2785c7784692a887451.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

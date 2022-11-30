@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/POLICE_SIREN_2.mp3-45351e567b216b047180b71057010e3d.mp3str"
+
+[deps]
+
+source_file="res://scenes/_common/GUI/sfx/POLICE_SIREN_2.mp3"
+dest_files=[ "res://.import/POLICE_SIREN_2.mp3-45351e567b216b047180b71057010e3d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

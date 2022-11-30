@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/GUN_FIGHT.ogg-35ab7897231479390c2ad1f3292c802d.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/Music/FINAL_TRACKS_OGG/GUN_FIGHT.ogg"
+dest_files=[ "res://.import/GUN_FIGHT.ogg-35ab7897231479390c2ad1f3292c802d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

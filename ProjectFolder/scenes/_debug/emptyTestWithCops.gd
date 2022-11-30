@@ -38,4 +38,8 @@ func spawn_npc(patrolRoute):
 	npcScene.set_scale(Vector2(1.0, 1.0))
 	# don't need the blue color anymore, we have actual cop npcs
 	#npcScene.set_modulate(Color.aqua)
-	city_map.get_node("NPCs").add_child(npcScene)
+	get_node("NPCs").add_child(npcScene)
+
+func _on_projectile_ready(projectile):
+	add_child(projectile)
+	

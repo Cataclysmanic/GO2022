@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/One_Ford_Explorer_Horn.ogg-7722c4d875666edb5e00b43f081c20b1.oggstr"
+
+[deps]
+
+source_file="res://scenes/City/2D_WorldMap/audio/CarHorns/One_Ford_Explorer_Horn.ogg"
+dest_files=[ "res://.import/One_Ford_Explorer_Horn.ogg-7722c4d875666edb5e00b43f081c20b1.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

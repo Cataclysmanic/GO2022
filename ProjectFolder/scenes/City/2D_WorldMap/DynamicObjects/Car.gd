@@ -319,5 +319,5 @@ func _on_NPCSpawnTimer_timeout():
 func _on_HornTimer_timeout():
 	if State in [States.READY, States.MOVING]:
 		$Audio/Horn/RandomHornNoise.play()
-		$Audio/Horn/HornTimer.set_wait_time(rand_range(2.0, 8.0))
+		$Audio/Horn/HornTimer.set_wait_time(rand_range(5.0, 15.0))
 		$Audio/Horn/HornTimer.start()

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ambient_Noir_1.ogg-178d393ee7f499f1935b7716d96ecb62.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/Music/FINAL_TRACKS_OGG/Ambient_Noir_1.ogg"
+dest_files=[ "res://.import/Ambient_Noir_1.ogg-178d393ee7f499f1935b7716d96ecb62.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
