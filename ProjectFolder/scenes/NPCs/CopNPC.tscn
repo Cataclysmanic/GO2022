@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/CopNPC.gd" type="Script" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=8]
 [ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=9]
 [ext_resource path="res://scenes/Items/collectables/2D/GunModuleUpgrade.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Items/collectables/2D/PhotographOfSweetheart.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=12]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=13]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=14]
@@ -22,6 +22,7 @@
 [ext_resource path="res://scenes/NPCs/AlertedSprite.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/NPCs/CopPaperDoll.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteSmallCircle.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/Items/collectables/2D/DaysFromRetirement.tscn" type="PackedScene" id=23]
 [ext_resource path="res://scenes/Items/weapons/GunshotNoises/placeholder snake.wav" type="AudioStream" id=24]
 
 [sub_resource type="RectangleShape2D" id=16]
@@ -166,7 +167,7 @@ stream = ExtResource( 8 )
 volume_db = 10.0
 
 [node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Bandage2DPickup", "CircumstantialClue2DPickup", "GunModuleUpgrade" ), [ ExtResource( 17 ), ExtResource( 11 ), ExtResource( 10 ) ] ]
+resources = [ PoolStringArray( "Bandage2DPickup", "DaysFromRetirement", "GunModuleUpgrade", "PhotographOfSweetheart" ), [ ExtResource( 17 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ) ] ]
 
 [node name="damage_area" type="Area2D" parent="."]
 
