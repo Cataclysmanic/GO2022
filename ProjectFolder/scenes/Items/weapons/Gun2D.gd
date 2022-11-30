@@ -124,6 +124,7 @@ func make_gunshot_noise():
 	
 
 func eject_casing():
+	
 	var casing = $ResourcePreloader.get_resource("casing").instance()
 	casing.rotation = rand_range(-PI, PI)
 	casing.set_global_position(get_global_position())

@@ -10,7 +10,7 @@ func _ready():
 
 func spawn_single_fruit():
 	var fruitScene = $ResourcePreloader.get_resource("SingleFruit").instance()
-	var rand_offset = Vector2.RIGHT.rotated(rand_range(-PI, PI))*rand_range(0.1, 15.0)
+	var rand_offset = Vector2.RIGHT.rotated(rand_range(-PI, PI))*rand_range(12.0, 25.0)
 	fruitScene.position = self.position + rand_offset # so they don't spawn directly on top of each other
 	get_parent().call_deferred("add_child", fruitScene)
 	
@@ -23,8 +23,8 @@ func tip_the_cart():
 	State = States.KICKED
 	$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
 	$CPUParticles2D.emitting = true
-	for _i in range(randi()%15+8):
-		spawn_single_fruit()
+#	for _i in range(randi()%4):
+#		spawn_single_fruit()
 	$CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite.visible = false
 
