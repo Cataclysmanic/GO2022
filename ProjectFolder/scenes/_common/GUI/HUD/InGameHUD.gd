@@ -120,7 +120,7 @@ func remove_bullet_icon():
 
 
 func add_bullet_icon():
-	var bulletTex = $ResourcePreloader.get_resource("Bullet").instance()
+	var bulletTex = $ResourcePreloader.get_resource("Bullet").instance() # note: this is currently a 1px transparent png. (so it won't look like anything)
 	ammo_container.add_child(bulletTex)
 
 
