@@ -14,6 +14,9 @@ func _ready():
 	$Doors/CommercialUnitA3.required_item = "Rusty key"
 	$"Doors/95MainDoorFront".required_item = "Bronze key"
 	$"Doors/95MainDoorBack".required_item = "Bronze key"
+	$Doors/DebugDoor.required_item = "Debug key"
+	$Doors/DebugDoor2.required_item = "Debug key"
+	$Doors/DebugDoor3.required_item = "Debug key"
 	Global.current_city_map = self
 
 
