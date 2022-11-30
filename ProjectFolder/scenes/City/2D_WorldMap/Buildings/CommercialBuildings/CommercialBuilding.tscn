@@ -813,6 +813,19 @@ position = Vector2( 193, 189 )
 [node name="TableLamp2" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 17 )]
 position = Vector2( 112, 124 )
 
+[node name="MiscClue" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 18 )]
+position = Vector2( 132, 77 )
+scale = Vector2( 0.299611, 0.299611 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Electrical Room, Fortified",
+"notes_for_journal": "I've never seen an electrical room so well fortified. This is a class 5 lock, suitable for bank vaults, or top-secret municipal governance documents.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
 [node name="collectibles" type="Node2D" parent="."]
 
 [node name="Map" parent="collectibles" instance=ExtResource( 25 )]
