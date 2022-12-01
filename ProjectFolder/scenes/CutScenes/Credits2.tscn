@@ -22,20 +22,20 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
-margin_left = 324.0
+margin_left = 311.0
 margin_top = 163.0
-margin_right = 700.0
+margin_right = 713.0
 margin_bottom = 437.0
 custom_styles/panel = ExtResource( 3 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 274.0
 custom_constants/separation = 20
 alignment = 1
 
 [node name="Credits" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 59.0
 custom_fonts/font = ExtResource( 1 )
 text = "Credits"
@@ -43,30 +43,30 @@ align = 1
 
 [node name="Writing" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 79.0
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 93.0
 text = "Writing: Cataclysmanic, Chitin,  VolcanoTheGreat, Plexsoup"
 align = 1
 
 [node name="Art" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 113.0
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 127.0
-text = "Art & Animation: Avarice, Merik, Sugar Father, Plexsoup"
+text = "Art & Animation: Avarice, MKShadowZX, Sugar Father, Plexsoup"
 align = 1
 
 [node name="Audio" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 147.0
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 161.0
-text = "SFX & Music: Glodara, Terpsik, elmanana"
+text = "SFX & Music: GlodaraX, Terpsikree, Vincent Beaupré"
 align = 1
 
 [node name="Code" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 181.0
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 195.0
-text = "Code:  VolcanoTheGreat, Capybara_Man, Plexsoup, Das"
+text = "Code:  VolcanoTheGreat, CapybaraMan, Plexsoup, Das"
 align = 1
 
 [node name="BackToMainButton" parent="MarginContainer/PanelContainer/VBoxContainer" instance=ExtResource( 2 )]
@@ -81,7 +81,7 @@ return_to_main = true
 
 [node name="Thanks" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
 margin_top = 215.0
-margin_right = 376.0
+margin_right = 402.0
 margin_bottom = 274.0
 custom_fonts/font = ExtResource( 1 )
 text = "Thanks for Playing!"
