@@ -1,0 +1,1018 @@
+[gd_scene load_steps=27 format=2]
+
+[ext_resource path="res://scenes/Player/PaperDoll/DetectiveSideViewPaperDoll-SugarFather.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/2dTest/WindowLighting.png" type="Texture" id=2]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/NPCs/FemmeFataleBossPaperDoll.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/OfficeFlor.png" type="Texture" id=5]
+[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=6]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/BrothersHouseFloors.png" type="Texture" id=7]
+[ext_resource path="res://scenes/_common/GUI/sfx/POLICE_SIREN_2.mp3" type="AudioStream" id=8]
+[ext_resource path="res://scenes/CutScenes/Animatics/Scene 3/OfficeAnimatedSequence_01.gd" type="Script" id=9]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=10]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=11]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Trashcan.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Sink.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/_common/Music/FINAL_TRACKS_OGG/PI_SHUFFLE.ogg" type="AudioStream" id=22]
+[ext_resource path="res://scenes/_common/Music/FINAL_TRACKS_OGG/Ambient_Noir_1.ogg" type="AudioStream" id=23]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.921569, 0.921569, 0.921569, 1 )
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_size = 10
+shadow_offset = Vector2( 5, 5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "DameWalksIn"
+length = 18.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("FemmeFatale:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.8, 2.8, 3.8, 12.3, 12.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 626, -74 ), Vector2( 622, 224 ), Vector2( 518, 225 ), Vector2( 518, 225 ), Vector2( 712, -141 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FemmeFatale/DialogFemme/FemmeDialogLabel:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.8, 3.8, 4.4, 5.8, 6.5, 8.4, 8.9, 9.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FemmeFatale/DialogFemme/FemmeDialogLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3.8, 4.4, 6.5, 8.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "Help. It's my brother...", "Help. It's my brother...", "", "Please..." ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HardBoiledDetective/DialogDetective/DetectiveDialogLabel:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.8, 7.1, 7.6, 8, 9.8, 10.3, 10.8, 13.1, 14.2, 14.9, 15.1, 15.6, 15.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HardBoiledDetective/DialogDetective:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.8, 7.1, 8, 9.8, 11.2, 14.3, 14.8, 15.2, 15.7, 16.3, 16.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true, true, false, true, true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("FemmeFatale/DialogFemme:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 1.8, 4.4, 6.5, 8.5, 9.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HardBoiledDetective/DialogDetective/DetectiveDialogLabel:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 7.1, 9.8, 13.1, 14.2, 15.1, 15.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "No...", "Fine.", "", "...Crap", "...Crap", "Damn!" ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("BlackFog:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.2, 1.8, 11.6, 12.2, 13, 13.6, 17.8, 18.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("BrothersJouseFloor:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.2, 12.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("OfficeFloor:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.2, 12.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("HardBoiledDetective:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1.2, 12.2, 13.1, 14.5, 15.1, 15.8, 16.4, 17.3, 18.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 388, 232 ), Vector2( 398, 234 ), Vector2( 513, 124 ), Vector2( 431, 295 ), Vector2( 438, 308 ), Vector2( 438, 308 ), Vector2( 617, 297 ), Vector2( 697, 392 ), Vector2( 708, 533 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("BrothersJouseFloor/PoliceLights:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 13, 13.8, 15.2, 15.6, 16.2, 16.6, 17.2, 17.6, 18.2, 18.6, 19.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ), Color( 0, 0.0627451, 0.717647, 1 ), Color( 0.717647, 0, 0, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("PoliceSirenNoise:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 1.2, 14.4, 18.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("PoliceSirenNoise:volume_db")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 13.9, 15.3, 17.6, 18.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -20.0, 0.0, 0.0, -20.0 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("2WeeksEarlierLabel:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("2WeeksEarlierLabel:self_modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 1, 1.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("2WeeksEarlierLabel/OfficeNameLabel:percent_visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("HardBoiledDetective:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ Vector2( 0.0764459, 0.0764459 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0, 16.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0, 15, 16.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 31.8196, 31.8196, 0.0 ]
+}
+tracks/20/type = "animation"
+tracks/20/path = NodePath("FemmeFatale/FemmeFatalePaperDoll/AnimationPlayer")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"clips": PoolStringArray( "walk", "RESET" ),
+"times": PoolRealArray( 2, 3.9 )
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("BGMusicSexy:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0, 12.3, 12.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("BGMusicSad:playing")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0, 12.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("BGMusicSexy:volume_db")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 12.3, 12.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -7.0, -7.0, -22.0 ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("BGMusicSad:volume_db")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0, 12.3, 12.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -7.0, -22.0, 0.0 ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("FemmeFatale:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 1.9, 12.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/26/type = "value"
+tracks/26/path = NodePath("BrothersJouseFloor/PoliceLights:visible")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/keys = {
+"times": PoolRealArray( 0, 13.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/27/type = "value"
+tracks/27/path = NodePath("FemmeFatale/FemmeFatalePaperDoll/Body/PunchArm/Shoulder:modulate")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/keys = {
+"times": PoolRealArray( 0, 11.6, 12.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FemmeFatale:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 626, -74 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FemmeFatale/DialogFemme/FemmeDialogLabel:percent_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FemmeFatale/DialogFemme/FemmeDialogLabel:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "Help. It's my brother..." ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HardBoiledDetective/DialogDetective/DetectiveDialogLabel:percent_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HardBoiledDetective/DialogDetective:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("FemmeFatale/DialogFemme:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HardBoiledDetective/DialogDetective/DetectiveDialogLabel:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "No..." ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("BlackFog:self_modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("BrothersJouseFloor:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("OfficeFloor:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("HardBoiledDetective:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 398, 234 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("BrothersJouseFloor/PoliceLights:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("PoliceSirenNoise:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("PoliceSirenNoise:volume_db")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -20.0 ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("2WeeksEarlierLabel:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("2WeeksEarlierLabel:self_modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("2WeeksEarlierLabel/OfficeNameLabel:percent_visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/17/type = "value"
+tracks/17/path = NodePath("HardBoiledDetective:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.0764459, 0.0764459 ) ]
+}
+tracks/18/type = "value"
+tracks/18/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm/Gun:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/19/type = "value"
+tracks/19/path = NodePath("HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder:rotation_degrees")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/20/type = "value"
+tracks/20/path = NodePath("BGMusicSexy:playing")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/21/type = "value"
+tracks/21/path = NodePath("BGMusicSad:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/22/type = "value"
+tracks/22/path = NodePath("BGMusicSexy:volume_db")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -7.0 ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("BGMusicSad:volume_db")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -7.0 ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("FemmeFatale:visible")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/25/type = "value"
+tracks/25/path = NodePath("BrothersJouseFloor/PoliceLights:visible")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="OfficeAnimatedSequence" type="Node2D"]
+script = ExtResource( 9 )
+
+[node name="BrothersJouseFloor" type="Sprite" parent="."]
+visible = false
+position = Vector2( 518.5, 291.5 )
+scale = Vector2( 3.78261, 3.78261 )
+texture = ExtResource( 7 )
+
+[node name="Corpse" type="Sprite" parent="BrothersJouseFloor"]
+position = Vector2( -0.199707, -6.2 )
+rotation = 0.4541
+scale = Vector2( 0.0576801, 0.0576801 )
+texture = ExtResource( 6 )
+
+[node name="PoliceLights" type="Node2D" parent="BrothersJouseFloor"]
+visible = false
+position = Vector2( -207.4, -116.6 )
+scale = Vector2( 0.4, 0.4 )
+z_index = -1
+
+[node name="Window1" type="Sprite" parent="BrothersJouseFloor/PoliceLights"]
+position = Vector2( 382.696, 240.249 )
+rotation = 3.14159
+scale = Vector2( 0.29959, 0.29959 )
+z_index = 1
+texture = ExtResource( 2 )
+flip_v = true
+
+[node name="Window2" type="Sprite" parent="BrothersJouseFloor/PoliceLights"]
+position = Vector2( 504.951, 188.727 )
+rotation = 3.14159
+scale = Vector2( 0.29959, 0.29959 )
+z_index = 1
+texture = ExtResource( 2 )
+flip_v = true
+
+[node name="Window3" type="Sprite" parent="BrothersJouseFloor/PoliceLights"]
+position = Vector2( 635.696, 236.249 )
+rotation = 3.14159
+scale = Vector2( 0.29959, 0.29959 )
+z_index = 1
+texture = ExtResource( 2 )
+flip_v = true
+
+[node name="House1_NW" type="Node2D" parent="BrothersJouseFloor"]
+position = Vector2( 111.166, 94.5114 )
+rotation = 0.0129179
+scale = Vector2( 0.983141, 0.983141 )
+
+[node name="KickableChair" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -163.826, -62.889 )
+rotation = 3.14159
+scale = Vector2( 0.433173, 0.433173 )
+
+[node name="DeskSearchable" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 13 )]
+position = Vector2( -160.658, -49.9289 )
+rotation = 3.14159
+
+[node name="Paper" parent="BrothersJouseFloor/House1_NW/DeskSearchable" instance=ExtResource( 21 )]
+visible = false
+
+[node name="Bandage" parent="BrothersJouseFloor/House1_NW/DeskSearchable" instance=ExtResource( 20 )]
+visible = false
+
+[node name="Couch" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 15 )]
+position = Vector2( -63.532, -118.189 )
+rotation = -2.87979
+
+[node name="PottedPlant" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 12 )]
+position = Vector2( -170.523, -116.82 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="PottedPlant2" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 12 )]
+position = Vector2( -50.0164, -78.3605 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="KickableChair2" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -67.2346, -95.1394 )
+scale = Vector2( 0.306544, 0.306544 )
+
+[node name="KickableChair3" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -123.649, -49.4069 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="TableLamp" parent="BrothersJouseFloor/House1_NW" instance=ExtResource( 16 )]
+position = Vector2( -150.628, -125.065 )
+rotation = -0.0416951
+scale = Vector2( 0.126476, 0.126476 )
+
+[node name="OfficeFloor" type="Sprite" parent="."]
+position = Vector2( 518.5, 291.5 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 5 )
+
+[node name="UnitA_DetectiveOffice" type="Node2D" parent="OfficeFloor"]
+position = Vector2( 155.4, 141.4 )
+
+[node name="Sink" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 19 )]
+position = Vector2( -80, -125 )
+rotation = 1.57079
+scale = Vector2( 0.780171, 0.780171 )
+
+[node name="KickableChair" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 14 )]
+position = Vector2( -193, -107 )
+scale = Vector2( 0.503913, 0.503913 )
+
+[node name="Trashcan2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -161, -227 )
+
+[node name="PottedPlant2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -225, -226 )
+
+[node name="Couch" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 15 )]
+position = Vector2( -90, -215 )
+rotation = -1.78037
+
+[node name="PottedPlant" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -224, -157 )
+
+[node name="PottedPlant3" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -228, -129 )
+
+[node name="DeskSearchable2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
+position = Vector2( -196, -127 )
+
+[node name="MemoryClue" parent="OfficeFloor/UnitA_DetectiveOffice/DeskSearchable2" instance=ExtResource( 17 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "I'm wracking my brain trying to remember her. How did she even know my name? Tommy never mentioned a sister.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="TableLamp2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
+position = Vector2( -228, -53 )
+
+[node name="Trashcan" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -182, -57 )
+
+[node name="Trashcan3" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -226, -106 )
+
+[node name="DeskSearchable1" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
+position = Vector2( -151, -55 )
+rotation = 3.14159
+
+[node name="MemoryClue" parent="OfficeFloor/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 17 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "No one's problem but my own. My rent is overdue. I lost my badge on the police force a few years back. Clients don't come through these doors everyday.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue2" parent="OfficeFloor/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 17 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MemoryClue",
+"notes_for_journal": "Now that I think about it, it was Tommy's fault that I lost my badge. He was always the \"good cop\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Couch2" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 15 )]
+position = Vector2( -97, -59 )
+rotation = -0.404664
+
+[node name="TableLamp" parent="OfficeFloor/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
+position = Vector2( -86, -181 )
+
+[node name="FemmeFatale" type="Node2D" parent="."]
+position = Vector2( 626, -74 )
+scale = Vector2( 0.1, 0.1 )
+
+[node name="FemmeFatalePaperDoll" parent="FemmeFatale" instance=ExtResource( 4 )]
+scale = Vector2( -13.436, 13.436 )
+
+[node name="DialogFemme" type="PanelContainer" parent="FemmeFatale"]
+visible = false
+margin_left = -390.0
+margin_top = -1060.0
+margin_right = 33.9998
+margin_bottom = -799.0
+rect_scale = Vector2( 2, 2 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="FemmeDialogLabel" type="Label" parent="FemmeFatale/DialogFemme"]
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 412.0
+margin_bottom = 249.0
+rect_min_size = Vector2( 400, 100 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "Help. It's my brother..."
+autowrap = true
+percent_visible = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="FemmeFatale/DialogFemme"]
+position = Vector2( 0, -67.7772 )
+scale = Vector2( 1, 1.2 )
+color = Color( 0.921569, 0.921569, 0.921569, 1 )
+polygon = PoolVector2Array( 98.3865, 338.887, 32.7954, 256.898, 114.784, 256.898 )
+
+[node name="HardBoiledDetective" type="Node2D" parent="."]
+position = Vector2( 398, 234 )
+scale = Vector2( 0.0764459, 0.0764459 )
+
+[node name="DialogDetective" type="PanelContainer" parent="HardBoiledDetective"]
+visible = false
+margin_left = -287.785
+margin_top = -1360.44
+margin_right = 136.215
+margin_bottom = -1099.44
+rect_scale = Vector2( 2.25781, 2.25781 )
+custom_styles/panel = SubResource( 1 )
+
+[node name="DetectiveDialogLabel" type="Label" parent="HardBoiledDetective/DialogDetective"]
+margin_left = 12.0
+margin_top = 80.0
+margin_right = 412.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 400, 100 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 3 )
+text = "No..."
+autowrap = true
+percent_visible = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="HardBoiledDetective/DialogDetective"]
+position = Vector2( 235.461, -65.4082 )
+scale = Vector2( 1, 1.2 )
+color = Color( 0.921569, 0.921569, 0.921569, 1 )
+polygon = PoolVector2Array( 91.5684, 337.93, 78.4868, 250.722, 156.974, 250.722 )
+
+[node name="TommyPaperDoll" parent="HardBoiledDetective" instance=ExtResource( 1 )]
+position = Vector2( 2.37793, -30.9194 )
+scale = Vector2( 6.54057, 6.54057 )
+
+[node name="Gun" parent="HardBoiledDetective/TommyPaperDoll/Body/Torso/GunArmHolder/GunArm" index="0"]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "DameWalksIn"
+anims/DameWalksIn = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="PoliceSirenNoise" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -20.0
+
+[node name="EscToQuitLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 893.0
+margin_top = 545.0
+margin_right = 980.0
+margin_bottom = 559.0
+custom_fonts/font = ExtResource( 10 )
+text = "[esc to skip]"
+
+[node name="BlackFog" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="2WeeksEarlierLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 143.0
+margin_top = 240.0
+margin_right = 850.0
+margin_bottom = 317.0
+rect_scale = Vector2( 1.1025, 1.1025 )
+custom_fonts/font = ExtResource( 3 )
+text = "Two Weeks Earlier"
+align = 1
+
+[node name="OfficeNameLabel" type="Label" parent="2WeeksEarlierLabel"]
+margin_left = 127.891
+margin_top = 86.1678
+margin_right = 354.891
+margin_bottom = 100.168
+custom_fonts/font = ExtResource( 11 )
+text = "Andrew Worth's Detective Agency"
+
+[node name="BGMusicSexy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -7.0
+
+[node name="BGMusicSad" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+volume_db = -7.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[editable path="FemmeFatale/FemmeFatalePaperDoll"]
+[editable path="HardBoiledDetective/TommyPaperDoll"]

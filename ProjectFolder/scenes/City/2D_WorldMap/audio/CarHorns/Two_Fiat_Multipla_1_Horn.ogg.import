@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Two_Fiat_Multipla_1_Horn.ogg-044c54da9fd577cd3b749a63ada90a6a.oggstr"
+
+[deps]
+
+source_file="res://scenes/City/2D_WorldMap/audio/CarHorns/Two_Fiat_Multipla_1_Horn.ogg"
+dest_files=[ "res://.import/Two_Fiat_Multipla_1_Horn.ogg-044c54da9fd577cd3b749a63ada90a6a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

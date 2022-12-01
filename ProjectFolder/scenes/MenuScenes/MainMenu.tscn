@@ -9,16 +9,16 @@
 [ext_resource path="res://scenes/_common/GUI/RainShaderOverlay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/_common/GUI/HeavyFogOverlay.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/Animatic_01_Chicago_Office.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/_common/GUI/Theme/MainGUITheme.tres" type="Theme" id=10]
+[ext_resource path="res://scenes/_common/Music/FINAL_TRACKS_OGG/PI_SHUFFLE.ogg" type="AudioStream" id=10]
 [ext_resource path="res://scenes/CutScenes/DetectiveFramed.png" type="Texture" id=11]
 [ext_resource path="res://scenes/MenuScenes/Settings.tscn" type="PackedScene" id=12]
 
 [node name="MainMenu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 10 )
 script = ExtResource( 2 )
 
 [node name="HeavyFogOverlay" parent="." instance=ExtResource( 8 )]
@@ -32,19 +32,19 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 68.0
-margin_top = 10.0
+margin_top = 20.0
 margin_right = 956.0
-margin_bottom = 589.0
+margin_bottom = 579.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 888.0
-margin_bottom = 579.0
+margin_bottom = 559.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-margin_top = 89.0
+margin_top = 79.0
 margin_right = 400.0
-margin_bottom = 489.0
+margin_bottom = 479.0
 rect_min_size = Vector2( 400, 400 )
 size_flags_horizontal = 3
 size_flags_vertical = 6
@@ -55,7 +55,7 @@ stretch_mode = 5
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 404.0
 margin_right = 888.0
-margin_bottom = 579.0
+margin_bottom = 559.0
 size_flags_horizontal = 3
 size_flags_vertical = 4
 custom_constants/margin_top = 150
@@ -63,7 +63,7 @@ custom_constants/margin_top = 150
 [node name="MainMenuVBox" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 margin_top = 150.0
 margin_right = 484.0
-margin_bottom = 579.0
+margin_bottom = 559.0
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_constants/separation = 25
@@ -71,7 +71,7 @@ alignment = 1
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox"]
 margin_right = 484.0
-margin_bottom = 79.0
+margin_bottom = 59.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
@@ -79,15 +79,15 @@ text = "Working Noir Game Title!"
 align = 1
 
 [node name="Body" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox"]
-margin_top = 104.0
+margin_top = 84.0
 margin_right = 484.0
-margin_bottom = 404.0
+margin_bottom = 384.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="MainMenuButtonContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body"]
-margin_left = 63.0
-margin_right = 420.0
+margin_left = 100.0
+margin_right = 384.0
 margin_bottom = 300.0
 grow_horizontal = 2
 rect_min_size = Vector2( 150, 300 )
@@ -100,60 +100,56 @@ columns = 2
 [node name="NewGameButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 111.0
-margin_bottom = 35.0
+margin_right = 82.0
+margin_bottom = 20.0
 text = "New Game"
 SceneToLaunch = ExtResource( 9 )
-
-[node name="LoadGameButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
-visible = false
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 161.0
-margin_right = 307.0
-margin_bottom = 35.0
-text = "Load Game"
 
 [node name="DebugButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 211.0
-margin_right = 357.0
-margin_bottom = 35.0
+margin_left = 182.0
+margin_right = 284.0
+margin_bottom = 20.0
 text = "Debug / Cheat"
 SceneToLaunch = ExtResource( 6 )
 
 [node name="CreditsButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 85.0
-margin_right = 111.0
-margin_bottom = 120.0
+margin_top = 70.0
+margin_right = 82.0
+margin_bottom = 90.0
 text = "Credits"
 SceneToLaunch = ExtResource( 4 )
 
 [node name="SettingsButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 211.0
-margin_top = 85.0
-margin_right = 357.0
-margin_bottom = 120.0
+margin_left = 182.0
+margin_top = 70.0
+margin_right = 284.0
+margin_bottom = 90.0
 text = "Preferences"
 SceneToLaunch = ExtResource( 12 )
 
 [node name="QuitButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox/Body/MainMenuButtonContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 170.0
-margin_right = 111.0
-margin_bottom = 205.0
+margin_top = 140.0
+margin_right = 82.0
+margin_bottom = 160.0
 text = "Quit"
 SceneToLaunch = ExtResource( 5 )
 
 [node name="Footer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/MainMenuVBox"]
-margin_top = 429.0
+margin_top = 409.0
 margin_right = 484.0
-margin_bottom = 429.0
+margin_bottom = 409.0
 size_flags_horizontal = 3
 size_flags_vertical = 8
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -7.0
+autoplay = true

@@ -26,6 +26,7 @@ func _ready():
 	time_elapsed = 0.0
 	last_polling_time = 0.0
 	hide_blood_vignette()
+	$ProgressBar.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -33,13 +34,21 @@ func _process(delta):
 		return
 		
 	time_elapsed += delta
-	if time_elapsed > last_polling_time + polling_interval:
-		
-		
-		if len(stored_items) != len(Global.IO.stored_items):
-			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
-			rebuild_inventory()
-
+#	This breaks scene changes as inventory is not totally global, needs work
+#	if time_elapsed > last_polling_time + polling_interval:
+#
+#
+#		if len(stored_items) != len(Global.IO.stored_items):
+#			stored_items = Global.IO.stored_items.duplicate() # IO is the ground_truth for item storage. HUD is just the display.
+#			rebuild_inventory()
+	if Global.controller:
+		$Top/Header/HelpButton.text = "Journal[R2]"
+		$Top/Header/QuitButton.text = "Quit[L2]"
+		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[D-Pad Up]"
+	else:
+		$Top/Header/HelpButton.text = "Journal[J]"
+		#$Top/Header/QuitButton.text = "Quit[Q]"
+		$PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton.text = "Inventory[I]"
 
 func _unhandled_key_input(_event):
 	pass # moved to shortcut key on button
@@ -47,6 +56,9 @@ func _unhandled_key_input(_event):
 #	if event.is_action_pressed("open_inventory"):
 #		toggle_inventory_display()
 		
+
+func remove_boss_health(amount):
+	$ProgressBar.value -= amount
 
 func toggle_inventory_display():
 	if InventoryState == InventoryStates.CLOSED:
@@ -108,16 +120,17 @@ func remove_bullet_icon():
 
 
 func add_bullet_icon():
-	var bulletTex = $ResourcePreloader.get_resource("Bullet").instance()
+	var bulletTex = $ResourcePreloader.get_resource("Bullet").instance() # note: this is currently a 1px transparent png. (so it won't look like anything)
 	ammo_container.add_child(bulletTex)
 
 
 func reload_if_possible():
-	
-	if Global.IO.player_has_item("magazine"):
-		Global.IO._on_collectible_used("magazine")
-		for _i in range(6):
-			add_bullet_icon()
+	pass
+
+	#if Global.IO.player_has_item("magazine"):
+	#	Global.IO._on_collectible_used("magazine")
+	#	for _i in range(6):
+	#		add_bullet_icon()
 
 
 func clear_inventory():
@@ -155,6 +168,7 @@ func rebuild_inventory():
 #		Global.trigger_events["missing_gun_reported"] = true
 
 func _on_collectible_picked_up(pickupObj):
+
 	var itemResource = pickupObj.item_info
 	
 	#Global.pause() # why isn't this firing the second time we pick something up?
@@ -210,6 +224,16 @@ func _on_missing_key():
 	if Global.trigger_events["missing_tutorial_key_reported"] == false:
 		$AudioEvents/MissingKey.play()
 		Global.trigger_events["missing_tutorial_key_reported"] = true
+
+
+
+
+func _on_boss_spawned(boss_health, boss_name):
+	$ProgressBar.visible = true
+	$ProgressBar.max_value = boss_health
+	$ProgressBar.value = boss_health
+	$ProgressBar/Label.text = boss_name
+
 
 
 	

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Noir_Intro_New..ogg-2dad79cb37ceefdd74afc82fcad6ab67.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/Music/FINAL_TRACKS_OGG/Noir_Intro_New..ogg"
+dest_files=[ "res://.import/Noir_Intro_New..ogg-2dad79cb37ceefdd74afc82fcad6ab67.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=2]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=3]
 [ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=4]
-[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite24t.tres" type="DynamicFont" id=5]
 [ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
 
@@ -19,8 +19,8 @@ light_mode = 1
 
 [node name="MobBoss" type="KinematicBody2D"]
 position = Vector2( 2, -3 )
+z_index = 1
 script = ExtResource( 2 )
-inventory_requirement = "note 01"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 1.49012e-08 )
@@ -66,7 +66,7 @@ stream = ExtResource( 3 )
 visible = false
 item_details = {
 "is_unique": true,
-"item_name": "Forged Books",
+"item_name": "Set of Forged Books",
 "notes_for_journal": "A number of phoney records pertaining to shipping, receiving, and invoicing. Some of it seems like code. Probably a money laundering scheme.",
 "path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
 "path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",

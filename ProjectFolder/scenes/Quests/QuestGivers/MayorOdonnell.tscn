@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.gd" type="Script" id=2]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=3]
+[ext_resource path="res://scenes/Quests/quest_icon_question.png" type="Texture" id=4]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=5]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite16Font.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.7567
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 144.25, 134.5 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
+
+[node name="MayorOdonnell" type="KinematicBody2D"]
+position = Vector2( 2, -3 )
+script = ExtResource( 2 )
+dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
+dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Looks like you got me, Worth. What do you need\?" )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.49012e-08 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.813172, -0.119232 )
+scale = Vector2( 0.129863, 0.129863 )
+texture = ExtResource( 1 )
+offset = Vector2( -2.88073, -15.1868 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2( -2, 9 )
+shape = SubResource( 2 )
+
+[node name="QuestTargetObjects" type="ResourcePreloader" parent="."]
+
+[node name="ThoughtBubble" type="Sprite" parent="."]
+position = Vector2( -52, -63 )
+texture = ExtResource( 4 )
+
+[node name="DialogLabel" type="Label" parent="."]
+material = SubResource( 3 )
+margin_left = 6.0
+margin_top = -135.0
+margin_right = 98.0
+margin_bottom = -43.0
+rect_min_size = Vector2( 150, 92 )
+custom_colors/font_color = Color( 0.831373, 0.831373, 0.831373, 1 )
+custom_fonts/font = ExtResource( 5 )
+autowrap = true
+
+[node name="QuestDiscoveredNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="PotentialRequiredItems" type="Node2D" parent="."]
+
+[node name="ForgedBooks" parent="PotentialRequiredItems" instance=ExtResource( 6 )]
+visible = false
+item_details = {
+"is_unique": true,
+"item_name": "Set of Forged Books",
+"notes_for_journal": "A number of phoney records pertaining to shipping, receiving, and invoicing. Some of it seems like code. Probably a money laundering scheme.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="InteractInstruction" type="Label" parent="."]
+margin_left = 42.0
+margin_top = -83.0
+margin_right = 136.0
+margin_bottom = -6.0
+custom_fonts/font = ExtResource( 7 )
+text = "[F]"
+
+[node name="PotentialRewards" type="Node2D" parent="."]
+
+[node name="TalkClue" parent="PotentialRewards" instance=ExtResource( 8 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Mayor's Take",
+"notes_for_journal": "O'Donnell never liked me, so he's not likely to help. But deep down inside he might still have a kernel of goodness. I know he didn't wish any harm on Tommy. On questioning, he suggested that Tommy was probably in deep with the Romano family. Gambling. Figures. ",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]

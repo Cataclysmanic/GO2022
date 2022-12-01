@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/PatrolRoutePathFollowTarget2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteTemplate.gd" type="Script" id=2]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -120, 65, 0, 0, 0, 0, -120, -17, 0, 0, 0, 0, -3, -138, 0, 0, 0, 0, 130, -136, 0, 0, 0, 0, 265, -61, 0, 0, 0, 0, 267, 58, 0, 0, 0, 0, 159, 153, 0, 0, 0, 0, -17, 159, 0, 0, 0, 0, -120, 65 )
+}
+
+[node name="NPCPatrolRoute" type="Node2D"]
+position = Vector2( -1, -1 )
+scale = Vector2( 0.47402, 0.47402 )
+script = ExtResource( 2 )
+
+[node name="SpawnPoint" type="Position2D" parent="."]
+position = Vector2( -1, -1 )
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -72, -14 )
+curve = SubResource( 1 )
+
+[node name="SpeedAffectZones" type="Node2D" parent="."]
+position = Vector2( -1, 0 )
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "follower" ), [ ExtResource( 1 ) ] ]

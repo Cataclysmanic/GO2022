@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/ParkFloor.png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteCircle.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/NPCs/weasel-chibi.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Items/collectables/2D/MiscClue2DPickup.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
@@ -92,6 +96,45 @@ location_details = "Hidden in the bushes"
 position = Vector2( -24, -28 )
 location_address = "Washington Park"
 location_details = "Under the big statue"
+
+[node name="WillTheWeasel" parent="." instance=ExtResource( 12 )]
+position = Vector2( -81, -22 )
+scale = Vector2( 0.351359, 0.351359 )
+npc_name = "William the Weasel"
+dialog_unmet_requirements = PoolStringArray( "Hey Worth, why are you always hassling me\?", "I\'m no rat snitch. I\'m a professional. Just bring me the thing I want first." )
+dialog_fulfilled_requirements = PoolStringArray( "Ok. Here\'s the scoop.", "The mayor\'s pockets are lined alright. Fusili Romano is the man behind the man. He pays for everything.", "Here. As a reward for your help, I managed to secure this dinner reservation at Romanos. Just for you. Take it." )
+Sprite_Tex = ExtResource( 9 )
+Portrait_Tex = ExtResource( 9 )
+
+[node name="Rewards" type="Node2D" parent="WillTheWeasel"]
+position = Vector2( -94, 26 )
+scale = Vector2( 0.553613, 0.553613 )
+
+[node name="DinnerReservation" parent="WillTheWeasel/Rewards" instance=ExtResource( 13 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Dinner Reservation for Romanos Pizzeria",
+"notes_for_journal": "Strangely, this pizzeria is exceedingly hard to get into. Even the mayor can't get a table. Luckily, you secured this reservation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Requirements" type="Node2D" parent="WillTheWeasel"]
+position = Vector2( -94, 26 )
+scale = Vector2( 0.553613, 0.553613 )
+
+[node name="JobOffer" parent="WillTheWeasel/Requirements" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Job Offer from Fusili Romano",
+"notes_for_journal": "Will the Weasel doesn't get any respect. He wants to be a player in this city, but he doesn't have the steel. Anyways, you secured him a job offer with Fusili Romano. It's a start.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

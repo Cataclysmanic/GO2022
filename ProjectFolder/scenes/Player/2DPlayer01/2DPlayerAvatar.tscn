@@ -4,7 +4,6 @@
 [ext_resource path="res://scenes/Items/tools/CircleOmniLight.png" type="Texture" id=2]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Player/2DPlayer01/2DPlayer.gd" type="Script" id=4]
-[ext_resource path="res://scenes/Player/PaperDoll/PaperDoll.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/Player/2DPlayer01/ZoomingCamera2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/Items/weapons/Gun2D.tscn" type="PackedScene" id=8]
@@ -18,6 +17,7 @@
 [ext_resource path="res://scenes/_common/GUI/sfx/oooh.wav" type="AudioStream" id=16]
 [ext_resource path="res://scenes/_common/GUI/sfx/huh.wav" type="AudioStream" id=17]
 [ext_resource path="res://scenes/_common/GUI/sfx/notEnoughEnergy.wav" type="AudioStream" id=18]
+[ext_resource path="res://scenes/Player/PaperDoll/DetectiveSideViewPaperDoll-SugarFather.tscn" type="PackedScene" id=19]
 
 [sub_resource type="CanvasItemMaterial" id=3]
 light_mode = 1
@@ -133,10 +133,10 @@ font_data = SubResource( 27 )
 [sub_resource type="CanvasItemMaterial" id=26]
 light_mode = 1
 
-[node name="PlayerDetective" type="KinematicBody2D"]
+[node name="PlayerDetective" type="KinematicBody2D" groups=["Player"]]
 material = SubResource( 3 )
 scale = Vector2( 1.25, 1.25 )
-collision_mask = 62
+collision_mask = 126
 script = ExtResource( 4 )
 
 [node name="DashAudio" type="Node" parent="."]
@@ -185,13 +185,11 @@ energy = 0.3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 4 )
 
-[node name="PaperDoll" parent="." instance=ExtResource( 5 )]
-position = Vector2( -6, 0 )
-scale = Vector2( 0.207514, 0.207514 )
+[node name="PaperDoll" parent="." instance=ExtResource( 19 )]
 
 [node name="TargetArea" type="Area2D" parent="PaperDoll"]
-position = Vector2( 28.9137, 0 )
-scale = Vector2( 4.81895, 4.81895 )
+position = Vector2( -9.15527e-06, 0 )
+scale = Vector2( 4, 4 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PaperDoll/TargetArea"]
 
@@ -324,7 +322,11 @@ custom_fonts/font = ExtResource( 12 )
 text = "State"
 align = 1
 
+[node name="QuestNotificationTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="MeleeAttackZone" to="." method="_on_MeleeAttackZone_body_entered"]
 [connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_DeathTimer_timeout"]
 [connection signal="timeout" from="Timers/InvulnerbailityTimer" to="." method="_on_InvulnerbailityTimer_timeout"]
 [connection signal="timeout" from="Timers/DyingWarningUpdateTimer" to="." method="_on_DyingWarningUpdateTimer_timeout"]
+[connection signal="timeout" from="QuestNotificationTimer" to="." method="_on_QuestNotificationTimer_timeout"]

@@ -8,6 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$VBoxContainer/PanelContainer/Body/GridContainer/DifficultySlider.grab_focus()
 	find_node("GoreCheckButton").pressed = Global.user_preferences["gore"]
 	find_node("ShakeNFlashButton").pressed = Global.user_preferences["shake_and_flash"]
 

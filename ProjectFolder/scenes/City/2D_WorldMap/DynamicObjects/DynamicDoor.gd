@@ -52,11 +52,11 @@ func cutout_shape(navPolyInstance):
 	var parent_navpoly = navPolyInstance.get_navigation_polygon()
 	var myOutline = get_door_outline()
 	# when do we translate this to match the city map?
-	print("bigmap outline count: " + str(parent_navpoly.get_outline_count()))
-	print("bigmap outlines[0]:")
-	print(parent_navpoly.get_outline(0))
-	print("door outline: ")
-	print(myOutline)
+#	print("bigmap outline count: " + str(parent_navpoly.get_outline_count()))
+#	print("bigmap outlines[0]:")
+#	print(parent_navpoly.get_outline(0))
+#	print("door outline: ")
+#	print(myOutline)
 	parent_navpoly.add_outline(myOutline)
 	parent_navpoly.make_polygons_from_outlines()
 

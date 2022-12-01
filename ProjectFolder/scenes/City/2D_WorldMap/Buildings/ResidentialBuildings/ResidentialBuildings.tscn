@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidencesFloors.png" type="Texture" id=2]
@@ -8,12 +8,37 @@
 [ext_resource path="res://scenes/NPCs/MookNPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/_common/GUI/fonts/VolkornMediumFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Test Assets/MalteseFalcon.png" type="Texture" id=9]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteTemplate.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/Items/collectables/2D/MiscClue2DPickup.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/NPCs/ChalkOutline.png" type="Texture" id=22]
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=23]
+[ext_resource path="res://scenes/Items/trapdoor.png" type="Texture" id=24]
+[ext_resource path="res://scenes/NPCs/lauren bacall.png" type="Texture" id=25]
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/Trapdoor.gd" type="Script" id=27]
+[ext_resource path="res://scenes/_common/Materials/SmallWhiteSquare.png" type="Texture" id=28]
+[ext_resource path="res://scenes/Items/collectables/2D/RustyKey2DPickup.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/Items/collectables/2D/BronzeKey2DPickup.tscn" type="PackedScene" id=30]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 478.5, 369.764 )
 
 [sub_resource type="CanvasItemMaterial" id=6]
 light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 43.2032, 39.3456 )
 
 [node name="ResidentialBuildings" type="Node2D"]
 script = ExtResource( 5 )
@@ -43,46 +68,32 @@ shape = SubResource( 1 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
-visible = false
 
-[node name="Position2D" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 153.188, -144.307 )
+[node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( -160, -115 )
 
-[node name="Position2D2" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 150.968, -71.5987 )
+[node name="NPCPatrolRoute2" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( -143, 61 )
 
-[node name="Position2D3" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -121.551, -101.015 )
+[node name="NPCPatrolRoute3" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( -109, 130 )
+scale = Vector2( 0.153497, 0.960775 )
 
-[node name="Position2D4" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -119.886, 77.1489 )
+[node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 106, -160 )
+scale = Vector2( 0.90424, 0.596022 )
 
-[node name="Position2D5" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 61.0531, 144.307 )
+[node name="NPCPatrolRoute5" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 91, -80 )
+scale = Vector2( 1.03708, 0.721461 )
 
-[node name="Position2D6" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 59.388, -81.0341 )
+[node name="NPCPatrolRoute6" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 46, -90 )
+scale = Vector2( 0.317506, 0.308424 )
 
-[node name="Position2D7" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -62.1632, -63.8283 )
-
-[node name="Position2D8" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 55.5028, -143.752 )
-
-[node name="Position2D9" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 187.045, 161.513 )
-
-[node name="Position2D10" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( 195.925, 103.235 )
-
-[node name="Position2D11" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -72.7087, 91.5797 )
-
-[node name="Position2D12" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -72.1537, 158.738 )
-
-[node name="Position2D13" type="Position2D" parent="PossibleSpawnPoints"]
-position = Vector2( -134.872, 135.982 )
+[node name="NPCPatrolRoute7" parent="PossibleSpawnPoints" instance=ExtResource( 15 )]
+position = Vector2( 89, -115 )
+scale = Vector2( 1.06781, 0.409674 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
@@ -161,6 +172,7 @@ text = "Player Present: False"
 align = 1
 
 [node name="PossibleQuestTargetLocations" type="Node2D" parent="."]
+visible = false
 
 [node name="QuestTargetLocation" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 location_address = "95 1st St"
@@ -177,9 +189,420 @@ location_address = "107 Main St"
 location_details = "The crappy looking house down the road."
 
 [node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 117, 100 )
-location_address = "95 Main St"
+position = Vector2( 55, -52 )
+location_address = "95 1st St"
 location_details = "In the office inside the house on the corner."
+
+[node name="House1_NW" type="Node2D" parent="."]
+rotation = 0.0129179
+
+[node name="KickableChair" parent="House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -163.826, -62.889 )
+rotation = 3.14159
+scale = Vector2( 0.433173, 0.433173 )
+
+[node name="DeskSearchable" parent="House1_NW" instance=ExtResource( 13 )]
+position = Vector2( -160.658, -49.9289 )
+rotation = 3.14159
+
+[node name="Paper" parent="House1_NW/DeskSearchable" instance=ExtResource( 12 )]
+visible = false
+
+[node name="Bandage" parent="House1_NW/DeskSearchable" instance=ExtResource( 11 )]
+visible = false
+
+[node name="Couch" parent="House1_NW" instance=ExtResource( 16 )]
+position = Vector2( -63.532, -118.189 )
+rotation = -2.87979
+
+[node name="PottedPlant" parent="House1_NW" instance=ExtResource( 10 )]
+position = Vector2( -170.523, -116.82 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="PottedPlant2" parent="House1_NW" instance=ExtResource( 10 )]
+position = Vector2( -50.0164, -78.3605 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="KickableChair2" parent="House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -67.2346, -95.1394 )
+scale = Vector2( 0.306544, 0.306544 )
+
+[node name="KickableChair3" parent="House1_NW" instance=ExtResource( 14 )]
+position = Vector2( -123.649, -49.4069 )
+rotation = -0.0416951
+scale = Vector2( 0.27154, 0.27154 )
+
+[node name="TableLamp" parent="House1_NW" instance=ExtResource( 17 )]
+position = Vector2( -150.628, -125.065 )
+rotation = -0.0416951
+scale = Vector2( 0.126476, 0.126476 )
+
+[node name="ChalkOutline" type="Sprite" parent="House1_NW"]
+position = Vector2( -124.243, -95.403 )
+rotation = 5.51681
+scale = Vector2( 0.0501231, 0.0501231 )
+texture = ExtResource( 22 )
+
+[node name="MiscClue-unusual-slug" parent="House1_NW" instance=ExtResource( 18 )]
+position = Vector2( -117.36, -104.493 )
+scale = Vector2( 0.22106, 0.22106 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Clue - Bullet Slug",
+"notes_for_journal": "This slug doesn't look like any modern weapon. Just some round lump of leadshot, like a musket ball, or a flintloque.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue-double-crosser" parent="House1_NW" instance=ExtResource( 19 )]
+position = Vector2( -122.134, -164.436 )
+scale = Vector2( 0.194458, 0.194458 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Clue - remembering Tommy",
+"notes_for_journal": "I spent my best days at the police academy alongside Tommy. Best friend you could ever have; until he double crossed me.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue-double-crosser2" parent="House1_NW" instance=ExtResource( 19 )]
+position = Vector2( -106.8, -138.632 )
+scale = Vector2( 0.194458, 0.194458 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Clue - the falling out",
+"notes_for_journal": "Tommy was too good for this city. If he hadn't turned me in for that thing, back in the day, I would still be a cop. Would never have lost my badge.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MiscClue-DoorBrickedIn" parent="House1_NW" instance=ExtResource( 18 )]
+position = Vector2( -54.6285, -48.2984 )
+scale = Vector2( 0.211977, 0.211977 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Door Bricked In Hastily",
+"notes_for_journal": "Last time I was here, this was a back door. Looks like someone has bricked it up since then. I better check with the labourers union.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Trapdoor" type="Sprite" parent="."]
+position = Vector2( 116, 102 )
+scale = Vector2( 0.173598, 0.152494 )
+texture = ExtResource( 24 )
+script = ExtResource( 27 )
+
+[node name="Area2D" type="Area2D" parent="Trapdoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trapdoor/Area2D"]
+position = Vector2( -2.88017, 0.000185378 )
+shape = SubResource( 7 )
+
+[node name="House2_NE" type="Node2D" parent="."]
+
+[node name="KickableChair" parent="House2_NE" instance=ExtResource( 14 )]
+position = Vector2( 126, -143 )
+rotation = -1.57079
+scale = Vector2( 0.330533, 0.330533 )
+
+[node name="DeskSearchable2" parent="House2_NE" instance=ExtResource( 13 )]
+position = Vector2( 113, -145 )
+rotation = -1.57079
+
+[node name="PaperClue" parent="House2_NE/DeskSearchable2" instance=ExtResource( 20 )]
+visible = false
+scale = Vector2( 0.367318, 0.367318 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Clue - Receipt from Mockingbird Nightclub",
+"notes_for_journal": "Physical Evidence - This receipt puts Mayor O'Donnell at a nightclub during the time of the murder. Of course, ticket stubs could be forged.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="DeskSearchable3" parent="House2_NE" instance=ExtResource( 13 )]
+position = Vector2( 48, -145 )
+rotation = -1.57079
+
+[node name="PaperClue" parent="House2_NE/DeskSearchable3" instance=ExtResource( 29 )]
+position = Vector2( -2.90399, 3.09921 )
+scale = Vector2( 0.129406, 0.125265 )
+
+[node name="TableLamp" parent="House2_NE" instance=ExtResource( 17 )]
+position = Vector2( 170, -110 )
+
+[node name="PottedPlant" parent="House2_NE" instance=ExtResource( 10 )]
+position = Vector2( 50, -53 )
+
+[node name="Couch" parent="House2_NE" instance=ExtResource( 16 )]
+position = Vector2( 58, -110 )
+rotation = 3.14159
+
+[node name="MemoryClue" parent="House2_NE" instance=ExtResource( 19 )]
+position = Vector2( 154, -24 )
+scale = Vector2( 0.190021, 0.190021 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Memory - O'Donnell back in the day.",
+"notes_for_journal": "I remember O'Donnell from the force. He was chief of police while I was a cop. Didn't like me. In fact, he seemed delighted the day he took my badge.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue2" parent="House2_NE" instance=ExtResource( 19 )]
+position = Vector2( 116, -75 )
+scale = Vector2( 0.164602, 0.164602 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Reflection Clue - Politics",
+"notes_for_journal": "I don't know much about politics, but I know Mayor O'Donnell is a rising star in that world. He's got deep pockets. Someone must be funding his campaigns.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MayorOdonnel" parent="House2_NE" instance=ExtResource( 26 )]
+position = Vector2( 155, -66 )
+scale = Vector2( 0.2, 0.2 )
+spawn_random_quest_objective = false
+dialog_unmet_requirements = PoolStringArray( "It\'s you. What was your name again\?", "You\'re going to see the inside of a jail cell before the night is out." )
+dialog_fulfilled_requirements = PoolStringArray( "What\'s this\?", "Dinner\? At Romano\'s Pizzeria\? Fantastic!", "Clearly I misjudged you, Worth. Take this special Get out of Jail Free Card.", "Perks of the Job. Just don\'t mention how you got it." )
+Sprite_Tex = ExtResource( 23 )
+Portrait_Tex = ExtResource( 23 )
+
+[node name="Requirements" type="Node2D" parent="House2_NE/MayorOdonnel"]
+visible = false
+
+[node name="DinnerReservation" parent="House2_NE/MayorOdonnel/Requirements" instance=ExtResource( 18 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Dinner Reservation for Romanos Pizzeria",
+"notes_for_journal": "Strangely, this pizzeria is exceedingly hard to get into. Even the mayor can't get a table. Luckily, you secured this reservation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Rewards" type="Node2D" parent="House2_NE/MayorOdonnel"]
+visible = false
+
+[node name="GetOutOfJailCard" parent="House2_NE/MayorOdonnel/Rewards" instance=ExtResource( 20 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Get out of Jail card",
+"notes_for_journal": "It's surprising that with a mature, well-entrenched justice system, one mayor could furnish you with a get out of jail free card. Yet, here it is. Just show it to the judge.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="House3_SW" type="Node2D" parent="."]
+
+[node name="whiteSprite" type="Sprite" parent="House3_SW"]
+self_modulate = Color( 1, 1, 1, 0.537255 )
+position = Vector2( -88, 66 )
+scale = Vector2( 1.31251, 1.31251 )
+texture = ExtResource( 28 )
+
+[node name="FalconEasterEggSprite" type="Sprite" parent="House3_SW"]
+modulate = Color( 1, 1, 1, 0.654902 )
+position = Vector2( -88, 66 )
+scale = Vector2( 0.0201391, 0.0215304 )
+texture = ExtResource( 9 )
+
+[node name="PottedPlant" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( -92, 74 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant2" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( -81, 60 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant3" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( -93, 60 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant5" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( -81, 70 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant4" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( 138, 107 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant6" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( 122, 95 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant7" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( 110, 95 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="PottedPlant8" parent="House3_SW" instance=ExtResource( 10 )]
+position = Vector2( 151, 103 )
+scale = Vector2( 0.221731, 0.232662 )
+
+[node name="Couch" parent="House3_SW" instance=ExtResource( 16 )]
+position = Vector2( -142, 84 )
+rotation = 1.57079
+
+[node name="TableLamp" parent="House3_SW" instance=ExtResource( 17 )]
+position = Vector2( -62, 99 )
+rotation = 1.57079
+
+[node name="DeskSearchable" parent="House3_SW" instance=ExtResource( 13 )]
+position = Vector2( -136, 188 )
+rotation = 3.14159
+scale = Vector2( 0.714495, 0.714495 )
+
+[node name="PaperClue" parent="House3_SW/DeskSearchable" instance=ExtResource( 20 )]
+visible = false
+scale = Vector2( 0.452458, 0.452458 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Mortgage Overdue Clue",
+"notes_for_journal": "Mortgage Overdue, payment in arrears. 107 Main St. Payment has been transferred to collection service of the Romano corporation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="DeskSearchable2" parent="House3_SW" instance=ExtResource( 13 )]
+position = Vector2( -143, 134 )
+rotation = 4.70679
+scale = Vector2( 0.714495, 0.714495 )
+
+[node name="PaperClue" parent="House3_SW/DeskSearchable2" instance=ExtResource( 30 )]
+
+[node name="SonClue" parent="House3_SW" instance=ExtResource( 21 )]
+position = Vector2( -120, 94 )
+scale = Vector2( 0.179877, 0.179877 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "TalkClue",
+"notes_for_journal": "On Questioning, Lauren Valiant declared \"Why would I kill my own son? Are you crazy?\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MortgageClue" parent="House3_SW" instance=ExtResource( 21 )]
+position = Vector2( -122, 74 )
+scale = Vector2( 0.179877, 0.179877 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "TalkClue",
+"notes_for_journal": "\"Yeah, I'm behind on my mortgage. So what?\" -- Lauren Valiant, mother of the victim.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="NPCLaurenWinter" parent="House3_SW" instance=ExtResource( 26 )]
+position = Vector2( -73, 136 )
+scale = Vector2( 0.272274, 0.272274 )
+dialog_unmet_requirements = PoolStringArray( "Listen Andrew,", "I\'ll help you if you can get Romano off my back." )
+dialog_fulfilled_requirements = PoolStringArray( "He waived the overage fees\?", "Thank you so much!", "Listen. If you\'re still interested in that old house next door,", "The previous owners asked me to check in on the place now and then. I might still have a key in my desk." )
+Sprite_Tex = ExtResource( 25 )
+Portrait_Tex = ExtResource( 25 )
+
+[node name="Sprite" parent="House3_SW/NPCLaurenWinter" index="1"]
+scale = Vector2( 0.144877, 0.144877 )
+texture = ExtResource( 25 )
+
+[node name="Requirements" type="Node2D" parent="House3_SW/NPCLaurenWinter"]
+
+[node name="Evidence" parent="House3_SW/NPCLaurenWinter/Requirements" instance=ExtResource( 12 )]
+visible = false
+item_details = {
+"is_unique": true,
+"item_name": "Eyewitness Account of Fusili Romano paying off the Mayor",
+"notes_for_journal": "A transcript from an interview with an eyewitness. It describes the Mob Boss in cahoots with the corrupt mayor.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Rewards" type="Node2D" parent="House3_SW/NPCLaurenWinter"]
+
+[node name="TalkClue" parent="House3_SW/NPCLaurenWinter/Rewards" instance=ExtResource( 21 )]
+visible = false
+scale = Vector2( 0.550716, 0.550716 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Lead - Talk to Will, the snitch.",
+"notes_for_journal": "Lauren Valiant seems to think Will the Snitch might have some compelling information about the Mayor, which might be of interest to Fusili Romano, which might get him off her case. Of course, she's too timid to pursue the lead, but that's what I do.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="PhotoAlbum" parent="House3_SW/NPCLaurenWinter/Rewards" instance=ExtResource( 20 )]
+visible = false
+scale = Vector2( 0.551319, 0.551319 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Lauren Valiant's Photo Album",
+"notes_for_journal": "I almost couldn't bear to sit through her long family photos presentation. My heart nearly stopped when she showed me the photograph of her daughter. The woman in the photograph was definitely not the woman, Veronica, who turned up at my office earlier. Why was the Dame lying about her identity?",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="EyewitnessAccountTwoGunshots" parent="House3_SW/NPCLaurenWinter/Rewards" instance=ExtResource( 12 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Eyewitness Account of Shooting",
+"notes_for_journal": "Lauren Valiant claims to have heard 2 shots that evening, a short time before the police arrived. If that's true, what accounts for the second shot?",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="House4_SE" type="Node2D" parent="."]
+
+[node name="LockedHouseClue" parent="House4_SE" instance=ExtResource( 18 )]
+position = Vector2( 173, 216 )
+scale = Vector2( 0.302193, 0.302193 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Locked House",
+"notes_for_journal": "The Door is locked. Place seems kind of boarded up. I wonder if the neighbours know anything about it.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Trapdoor/Area2D" to="Trapdoor" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Trapdoor/Area2D" to="Trapdoor" method="_on_Area2D_body_exited"]
+
+[editable path="House3_SW/NPCLaurenWinter"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/One_Freelander_Horn.ogg-7e6f2c1ea09720bf37e761d3beddb899.oggstr"
+
+[deps]
+
+source_file="res://scenes/City/2D_WorldMap/audio/CarHorns/One_Freelander_Horn.ogg"
+dest_files=[ "res://.import/One_Freelander_Horn.ogg-7e6f2c1ea09720bf37e761d3beddb899.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

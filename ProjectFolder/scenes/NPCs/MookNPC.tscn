@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://scenes/NPCs/Line2D.gd" type="Script" id=1]
 [ext_resource path="res://scenes/NPCs/MookNPC.gd" type="Script" id=2]
@@ -8,9 +8,9 @@
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_3.wav" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Items/weapons/MuzzleFlash.png" type="Texture" id=7]
 [ext_resource path="res://scenes/_common/GUI/sfx/oof.wav" type="AudioStream" id=8]
-[ext_resource path="res://scenes/NPCs/mook-top-down.png" type="Texture" id=9]
-[ext_resource path="res://scenes/NPCs/fist of fury.png" type="Texture" id=10]
-[ext_resource path="res://scenes/Items/collectables/2D/Magazine2DPickup.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=9]
+[ext_resource path="res://scenes/Items/collectables/2D/GunModuleUpgrade.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Items/collectables/2D/CircumstantialClue2DPickup.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=12]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_4.wav" type="AudioStream" id=13]
 [ext_resource path="res://scenes/NPCs/NPCGuns/Gun_9mm_2.wav" type="AudioStream" id=14]
@@ -20,20 +20,19 @@
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=18]
 [ext_resource path="res://scenes/NPCs/DynamicVisionCone.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/NPCs/AlertedSprite.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/NPCs/FemmeFataleBossPaperDoll.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/NPCs/ShootyMookPaperDoll.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/NPCs/MeleeMookPaperDoll.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Items/weapons/GunshotNoises/placeholder snake.wav" type="AudioStream" id=24]
+[ext_resource path="res://scenes/NPCs/OldPalPaperDoll.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 27.5, 25 )
 
-[sub_resource type="CanvasItemMaterial" id=5]
-light_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id=13]
-blend_mode = 1
-
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/path = NodePath("Corpse:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -42,123 +41,15 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.0 ]
+"values": [ false ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
+tracks/1/path = NodePath("NPCGun/Muzzle/MuzzleFlash:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/FistL:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite/FistR:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite/FistL:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 21.9557, -14.4917 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite/FistL:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Sprite/FistR:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 21.9557, 19.3223 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("Sprite/FistR:rotation_degrees")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("Corpse:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("Sprite:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-tracks/10/type = "value"
-tracks/10/path = NodePath("Sprite/NPCGun/Muzzle/MuzzleFlash:visible")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -169,59 +60,23 @@ tracks/10/keys = {
 resource_name = "die"
 length = 3.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/path = NodePath("Corpse:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 113.16 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.366204, 1.4011 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Corpse:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=4]
 resource_name = "hit"
 length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/BloodSpurtParticles:emitting")
+tracks/0/path = NodePath("BloodSpurtParticles:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -237,112 +92,16 @@ tracks/0/keys = {
 resource_name = "punch"
 length = 0.5
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/FistL:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 21.9557, -14.4917 ), Vector2( 35.1292, -24.1528 ), Vector2( 48.3026, -9.66113 ), Vector2( 21.9557, -14.4917 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/FistR:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 21.9557, 19.3223 ), Vector2( 21.9557, 19.3223 ), Vector2( 35.1291, 24.1528 ), Vector2( 53.1445, 9.38971 ), Vector2( 21.9557, 19.3223 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite/FistL:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, true, false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite/FistR:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ true, true, false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite/FistL:rotation_degrees")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, 35.5457, 0.0 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite/FistR:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 0.0, -32.3755, 0.0 ]
-}
 
 [sub_resource type="Animation" id=10]
 resource_name = "relax"
 length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/FistR:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/FistL:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
 
 [sub_resource type="Animation" id=14]
 resource_name = "shoot"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite/NPCGun/Muzzle/MuzzleFlash:visible")
+tracks/0/path = NodePath("NPCGun/Muzzle/MuzzleFlash:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -363,10 +122,21 @@ extents = Vector2( 59.2805, 65.2127 )
 [sub_resource type="CanvasItemMaterial" id=12]
 blend_mode = 1
 
+[sub_resource type="CanvasItemMaterial" id=13]
+blend_mode = 1
+
 [node name="MookNPC" type="KinematicBody2D" groups=["NPCs"]]
 collision_layer = 2
 collision_mask = 59
 script = ExtResource( 2 )
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="vizSpriteHiddenInCode" type="Sprite" parent="Sprite"]
+position = Vector2( -9, -10 )
+scale = Vector2( 0.0929116, 0.0929116 )
+texture = ExtResource( 9 )
+offset = Vector2( -10.7629, -53.8146 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -380,102 +150,6 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 17.5, -1.78814e-06 )
 shape = SubResource( 16 )
-
-[node name="Sprite" type="Node2D" parent="."]
-light_mask = 0
-material = SubResource( 5 )
-
-[node name="Body" type="Sprite" parent="Sprite"]
-position = Vector2( 4.76837e-06, -1.19209e-06 )
-scale = Vector2( 0.205586, 0.205586 )
-texture = ExtResource( 9 )
-
-[node name="FistL" type="Sprite" parent="Sprite"]
-position = Vector2( 21.9557, -14.4917 )
-scale = Vector2( 0.33, 0.33 )
-texture = ExtResource( 10 )
-
-[node name="FistR" type="Sprite" parent="Sprite"]
-position = Vector2( 21.9557, 19.3223 )
-scale = Vector2( 0.33, 0.33 )
-texture = ExtResource( 10 )
-flip_v = true
-
-[node name="BloodSpurtParticles" type="CPUParticles2D" parent="Sprite"]
-emitting = false
-lifetime = 3.0
-one_shot = true
-explosiveness = 0.7
-randomness = 0.2
-local_coords = false
-direction = Vector2( 0, -1 )
-spread = 60.0
-initial_velocity = 80.0
-scale_amount = 4.0
-scale_amount_random = 0.5
-color = Color( 0.827451, 0.0901961, 0.0901961, 1 )
-
-[node name="NPCGun" type="Node2D" parent="Sprite"]
-position = Vector2( 35.1292, -14.4917 )
-
-[node name="RayCast2D" type="RayCast2D" parent="Sprite/NPCGun"]
-position = Vector2( -35.1292, 14.4917 )
-rotation = -1.57079
-enabled = true
-cast_to = Vector2( 0, 1000 )
-collision_mask = 45
-
-[node name="LaserScope" type="Line2D" parent="Sprite/NPCGun/RayCast2D"]
-position = Vector2( -6.31224, 0.635096 )
-points = PoolVector2Array( 0, 0, 0, 1000 )
-width = 1.0
-default_color = Color( 1, 0, 0, 0.282353 )
-
-[node name="GunSprite" type="Sprite" parent="Sprite/NPCGun"]
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 5 )
-
-[node name="Muzzle" type="Position2D" parent="Sprite/NPCGun"]
-position = Vector2( -30.9198, -0.927891 )
-
-[node name="MuzzleFlash" type="Sprite" parent="Sprite/NPCGun/Muzzle"]
-visible = false
-material = SubResource( 13 )
-position = Vector2( 17.9484, -3.8147e-06 )
-texture = ExtResource( 7 )
-
-[node name="ReloadTimer" type="Timer" parent="Sprite/NPCGun"]
-wait_time = 0.5
-one_shot = true
-
-[node name="TriggerFingerTimer" type="Timer" parent="Sprite/NPCGun"]
-wait_time = 0.2
-one_shot = true
-
-[node name="Ammo" type="ResourcePreloader" parent="Sprite/NPCGun"]
-resources = [ PoolStringArray( "bullet" ), [ ExtResource( 4 ) ] ]
-
-[node name="GunshotNoises" type="Node2D" parent="Sprite/NPCGun"]
-
-[node name="GunshotNoise1" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
-stream = ExtResource( 16 )
-bus = "Gunshots"
-
-[node name="GunshotNoise2" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
-stream = ExtResource( 14 )
-bus = "Gunshots"
-
-[node name="GunshotNoise3" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
-stream = ExtResource( 6 )
-bus = "Gunshots"
-
-[node name="GunshotNoise4" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
-stream = ExtResource( 13 )
-bus = "Gunshots"
-
-[node name="GunshotNoise5" type="AudioStreamPlayer2D" parent="Sprite/NPCGun/GunshotNoises"]
-stream = ExtResource( 15 )
-bus = "Gunshots"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 2 )
@@ -494,7 +168,7 @@ stream = ExtResource( 8 )
 volume_db = 10.0
 
 [node name="SpawnOnDeath" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "Bandage2DPickup", "Magazine2DPickup" ), [ ExtResource( 17 ), ExtResource( 11 ) ] ]
+resources = [ PoolStringArray( "Bandage2DPickup", "CircumstantialClue2DPickup", "GunModuleUpgrade" ), [ ExtResource( 17 ), ExtResource( 11 ), ExtResource( 10 ) ] ]
 
 [node name="damage_area" type="Area2D" parent="."]
 
@@ -539,12 +213,107 @@ joint_mode = 2
 script = ExtResource( 1 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
-resources = [ PoolStringArray( "AlertedSprite" ), [ ExtResource( 20 ) ] ]
+resources = [ PoolStringArray( "AlertedSprite", "DynamicVisionCone", "punchy", "ressurected\?", "shooty", "snakey" ), [ ExtResource( 20 ), ExtResource( 19 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 22 ), ExtResource( 21 ) ] ]
+
+[node name="NPCGun" type="Node2D" parent="."]
+position = Vector2( 35.1292, -14.4917 )
+
+[node name="RayCast2D" type="RayCast2D" parent="NPCGun"]
+position = Vector2( -41.1292, -0.508301 )
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 0, 750 )
+collision_mask = 45
+
+[node name="LaserScope" type="Line2D" parent="NPCGun/RayCast2D"]
+position = Vector2( -1.43051e-06, 0 )
+points = PoolVector2Array( 0, 0, 0, 750 )
+width = 1.0
+default_color = Color( 1, 0, 0, 0.282353 )
+
+[node name="GunSprite" type="Sprite" parent="NPCGun"]
+visible = false
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Muzzle" type="Position2D" parent="NPCGun"]
+position = Vector2( 20.8708, -0.5083 )
+
+[node name="MuzzleFlash" type="Sprite" parent="NPCGun/Muzzle"]
+visible = false
+material = SubResource( 13 )
+position = Vector2( 17.9484, -3.8147e-06 )
+texture = ExtResource( 7 )
+
+[node name="ReloadTimer" type="Timer" parent="NPCGun"]
+wait_time = 1.5
+one_shot = true
+
+[node name="TriggerFingerTimer" type="Timer" parent="NPCGun"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Ammo" type="ResourcePreloader" parent="NPCGun"]
+resources = [ PoolStringArray( "bullet" ), [ ExtResource( 4 ) ] ]
+
+[node name="GunshotNoises" type="Node2D" parent="NPCGun"]
+
+[node name="GunshotNoise1" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
+stream = ExtResource( 16 )
+bus = "Gunshots"
+
+[node name="GunshotNoise2" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
+stream = ExtResource( 14 )
+bus = "Gunshots"
+
+[node name="GunshotNoise3" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
+stream = ExtResource( 6 )
+bus = "Gunshots"
+
+[node name="GunshotNoise4" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
+stream = ExtResource( 13 )
+bus = "Gunshots"
+
+[node name="GunshotNoise5" type="AudioStreamPlayer2D" parent="NPCGun/GunshotNoises"]
+stream = ExtResource( 15 )
+bus = "Gunshots"
+
+[node name="SnakeNoise" type="Node2D" parent="NPCGun"]
+
+[node name="Snake" type="AudioStreamPlayer2D" parent="NPCGun/SnakeNoise"]
+stream = ExtResource( 24 )
+volume_db = -7.0
+
+[node name="BloodSpurtParticles" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.7
+randomness = 0.2
+local_coords = false
+direction = Vector2( 0, -1 )
+spread = 60.0
+initial_velocity = 80.0
+scale_amount = 4.0
+scale_amount_random = 0.5
+color = Color( 0.827451, 0.0901961, 0.0901961, 1 )
+
+[node name="Gibs" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.66
+direction = Vector2( 0, -1 )
+gravity = Vector2( 0, 200 )
+initial_velocity = 200.0
+initial_velocity_random = 0.5
+scale_amount = 24.0
+color = Color( 0.32549, 0, 0, 0.878431 )
 
 [connection signal="timeout" from="NavUpdateTimer" to="." method="_on_NavUpdateTimer_timeout"]
-[connection signal="timeout" from="Sprite/NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
-[connection signal="timeout" from="Sprite/NPCGun/TriggerFingerTimer" to="." method="_on_TriggerFingerTimer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="PunchingArea" to="." method="_on_PunchingArea_body_entered"]
 [connection signal="body_exited" from="PunchingArea" to="." method="_on_PunchingArea_body_exited"]
+[connection signal="timeout" from="NPCGun/ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="NPCGun/TriggerFingerTimer" to="." method="_on_TriggerFingerTimer_timeout"]

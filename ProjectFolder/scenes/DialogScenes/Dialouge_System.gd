@@ -40,5 +40,5 @@ func _on_AudioStreamPlayer_finished():
 	$AudioStreamPlayer.playing = false
 
 func _on_Fade_Player_animation_finished(_anim_name):
-	print(scene_to_change_to)
+	#print(scene_to_change_to)
 	Global.world_controller.change_scene_to(scene_to_change_to)

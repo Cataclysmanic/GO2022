@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ATM City Loop-short-multi.ogg-5e3ab55d72763dac16a19987828452c1.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/GUI/sfx/ATM City Loop-short-multi.ogg"
+dest_files=[ "res://.import/ATM City Loop-short-multi.ogg-5e3ab55d72763dac16a19987828452c1.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

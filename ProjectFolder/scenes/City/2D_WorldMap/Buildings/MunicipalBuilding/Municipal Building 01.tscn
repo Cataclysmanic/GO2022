@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/municipal building 01 Roof2.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/municipal building 01 all walls.png" type="Texture" id=2]
@@ -10,6 +10,20 @@
 [ext_resource path="res://scenes/Quests/QuestTargetLocation.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteCircle.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteTemplate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Quests/QuestGivers/sad guy.png" type="Texture" id=11]
+[ext_resource path="res://scenes/Items/collectables/2D/PaperClue2DPickup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Indoor/presidentialdesksprite.png" type="Texture" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/PottedPlant.tscn" type="PackedScene" id=17]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskStatic.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskSearchable.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/Items/collectables/2D/Bandage2DPickup.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/Items/collectables/2D/PaperDebugClue2DPickup.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Trashcan.tscn" type="PackedScene" id=24]
 
 [sub_resource type="OccluderPolygon2D" id=2]
 polygon = PoolVector2Array( -99.9051, 66.0484, -248.098, 62.7182, -269.189, 43.8472, -268.634, -490.645, -250.318, -511.181, 620.522, -513.956, 644.388, -487.87, 647.163, 23.8662, 624.962, 59.943, 512.291, 62.1632, 511.181, 172.614, 452.903, 199.255, 321.361, 198.145, 271.409, 170.949, 269.189, 61.6081, 279.734, 62.7182, 281.954, 167.064, 323.026, 189.82, 455.678, 187.6, 501.191, 165.953, 501.191, 52.1727, 614.416, 51.0626, 636.062, 18.871, 636.062, -484.54, 613.306, -506.741, -241.992, -505.076, -260.863, -484.54, -259.198, 42.1821, -242.547, 52.7277, -91.0246, 57.1679, -90.4696, 169.284, -47.7324, 192.04, 91.0246, 189.82, 132.097, 165.953, 132.652, 57.7229, 157.628, 56.6129, 157.628, 66.0484, 142.642, 66.0484, 142.087, 174.279, 87.6945, 203.695, -48.8425, 203.14, -102.68, 170.949 )
@@ -18,6 +32,9 @@ polygon = PoolVector2Array( -99.9051, 66.0484, -248.098, 62.7182, -269.189, 43.8
 extents = Vector2( 478.5, 369.764 )
 
 [sub_resource type="CanvasItemMaterial" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 131.026, 39.966 )
 
 [node name="Municipal Building" type="Node2D"]
 scale = Vector2( 1.80171, 1.80171 )
@@ -70,8 +87,8 @@ position = Vector2( -394.625, -416.826 )
 scale = Vector2( 2.89056, 5.41776 )
 
 [node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 10 )]
-position = Vector2( -39.407, -397.4 )
-scale = Vector2( 2.32282, 6.31074 )
+position = Vector2( 145.972, 53.2827 )
+scale = Vector2( 1.50103, 2.6179 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
@@ -136,6 +153,283 @@ location_details = "Hidden in a corner in the Municipal Hall"
 [node name="QuestTargetLocation3" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 position = Vector2( 169.839, 183.159 )
 location_details = "Right out in the open, somewhere in the  front foyer or waiting lounge. Should be easy to find."
+
+[node name="QuestGivers" type="Node2D" parent="."]
+position = Vector2( 3.8852, 17.7609 )
+
+[node name="NPC_QuestGiver" parent="QuestGivers" instance=ExtResource( 13 )]
+position = Vector2( 29.4165, -279.734 )
+spawn_random_quest_objective = false
+npc_name = "Judge McPherson"
+dialog_unmet_requirements = PoolStringArray( "Andrew Worth", "You know I can\'t just bend the rules for you. I\'m a Chicago court appointed judge, assigned to your case. You shouldn\'t even be talking to me without a Get out of Jail Free card!" )
+dialog_fulfilled_requirements = PoolStringArray( "What\? How\?", "The Mayor granted you clemency\? I guess you\'re a free man, Worth. Consider this your happy ending! Congratulations." )
+Sprite_Tex = ExtResource( 11 )
+Portrait_Tex = ExtResource( 11 )
+
+[node name="Requirements" type="Node2D" parent="QuestGivers/NPC_QuestGiver"]
+
+[node name="GetOutOfJailCard" parent="QuestGivers/NPC_QuestGiver/Requirements" instance=ExtResource( 12 )]
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Get out of Jail card",
+"notes_for_journal": "It's surprising that with a mature, well-entrenched justice system, one mayor could furnish you with a get out of jail free card. Yet, here it is. Just show it to the judge.",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Rewards" type="Node2D" parent="QuestGivers/NPC_QuestGiver"]
+
+[node name="HappyEnding" parent="QuestGivers/NPC_QuestGiver/Rewards" instance=ExtResource( 14 )]
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Happy Ending",
+"notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="HappyEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( -376.309, -346.893 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Happy Ending",
+"notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/HappyEnding"]
+margin_left = -43.2923
+margin_top = -28.3064
+margin_right = 42.7077
+margin_bottom = -14.3064
+text = "Happy Ending"
+
+[node name="GoToJailEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( -295.83, -376.864 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "GoToJail Ending",
+"notes_for_journal": "Nope. It's jail for you.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/GoToJailEnding"]
+margin_left = -48.8425
+margin_top = -19.426
+margin_right = 56.1575
+margin_bottom = -5.42603
+text = "Go To Jail Ending"
+
+[node name="CollectedEvidenceEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( 285.285, -403.506 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "CollectedEvidence Ending",
+"notes_for_journal": "You're a free man, Andrew Worth. You didn't exactly prove your innocence, but you traded enough favours to stay out of jail. Long may it last.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/CollectedEvidenceEnding"]
+margin_left = -74.9288
+margin_top = -24.9762
+margin_right = 88.0712
+margin_bottom = -10.9762
+text = "CollectedEvidence Ending"
+
+[node name="BeatTheBossEnding" parent="QuestGivers" instance=ExtResource( 14 )]
+position = Vector2( 370.204, -365.209 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "BeatTheBoss Ending",
+"notes_for_journal": "Nope. It's jail for you.",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-h.png",
+"path_to_popup_display_image": "res://scenes/CutScenes/Animatics/Scene 4/happy detective 01.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Label" type="Label" parent="QuestGivers/BeatTheBossEnding"]
+margin_left = -48.8425
+margin_top = -19.426
+margin_right = 56.1575
+margin_bottom = -5.42603
+text = "BeatTheBoss Ending"
+
+[node name="Sprite" type="Sprite" parent="."]
+physics_interpolation_mode = 2
+position = Vector2( 46.0674, -384.635 )
+scale = Vector2( 0.609985, 0.506894 )
+texture = ExtResource( 15 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+position = Vector2( -0.909909, 26.8265 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
+physics_interpolation_mode = 2
+position = Vector2( 2.74181e-06, -20.8041 )
+shape = SubResource( 5 )
+
+[node name="KickableChair" parent="." instance=ExtResource( 16 )]
+position = Vector2( 44.4023, -419.601 )
+rotation = -3.12446
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair2" parent="." instance=ExtResource( 16 )]
+position = Vector2( -153.188, 68.8235 )
+rotation = -4.70611
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair7" parent="." instance=ExtResource( 16 )]
+position = Vector2( 248.098, -219.791 )
+rotation = -4.70611
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair8" parent="." instance=ExtResource( 16 )]
+position = Vector2( 248.098, -160.958 )
+rotation = -4.70611
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair4" parent="." instance=ExtResource( 16 )]
+position = Vector2( -185.379, 155.408 )
+rotation = -3.12446
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair5" parent="." instance=ExtResource( 16 )]
+position = Vector2( 200.365, 151.523 )
+rotation = -0.0167418
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair6" parent="." instance=ExtResource( 16 )]
+position = Vector2( -429.592, -123.216 )
+rotation = -6.23433
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="KickableChair3" parent="." instance=ExtResource( 16 )]
+position = Vector2( -367.429, 19.426 )
+rotation = -1.54305
+scale = Vector2( 0.520842, 0.494181 )
+
+[node name="PottedPlant" parent="." instance=ExtResource( 17 )]
+position = Vector2( 135.427, -432.367 )
+
+[node name="PottedPlant3" parent="." instance=ExtResource( 17 )]
+position = Vector2( 409.056, -194.26 )
+
+[node name="PottedPlant4" parent="." instance=ExtResource( 17 )]
+position = Vector2( 409.056, -194.26 )
+
+[node name="PottedPlant5" parent="." instance=ExtResource( 17 )]
+position = Vector2( 389.075, 69.3785 )
+
+[node name="PottedPlant6" parent="." instance=ExtResource( 17 )]
+position = Vector2( 182.604, 215.351 )
+
+[node name="PottedPlant7" parent="." instance=ExtResource( 17 )]
+position = Vector2( 218.681, 215.351 )
+
+[node name="PottedPlant8" parent="." instance=ExtResource( 17 )]
+position = Vector2( -271.409, -98.24 )
+
+[node name="PottedPlant11" parent="." instance=ExtResource( 17 )]
+position = Vector2( -228.117, -421.822 )
+
+[node name="PottedPlant9" parent="." instance=ExtResource( 17 )]
+position = Vector2( -111.561, -147.638 )
+
+[node name="PottedPlant10" parent="." instance=ExtResource( 17 )]
+position = Vector2( -111.561, -147.638 )
+
+[node name="PottedPlant2" parent="." instance=ExtResource( 17 )]
+position = Vector2( -300.825, 54.9478 )
+
+[node name="Couch" parent="." instance=ExtResource( 19 )]
+position = Vector2( -212.576, -76.0389 )
+scale = Vector2( 2.1384, 1.26192 )
+
+[node name="DeskStatic2" parent="." instance=ExtResource( 18 )]
+position = Vector2( -105.455, 64.3833 )
+rotation = -1.55385
+scale = Vector2( -2.3287, 2.50231 )
+
+[node name="DeskStatic3" parent="." instance=ExtResource( 18 )]
+position = Vector2( -410.166, 16.6508 )
+rotation = 1.58648
+scale = Vector2( -2.3287, 2.50231 )
+
+[node name="TableLamp" parent="." instance=ExtResource( 20 )]
+position = Vector2( -339.122, -79.9241 )
+
+[node name="TableLamp2" parent="." instance=ExtResource( 20 )]
+position = Vector2( -102.68, -92.6897 )
+
+[node name="TableLamp3" parent="." instance=ExtResource( 20 )]
+position = Vector2( -251.428, -235.887 )
+
+[node name="TableLamp4" parent="." instance=ExtResource( 20 )]
+position = Vector2( -380.749, -81.0341 )
+
+[node name="TableLamp5" parent="." instance=ExtResource( 20 )]
+position = Vector2( 106.565, 23.3112 )
+
+[node name="TableLamp6" parent="." instance=ExtResource( 20 )]
+position = Vector2( 313.591, 17.2059 )
+
+[node name="TableLamp7" parent="." instance=ExtResource( 20 )]
+position = Vector2( 253.093, -87.6945 )
+
+[node name="TableLamp8" parent="." instance=ExtResource( 20 )]
+position = Vector2( -34.9668, -84.3643 )
+
+[node name="DeskSearchable" parent="." instance=ExtResource( 21 )]
+position = Vector2( -184.824, 210.356 )
+scale = Vector2( 2.54863, 2.21184 )
+
+[node name="Bandage" parent="DeskSearchable" instance=ExtResource( 22 )]
+
+[node name="DeskSearchable2" parent="." instance=ExtResource( 21 )]
+position = Vector2( 200.365, 114.336 )
+scale = Vector2( 2.54863, 2.21184 )
+
+[node name="Bandage" parent="DeskSearchable2" instance=ExtResource( 22 )]
+
+[node name="DeskSearchable3" parent="." instance=ExtResource( 21 )]
+position = Vector2( -421.822, -196.48 )
+rotation = 1.57847
+scale = Vector2( 2.54863, 2.21184 )
+
+[node name="PaperClue" parent="DeskSearchable3" instance=ExtResource( 23 )]
+
+[node name="DeskSearchable4" parent="." instance=ExtResource( 21 )]
+position = Vector2( 288.06, -192.04 )
+rotation = 4.71647
+scale = Vector2( 2.54863, 2.21184 )
+
+[node name="Bandage" parent="DeskSearchable4" instance=ExtResource( 22 )]
+
+[node name="Trashcan" parent="." instance=ExtResource( 24 )]
+position = Vector2( -102.125, -213.686 )
+
+[node name="Trashcan2" parent="." instance=ExtResource( 24 )]
+position = Vector2( -326.357, -214.796 )
+
+[node name="Trashcan3" parent="." instance=ExtResource( 24 )]
+position = Vector2( -76.0389, -271.409 )
+
+[node name="Trashcan4" parent="." instance=ExtResource( 24 )]
+position = Vector2( 410.166, -142.087 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/Items/Projectiles/FlyingBullet.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Items/Projectiles/bullet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/Items/Projectiles/BulletImpact.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Items/Projectiles/rocket.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Items/Projectiles/RocketImpact.png" type="Texture" id=5]
+[ext_resource path="res://scenes/Items/Projectiles/bulletsnake.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -29,9 +32,34 @@ flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 320, 0, 64, 64 )
 
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 144, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 288, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 432, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 576, 0, 144, 144 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 720, 0, 144, 144 )
+
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 25.0
@@ -40,12 +68,17 @@ animations = [ {
 "loop": true,
 "name": "impact",
 "speed": 25.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
+"loop": true,
+"name": "impact rockets",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 22.3268, 8.79886 )
 
-[node name="Bullet" type="Node2D"]
+[node name="Bullet" type="Area2D" groups=["Bullet"]]
 scale = Vector2( 0.795558, 0.795558 )
 script = ExtResource( 1 )
 
@@ -54,14 +87,13 @@ position = Vector2( 22.6256, 0 )
 scale = Vector2( 0.796506, 0.784266 )
 frames = SubResource( 7 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="BulletArea" type="Area2D" parent="."]
 position = Vector2( 18, -4.76837e-07 )
 collision_layer = 16
 collision_mask = 43
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletArea"]
 position = Vector2( 4.92449, -4.76157e-08 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="ThwackNoise" type="AudioStreamPlayer2D" parent="."]
@@ -92,7 +124,12 @@ wait_time = 1.5
 one_shot = true
 autostart = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 22.6256, 2.66454e-15 )
+shape = SubResource( 1 )
+disabled = true
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="BulletArea" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="BulletArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_LifetimeTimer_timeout"]

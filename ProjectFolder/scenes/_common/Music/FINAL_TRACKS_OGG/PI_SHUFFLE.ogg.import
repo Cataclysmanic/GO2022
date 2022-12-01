@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/PI_SHUFFLE.ogg-0e378176971c566839d3f8545eb07d46.oggstr"
+
+[deps]
+
+source_file="res://scenes/_common/Music/FINAL_TRACKS_OGG/PI_SHUFFLE.ogg"
+dest_files=[ "res://.import/PI_SHUFFLE.ogg-0e378176971c566839d3f8545eb07d46.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

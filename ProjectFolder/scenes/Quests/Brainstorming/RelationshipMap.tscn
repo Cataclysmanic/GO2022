@@ -1,0 +1,300 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scenes/NPCs/DeadGanger.png" type="Texture" id=1]
+[ext_resource path="res://scenes/NPCs/bacallMatronly.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=3]
+[ext_resource path="res://scenes/2.5dTest/detective.png" type="Texture" id=4]
+[ext_resource path="res://scenes/Quests/Brainstorming/CharacterInfo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Quests/QuestGivers/femme-fatale.png" type="Texture" id=6]
+[ext_resource path="res://scenes/NPCs/MayorOdonnell.png" type="Texture" id=7]
+[ext_resource path="res://scenes/NPCs/weasel-chibi.png" type="Texture" id=8]
+[ext_resource path="res://scenes/Quests/Brainstorming/MagnifyingGlassMouseLook.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Quests/Brainstorming/CityMap.png" type="Texture" id=11]
+
+[node name="Canvas" type="Node2D"]
+
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="CrimeBoss" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 107, 276 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 3 )
+character_name = "Fusili Romano"
+description = "The man who really runs this town.
+Power behind the throne.
+Al Capone / Kingpin type.
+Connected. Above the law.
+Wants respect. Power and money and love are tools to that end.
+"
+relationships = "Boyfriend of Moll.
+Puppeteer of Mayor
+Holds mortgage for Matronly mother of victim
+Was owed money by victim
+ "
+motives = "(Man Behind the Man Trope)
+Runs this town.
+Doesn't suffer fools or deadbeats.
+Was owed a large sum of money"
+corroboration = "Alibi: \"It couldn't have been me, I was dining with the mayor at the time.\"
+Posturing: \"Are you sure you want to go sticking your nose where it doesn't belong?\"
+"
+clues = "\"Matronly mother is behind on her mortgage, held by big boss.\"
+\"Maitre D at restaurant confirms that Boss was here with the Mayor at the time of the shooting.\"
+Witness saw Moll with big boss on numerous occassionos: \"They looked pretty friendly to me.\""
+
+[node name="Clues" type="Node2D" parent="Characters/CrimeBoss"]
+
+[node name="AlibiClue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Romano Alibi",
+"notes_for_journal": "The maître d' of the Steakhose claims that Fusili Romano was present along with Mayor O'Donnell at the time of the shooting.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="RelationshipClue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Romano Relationship Eyewitness Account",
+"notes_for_journal": "The Weasel reports that Romano is frequently seen with Veronica Winter. \"Everyone knows they're together.\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="PoliticalContributionClue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Romano PAC",
+"notes_for_journal": "After a little sweet-talking, the paralegal at the bank described a large transfer of money from Fusili Romano into a the campaign fund for Mayor Mick O'Donnell",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MortgagePaymentOverdue" parent="Characters/CrimeBoss/Clues" instance=ExtResource( 10 )]
+position = Vector2( -286.667, 0 )
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Mortgage Overdue",
+"notes_for_journal": "This statement of accounts shows that Lauren Valiant has a sizeable payment in arrears for her mortgage, owed to one Fusili Romano.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MotherOfVictim" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 690, 88 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 2 )
+character_name = "Lauren Valiant"
+description = "Matronly mother of victim.
+down on her luck"
+relationships = "mother of victim
+ex-lover of mayor, from back in the day
+
+
+"
+motives = "\"Why would I kill my own son? Are you crazy?\"
+\"Yeah, I'm behind on my mortgage, so what?\"
+"
+corroboration = "No alibis at the time of the shooting.
+She claims to have heard two gunshots that evening.
+"
+clues = "mortgage overdue,
+eyewitness account (heard gunshots about 10 minutes before the police arrived)
+
+"
+
+[node name="Clues" type="Node2D" parent="Characters/MotherOfVictim"]
+
+[node name="VeronicaNotHerDaughter" parent="Characters/MotherOfVictim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Photo Album",
+"notes_for_journal": "Oh god, I can't bear to look at her extremely large photo album with her. Wait a minute, that photograph of her daughter, Tommy's sister, that's not the Veronica I saw.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MortgageOverdue" parent="Characters/MotherOfVictim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Overdue Payment Notice",
+"notes_for_journal": "Poor old Lauren. She's down on her luck and her mortgage is overdue. I don't even know what income source she has.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="EyewitnessAccountTwoGunshots" parent="Characters/MotherOfVictim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Eyewitness Account of Shooting",
+"notes_for_journal": "Lauren Valiant claims to have heard 2 shots that evening, a short time before the police arrived. If that's true, what accounts for the second shot?",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Dame" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 301, 375 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 6 )
+character_name = "Veronica Winter"
+description = "Red dress. Long legs.
+"
+relationships = "secret boyfriend of mob boss, Fusili Romano.
+leads on the weasel to get him to do stuff."
+corroboration = "she couldn't have done it, she asked the detective to protect Tommy. (Problem is, Tommy isn't actually her brother. They have no relationship.)"
+
+[node name="Clues" type="Node2D" parent="Characters/Dame"]
+
+[node name="GangerstMoll" parent="Characters/Dame/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Eyewitness Account - Veronica and Romano",
+"notes_for_journal": "Will the Weasel gave a pretty compelling account of seeing Veronica on the arm of Fusili Romano, on multiple occassions. They're an item. \"Everyone knows it.\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="NotTheSister" parent="Characters/Dame/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Recollection: Tommy never mentioned a sister",
+"notes_for_journal": "Come to think of it, for all our time in the force together, Tommy never mentioned that he had a sister. Definitely not one as attractive as Veronica Winter.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Weasel" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 686, 385 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 8 )
+character_name = "Will the Weasel"
+description = "Obvious Rat character.
+No one likes him.
+Gets no respect."
+relationships = "sometimes works for the crime boss.
+usually in trouble.
+pines for the Moll.
+"
+motives = "might lash out because he's bottom of the pecking order. Wants to earn his way into the mob.
+"
+corroboration = "No alibis.
+\"I swear I didn't do it. I had no beef with Tommy. We understood each other.'
+"
+clues = "scripted event? At some point he should pull a gun on someone.
+"
+
+[node name="Mayor" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 153, 63 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 7 )
+character_name = "Mayor Mick O'Donnell"
+description = "High roller. Former police chief. Lives large. Seen at lavish events. Political figure on the rise.
+"
+relationships = "Buddy of Crime Boss
+Ex-boyfriend of Matronly Mother
+Mentor to Weasel.
+Ex-Boss of Detective and Victim."
+motives = "Doesn't like the detective.
+Corrupt.
+Likes to live large. Eat and drink well, even during prohibition."
+corroboration = "Crime Boss is in cahoots.
+Weasel wants his respect.
+Mother of victim once dated him. (small world)
+Doesn't like the Detective.
+"
+clues = "\"That's a Bentley. How does he afford this lifestyle on a government salary?\"
+\"He never did like me.\"
+\"Large Political campaign contribution from Crime Boss\"
+"
+
+[node name="Victim" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 476, 264 )
+scale = Vector2( 0.15, 0.15 )
+__meta__ = {
+"_editor_description_": ""
+}
+image = ExtResource( 1 )
+character_name = "Tommy Valiant"
+description = "Victim. ex-cop, former partner, was good, went bad.. got into gambling. owes money to crime boss.
+"
+relationships = "\"brother\" of Moll (but not really)
+ex-partner cop of Detective
+"
+motives = "owed money to crime boss.\\n ex-partner of detective"
+corroboration = "recently dead when detective arrives
+(The Corpse Stops Here trope)
+"
+clues = "\"My ex-partner!\",
+\"I didn't know he had a sister\",
+\"He wouldn't have killed himself\",
+\"He was a good cop\",
+\"I'll never forgive him for costing me my badge.\"
+"
+
+[node name="Clues" type="Node2D" parent="Characters/Victim"]
+
+[node name="RecognitionClue1" parent="Characters/Victim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "I recognize my ex-partner",
+"notes_for_journal": "As soon as I arrived, I knew it was my ex-partner, Tommy Valiant. He was a good cop.",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="RecognitionClue2" parent="Characters/Victim/Clues" instance=ExtResource( 10 )]
+item_details = {
+"display_immediately": false,
+"is_unique": true,
+"item_name": "Tommy was a good cop.",
+"notes_for_journal": "Tommy was a good cop. Always played it by the book. What has he gotten himself into?",
+"path_to_icon": "res://scenes/_common/GUI/icons/paper-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/Paper_1.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Detective" parent="Characters" instance=ExtResource( 5 )]
+position = Vector2( 399, 22 )
+scale = Vector2( 0.15, 0.15 )
+image = ExtResource( 4 )
+character_name = "Andrew Worth"
+description = "Protagonist"
+relationships = "ex-partner of victim
+former cop
+once worked under mayor Mick O'Donnell, who was Chief of Police at the time."
+corroboration = "The Corpse Stops here.
+First guy on the scene is always the prime suspect.
+Framed by Veronica Winter
+"
+
+[node name="MagnifyingGlass" parent="." instance=ExtResource( 9 )]
+position = Vector2( 391, 290 )
+
+[node name="CityMap" type="Sprite" parent="."]
+position = Vector2( 489, 1155 )
+texture = ExtResource( 11 )

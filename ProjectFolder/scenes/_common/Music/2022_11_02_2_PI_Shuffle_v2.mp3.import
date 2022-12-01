@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/2022_11_02_2_PI_Shuffle_v2.mp3-55ddd89b6828195c5917d415123f4502.mp3str"
+
+[deps]
+
+source_file="res://scenes/_common/Music/2022_11_02_2_PI_Shuffle_v2.mp3"
+dest_files=[ "res://.import/2022_11_02_2_PI_Shuffle_v2.mp3-55ddd89b6828195c5917d415123f4502.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Long_Mazda_6_Horn.ogg-74ce20d3aa2cc177bf5911e5b3652bcf.oggstr"
+
+[deps]
+
+source_file="res://scenes/City/2D_WorldMap/audio/CarHorns/Long_Mazda_6_Horn.ogg"
+dest_files=[ "res://.import/Long_Mazda_6_Horn.ogg-74ce20d3aa2cc177bf5911e5b3652bcf.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

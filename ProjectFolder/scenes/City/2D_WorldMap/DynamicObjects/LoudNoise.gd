@@ -5,7 +5,8 @@ signal noise(location)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimationPlayer.play("make noise")
+	if Global.user_preferences["shake_and_flash"] == true:
+		$AnimationPlayer.play("make noise")
 	#notify_nearby_npcs()
 
 

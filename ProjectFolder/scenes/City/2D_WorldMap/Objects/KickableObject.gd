@@ -18,4 +18,4 @@ func _on_Body_entered(body):
 		$Area2D/CollisionShape2D.call_deferred("set_disabled", true)
 		if has_node("Light2D"):
 			$Light2D.energy = 0.0
-			
+		

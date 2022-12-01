@@ -14,10 +14,10 @@ outlines = [ PoolVector2Array( -32, -8, 31, -8, 31, 9, -32, 9 ) ]
 extents = Vector2( 38, 54 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 63.3333, 20.5305 )
+extents = Vector2( 66.6667, 20.5305 )
 
 [sub_resource type="OccluderPolygon2D" id=4]
-polygon = PoolVector2Array( -38, -7, 39, -7, 39, 8, -38, 8 )
+polygon = PoolVector2Array( -45.9999, -6.99999, 44.9999, -6.99999, 44.9999, 8.99998, -45.9999, 8.99998 )
 
 [node name="DynamicDoor" type="Node2D"]
 script = ExtResource( 2 )
@@ -45,9 +45,11 @@ offset = Vector2( 56.5961, 0 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="DoorSprite"]
 position = Vector2( 56.6667, 0 )
+collision_layer = 36
+collision_mask = 31
 
 [node name="ObstacleCollisionShape2D" type="CollisionShape2D" parent="DoorSprite/StaticBody2D"]
-position = Vector2( -3.17891e-06, -6.99265e-07 )
+position = Vector2( -3.19878e-05, -6.99265e-07 )
 shape = SubResource( 1 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="DoorSprite/StaticBody2D"]

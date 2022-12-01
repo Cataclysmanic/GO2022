@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/shot8_dejected.png" type="Texture" id=8]
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/shot9_reading.png" type="Texture" id=9]
 [ext_resource path="res://scenes/CutScenes/Animatics/Scene 1/shot6_papers.png" type="Texture" id=10]
-[ext_resource path="res://scenes/_common/Music/MysteriousLoop.ogg" type="AudioStream" id=11]
+[ext_resource path="res://scenes/_common/Music/Noir_Intro_New..ogg" type="AudioStream" id=11]
 [ext_resource path="res://scenes/_common/GUI/fonts/SpecialElite18t.tres" type="DynamicFont" id=12]
 
 [node name="Animatic_01_Chicago_Office" type="Control"]

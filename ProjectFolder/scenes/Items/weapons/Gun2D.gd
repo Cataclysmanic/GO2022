@@ -9,7 +9,7 @@ var HUD
 
 enum States { INITIALIZING, READY, EMPTY, FIRING, COCKING, EMPTY }
 var State = States.INITIALIZING
-
+var launcher = preload("res://scenes/Player/PaperDoll/rocketlauncher-topdown.png")
 
 signal projectile_ready(projectile)
 signal player_gun_shot(ammoRemaining)
@@ -20,20 +20,34 @@ signal loud_noise(location)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	State = States.READY
-
+	if Global.rockets:
+		rocketize()
+	
 func init(mapScene, myPlayer, hud):
 	player = myPlayer
+	
 	map_scene = mapScene
 	HUD = hud
 	camera = player.camera
 
-	var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
-	_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
-	_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
-	_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
-	_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
+	var _err
+	if map_scene != null and is_instance_valid(map_scene):
+		_err = connect("projectile_ready", map_scene, "_on_projectile_ready")
+	if hud != null and is_instance_valid(hud):
+		_err = connect("player_gun_shot", hud, "_on_player_gun_shot")
+		_err = connect("player_gun_loaded", hud, "_on_player_gun_loaded")
+		_err = connect("player_gun_reload_requested", hud, "_on_player_gun_reload_requested")
+	
+	if map_scene != null and is_instance_valid(map_scene) and map_scene.has_method("_on_loud_noise_made"):
+		_err = connect("loud_noise", map_scene, "_on_loud_noise_made")
 	reload(magazine_capacity)
 	
+func rocketize():
+	Global.rockets = true
+	$Sprite.texture = launcher
+	$Sprite.visible = true
+	$Sprite.scale.x = 3
+	$Sprite.scale.y = 3
 	
 func reload(num):
 	if num == null or num == 0:
@@ -49,16 +63,34 @@ func empty_click():
 func shoot():
 	State = States.FIRING
 	make_gunshot_noise()
-	
+	$CockTimer.wait_time = max(0.4 - 0.05 * Global.upgrader, 0.001)
 	var myPos = get_global_position()
 	var myRot = get_global_rotation()
-	var bulletSpeed = 1200.0
+	var bulletSpeed = 1000+100*Global.upgrader
+	if Global.rockets:
+		bulletSpeed = 800
 	var jitter = 8.0
 	var jitterVec = Vector2(rand_range(-jitter, jitter), rand_range(-jitter, jitter))
-	spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
-	eject_casing()
-	flash_muzzle()
-	knockback_shooter(Vector2.RIGHT.rotated(myRot))
+	if Global.shot_num == 1:
+		spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+	if Global.shot_num == 2:
+		spawn_bullet(myPos+2*jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
+	if Global.shot_num == 3:
+		spawn_bullet(myPos+jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
+	if Global.shot_num >= 4:
+		spawn_bullet(myPos+2*jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos-2*jitterVec, myRot, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot+50, bulletSpeed)
+		spawn_bullet(myPos+jitterVec, myRot-50, bulletSpeed)
+	if !Global.rockets:
+		if Global.user_preferences["shake_and_flash"] == true:
+			eject_casing()
+	if Global.user_preferences["shake_and_flash"] == true:
+		flash_muzzle()
+		knockback_shooter(Vector2.RIGHT.rotated(myRot))
 	cock_gun()
 	ammo_remaining -= 1
 	emit_signal("player_gun_shot", ammo_remaining)
@@ -85,6 +117,8 @@ func make_gunshot_noise():
 
 	var gunshotNoise = $GunshotNoises.get_children()[randi()%$GunshotNoises.get_child_count()]
 	gunshotNoise.set_pitch_scale(rand_range(0.98, 1.02))
+	if Global.rockets:
+		gunshotNoise.set_pitch_scale(0.3)
 	#gunshotNoise.set_volume_db(rand_range(-4.0, -4.0))
 	gunshotNoise.set_volume_db(-2.0)
 	
@@ -92,6 +126,7 @@ func make_gunshot_noise():
 	
 
 func eject_casing():
+	
 	var casing = $ResourcePreloader.get_resource("casing").instance()
 	casing.rotation = rand_range(-PI, PI)
 	casing.set_global_position(get_global_position())
@@ -100,20 +135,23 @@ func eject_casing():
 
 func knockback_shooter(impactVector):
 	var magnitude = 10.0
+	if Global.rockets:
+		magnitude += 10
 	player.position -= impactVector.normalized()*magnitude
 
 
 func flash_muzzle():
-	var flash = $MuzzleFlash
-	flash.rotation = rand_range(-0.2, 0.2)
-	flash.visible = true
-	var tween = get_node("Tween")
-	tween.interpolate_property(flash, "modulate",
-		Color(1,1,1,1), Color(1,1,1,0), .2,
-		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
-	tween.start()
-	if camera != null and camera.has_method("shake"):
-		camera.shake()
+	if Global.user_preferences["shake_and_flash"]:
+		var flash = $MuzzleFlash
+		flash.rotation = rand_range(-0.2, 0.2)
+		flash.visible = true
+		var tween = get_node("Tween")
+		tween.interpolate_property(flash, "modulate",
+			Color(1,1,1,1), Color(1,1,1,0), .2,
+			Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.start()
+		if camera != null and camera.has_method("shake"):
+			camera.shake()
 	
 	
 		

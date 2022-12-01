@@ -38,7 +38,7 @@ func _ready():
 	if not item_details["path_to_icon"]:
 		item_info.set("path_to_icon", spritePath)
 	
-	if not item_details["path_to_popup_display_image"]:
+	if item_details["path_to_popup_display_image"] == "":
 		item_info.set("path_to_popup_display_image", spritePath)
 		
 

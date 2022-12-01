@@ -6,7 +6,14 @@ var current_city_map = null
 var player
 var IO = null
 var Utils = null
-#var in_danger = "no" # moved to building is_player_present()
+var repetition = false #I dislike abusing autoload but this function didn't work otherwise for some reason
+var rockets = false
+var controller = false
+var minibossdead = false
+var chosen_ending : String
+var shot_num = 1
+var upgrader = 2
+var health = 100
 
 var user_preferences = {
 	"difficulty": 1.0, #0.5 to 3.0
@@ -16,6 +23,8 @@ var user_preferences = {
 }
 
 
+
+		
 enum STATES { INITIALIZING, READY, ACTIVE, PAUSED }
 var game_state = STATES.INITIALIZING
 
@@ -35,6 +44,14 @@ func pause():
 	# but for a quick game jam, it'll do.
 	get_tree().paused = true
 
+func reset():
+	health = 100
+	repetition = false
+	rockets = false
+	controller = false
+	minibossdead = false
+	shot_num = 1
+	upgrader = 2
 
 func resume():
 	game_state = STATES.ACTIVE

@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Quests/QuestGivers/PopInDialogCanvas.gd" type="Script" id=2]
+
+[sub_resource type="InputEventKey" id=1]
+scancode = 89
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="InputEventKey" id=3]
+scancode = 78
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[node name="DialogCanvas" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Dialogue" type="Control" parent="."]
+anchor_left = 0.7
+anchor_right = 0.7
+anchor_bottom = 1.0
+mouse_filter = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="Dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 250, 0 )
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogue/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 257.0
+margin_bottom = 593.0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+align = 1
+
+[node name="Portrait" type="TextureRect" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 18.0
+margin_right = 250.0
+margin_bottom = 330.0
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 6
+
+[node name="DialogText" type="Label" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 334.0
+margin_right = 250.0
+margin_bottom = 434.0
+rect_min_size = Vector2( 250, 100 )
+text = "Lorem Ipsum Dolor
+Blah Blah Blah
+"
+autowrap = true
+
+[node name="NextButton" type="Button" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 438.0
+margin_right = 250.0
+margin_bottom = 458.0
+text = "Next [F]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 462.0
+margin_right = 250.0
+margin_bottom = 482.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="YesButton" type="Button" parent="Dialogue/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 12.0
+margin_right = 70.0
+margin_bottom = 20.0
+shortcut = SubResource( 2 )
+text = "Fine [Y]"
+
+[node name="NoButton" type="Button" parent="Dialogue/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 90.0
+margin_right = 237.0
+margin_bottom = 20.0
+shortcut = SubResource( 4 )
+text = "I don't have time. [N]"
+
+[node name="DummySpacer" type="Label" parent="Dialogue/PanelContainer/VBoxContainer"]
+margin_top = 486.0
+margin_right = 250.0
+margin_bottom = 586.0
+rect_min_size = Vector2( 0, 100 )
+
+[connection signal="pressed" from="Dialogue/PanelContainer/VBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]
+[connection signal="pressed" from="Dialogue/PanelContainer/VBoxContainer/HBoxContainer/YesButton" to="." method="_on_YesButton_pressed"]
+[connection signal="pressed" from="Dialogue/PanelContainer/VBoxContainer/HBoxContainer/NoButton" to="." method="_on_NoButton_pressed"]

@@ -1,0 +1,304 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://scenes/Player/2DPlayer01/2DPlayerAvatar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/LoudNoise.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/City/2D_WorldMap/2D_CityMap.gd" type="Script" id=3]
+[ext_resource path="res://scenes/City/2D_WorldMap/textures/BlockGroundTile.png" type="Texture" id=4]
+[ext_resource path="res://scenes/_common/Music/MysteriousLoop.ogg" type="AudioStream" id=5]
+[ext_resource path="res://scenes/_common/GUI/sfx/wow.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/_common/Music/FINAL_TRACKS_OGG/JAZZ_LOOP_CHILL.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scenes/_common/Music/TenseLoop.mp3" type="AudioStream" id=8]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/2DStreetlamp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/MunicipalBuilding/Municipal Building 01.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/_common/GUI/sfx/ATM City Loop-short-multi.ogg" type="AudioStream" id=12]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/Park/Park.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/ResidentialBuildings/ResidentialBuildings.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuilding.tscn" type="PackedScene" id=15]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DrivingPath2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/Items/collectables/2D/DebugKey2DPickup.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=19]
+
+[sub_resource type="Environment" id=1]
+background_energy = 0.0
+ambient_light_energy = 0.0
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 20, 86.4 )
+
+[node name="City" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="PlayerSpawnPoint" type="Position2D" parent="."]
+position = Vector2( -2013, 899 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2( 1, 0 )
+color = Color( 0.168627, 0.168627, 0.168627, 1 )
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="Outdoor" type="Node2D" parent="."]
+
+[node name="Ground" type="Node2D" parent="Outdoor"]
+z_index = -1
+
+[node name="BlockTextureTiling" type="Sprite" parent="Outdoor/Ground"]
+position = Vector2( -1, -1 )
+scale = Vector2( 6, 6 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( -129.075, -127.458, 1153.1, 1153.22 )
+
+[node name="Lighting" type="Node2D" parent="Outdoor"]
+
+[node name="Streetlamps" type="Node2D" parent="Outdoor/Lighting"]
+
+[node name="Streetlamp" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 9 )]
+position = Vector2( -422, -869 )
+
+[node name="Streetlamp2" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 9 )]
+position = Vector2( -408, -2214 )
+
+[node name="Streetlamp3" parent="Outdoor/Lighting/Streetlamps" instance=ExtResource( 9 )]
+position = Vector2( 430, -1583 )
+rotation = 3.14159
+
+[node name="Streetlamps2" type="Node2D" parent="Outdoor/Lighting"]
+position = Vector2( -3, 8 )
+rotation = 1.57079
+
+[node name="Streetlamp" parent="Outdoor/Lighting/Streetlamps2" instance=ExtResource( 9 )]
+position = Vector2( -422, -869 )
+
+[node name="Streetlamp2" parent="Outdoor/Lighting/Streetlamps2" instance=ExtResource( 9 )]
+position = Vector2( -419, -2097 )
+
+[node name="Streetlamp3" parent="Outdoor/Lighting/Streetlamps2" instance=ExtResource( 9 )]
+position = Vector2( 430, -1583 )
+rotation = 3.14159
+
+[node name="Streetlamps3" type="Node2D" parent="Outdoor/Lighting"]
+position = Vector2( -3, 8 )
+rotation = 3.14159
+
+[node name="Streetlamp" parent="Outdoor/Lighting/Streetlamps3" instance=ExtResource( 9 )]
+position = Vector2( -422, -869 )
+
+[node name="Streetlamp2" parent="Outdoor/Lighting/Streetlamps3" instance=ExtResource( 9 )]
+position = Vector2( -419, -2097 )
+
+[node name="Streetlamp3" parent="Outdoor/Lighting/Streetlamps3" instance=ExtResource( 9 )]
+position = Vector2( 430, -1583 )
+rotation = 3.14159
+
+[node name="Streetlamps4" type="Node2D" parent="Outdoor/Lighting"]
+position = Vector2( -3, 8 )
+rotation = -1.57081
+
+[node name="Streetlamp" parent="Outdoor/Lighting/Streetlamps4" instance=ExtResource( 9 )]
+position = Vector2( -422, -869 )
+
+[node name="Streetlamp2" parent="Outdoor/Lighting/Streetlamps4" instance=ExtResource( 9 )]
+position = Vector2( -419, -2097 )
+
+[node name="Streetlamp3" parent="Outdoor/Lighting/Streetlamps4" instance=ExtResource( 9 )]
+position = Vector2( 430, -1583 )
+rotation = 3.14159
+
+[node name="Buildings" type="Node2D" parent="Outdoor"]
+
+[node name="MunicipalBuilding" parent="Outdoor/Buildings" instance=ExtResource( 10 )]
+position = Vector2( -1537, -1491 )
+
+[node name="ResidentialBuildings" parent="Outdoor/Buildings" instance=ExtResource( 14 )]
+position = Vector2( 1428.18, -1661 )
+scale = Vector2( 3.92565, 3.92565 )
+
+[node name="CommercialBuildings" parent="Outdoor/Buildings" instance=ExtResource( 15 )]
+position = Vector2( -1480.4, 1483 )
+scale = Vector2( 3.31117, 3.31117 )
+
+[node name="Park" parent="Outdoor/Buildings" instance=ExtResource( 13 )]
+position = Vector2( 1488.14, 1539 )
+scale = Vector2( 3.25559, 3.25559 )
+
+[node name="InvisibleWalls" type="Node2D" parent="Outdoor"]
+
+[node name="EastWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( 3502, 0 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/EastWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="WestWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( -3662, 0 )
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/WestWall"]
+position = Vector2( 79, 1855 )
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="SouthWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( -4, 3516 )
+rotation = -1.57079
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/SouthWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="NorthWall" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+position = Vector2( 6, -3514 )
+rotation = -1.57079
+scale = Vector2( 2, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outdoor/InvisibleWalls/NorthWall"]
+scale = Vector2( 1, 40 )
+shape = SubResource( 19 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Outdoor/InvisibleWalls"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Outdoor/InvisibleWalls/StaticBody2D"]
+polygon = PoolVector2Array( -3545, -3206, -4466, -3195, -4466, -3470, -4664, -3462, -4669, -3093, -3565, -3079 )
+
+[node name="NPCPatrolRoutes" type="Node2D" parent="Outdoor"]
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="VehicularTraffic" type="Node2D" parent="."]
+
+[node name="DrivingPath" parent="VehicularTraffic" instance=ExtResource( 11 )]
+
+[node name="DrivingPath2" parent="VehicularTraffic" instance=ExtResource( 16 )]
+
+[node name="QuestGivers" type="Node2D" parent="."]
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]
+resources = [ PoolStringArray( "LoudNoise", "Player" ), [ ExtResource( 2 ), ExtResource( 1 ) ] ]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="WowNoise" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 6 )
+volume_db = 10.0
+pitch_scale = 1.7
+
+[node name="BGMusicCalm" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+volume_db = -7.0
+
+[node name="BGMusicTense" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 8 )
+volume_db = -7.0
+
+[node name="BGMusicMysterious" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+volume_db = -7.0
+
+[node name="BGCityNoise" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 12 )
+volume_db = -12.0
+
+[node name="NavPolygons" type="Navigation2D" parent="."]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="MunicipalEntrance" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1514, -1286 )
+scale = Vector2( 2.09672, 2.09672 )
+
+[node name="CommercialUnitA" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1881, 678 )
+scale = Vector2( 2, 2 )
+
+[node name="CommercialUnitA2" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -2161, 1347 )
+scale = Vector2( 1.67, 1.67 )
+
+[node name="CommercialUnitA3" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1087, 1780 )
+rotation = 1.57182
+scale = Vector2( 1.16118, 0.982576 )
+
+[node name="CommercialUnitB2" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1588, 1349 )
+scale = Vector2( 1.55423, 1.28862 )
+
+[node name="CommercialUnitB" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1462, 678 )
+scale = Vector2( 2.6, 2.6 )
+
+[node name="CommercialUnitC" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -950, 678 )
+scale = Vector2( 2.19659, 2.19659 )
+
+[node name="CommercialUnitC2" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -869, 1351 )
+scale = Vector2( 3.5, 3.5 )
+
+[node name="107MainDoor" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( 1022, -870 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="95MainDoorFront" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( 2052, -873 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="95MainDoorBack" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( 1588, -1337 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="107First" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( 989, -2270 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="95FirstDoorFront" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( 1721, -2335 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="MunicipalityOfficeDoorFront" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1382, -1599 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="MunicipalityOfficeDoorFront2" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1645, -2257 )
+rotation = -1.58363
+scale = Vector2( 1.00339, -1.01191 )
+
+[node name="DebugDoor" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -1125, -2087 )
+rotation = -1.58363
+scale = Vector2( 1.00339, -1.01191 )
+
+[node name="DebugDoor2" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -2129, -1949 )
+rotation = 0.00126139
+scale = Vector2( 0.913121, -1.10513 )
+
+[node name="DebugDoor3" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( -799, -1951 )
+rotation = 0.00126139
+scale = Vector2( 1.29231, -0.883465 )
+
+[node name="95FirstDoorBack" parent="Doors" instance=ExtResource( 19 )]
+position = Vector2( 1987, -1803 )
+scale = Vector2( 0.870445, 0.870445 )
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="Noises" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="PaperClue" parent="." instance=ExtResource( 18 )]
+modulate = Color( 1, 1, 1, 0.258824 )
+position = Vector2( -4249, -3349 )

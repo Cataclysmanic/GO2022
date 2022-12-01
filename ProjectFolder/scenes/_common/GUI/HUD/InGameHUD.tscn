@@ -1,13 +1,14 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scenes/_common/GUI/HUD/InGameHUD.gd" type="Script" id=1]
 [ext_resource path="res://scenes/_common/GUI/BulletImageHud.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/_common/GUI/HUD/PopupItemViewer.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/_common/GUI/sfx/Flick_switch_click.wav" type="AudioStream" id=4]
 [ext_resource path="res://scenes/_common/GUI/sfx/GunFound.ogg" type="AudioStream" id=5]
 [ext_resource path="res://scenes/_common/GUI/sfx/MissingGun.ogg" type="AudioStream" id=6]
 [ext_resource path="res://scenes/_common/GUI/sfx/WheresTheKey.ogg" type="AudioStream" id=7]
 [ext_resource path="res://scenes/_common/GUI/HUD/HelpButton.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/_common/GUI/sfx/hover.wav" type="AudioStream" id=9]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=10]
 [ext_resource path="res://scenes/_common/GUI/HUD/InventoryIconButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/_common/GUI/sfx/Box_close_3.wav" type="AudioStream" id=12]
@@ -19,6 +20,12 @@
 [ext_resource path="res://Assets/Test Assets/sprGUIStaminaText.png" type="Texture" id=18]
 [ext_resource path="res://scenes/_common/GUI/HUD/bloodSpatterVignette.png" type="Texture" id=19]
 [ext_resource path="res://scenes/_common/GUI/fonts/AbrilFatface-Regular.ttf" type="DynamicFontData" id=20]
+[ext_resource path="res://scenes/_common/GUI/sfx/DisabledSound.wav" type="AudioStream" id=21]
+[ext_resource path="res://scenes/_common/GUI/SceneLaunchButton.gd" type="Script" id=22]
+[ext_resource path="res://scenes/_common/GUI/Theme/HUD_theme.tres" type="Theme" id=23]
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.0156863, 0.921569, 0.788235, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -34,16 +41,25 @@ outline_size = 5
 outline_color = Color( 0.592157, 0, 0, 1 )
 font_data = ExtResource( 20 )
 
+[sub_resource type="StyleBoxFlat" id=6]
+
+[sub_resource type="Theme" id=7]
+ProgressBar/styles/bg = SubResource( 6 )
+
 [node name="HUD" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.0
+margin_right = 1.0
 mouse_filter = 2
+theme = ExtResource( 23 )
 script = ExtResource( 1 )
 
 [node name="Top" type="MarginContainer" parent="."]
 anchor_right = 1.0
 margin_bottom = 40.0
+mouse_filter = 2
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
@@ -52,42 +68,79 @@ custom_constants/margin_left = 20
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 48.0
+margin_bottom = 67.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 50
 
-[node name="QuitButton" parent="Top/Header" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 40.0
-margin_bottom = 28.0
+[node name="QuitButton" type="Button" parent="Top/Header"]
+margin_right = 30.0
+margin_bottom = 16.0
 focus_mode = 0
 size_flags_horizontal = 2
+size_flags_vertical = 0
 enabled_focus_mode = 0
 text = "Quit"
+script = ExtResource( 22 )
 return_to_main = true
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="Top/Header/QuitButton"]
+stream = ExtResource( 4 )
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="Top/Header/QuitButton"]
+stream = ExtResource( 9 )
+volume_db = -16.0
+
+[node name="DisabledSound" type="AudioStreamPlayer" parent="Top/Header/QuitButton"]
+stream = ExtResource( 21 )
+volume_db = -15.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Top/Header"]
 margin_left = 407.0
 margin_right = 577.0
-margin_bottom = 28.0
+margin_bottom = 47.0
+mouse_filter = 2
 custom_constants/separation = 5
 alignment = 1
 
-[node name="HealthBar" type="TextureProgress" parent="Top/Header/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Top/Header/VBoxContainer"]
 margin_right = 170.0
 margin_bottom = 14.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Top/Header/VBoxContainer/HBoxContainer"]
+margin_right = 57.0
+margin_bottom = 14.0
+text = "Evidence"
+
+[node name="EvidenceBar" type="ProgressBar" parent="Top/Header/VBoxContainer/HBoxContainer"]
+margin_left = 61.0
+margin_right = 170.0
+margin_bottom = 14.0
+mouse_filter = 2
+size_flags_horizontal = 3
+custom_styles/fg = SubResource( 5 )
+max_value = 20.0
+step = 1.0
+value = 1.0
+
+[node name="HealthBar" type="TextureProgress" parent="Top/Header/VBoxContainer"]
+margin_top = 19.0
+margin_right = 170.0
+margin_bottom = 33.0
+mouse_filter = 2
+value = 100.0
 texture_under = ExtResource( 15 )
 texture_over = ExtResource( 17 )
 texture_progress = ExtResource( 16 )
 
 [node name="StaminaBar" type="TextureProgress" parent="Top/Header/VBoxContainer"]
 margin_left = 28.0
-margin_top = 19.0
+margin_top = 38.0
 margin_right = 141.0
-margin_bottom = 28.0
+margin_bottom = 47.0
+mouse_filter = 2
 size_flags_horizontal = 4
 value = 100.0
 texture_under = ExtResource( 13 )
@@ -104,10 +157,11 @@ text = "You're Dying! Find Bandages"
 [node name="HelpButton" parent="Top/Header" instance=ExtResource( 8 )]
 anchor_left = 0.0
 anchor_right = 0.0
-margin_left = 914.0
+margin_left = 924.0
 margin_right = 984.0
-margin_bottom = 28.0
+margin_bottom = 16.0
 size_flags_horizontal = 10
+size_flags_vertical = 0
 align = 2
 
 [node name="UpdateNotice" type="Label" parent="Top/Header/HelpButton"]
@@ -174,12 +228,12 @@ size_flags_vertical = 3
 
 [node name="CenterContainer" type="CenterContainer" parent="PopupInventoryContainer/VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 20.0
+margin_bottom = 16.0
 
 [node name="InventoryButton" type="Button" parent="PopupInventoryContainer/VBoxContainer/CenterContainer"]
-margin_left = 467.0
-margin_right = 557.0
-margin_bottom = 20.0
+margin_left = 472.0
+margin_right = 552.0
+margin_bottom = 16.0
 hint_tooltip = ".. I wonder what's in my backpack"
 focus_mode = 0
 toggle_mode = true
@@ -187,7 +241,7 @@ shortcut = SubResource( 3 )
 text = "Inventory [I]"
 
 [node name="InventoryDisplay" type="PanelContainer" parent="PopupInventoryContainer/VBoxContainer"]
-margin_top = 24.0
+margin_top = 20.0
 margin_right = 1024.0
 margin_bottom = 200.0
 mouse_filter = 1
@@ -195,13 +249,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 169.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 1020.0
+margin_bottom = 180.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
-margin_right = 1010.0
+margin_right = 1016.0
 margin_bottom = 64.0
 
 [node name="Ammo" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
@@ -214,23 +268,25 @@ columns = 6
 
 [node name="InventoryItems" type="GridContainer" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer/HBoxContainer"]
 margin_left = 204.0
-margin_right = 1010.0
+margin_right = 1016.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 0, 32 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 6
 
-[node name="DebugInfo" type="LineEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+[node name="DebugInfo" type="TextEdit" parent="PopupInventoryContainer/VBoxContainer/InventoryDisplay/VBoxContainer"]
+visible = false
 margin_top = 68.0
-margin_right = 1010.0
-margin_bottom = 92.0
-editable = false
+margin_right = 1016.0
+margin_bottom = 153.0
+rect_min_size = Vector2( 300, 85 )
 
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "Bullet", "InventoryIconButton" ), [ ExtResource( 2 ), ExtResource( 11 ) ] ]
 
 [node name="BloodSpatterVignette" type="TextureRect" parent="."]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.533333 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -252,4 +308,71 @@ margin_bottom = 173.0
 custom_fonts/font = SubResource( 4 )
 text = "3"
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -173.0
+margin_top = -220.0
+margin_right = 173.0
+margin_bottom = -191.0
+theme = SubResource( 7 )
+value = 100.0
+percent_visible = false
+
+[node name="Label" type="Label" parent="ProgressBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -167.0
+margin_top = -7.0
+margin_right = 167.0
+margin_bottom = 7.0
+text = "BossName"
+align = 1
+valign = 1
+
+[node name="PopupPanel" type="Panel" parent="."]
+visible = false
+margin_left = 240.0
+margin_top = 211.0
+margin_right = 775.0
+margin_bottom = 405.0
+
+[node name="Label" type="Label" parent="PopupPanel"]
+margin_left = 24.0
+margin_top = 59.0
+margin_right = 218.0
+margin_bottom = 73.0
+rect_scale = Vector2( 2.50898, 2.30828 )
+text = "Are you sure you want to quit?"
+
+[node name="Button" type="Button" parent="PopupPanel"]
+margin_left = 168.0
+margin_top = 115.0
+margin_right = 202.0
+margin_bottom = 135.0
+text = "Yes"
+
+[node name="Button2" type="Button" parent="PopupPanel"]
+margin_left = 328.0
+margin_top = 115.0
+margin_right = 358.0
+margin_bottom = 135.0
+text = "No"
+
+[node name="Label2" type="Label" parent="PopupPanel"]
+margin_left = 177.0
+margin_top = 171.0
+margin_right = 348.0
+margin_bottom = 185.0
+text = "You will lose your progress"
+
+[connection signal="mouse_entered" from="Top/Header/QuitButton" to="Top/Header/QuitButton" method="_on_SceneLaunchButton_mouse_entered"]
+[connection signal="pressed" from="Top/Header/QuitButton" to="Top/Header/QuitButton" method="_on_QuitButton_pressed"]
+[connection signal="finished" from="Top/Header/QuitButton/ClickSound" to="Top/Header/QuitButton" method="_on_ClickSound_finished"]
 [connection signal="toggled" from="PopupInventoryContainer/VBoxContainer/CenterContainer/InventoryButton" to="." method="_on_InventoryButton_toggled"]
+[connection signal="pressed" from="PopupPanel/Button" to="Top/Header/QuitButton" method="_on_QuitYesButton_pressed"]
+[connection signal="pressed" from="PopupPanel/Button2" to="Top/Header/QuitButton" method="_on_QuitNoButton2_pressed"]

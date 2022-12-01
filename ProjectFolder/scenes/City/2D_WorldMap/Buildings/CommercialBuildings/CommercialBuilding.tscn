@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingWalls.png" type="Texture" id=1]
 [ext_resource path="res://scenes/City/2D_WorldMap/Buildings/CommercialBuildings/CommercialBuildingFloors.png" type="Texture" id=2]
@@ -17,16 +17,37 @@
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableChair.tscn" type="PackedScene" id=15]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Couch.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/Lamp.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/Items/collectables/2D/Paper2DPickup.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/Items/collectables/2D/MiscClue2DPickup.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/City/2D_WorldMap/Objects/DeskStatic.tscn" type="PackedScene" id=19]
+[ext_resource path="res://scenes/Items/collectables/2D/MemoryClue2DPickup.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/Items/collectables/2D/RocketLauncherPickup.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/Quests/QuestGivers/mob-boss_01.png" type="Texture" id=22]
+[ext_resource path="res://scenes/Quests/NPC_QuestGiver.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/Items/collectables/2D/TalkClue2DPickup.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scenes/Items/collectables/2D/2DCollectiblePickup.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/Chair.tscn" type="PackedScene" id=26]
+[ext_resource path="res://scenes/City/2D_WorldMap/Buildings/PatrolRoutes/NPCPatrolRouteSmallCircle.tscn" type="PackedScene" id=27]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableAppleStand.tscn" type="PackedScene" id=28]
+[ext_resource path="res://scenes/City/2D_WorldMap/DynamicObjects/DynamicDoor.tscn" type="PackedScene" id=29]
+[ext_resource path="res://scenes/City/Indoors/MaterialsLibrary/FishStand.png" type="Texture" id=30]
+[ext_resource path="res://scenes/City/2D_WorldMap/Objects/KickableOrangeStand.tscn" type="PackedScene" id=31]
+[ext_resource path="res://scenes/Items/collectables/2D/2DCollectablePickup.gd" type="Script" id=32]
+[ext_resource path="res://scenes/_common/GUI/icons/PaperClue-h.png" type="Texture" id=33]
+[ext_resource path="res://scenes/_common/GUI/sfx/Box_lock_open.wav" type="AudioStream" id=34]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 274.775, 137.935 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 152.5, 101 )
+extents = Vector2( 235, 101 )
 
 [sub_resource type="CanvasItemMaterial" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31, 31 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 16, 10 )
 
 [node name="Building" type="Node2D"]
 script = ExtResource( 5 )
@@ -40,7 +61,6 @@ texture = ExtResource( 2 )
 texture = ExtResource( 1 )
 
 [node name="Walls" type="Sprite" parent="."]
-visible = false
 texture = ExtResource( 10 )
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -61,27 +81,26 @@ shape = SubResource( 10 )
 [node name="NPCs" type="Navigation2D" parent="."]
 
 [node name="PossibleSpawnPoints" type="Node2D" parent="."]
-visible = false
 
 [node name="NPCPatrolRoute" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 80, 51 )
-scale = Vector2( 1.72782, 1.51989 )
+position = Vector2( -263, -262 )
+scale = Vector2( 6.72741, 5.16822 )
 
 [node name="NPCPatrolRoute8" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -226, 170 )
+position = Vector2( 97, -187 )
 scale = Vector2( 1.67118, 1.29556 )
 
 [node name="NPCPatrolRoute9" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -227, 55 )
-scale = Vector2( 1.65695, 1.84102 )
+position = Vector2( 126, -117 )
+scale = Vector2( 0.845935, 0.888935 )
 
 [node name="NPCPatrolRoute4" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -70, 53 )
+position = Vector2( 100, -182 )
 scale = Vector2( 1.57397, 1.62445 )
 
 [node name="NPCPatrolRoute10" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( -70, 150 )
-scale = Vector2( 1.51859, 1.57429 )
+position = Vector2( 94, -223 )
+scale = Vector2( 1.67678, 3.55841 )
 
 [node name="NPCPatrolRoute5" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
 position = Vector2( 95, -127 )
@@ -100,8 +119,21 @@ position = Vector2( -58, -139 )
 scale = Vector2( 1.53947, 1.61613 )
 
 [node name="NPCPatrolRoute2" parent="PossibleSpawnPoints" instance=ExtResource( 9 )]
-position = Vector2( 84, 157 )
-scale = Vector2( 1.69815, 1.49158 )
+position = Vector2( -256, -6.00002 )
+scale = Vector2( 6.25723, 0.665623 )
+
+[node name="NPCPatrolRouteUnitE" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
+position = Vector2( -9, 144 )
+scale = Vector2( 0.321019, 0.519124 )
+
+[node name="NPCPatrolRouteUnitF" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
+position = Vector2( -169, 150 )
+rotation = 0.213313
+scale = Vector2( 0.0810366, 0.532447 )
+
+[node name="NPCPatrolRouteUnitD" parent="PossibleSpawnPoints" instance=ExtResource( 27 )]
+position = Vector2( 149, 141 )
+scale = Vector2( 0.245935, 0.397705 )
 
 [node name="AvailableNPCs" type="ResourcePreloader" parent="."]
 resources = [ PoolStringArray( "NPCPracticeDummy" ), [ ExtResource( 6 ) ] ]
@@ -232,210 +264,577 @@ align = 1
 [node name="PossibleQuestTargetLocations" type="Node2D" parent="."]
 
 [node name="QuestTargetLocation" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 101, -121 )
+position = Vector2( 112, -119 )
 location_address = "128 Main St, Unit C"
-location_details = "The Butcher"
+location_details = "The Teamsters Labour Union Hall"
 
 [node name="QuestTargetLocation2" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 position = Vector2( 65, -61 )
 location_address = "128 Main St, Unit B"
-location_details = "The Baker"
+location_details = "Romanos Pizzeria"
 
 [node name="QuestTargetLocation3" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( -91, -127 )
-location_address = "128 Main St, Unit A"
-location_details = "The Candlestick Maker"
+position = Vector2( -114, 181 )
+location_address = "128 Main St, Unit F"
+location_details = "In the Marketplace, south end of Commercial District"
 
 [node name="QuestTargetLocation4" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( -211, 131 )
+position = Vector2( -205, 103 )
 location_address = "128 Main St, Unit F"
-location_details = "The Cobbler"
+location_details = "The Cobbler in the marketplace at the south end of the commercial district."
 
 [node name="QuestTargetLocation5" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
 position = Vector2( -10, 127 )
 location_address = "128 Main St, Unit E"
-location_details = "The Haberdasher"
+location_details = "The Haberdasher in the marketplace at the south end of the commercial district"
 
 [node name="QuestTargetLocation6" parent="PossibleQuestTargetLocations" instance=ExtResource( 8 )]
-position = Vector2( 93, 84 )
-location_address = "128 Main St, Unit D"
+position = Vector2( 173, -159 )
+location_address = "128 Main St, Unit C"
 location_details = "The Local Union Office"
+
+[node name="TalkClue" type="Node2D" parent="."]
+position = Vector2( -190, 143 )
+scale = Vector2( 0.248307, 0.259949 )
+script = ExtResource( 32 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Piece of paper",
+"notes_for_journal": "Found a note thrown under the fruit stand \"Note to self, the lady in the red dress owes me a bag, she had one with her but said she couln't put the oranges in that one for some reason, remember to ask her to give it back next time she comes to buy fruits\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/PaperClue-n.png",
+"path_to_popup_display_image": "res://scenes/Indoor/note.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Sprite" type="Sprite" parent="TalkClue"]
+scale = Vector2( 0.469241, 0.469241 )
+texture = ExtResource( 33 )
+
+[node name="Area2D" type="Area2D" parent="TalkClue"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkClue/Area2D"]
+position = Vector2( -1, -1 )
+shape = SubResource( 1 )
+
+[node name="PickupNoise" type="AudioStreamPlayer" parent="TalkClue"]
+stream = ExtResource( 34 )
+volume_db = -7.0
 
 [node name="Furniture" type="Node2D" parent="."]
 
-[node name="Trashcan" parent="Furniture" instance=ExtResource( 11 )]
-position = Vector2( -182, -57 )
+[node name="UnitA_DetectiveOffice" type="Node2D" parent="Furniture"]
 
-[node name="Trashcan2" parent="Furniture" instance=ExtResource( 11 )]
-position = Vector2( -161, -227 )
+[node name="KeyToOfficeDoor" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 18 )]
+position = Vector2( -104, -165 )
+scale = Vector2( 0.26975, 0.26975 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Key to Worth Office",
+"notes_for_journal": "The spare key I keep under my fruit bowl. It's for my office.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
 
-[node name="Trashcan4" parent="Furniture" instance=ExtResource( 11 )]
-position = Vector2( -30, -186 )
+[node name="KickableFruitStand2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 31 )]
+position = Vector2( -105, -166 )
+scale = Vector2( 0.364574, 0.364574 )
 
-[node name="Trashcan5" parent="Furniture" instance=ExtResource( 11 )]
-position = Vector2( 25, -79 )
-
-[node name="Trashcan3" parent="Furniture" instance=ExtResource( 11 )]
-position = Vector2( -226, -106 )
-
-[node name="PottedPlant" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( -224, -157 )
-
-[node name="PottedPlant2" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( -225, -226 )
-
-[node name="PottedPlant4" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( 69, -187 )
-
-[node name="PottedPlant6" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( 208, -165 )
-
-[node name="PottedPlant7" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( 106, -163 )
-
-[node name="PottedPlant5" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( -39, -230 )
-
-[node name="PottedPlant3" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( -228, -129 )
-
-[node name="DeskSearchable1" parent="Furniture" instance=ExtResource( 13 )]
-position = Vector2( -151, -55 )
-rotation = 3.14159
-
-[node name="DeskSearchable2" parent="Furniture" instance=ExtResource( 13 )]
-position = Vector2( -196, -127 )
-
-[node name="DeskSearchable3" parent="Furniture" instance=ExtResource( 13 )]
-position = Vector2( 5, -189 )
-
-[node name="Couch" parent="Furniture" instance=ExtResource( 16 )]
-position = Vector2( -90, -215 )
-rotation = -1.78037
-
-[node name="Couch2" parent="Furniture" instance=ExtResource( 16 )]
-position = Vector2( -97, -59 )
-rotation = -0.404664
-
-[node name="Couch5" parent="Furniture" instance=ExtResource( 16 )]
-position = Vector2( 225, -87 )
-rotation = -1.57079
-
-[node name="Couch3" parent="Furniture" instance=ExtResource( 16 )]
-position = Vector2( 61, -218 )
-rotation = -2.11977
-
-[node name="Sink" parent="Furniture" instance=ExtResource( 14 )]
+[node name="Sink" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 14 )]
 position = Vector2( -80, -125 )
 rotation = 1.57079
 scale = Vector2( 0.780171, 0.780171 )
 
-[node name="Sink2" parent="Furniture" instance=ExtResource( 14 )]
-position = Vector2( 92, -84 )
-rotation = 4.71238
-scale = Vector2( 0.780171, 0.780171 )
-
-[node name="Sink3" parent="Furniture" instance=ExtResource( 14 )]
-position = Vector2( -63, -103 )
-rotation = 4.71238
-scale = Vector2( 0.780171, 0.780171 )
-
-[node name="TableLamp" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( -86, -181 )
-
-[node name="TableLamp3" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( 68, -107 )
-
-[node name="TableLamp6" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( 96, -129 )
-
-[node name="TableLamp4" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( 128, -185 )
-
-[node name="TableLamp5" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( 189, -108 )
-
-[node name="TableLamp2" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( -228, -53 )
-
-[node name="TableLamp7" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( -45, -75 )
-
-[node name="Trashcan6" parent="Furniture" instance=ExtResource( 11 )]
-position = Vector2( 133, -87 )
-
-[node name="PottedPlant9" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( 13, -56 )
-
-[node name="TableLamp8" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( 136, -52 )
-
-[node name="TableLamp9" parent="Furniture" instance=ExtResource( 17 )]
-position = Vector2( 72, -232 )
-
-[node name="KickableChair" parent="Furniture" instance=ExtResource( 15 )]
+[node name="KickableChair" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 15 )]
 position = Vector2( -193, -107 )
 scale = Vector2( 0.503913, 0.503913 )
 
-[node name="KickableChair2" parent="Furniture" instance=ExtResource( 15 )]
+[node name="Trashcan2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 11 )]
+position = Vector2( -161, -227 )
+
+[node name="PottedPlant2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -225, -226 )
+
+[node name="Couch" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
+position = Vector2( -90, -215 )
+rotation = -1.78037
+
+[node name="PottedPlant" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -224, -157 )
+
+[node name="PottedPlant3" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 12 )]
+position = Vector2( -228, -129 )
+
+[node name="DeskSearchable2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
+position = Vector2( -196, -127 )
+
+[node name="MemoryClueSister" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable2" instance=ExtResource( 20 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Memory Clue - Sister?",
+"notes_for_journal": "I'm wracking my brain trying to remember her. How did she even know my name? Tommy never mentioned a sister.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/NPCs/VeronicaIntactFullBody.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="TableLamp2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 17 )]
+position = Vector2( -228, -53 )
+
+[node name="Trashcan" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 11 )]
+position = Vector2( -182, -57 )
+
+[node name="Trashcan3" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 11 )]
+position = Vector2( -226, -106 )
+
+[node name="DeskSearchable1" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 13 )]
+position = Vector2( -151, -55 )
+rotation = 3.14159
+
+[node name="MemoryClue1Luck" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Memory Clue - Just my luck.",
+"notes_for_journal": "No one's problem but my own. My rent is overdue. I lost my badge on the police force a few years back. Clients don't come through these doors everyday. Now I'm wanted for a murder I didn't commit.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/photographs/bogart eastwood drunk at the bar.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="MemoryClue2Tommy" parent="Furniture/UnitA_DetectiveOffice/DeskSearchable1" instance=ExtResource( 20 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Memory Clue - Tommy",
+"notes_for_journal": "Now that I think about it, it was Tommy's fault that I lost my badge. He was always the \"good cop\".Now he's dead. And everyone thinks I killed him.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MemoryClue-n.png",
+"path_to_popup_display_image": "res://scenes/NPCs/TommyIntactPhoto.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Couch2" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 16 )]
+position = Vector2( -97, -59 )
+rotation = -0.404664
+
+[node name="TableLamp" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 17 )]
+position = Vector2( -86, -181 )
+
+[node name="DynamicDoor" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 29 )]
+position = Vector2( -122, -93 )
+rotation = -1.57079
+scale = Vector2( 0.371579, 0.371579 )
+required_item = "Key to Worth Office"
+
+[node name="Map" parent="Furniture/UnitA_DetectiveOffice" instance=ExtResource( 25 )]
+position = Vector2( -97, -90 )
+scale = Vector2( 0.278169, 0.278169 )
+item_details = {
+"display_immediately": true,
+"is_unique": true,
+"item_name": "Map of the city",
+"notes_for_journal": "The Noir District isn't much, but it's home. My detective agency is in the Commercial District.",
+"path_to_icon": "res://scenes/_common/GUI/icons/book-h.png",
+"path_to_popup_display_image": "res://scenes/Items/collectables/map_parchment.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="UnitB_RomanoPizza" type="Node2D" parent="Furniture"]
+position = Vector2( 0, -32 )
+scale = Vector2( 0.850333, 0.850333 )
+
+[node name="TableLamp9" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 17 )]
+position = Vector2( 72, -232 )
+
+[node name="Couch3" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 16 )]
+position = Vector2( 61, -218 )
+rotation = -2.11977
+
+[node name="DeskSearchable3" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 13 )]
+position = Vector2( 5, -189 )
+
+[node name="KickableChair2" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 15 )]
 position = Vector2( 12, -161 )
 rotation = -0.705204
 scale = Vector2( 0.450545, 0.450545 )
 
-[node name="KickableChair3" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( 57, -59 )
-rotation = -0.034587
-scale = Vector2( 0.450545, 0.450545 )
-
-[node name="DeskStatic" parent="Furniture" instance=ExtResource( 19 )]
-position = Vector2( 54, -78 )
-
-[node name="KickableChair4" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( 161, -85 )
-rotation = -0.034587
-scale = Vector2( 0.450545, 0.450545 )
-
-[node name="DeskStatic2" parent="Furniture" instance=ExtResource( 19 )]
-position = Vector2( 158, -104 )
-
-[node name="KickableChair5" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( 157, -201 )
-rotation = -3.14159
-scale = Vector2( 0.450545, 0.450545 )
-
-[node name="DeskStatic3" parent="Furniture" instance=ExtResource( 19 )]
-position = Vector2( 156, -182 )
-rotation = -3.14159
-
-[node name="PottedPlant11" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( 113, -59 )
-
-[node name="PottedPlant12" parent="Furniture" instance=ExtResource( 12 )]
-position = Vector2( 218, -55 )
-
-[node name="KickableChair6" parent="Furniture" instance=ExtResource( 15 )]
-position = Vector2( 217, -218 )
-rotation = -1.92505
-scale = Vector2( 0.450545, 0.450545 )
-
-[node name="DeskStatic4" parent="Furniture" instance=ExtResource( 19 )]
-position = Vector2( 197, -218 )
-rotation = -1.57079
-
-[node name="KickableChair7" parent="Furniture" instance=ExtResource( 15 )]
+[node name="KickableChair7" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 15 )]
 position = Vector2( -30, -130 )
 rotation = -1.09278
 scale = Vector2( 0.450545, 0.450545 )
 
-[node name="DeskStatic5" parent="Furniture" instance=ExtResource( 19 )]
+[node name="Trashcan4" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 11 )]
+position = Vector2( -30, -186 )
+
+[node name="DeskStatic5" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 19 )]
 position = Vector2( -48, -144 )
 rotation = -1.02742
 
+[node name="PottedPlant5" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 12 )]
+position = Vector2( -39, -230 )
+
+[node name="TableLamp7" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 17 )]
+position = Vector2( -45, -75 )
+
+[node name="Sink3" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 14 )]
+position = Vector2( -63, -103 )
+rotation = -1.57081
+scale = Vector2( 0.780171, 0.780171 )
+
+[node name="PottedPlant4" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 12 )]
+position = Vector2( 69, -187 )
+
+[node name="TableLamp3" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 17 )]
+position = Vector2( 68, -107 )
+
+[node name="Trashcan5" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 11 )]
+position = Vector2( 25, -79 )
+
+[node name="KickableChair3" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 15 )]
+position = Vector2( 57, -59 )
+rotation = -0.034587
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 19 )]
+position = Vector2( 54, -78 )
+
+[node name="PottedPlant9" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 12 )]
+position = Vector2( 13, -56 )
+
+[node name="MiscClue" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 18 )]
+position = Vector2( -22, -253 )
+scale = Vector2( 0.16493, 0.159108 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "MiscClue",
+"notes_for_journal": "Romano's Pizza Parlour. Home of the best Pizza in town. Tommy always loved this place. I could take it or leave it.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="NPC_QuestGiver" parent="Furniture/UnitB_RomanoPizza" instance=ExtResource( 23 )]
+position = Vector2( -2, -117 )
+scale = Vector2( 0.483979, 0.512165 )
+dialog_fulfilled_requirements = PoolStringArray( "Hey", "Thanks for getting me that thing.", "Take this dinner reservation, my treat.", "Non-transferable; just for you." )
+Sprite_Tex = ExtResource( 22 )
+Portrait_Tex = ExtResource( 22 )
+
+[node name="Requirements" type="Node2D" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver"]
+visible = false
+
+[node name="MiscClue" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Requirements" instance=ExtResource( 18 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Diamond Necklace",
+"notes_for_journal": "Expensive Diamond Necklace. Romano is always trying to impress people. Maybe he'll be interested in this.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="Rewards" type="Node2D" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver"]
+visible = false
+
+[node name="DinnerReservation" parent="Furniture/UnitB_RomanoPizza/NPC_QuestGiver/Rewards" instance=ExtResource( 18 )]
+visible = false
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Dinner Reservation for Romanos Pizzeria",
+"notes_for_journal": "Strangely, this pizzeria is exceedingly hard to get into. Even the mayor can't get a table. Luckily, you secured this reservation.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="UnitC_LabourUnion" type="Node2D" parent="Furniture"]
+
+[node name="TableLamp4" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 17 )]
+position = Vector2( 128, -185 )
+
+[node name="TableLamp6" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 17 )]
+position = Vector2( 96, -129 )
+
+[node name="PottedPlant6" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 12 )]
+position = Vector2( 208, -165 )
+
+[node name="PottedPlant7" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 12 )]
+position = Vector2( 106, -163 )
+
+[node name="Couch5" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 16 )]
+position = Vector2( 225, -87 )
+rotation = -1.57079
+
+[node name="Sink2" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 14 )]
+position = Vector2( 92, -84 )
+rotation = -1.57081
+scale = Vector2( 0.780171, 0.780171 )
+
+[node name="TableLamp5" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 17 )]
+position = Vector2( 189, -108 )
+
+[node name="Trashcan6" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 11 )]
+position = Vector2( 133, -87 )
+
+[node name="TableLamp8" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 17 )]
+position = Vector2( 136, -52 )
+
+[node name="KickableChair4" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 15 )]
+position = Vector2( 161, -85 )
+rotation = -0.034587
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic2" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 19 )]
+position = Vector2( 158, -104 )
+
+[node name="KickableChair5" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 15 )]
+position = Vector2( 157, -201 )
+rotation = -3.14159
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="PottedPlant11" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 12 )]
+position = Vector2( 113, -59 )
+
+[node name="PottedPlant12" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 12 )]
+position = Vector2( 218, -55 )
+
+[node name="KickableChair6" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 15 )]
+position = Vector2( 217, -218 )
+rotation = -1.92505
+scale = Vector2( 0.450545, 0.450545 )
+
+[node name="DeskStatic4" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 19 )]
+position = Vector2( 197, -218 )
+rotation = -1.57079
+
+[node name="VeronicaClue" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 24 )]
+position = Vector2( 191, -61 )
+scale = Vector2( 0.20835, 0.20835 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Brunette Description",
+"notes_for_journal": "After \"Talking\" to some of the labourers, I learned that Veronica Winter may not be who she says. These guys claim to have seen her around with Tommy, but not in a brotherly way. It took a little convincing to get them to stop saying, \"If you know what we mean.\"",
+"path_to_icon": "res://scenes/_common/GUI/icons/TalkClue-n.png",
+"path_to_popup_display_image": "res://scenes/NPCs/femme fatale 04.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="DeskSearchable" parent="Furniture/UnitC_LabourUnion" instance=ExtResource( 13 )]
+position = Vector2( 157, -185 )
+scale = Vector2( 0.872817, 0.872817 )
+
+[node name="BasementsClue" parent="Furniture/UnitC_LabourUnion/DeskSearchable" instance=ExtResource( 18 )]
+scale = Vector2( 0.447608, 0.447608 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Construction Notes",
+"notes_for_journal": "There's permits, and fake permits, and payments to obtain fake permits. Of special note, a few homes may have unauthorized basements.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="UnitF_laundromat" type="Node2D" parent="Furniture"]
+
+[node name="DeskStatic" parent="Furniture/UnitF_laundromat" instance=ExtResource( 19 )]
+position = Vector2( -214, 53 )
+
+[node name="PottedPlant" parent="Furniture/UnitF_laundromat" instance=ExtResource( 12 )]
+position = Vector2( -185, 55 )
+
+[node name="PottedPlant2" parent="Furniture/UnitF_laundromat" instance=ExtResource( 12 )]
+position = Vector2( -222, 141 )
+
+[node name="TableLamp" parent="Furniture/UnitF_laundromat" instance=ExtResource( 17 )]
+position = Vector2( -226, 50 )
+
+[node name="Chair" parent="Furniture/UnitF_laundromat" instance=ExtResource( 26 )]
+position = Vector2( -215, 75 )
+
+[node name="Couch" parent="Furniture/UnitF_laundromat" instance=ExtResource( 16 )]
+position = Vector2( -211, 228 )
+
+[node name="DeskStatic2" parent="Furniture/UnitF_laundromat" instance=ExtResource( 19 )]
+position = Vector2( -214, 171 )
+
+[node name="Sink2" parent="Furniture/UnitF_laundromat" instance=ExtResource( 14 )]
+position = Vector2( -113, 120 )
+
+[node name="TableLamp2" parent="Furniture/UnitF_laundromat" instance=ExtResource( 17 )]
+position = Vector2( -172, 115 )
+
+[node name="TableLamp3" parent="Furniture/UnitF_laundromat" instance=ExtResource( 17 )]
+position = Vector2( -201, 169 )
+
+[node name="PottedPlant3" parent="Furniture/UnitF_laundromat" instance=ExtResource( 12 )]
+position = Vector2( -103, 92 )
+
+[node name="PottedPlant4" parent="Furniture/UnitF_laundromat" instance=ExtResource( 12 )]
+position = Vector2( -155, 55 )
+
+[node name="KickableFruitStand" parent="Furniture/UnitF_laundromat" instance=ExtResource( 31 )]
+position = Vector2( -156, 88 )
+scale = Vector2( 0.264143, 0.264143 )
+
+[node name="KickableFruitStand5" parent="Furniture/UnitF_laundromat" instance=ExtResource( 28 )]
+position = Vector2( -103, 146 )
+scale = Vector2( 0.335452, 0.335452 )
+
+[node name="KickableFruitStand6" parent="Furniture/UnitF_laundromat" instance=ExtResource( 28 )]
+position = Vector2( -104, 181 )
+scale = Vector2( 0.335452, 0.335452 )
+
+[node name="KickableFruitStand7" parent="Furniture/UnitF_laundromat" instance=ExtResource( 28 )]
+position = Vector2( -105, 214 )
+scale = Vector2( 0.335452, 0.335452 )
+
+[node name="KickableFruitStand2" parent="Furniture/UnitF_laundromat" instance=ExtResource( 31 )]
+position = Vector2( -189, 143 )
+rotation = 0.0
+scale = Vector2( 0.264143, 0.264143 )
+
+[node name="UnitE_Hideout" type="Node2D" parent="Furniture"]
+
+[node name="KickableFruitStand8" parent="Furniture/UnitE_Hideout" instance=ExtResource( 31 )]
+position = Vector2( 28, 143 )
+scale = Vector2( 0.264143, 0.264143 )
+
+[node name="KickableFruitStand3" parent="Furniture/UnitE_Hideout" instance=ExtResource( 31 )]
+position = Vector2( -50, 145 )
+scale = Vector2( 0.264143, 0.264143 )
+
+[node name="TableLamp" parent="Furniture/UnitE_Hideout" instance=ExtResource( 17 )]
+position = Vector2( -36, 99 )
+
+[node name="TableLamp2" parent="Furniture/UnitE_Hideout" instance=ExtResource( 17 )]
+position = Vector2( 15, 99 )
+
+[node name="TableLamp3" parent="Furniture/UnitE_Hideout" instance=ExtResource( 17 )]
+position = Vector2( -36, 182 )
+
+[node name="TableLamp4" parent="Furniture/UnitE_Hideout" instance=ExtResource( 17 )]
+position = Vector2( 15, 183 )
+
+[node name="Couch" parent="Furniture/UnitE_Hideout" instance=ExtResource( 16 )]
+position = Vector2( -57, 228 )
+
+[node name="Couch2" parent="Furniture/UnitE_Hideout" instance=ExtResource( 16 )]
+position = Vector2( 38, 227 )
+
+[node name="Couch3" parent="Furniture/UnitE_Hideout" instance=ExtResource( 16 )]
+position = Vector2( 39, 53 )
+rotation = -3.14159
+
+[node name="DeskStatic" parent="Furniture/UnitE_Hideout" instance=ExtResource( 19 )]
+position = Vector2( -10, 115 )
+
+[node name="UnitD_PlantStore" type="Node2D" parent="Furniture"]
+
+[node name="KickableFruitStand4" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 31 )]
+position = Vector2( 112, 162 )
+scale = Vector2( 0.264143, 0.264143 )
+
+[node name="PottedPlant" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 88, 123 )
+
+[node name="PottedPlant2" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 219, 124 )
+
+[node name="PottedPlant3" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 218, 58 )
+
+[node name="PottedPlant4" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 88, 158 )
+
+[node name="PottedPlant5" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 218, 160 )
+
+[node name="PottedPlant6" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 89, 186 )
+
+[node name="PottedPlant7" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 218, 188 )
+
+[node name="PottedPlant8" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 89, 214 )
+
+[node name="PottedPlant9" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 12 )]
+position = Vector2( 218, 217 )
+
+[node name="KickableChair" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 15 )]
+position = Vector2( 153, 188 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="MarketShop4" type="StaticBody2D" parent="Furniture/UnitD_PlantStore"]
+position = Vector2( 194, 162 )
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="Furniture/UnitD_PlantStore/MarketShop4"]
+position = Vector2( 7.62939e-06, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 30 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitD_PlantStore/MarketShop4"]
+shape = SubResource( 11 )
+
+[node name="MarketShop5" type="StaticBody2D" parent="Furniture/UnitD_PlantStore"]
+position = Vector2( 194, 216 )
+rotation = 1.5708
+
+[node name="Sprite" type="Sprite" parent="Furniture/UnitD_PlantStore/MarketShop5"]
+position = Vector2( 7.62939e-06, 0 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 30 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Furniture/UnitD_PlantStore/MarketShop5"]
+shape = SubResource( 11 )
+
+[node name="TableLamp" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 17 )]
+position = Vector2( 193, 189 )
+
+[node name="TableLamp2" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 17 )]
+position = Vector2( 112, 124 )
+
+[node name="MiscClue" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 18 )]
+position = Vector2( 132, 79 )
+scale = Vector2( 0.299611, 0.299611 )
+item_details = {
+"display_immediately": true,
+"is_unique": false,
+"item_name": "Electrical Room, Fortified",
+"notes_for_journal": "I've never seen an electrical room so well fortified. This is a class 5 lock, suitable for bank vaults, or top-secret municipal governance documents.",
+"path_to_icon": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_popup_display_image": "res://scenes/_common/GUI/icons/MiscClue-n.png",
+"path_to_scene_for_PlayerController_Items": ""
+}
+
+[node name="KickableAppleStand" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 28 )]
+position = Vector2( 219, 93 )
+scale = Vector2( 0.30272, 0.30272 )
+
+[node name="KickableAppleStand2" parent="Furniture/UnitD_PlantStore" instance=ExtResource( 28 )]
+position = Vector2( 142, 58 )
+rotation = 0.0
+scale = Vector2( 0.30272, 0.30272 )
+
 [node name="collectibles" type="Node2D" parent="."]
 
-[node name="Paper" parent="collectibles" instance=ExtResource( 18 )]
-position = Vector2( -141, -126 )
-scale = Vector2( 0.204744, 0.204744 )
+[node name="Bazooka" parent="." instance=ExtResource( 21 )]
+position = Vector2( 94, 74 )
+scale = Vector2( 0.349502, 0.344363 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="TalkClue/Area2D" to="TalkClue" method="_on_Area_body_entered"]

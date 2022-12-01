@@ -16,7 +16,7 @@ var max_npcs = 5
 var npcs_spawned = 0
 var chance_to_spawn_NPCs = 0.1
 var npc_patrol_route # PathFollow object for pedestrian cops to walk around, once spawned
-
+var npc_to_spawn
 
 var city_map
 var home_building
@@ -33,7 +33,20 @@ func _ready():
 	State = States.READY
 	city_map = Global.world_controller.current_scene
 	home_building = city_map.get_random_building()
+	choose_npc_type()
 
+	start_random_engine()
+
+func choose_npc_type():
+	var npcResourceName = "CopNPC"
+	if randf() < 0.2:
+		npcResourceName = "MookNPC"
+	npc_to_spawn = $AvailableNPCs.get_resource(npcResourceName)
+
+func start_random_engine():	
+	var engines = $Audio/Engine.get_children()
+	var myEngine = engines[randi()%engines.size()]
+	myEngine.play()
 
 func init(pathFollowNode):
 	path_follow_target = pathFollowNode
@@ -206,8 +219,8 @@ func wreck():
 	State = States.CRASHING
 	$CrashTimer.start()
 	$Sprite.set_z_index(-1)
-	$VroomNoise.stop()
 	$Headlight.hide()
+	$Audio/Horn/HornTimer.stop()
 	#path_follow_target.die()
 	
 
@@ -235,16 +248,15 @@ func spawn_path_follower(routeScene):
 
 func spawn_npc():
 	# Generate cops that roam around on a simple path
-	var npcs = $AvailableNPCs.get_resource_list()
-	var randomNPCName = npcs[randi()%npcs.size()]
-	var npcScene = $AvailableNPCs.get_resource(randomNPCName).instance()
+	var npcScene = npc_to_spawn.instance()
 	npcScene.set_global_position($NPCSpawnPosition.get_global_position())
 	var pathFollower = spawn_path_follower(npc_patrol_route)
 	npcScene.init(city_map, home_building, pathFollower)
 	#npcScene.set_scale((Vector2(1/home_building.scale.x, 1/home_building.scale.y)))	
 	#home_building.get_node("NPCs").add_child(npcScene)
 	npcScene.set_scale(Vector2(1.0, 1.0))
-	npcScene.set_modulate(Color.aqua)
+	# don't need the blue color anymore, we have actual cop npcs
+	#npcScene.set_modulate(Color.aqua)
 	city_map.get_node("NPCs").add_child(npcScene)
 
 
@@ -302,3 +314,10 @@ func _on_NPCSpawnTimer_timeout():
 		$NPCSpawnTimer.start()
 		
 
+
+
+func _on_HornTimer_timeout():
+	if State in [States.READY, States.MOVING]:
+		$Audio/Horn/RandomHornNoise.play()
+		$Audio/Horn/HornTimer.set_wait_time(rand_range(5.0, 15.0))
+		$Audio/Horn/HornTimer.start()

@@ -7,8 +7,16 @@ onready var nav_agent = $NavigationAgent2D
 onready var nav_update_timer = $NavUpdateTimer
 onready var sprite = $Sprite
 #export var active : bool = false
-export var chance_to_have_gun = 0.75
-export var chance_to_spawn_loot = 0.25
+export var npc_type_odds = { 
+	"shooty":0.6,
+	"punchy":0.4,
+}
+
+#chance_to_have_gun = 0.75
+
+export var magazine_size = 6
+var ammo_remaining = magazine_size
+export var chance_to_spawn_loot = 0.33
 var health = rand_range(10.0,20.0) # should take 1 or 2 hits to kill them
 var map_scene
 var home_building
@@ -20,12 +28,18 @@ var shooting_target_acquired = false
 var player_engaged = false
 var last_known_target_position: Vector2
 
+var rotate_sprite : bool = false
+var flip_sprite : bool = true
+
+var paper_doll
+var currentNpc
+var set_boss = 0
 
 
-onready var gun = $Sprite/NPCGun
+onready var gun
 
 
-enum States { INITIALIZING, READY, PATROLLING, CHASING, SEEKING, FIGHTING, AIMING, RELOADING, DEAD }
+enum States { INITIALIZING, READY, PATROLLING, CHASING, SEEKING, FIGHTING, AIMING, RELOADING, FLYING, DEAD }
 var State = States.INITIALIZING setget set_state, get_state
 var previous_states = [] # hax! technical_debt. push states onto the stack so you can recall them later? But really, gun states should be separated out from awareness states
 
@@ -36,6 +50,8 @@ signal projectile_ready(bulletObj)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#print(set_boss)
+	gun = find_node("NPCGun")
 	#nav_update_timer.connect("timeout", self, "update_nav_path")
 	nav_update_timer.start()
 	
@@ -43,13 +59,18 @@ func _ready():
 #		$Label.text = "active"
 	
 	#nav_agent.set_navigation(home_building.find_node("NPCs"))
-	nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
+	if map_scene != null:
+		nav_agent.set_navigation(map_scene.find_node("NavPolygons"))
 	home_position = get_global_position()
 
 	$DebugInfo.set_visible(Global.user_preferences["debug"])
-	find_node("LaserScope").set_visible(Global.user_preferences["debug"])
+	
+	var laser = find_node("LaserScope")
+	if laser != null:
+		laser.set_visible(Global.user_preferences["debug"])
 
 func init(mapScene, homeBuilding, pathFollowObj):
+	gun = find_node("NPCGun")
 	map_scene = mapScene
 	home_building = homeBuilding
 	if pathFollowObj != null:
@@ -57,16 +78,41 @@ func init(mapScene, homeBuilding, pathFollowObj):
 	var _err = connect("loot_ready", mapScene, "_on_loot_ready")
 	player = mapScene.get_player()
 
-	if randf() < chance_to_have_gun:
-		has_gun = true
-		$Sprite/NPCGun.show()
-		
-	else:
-		$Sprite/NPCGun.hide()
+	var cumulative_odds = 0.0
+	var diceRoll = randf()
+	var chosenType : String = ""
+	for npcTypeName in npc_type_odds.keys():
+		if chosenType == "":
+			cumulative_odds += npc_type_odds[npcTypeName]
+			if diceRoll < cumulative_odds:
+				chosenType = npcTypeName
+	assert(chosenType != "")
+	spawn_sprite(chosenType)
 
 	jump_out_of_walls()
 
 	set_difficulty(Global.user_preferences["difficulty"])
+
+
+func spawn_sprite(spriteName):
+	currentNpc = spriteName
+	if has_node("Sprite/vizSpriteHiddenInCode"):
+		$Sprite/vizSpriteHiddenInCode.hide()
+	var spriteScene
+	spriteScene = $ResourcePreloader.get_resource(spriteName).instance()
+	rotate_sprite = false
+	flip_sprite = true
+	
+	if spriteName == "shooty" or "snakey":
+		has_gun = true
+	else:
+		has_gun = false
+
+	if spriteScene.has_method("init"):
+		spriteScene.init(self)
+	spriteScene.name = "PaperDoll"
+	$Sprite.add_child(spriteScene)
+	
 
 
 func set_state(newState):
@@ -92,6 +138,7 @@ func store_old_state():
 func spawn_alert_sprite():
 	var alertedSprite = $ResourcePreloader.get_resource("AlertedSprite").instance()
 	alertedSprite.position = Vector2.ZERO
+	alertedSprite.name = "AlertedSprite"
 	add_child(alertedSprite)
 
 
@@ -113,12 +160,13 @@ func jump_out_of_walls():
 	
 func set_difficulty(difficultyValue): # 0.5 to 3.0
 	assert(difficultyValue != 0)
-	$Sprite/NPCGun/ReloadTimer.set_wait_time(0.5 / difficultyValue)
+	if gun != null:
+		gun.get_node("ReloadTimer").set_wait_time(0.5 / difficultyValue)
 
 func can_seek():
 	if State in [ States.DEAD, States.INITIALIZING]:
 		return false
-	elif player.dead == true:
+	elif player == null or player.dead == true:
 		return false
 #	elif nav_agent.is_target_reachable() == false: # disabling, since player can hide in margin between wall and navmesh
 #		return false
@@ -141,7 +189,6 @@ func _physics_process(delta):
 	
 	if not State == States.AIMING: # NPCs should pause for a moment after pulling trigger
 		if has_gun:
-			#turn_toward_player(delta) # move_along_path() already does this?
 			if player_in_sights():
 				pull_trigger() # starts a short delay timer before bullet emerges
 		move_along_path(delta)
@@ -155,18 +202,21 @@ func player_in_sights():
 	else:
 		return false
 
-func turn_toward_player(delta):
-	var playerPos = player.get_global_position()
-	var myPos = self.get_global_position()
-	turn_toward_vector((playerPos - myPos), delta)
+
 
 
 func pull_trigger():
-	$Sprite/NPCGun/TriggerFingerTimer.start() 
+	gun.get_node("TriggerFingerTimer").start() 
+	face_player()
 	set_state(States.AIMING)
 
 func move_along_path(delta):
 	if State == States.DEAD:
+		return
+	elif State == States.FLYING:
+		var collision = move_and_collide(velocity * delta)
+		if collision:
+			gib()
 		return
 		
 	var target_global_position = nav_agent.get_next_location()
@@ -183,6 +233,7 @@ func move_along_path(delta):
 	elif State == States.PATROLLING and not near_target(target_global_position, 5.0): # prevent needless spinning?
 		turn_toward_vector(velocity, delta)
 		velocity = move_and_slide(velocity)
+
 	else: # patrolling, but too close to the nav_target, slow down and don't spin
 		velocity = move_and_slide(velocity / 2.0)
 
@@ -194,11 +245,33 @@ func near_target(pos : Vector2, proximity : float):
 	else:
 		return false	
 
+func turn_toward_player(delta):
+	var playerPos = player.get_global_position()
+	var myPos = self.get_global_position()
+	turn_toward_vector((playerPos - myPos), delta)
+
+func face_player():
+	var playerPos = player.get_global_position()
+	var myPos = self.get_global_position()
+	if playerPos.x > myPos.x:
+		$Sprite.scale.x = abs($Sprite.scale.x)
+	else:
+		$Sprite.scale.x = -abs($Sprite.scale.x)
+
 func turn_toward_vector(target_vector, delta):
-	#sprite.rotation = lerp_angle(sprite.rotation, target_vector.angle(), 10.0 * delta)
-	#why do we only rotate the sprite and not the whole entity object?
 	rotation = lerp_angle(rotation, target_vector.angle(), 10.0 * delta)
-	
+	rotate_and_flip_sprite(velocity)
+
+func rotate_and_flip_sprite(dirVector):
+	if rotate_sprite == false:
+		$Sprite.set_global_rotation(0.0)
+	if flip_sprite == true and State != States.AIMING:
+		if dirVector.x > 0:
+			$Sprite.scale.x = abs($Sprite.scale.x)
+		else:
+			$Sprite.scale.x = -abs($Sprite.scale.x)
+
+
 
 func update_nav_path(destination):
 	if State == States.DEAD:
@@ -216,16 +289,28 @@ func update_nav_path(destination):
 
 
 func flash_hit():
-	if Global.user_preferences["gore"]:
-		$AnimationPlayer.play("hit")
+	if Global.user_preferences["gore"] and Global.user_preferences["shake_and_flash"]:
+		var doll = sprite.get_node("PaperDoll")
+		if doll.has_method("hit"):
+			doll.hit()
 	$HitNoise.play()
+
+
+func gib():
+	if Global.user_preferences["gore"] and Global.user_preferences["shake_and_flash"]:
+		$Gibs.set_emitting(true)
+	
 
 func die():
 	set_state(States.DEAD)
+	if has_node("AlertedSprite"):
+		get_node("AlertedSprite").queue_free()
 	$DieNoise.play()
-	$Corpse.rotation = rand_range(0, 2*PI)
+	#$Corpse.rotation = rand_range(0, 2*PI)
 	if Global.user_preferences["gore"]:
-		$AnimationPlayer.play("die")
+		var doll = sprite.get_node("PaperDoll")
+		if doll.has_method("die"):
+			doll.die()
 	else:
 		set_visible(false)
 		call_deferred("queue_free")
@@ -250,45 +335,78 @@ func shoot(): # this ought to be in a separate gun object
 			var _err = connect("projectile_ready", map_scene, "_on_projectile_ready")
 
 	# this should all be in a separate gun object, but I'll move it later.
-	if has_gun and State == States.AIMING:
-
+	if has_gun and State == States.AIMING and !player.dead and ammo_remaining > 0:
 		var bullet = gun.get_node("Ammo").get_resource("bullet").instance()
 		var pos = gun.get_node("Muzzle").get_global_position()
 		var bulletSpeed = 600.0
+		
+		if currentNpc == "snakey":
+			$NPCGun/TriggerFingerTimer.wait_time = 0.4
+			$NPCGun/ReloadTimer.wait_time = 0.3
+			bullet.snakeify = true
+		elif currentNpc == "ressurected?":
+			$NPCGun/TriggerFingerTimer.wait_time = 0.2
+			$NPCGun/ReloadTimer.wait_time = 0.3
+			bulletSpeed = 500
+		else: # basic mook teamster thug with a gun
+			$NPCGun/TriggerFingerTimer.wait_time = 0.2
+			$NPCGun/ReloadTimer.wait_time = 1.5
+			ammo_remaining -= 1
 		bullet.init(self, pos, rotation, bulletSpeed)
 		emit_signal("projectile_ready", bullet)
-		var gunshotNoises = $Sprite/NPCGun/GunshotNoises.get_children()
+		var gunshotNoises = gun.get_node("GunshotNoises").get_children()
 		var gunshotNoise = gunshotNoises[randi()%len(gunshotNoises)]
 		gunshotNoise.set_pitch_scale(rand_range(0.9, 1.1))
 		gunshotNoise.set_volume_db(rand_range(0.9, 1.1))
-		gunshotNoise.play()
-		$AnimationPlayer.play("shoot")
-		$Sprite/NPCGun/ReloadTimer.start()
+		if currentNpc == "snakey":
+			$NPCGun/SnakeNoise/Snake.play()
+		else:
+			gunshotNoise.play()
+		if $Sprite.find_node("AnimationPlayer") and $Sprite/AnimationPlayer.has_animation("shoot"):
+			$Sprite/AnimationPlayer.play("shoot")
+		gun.get_node("TriggerFingerTimer").start()
+		set_state(States.AIMING)
+	elif ammo_remaining == 0:
 		set_state(States.RELOADING)
-
+		gun.get_node("ReloadTimer").start()
 
 func _on_hit(damage : float = 10.0, incomingVector : Vector2 = Vector2.ZERO):
 	health -= damage
 	if health <= 0:
+		knock_back(incomingVector.normalized() * 3.0 * damage)
 		die()
 	else:
 		flash_hit()
-		if incomingVector != Vector2.ZERO:
-			knock_back(incomingVector.normalized() * damage)
+		if currentNpc != "snakey":
+			if incomingVector != Vector2.ZERO:
+				knock_back(incomingVector.normalized() * damage)
 
 
 func extreme_knock_back(impactVector):
+	# not sure these are working.. seems to collide with player still.
+	set_collision_layer_bit(1, false)
+	set_collision_mask_bit(0, false) # ignore player
+	set_collision_mask_bit(1, false) # ignore NPCs
+	set_collision_mask_bit(4, false) # ignore bullets
+
 	impactVector = impactVector.normalized()
-	var tween = get_tree().create_tween()
-	tween.tween_property(self, "position", position+(impactVector*60.0), 0.2)
-	yield(tween, "finished")
+	
+	velocity = impactVector * rand_range(900.0, 2200.0)
+	velocity = velocity.rotated(rand_range(-PI/4.0, PI/4.0))
+	set_state(States.FLYING)
+	
+#	var tween = get_tree().create_tween()
+#	tween.tween_property(self, "position", position+(impactVector*60.0), 0.2)
+#	yield(tween, "finished")
+	yield(get_tree().create_timer(0.25), "timeout")
 	die()
 	
 
 
 func knock_back(impactVector):
 	# ideally we'd tween / lerp to this, but I'll just teleport the NPC backwards for now.
-	position += impactVector
+	var _collision = move_and_collide(impactVector)
+	#position += impactVector
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
@@ -309,7 +427,8 @@ func _on_PunchingArea_body_entered(body):
 		return
 
 	if body.name == "PlayerDetective":
-		$AnimationPlayer.play("punch")
+		if $Sprite.find_node("AnimationPlayer") and $Sprite/AnimationPlayer.has_animation("punch"):
+			$Sprite/AnimationPlayer.play("punch")
 
 
 func _on_PunchingArea_body_exited(body):
@@ -317,8 +436,9 @@ func _on_PunchingArea_body_exited(body):
 		return
 
 	if body.name == "PlayerDetective":
-		$AnimationPlayer.stop(true)
-		$AnimationPlayer.play("relax")
+		if $Sprite.find_node("AnimationPlayer") and $Sprite/AnimationPlayer.has_animation("relax"):
+			$Sprite/AnimationPlayer.stop(true)
+			$Sprite/AnimationPlayer.play("relax")
 
 
 func _on_NavUpdateTimer_timeout():
@@ -351,6 +471,7 @@ func _on_NavUpdateTimer_timeout():
 func _on_ReloadTimer_timeout():
 	if not State in [States.DEAD]:
 		if State == States.RELOADING:
+			ammo_remaining = magazine_size
 			set_state(States.FIGHTING)
 
 
